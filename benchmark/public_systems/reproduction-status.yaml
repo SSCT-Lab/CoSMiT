@@ -1,0 +1,44 @@
+dataset: cosmit-public-system-reproduction
+schema_version: 0.1
+date: 2026-09-04
+
+latest_audit:
+  date: 2026-09-08
+  report: docs/results-audit-2026-09-08.md
+  evidence: benchmark/public_systems/katrer-audit-2026-09-08.json
+  katrer_inspired_generation_judgement_candidates: 3
+  katrer_strict_full_pipeline_reproduced: false
+  katrer_target_execution_recorded: 0
+  katrer_audited_evidence_state: undetermined
+  note: Historical systems block below describes the original checkout; a custom endpoint subsequently enabled an adapted pilot, not the official pipeline. Historical NC-001 static support must not be used as a verified result.
+
+systems:
+  IntentTester:
+    repository: https://github.com/testmigrator/intenttest
+    commit: a906b7c49bbe0dec4d1d8b911e97281b7ce63063
+    license_status: no-license-file-observed
+    official_pipeline:
+      status: externally-blocked
+      reasons:
+        - public Java source does not compile because referenced FileUtil members are absent
+        - Python TDL entry point imports a missing testreuse package and references an undefined llm_model
+        - DashScope apiKey and modelName are required and are not available in the replay environment
+    published_outputs:
+      status: available
+      candidate_glob: experiments/results/*/test_prompt_result/*.txt
+      handling: index hashes and paths only; do not copy upstream code
+
+  KATRER:
+    repository: https://github.com/Davidoxn/KATRER
+    commit: c28ebfca5e309cdf0be794ae0ab388c8f547fba4
+    license_status: MIT
+    official_pipeline:
+      status: externally-blocked
+      reasons:
+        - repository contains scripts but no KATRER res_gpu, judge_ans, or test_res output directories
+        - README requires a GPU Docker image; the linked Zenodo record is access-restricted and exposes no public files
+        - generation script contains a placeholder DashScope API key and hard-coded /path2 locations
+        - the documented QueryAns entry point judges existing answers and does not call its candidate-generation function
+    published_outputs:
+      status: unavailable-in-public-checkout
+      note: NaiRAGBaseline and NaiGenBaseline outputs are present but must not be relabeled as KATRER outputs

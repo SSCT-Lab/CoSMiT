@@ -38,6 +38,7 @@ secrets.yml
 /models/
 /outputs/
 /reports/
+/tmp/
 /migrated_tests/
 /migrated_test_old/
 /logs/
@@ -63,6 +64,31 @@ events.out.tfevents.*
 # Local planning records
 /notes.md
 /task_plan.md
+
+# Private experiment outputs and blinded-review assignments (regenerate locally)
+/benchmark/public_systems/*.json
+!/benchmark/public_systems/katrer-audit-2026-09-08.json
+/benchmark/rqs/review*/
+/benchmark/rqs/review*-key.json
+/benchmark/feasibility/intenttester/prompts.jsonl
+/benchmark/feasibility/intenttester/prompt-manifest.json
+# Locally copied upstream prompt/schema; redistribution license not established
+/benchmark/feasibility/intenttester/render_prompts.py
+/benchmark/feasibility/intenttester/tdl_format.json
+
+# Unpublished manuscript and internal presentation / planning drafts
+/paper/
+/fse-paper-plan.md
+/intenttester-reference-analysis.md
+/research-question-card.md
+/docs/*ppt*.md
+/docs/*speaker-notes.md
+/docs/*-kimi.md
+/docs/fse-paper-completion-plan.md
+/docs/week-01-f1-workplan.md
+
+# Software copyright application materials
+/软件著作权申请资料/
 
 # Editors and operating systems
 .DS_Store

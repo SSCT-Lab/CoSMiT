@@ -1,0 +1,192 @@
+dataset: cosmit-feasibility
+schema_version: 0.1
+status: feasibility-proxy-not-baseline-result
+
+method_notes:
+  tdl_style: Manually normalized TDL-style proxy; the official IntentTester extraction pipeline was not executed.
+  unrestricted_llm_summary: One-pass research summary produced during pilot construction; not blinded or replicated.
+  tdl_plus_ast_facts: Proxy containing call names, literal arguments, input shapes/dtypes and assertion syntax, but not inferred API contracts.
+  property_ir_gold: Provisional Property IR derived from official tests and dynamic probes; independent reviewer pending.
+  interpretation: Results may select motivating cases and refine the schema, but must not be reported as an IntentTester effectiveness comparison.
+
+records:
+  - property_id: PTF-001
+    transport_critical_clauses: [integer sum output is int64]
+    tdl_style:
+      text: Sum an int32 tensor and verify the numerical result.
+      preserved: []
+      missing: [integer sum output is int64]
+    unrestricted_llm_summary:
+      text: Test that summing an integer tensor returns the expected value.
+      preserved: []
+      missing: [integer sum output is int64]
+    tdl_plus_ast_facts:
+      text: input dtype=int32; call=torch.sum(x); assertion checks result using framework equality.
+      preserved: []
+      missing: [implicit integer-to-int64 promotion]
+    property_ir_gold:
+      preserved: [integer sum output is int64]
+      missing: []
+
+  - property_id: PTF-002
+    transport_critical_clauses: [integer input must be cast before target mean, output dtype is float32]
+    tdl_style:
+      text: Compute the mean of an integer tensor using float32 output and compare the result.
+      preserved: [integer input must be cast before target mean, output dtype is float32]
+      missing: []
+    unrestricted_llm_summary:
+      text: Test the mean of an integer tensor.
+      preserved: []
+      missing: [integer input must be cast before target mean, output dtype is float32]
+    tdl_plus_ast_facts:
+      text: input dtype=int64; call=torch.mean(x,dtype=float32); expected value=1.5.
+      preserved: [integer input must be cast before target mean, output dtype is float32]
+      missing: []
+    property_ir_gold:
+      preserved: [integer input must be cast before target mean, output dtype is float32]
+      missing: []
+
+  - property_id: PTF-003
+    transport_critical_clauses: [output index dtype is int64, ties select the first index]
+    tdl_style:
+      text: Find the maximum index along axis 1 and compare the expected indices.
+      preserved: []
+      missing: [output index dtype is int64, ties select the first index]
+    unrestricted_llm_summary:
+      text: Test argmax along an axis.
+      preserved: []
+      missing: [output index dtype is int64, ties select the first index]
+    tdl_plus_ast_facts:
+      text: input contains tied maxima; call=torch.argmax(x,dim=1); expected indices=[1,0].
+      preserved: [ties select the first index]
+      missing: [implicit output index dtype is int64]
+    property_ir_gold:
+      preserved: [output index dtype is int64, ties select the first index]
+      missing: []
+
+  - property_id: PTF-004
+    transport_critical_clauses: [source swaps only dimensions 0 and 1]
+    tdl_style:
+      text: Transpose dimensions 0 and 1 and verify the resulting tensor.
+      preserved: [source swaps only dimensions 0 and 1]
+      missing: []
+    unrestricted_llm_summary:
+      text: Test transposing a tensor.
+      preserved: []
+      missing: [source swaps only dimensions 0 and 1]
+    tdl_plus_ast_facts:
+      text: input rank=3; call=torch.transpose(x,0,1); expected shape=[3,2,4].
+      preserved: [source swaps only dimensions 0 and 1]
+      missing: []
+    property_ir_gold:
+      preserved: [source swaps only dimensions 0 and 1]
+      missing: []
+
+  - property_id: PTF-005
+    transport_critical_clauses: [squeezing a selected nonunit axis is a no-op]
+    tdl_style:
+      text: Squeeze axis 1 of a tensor and verify its shape.
+      preserved: []
+      missing: [squeezing a selected nonunit axis is a no-op]
+    unrestricted_llm_summary:
+      text: Test squeezing a tensor dimension.
+      preserved: []
+      missing: [squeezing a selected nonunit axis is a no-op]
+    tdl_plus_ast_facts:
+      text: input shape=[1,3]; call=torch.squeeze(x,dim=1); expected shape=[1,3].
+      preserved: [squeezing a selected nonunit axis is a no-op]
+      missing: []
+    property_ir_gold:
+      preserved: [squeezing a selected nonunit axis is a no-op]
+      missing: []
+
+  - property_id: PTF-006
+    transport_critical_clauses: [the clamp has only a lower bound and no finite upper bound]
+    tdl_style:
+      text: Clamp all values below zero and compare the output.
+      preserved: [the clamp has only a lower bound and no finite upper bound]
+      missing: []
+    unrestricted_llm_summary:
+      text: Test clamping tensor values into the valid range.
+      preserved: []
+      missing: [the clamp has only a lower bound and no finite upper bound]
+    tdl_plus_ast_facts:
+      text: call=torch.clamp(x,min=0); max argument absent.
+      preserved: [the clamp has only a lower bound and no finite upper bound]
+      missing: []
+    property_ir_gold:
+      preserved: [the clamp has only a lower bound and no finite upper bound]
+      missing: []
+
+  - property_id: PTF-007
+    transport_critical_clauses: [rtol is 0 and atol is 1e-5]
+    tdl_style:
+      text: Assert that two float values are sufficiently close.
+      preserved: []
+      missing: [rtol is 0 and atol is 1e-5]
+    unrestricted_llm_summary:
+      text: Test approximate equality of two floating-point values.
+      preserved: []
+      missing: [rtol is 0 and atol is 1e-5]
+    tdl_plus_ast_facts:
+      text: call=assert_close(actual,expected,rtol=0,atol=1e-5).
+      preserved: [rtol is 0 and atol is 1e-5]
+      missing: []
+    property_ir_gold:
+      preserved: [rtol is 0 and atol is 1e-5]
+      missing: []
+
+  - property_id: PTF-008
+    transport_critical_clauses: [source class axis is 1 and target class axis is last, source reduction is mean]
+    tdl_style:
+      text: Compute mean sparse cross entropy for class-index labels and compare the loss.
+      preserved: [source reduction is mean]
+      missing: [source class axis is 1 and target class axis is last]
+    unrestricted_llm_summary:
+      text: Test sparse cross-entropy loss.
+      preserved: []
+      missing: [source class axis is 1 and target class axis is last, source reduction is mean]
+    tdl_plus_ast_facts:
+      text: logits shape=[N,C,L]; labels shape=[N,L]; call=cross_entropy(...,reduction=mean).
+      preserved: [source reduction is mean]
+      missing: [the class-axis contract is implicit in the source API]
+    property_ir_gold:
+      preserved: [source class axis is 1 and target class axis is last, source reduction is mean]
+      missing: []
+
+  - property_id: PTF-009
+    transport_critical_clauses: [the oracle is within-implementation replay equality rather than cross-library exact values]
+    tdl_style:
+      text: Reset two generators to the same seed and verify that their normal samples are equal.
+      preserved: [the oracle is within-implementation replay equality rather than cross-library exact values]
+      missing: []
+    unrestricted_llm_summary:
+      text: Test deterministic random normal generation with a fixed seed.
+      preserved: [the oracle is within-implementation replay equality rather than cross-library exact values]
+      missing: []
+    tdl_plus_ast_facts:
+      text: create two generators; seed both with 123; draw normal[5]; assert pairwise equality.
+      preserved: [the oracle is within-implementation replay equality rather than cross-library exact values]
+      missing: []
+    property_ir_gold:
+      preserved: [the oracle is within-implementation replay equality rather than cross-library exact values]
+      missing: []
+
+  - property_id: PTF-010
+    transport_critical_clauses: [an unconnected gradient is materialized as numeric zero]
+    tdl_style:
+      text: Compute an unused gradient and verify that it is zero.
+      preserved: [an unconnected gradient is materialized as numeric zero]
+      missing: []
+    unrestricted_llm_summary:
+      text: Test gradient behavior for an unused input.
+      preserved: []
+      missing: [an unconnected gradient is materialized as numeric zero]
+    tdl_plus_ast_facts:
+      text: call=autograd.grad(...,allow_unused=True,materialize_grads=True); expected=0.
+      preserved: [an unconnected gradient is materialized as numeric zero]
+      missing: []
+    property_ir_gold:
+      preserved: [an unconnected gradient is materialized as numeric zero]
+      missing: []
+

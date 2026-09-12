@@ -1,0 +1,186 @@
+{
+  "dataset": "cosmit-candidate-certification-pilot",
+  "environment": {
+    "device": "CPU",
+    "platform": "macOS-15.7.7-arm64-arm-64bit",
+    "python": "3.10.9",
+    "tensorflow": "2.20.0",
+    "torch": "2.9.1"
+  },
+  "probes": [
+    {
+      "adapted_preserves": true,
+      "adapted_target": {
+        "adapter": "population_variance * N / (N - 1)",
+        "value": 0.5
+      },
+      "counterexample_input": {
+        "dtype": "float32",
+        "values": [
+          1.0,
+          2.0
+        ]
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "denominator": "N",
+        "value": 0.25
+      },
+      "property_id": "CCP-031",
+      "source": {
+        "default_correction": 1,
+        "value": 0.5
+      },
+      "valid_domain": "finite floating tensors with reduced element count greater than one",
+      "violated_clause": "reduction-correction"
+    },
+    {
+      "adapted_preserves": true,
+      "adapted_target": {
+        "axis": 0,
+        "axis_sums": [
+          0.9999999403953552,
+          1.0,
+          0.9999999403953552
+        ],
+        "value": [
+          [
+            0.11920291185379028,
+            0.5,
+            0.8807970285415649
+          ],
+          [
+            0.8807970285415649,
+            0.5,
+            0.11920291185379028
+          ]
+        ]
+      },
+      "counterexample_input": {
+        "dtype": "float32",
+        "source_axis": 0,
+        "values": [
+          [
+            0.0,
+            1.0,
+            2.0
+          ],
+          [
+            2.0,
+            1.0,
+            0.0
+          ]
+        ]
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "default_axis": -1,
+        "source_axis_sums": [
+          0.7552715167403221,
+          0.4894569516181946,
+          0.7552715167403221
+        ],
+        "value": [
+          [
+            0.09003057330846786,
+            0.2447284758090973,
+            0.6652409434318542
+          ],
+          [
+            0.6652409434318542,
+            0.2447284758090973,
+            0.09003057330846786
+          ]
+        ]
+      },
+      "property_id": "CCP-034",
+      "source": {
+        "axis_sums": [
+          0.9999999478459358,
+          1.0,
+          0.9999999478459358
+        ],
+        "value": [
+          [
+            0.11920291930437088,
+            0.5,
+            0.8807970285415649
+          ],
+          [
+            0.8807970285415649,
+            0.5,
+            0.11920291930437088
+          ]
+        ]
+      },
+      "violated_clause": "normalization-axis"
+    },
+    {
+      "adapted_preserves": true,
+      "adapted_target": {
+        "output_dtype": "float32",
+        "value": [
+          [
+            0.09003057330846786,
+            0.2447284758090973,
+            0.6652409434318542
+          ],
+          [
+            0.6652409434318542,
+            0.2447284758090973,
+            0.09003057330846786
+          ]
+        ]
+      },
+      "counterexample_input": {
+        "axis": 1,
+        "input_dtype": "float16",
+        "values": [
+          [
+            0.0,
+            1.0,
+            2.0
+          ],
+          [
+            2.0,
+            1.0,
+            0.0
+          ]
+        ]
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "output_dtype": "float16",
+        "value": [
+          [
+            0.09002685546875,
+            0.24462890625,
+            0.6650390625
+          ],
+          [
+            0.6650390625,
+            0.24462890625,
+            0.09002685546875
+          ]
+        ]
+      },
+      "property_id": "CCP-035",
+      "source": {
+        "output_dtype": "torch.float32",
+        "value": [
+          [
+            0.09003057330846786,
+            0.2447284758090973,
+            0.6652409434318542
+          ],
+          [
+            0.6652409434318542,
+            0.2447284758090973,
+            0.09003057330846786
+          ]
+        ]
+      },
+      "violated_clause": "computation-and-output-dtype"
+    }
+  ]
+}

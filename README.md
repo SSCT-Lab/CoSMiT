@@ -55,6 +55,8 @@ CoSMiT/
 
 ## 设计文档
 
+研究原型补充入口：[RQ 开发实验](benchmark/rqs/README.md)、[公开候选回放](benchmark/public_systems/README.md)、[发布范围](docs/repository-publication.md)。条款执行器和 Mapping IR 已有开发实现，但正式 RQ 评估、独立复核及完整上游系统复现仍未完成。
+
 - [项目重设计说明](CoSMiT_REDESIGN.md)
 - [系统架构](docs/architecture.md)
 - [相关工作](docs/related_work.md)

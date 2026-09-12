@@ -1,0 +1,220 @@
+dataset: cosmit-candidate-certification-pilot
+schema_version: 0.1
+created: 2026-09-02
+status: sampling-frozen-primary-annotation-in-progress
+
+scope:
+  source_library: PyTorch
+  target_library: TensorFlow
+  source_version: 2.9.1
+  target_version: 2.20.0
+  source_commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+  target_commit: 72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa
+  environment_id: macos-arm64-py310-torch291-tf2200-cpu
+
+design:
+  api_groups: 15
+  development_groups: 12
+  evaluation_holdout_groups: 3
+  atomic_property_slots: 45
+  concrete_development_candidates: 36
+  sealed_holdout_slots: 9
+  independent_review_base_sample: 12
+  independent_review_fraction: 0.2667
+  note: Holdout clauses remain sealed until IR v0.1 is frozen; family and evidence entry are frozen now.
+
+required_semantic_dimensions:
+  - axis-and-shape
+  - dtype-and-type-promotion
+  - numerical-tolerance
+  - exceptions-and-validation
+  - randomness-and-state
+  - gradients
+  - observation-and-aliasing
+  - reduction-and-statistics
+
+groups:
+  - group_id: G01-reduction-sum
+    split: development
+    source_apis: [torch.sum]
+    target_apis: [tf.reduce_sum]
+    source_anchor: test/test_reductions.py::test_sum_integer_upcast
+    evidence_status: fixed-commit-pair-verified
+    slots:
+      - {property_id: CCP-001, focus: integer-output-dtype, primary_oracle: dtype-equality, dimension: dtype-and-type-promotion, priority: high, seed_property_id: PTF-001}
+      - {property_id: CCP-002, focus: axis-reduction-value, primary_oracle: exact-tensor-value, dimension: axis-and-shape, priority: medium, annotation_status: queued}
+      - {property_id: CCP-003, focus: empty-reduction-identity, primary_oracle: exact-value, dimension: exceptions-and-validation, priority: medium, annotation_status: queued}
+
+  - group_id: G02-reduction-mean
+    split: development
+    source_apis: [torch.mean]
+    target_apis: [tf.reduce_mean]
+    source_anchor: test/test_reductions.py::test_mean_int_with_optdtype
+    evidence_status: fixed-commit-pair-verified
+    slots:
+      - {property_id: CCP-004, focus: integer-input-with-explicit-float-dtype-value, primary_oracle: exact-scalar, dimension: dtype-and-type-promotion, priority: high, seed_property_id: PTF-002}
+      - {property_id: CCP-005, focus: axis-reduction-value, primary_oracle: exact-tensor-value, dimension: axis-and-shape, priority: medium, annotation_status: queued}
+      - {property_id: CCP-006, focus: empty-input-nan, primary_oracle: nan-observation, dimension: exceptions-and-validation, priority: medium, annotation_status: queued}
+
+  - group_id: G03-argmax
+    split: development
+    source_apis: [torch.argmax]
+    target_apis: [tf.argmax]
+    source_anchor: test/test_reductions.py::test_tensor_compare_ops_argmax_argmix_kthvalue_dim_empty
+    evidence_status: fixed-commit-pair-verified
+    slots:
+      - {property_id: CCP-007, focus: output-index-dtype, primary_oracle: dtype-equality, dimension: dtype-and-type-promotion, priority: high, seed_property_id: PTF-003}
+      - {property_id: CCP-008, focus: tie-selection-policy, primary_oracle: exact-index, dimension: observation-and-aliasing, priority: high, annotation_status: queued}
+      - {property_id: CCP-009, focus: negative-axis-index-value, primary_oracle: exact-index-value, dimension: axis-and-shape, priority: medium, annotation_status: queued}
+
+  - group_id: G04-transpose-permute
+    split: development
+    source_apis: [torch.transpose, torch.permute]
+    target_apis: [tf.transpose]
+    source_anchor: test/test_view_ops.py::test_transpose_vs_numpy
+    evidence_status: fixed-commit-pair-verified
+    slots:
+      - {property_id: CCP-010, focus: two-axis-swap-vs-full-permutation, primary_oracle: exact-tensor-value, dimension: axis-and-shape, priority: high, seed_property_id: PTF-004}
+      - {property_id: CCP-011, focus: negative-dimension-normalization, primary_oracle: exact-tensor-value, dimension: axis-and-shape, priority: medium, annotation_status: queued}
+      - {property_id: CCP-012, focus: view-aliasing-observation, primary_oracle: aliasing-relation, dimension: observation-and-aliasing, priority: high, annotation_status: queued}
+
+  - group_id: G05-squeeze
+    split: development
+    source_apis: [torch.squeeze]
+    target_apis: [tf.squeeze]
+    source_anchor: test/test_torch.py::test_tensor_shape_empty
+    evidence_status: fixed-commit-pair-verified-with-counterfactual
+    slots:
+      - {property_id: CCP-013, focus: nonunit-selected-axis, primary_oracle: identity-tensor-relation, dimension: exceptions-and-validation, priority: high, seed_property_id: PTF-005}
+      - {property_id: CCP-014, focus: multi-axis-output-shape, primary_oracle: exact-shape, dimension: axis-and-shape, priority: medium, annotation_status: queued}
+      - {property_id: CCP-015, focus: symbolic-axis-size, primary_oracle: conditional-behavior, dimension: axis-and-shape, priority: high, annotation_status: queued}
+
+  - group_id: G06-clamp-clip
+    split: development
+    source_apis: [torch.clamp]
+    target_apis: [tf.clip_by_value, tf.maximum, tf.minimum]
+    source_anchor: test/test_torch.py::test_clamp
+    evidence_status: fixed-commit-pair-verified
+    slots:
+      - {property_id: CCP-016, focus: one-sided-lower-bound, primary_oracle: exact-tensor-value, dimension: exceptions-and-validation, priority: high, seed_property_id: PTF-006}
+      - {property_id: CCP-017, focus: reversed-bounds-output, primary_oracle: exact-tensor-value, dimension: exceptions-and-validation, priority: high, annotation_status: queued}
+      - {property_id: CCP-018, focus: boundary-gradient, primary_oracle: gradient-value, dimension: gradients, priority: medium, annotation_status: queued}
+
+  - group_id: G07-approximate-oracle
+    split: development
+    source_apis: [torch.testing.assert_close]
+    target_apis: [tf.debugging.assert_near]
+    source_anchor: test/test_testing.py::test_not_close
+    evidence_status: fixed-commit-pair-verified
+    slots:
+      - {property_id: CCP-019, focus: explicit-rtol-atol, primary_oracle: assertion-outcome, dimension: numerical-tolerance, priority: high, seed_property_id: PTF-007}
+      - {property_id: CCP-020, focus: nan-equality-policy, primary_oracle: assertion-outcome, dimension: numerical-tolerance, priority: high, annotation_status: queued}
+      - {property_id: CCP-021, focus: dtype-and-attribute-checks, primary_oracle: assertion-outcome, dimension: observation-and-aliasing, priority: medium, annotation_status: queued}
+
+  - group_id: G08-cross-entropy
+    split: development
+    source_apis: [torch.nn.functional.cross_entropy]
+    target_apis: [tf.nn.sparse_softmax_cross_entropy_with_logits, tf.keras.losses.sparse_categorical_crossentropy]
+    source_anchor: test/test_nn.py::test_cross_entropy_loss_index_target_unit_weights
+    evidence_status: fixed-commit-pair-verified
+    slots:
+      - {property_id: CCP-022, focus: class-axis-layout, primary_oracle: approximate-scalar-value, dimension: axis-and-shape, priority: high, seed_property_id: PTF-008}
+      - {property_id: CCP-023, focus: reduction-and-weighted-denominator, primary_oracle: approximate-loss, dimension: reduction-and-statistics, priority: high, annotation_status: queued}
+      - {property_id: CCP-024, focus: invalid-label-behavior, primary_oracle: exception-outcome, dimension: exceptions-and-validation, priority: high, annotation_status: queued}
+
+  - group_id: G09-random-normal
+    split: development
+    source_apis: [torch.randn, torch.Generator]
+    target_apis: [tf.random.normal, tf.random.Generator]
+    source_anchor: test/test_torch.py::test_generator_cpu
+    evidence_status: fixed-commit-pair-verified
+    slots:
+      - {property_id: CCP-025, focus: reset-seed-replay, primary_oracle: within-implementation-replay, dimension: randomness-and-state, priority: high, seed_property_id: PTF-009}
+      - {property_id: CCP-026, focus: cross-library-bitwise-sequence, primary_oracle: relation-classification, dimension: randomness-and-state, priority: high, annotation_status: queued}
+      - {property_id: CCP-027, focus: distribution-moments, primary_oracle: statistical-relation, dimension: reduction-and-statistics, priority: medium, annotation_status: queued}
+
+  - group_id: G10-automatic-gradient
+    split: development
+    source_apis: [torch.autograd.grad]
+    target_apis: [tf.GradientTape.gradient]
+    source_anchor: test/test_autograd.py::test_grad_materialize_grads
+    evidence_status: fixed-commit-pair-verified
+    slots:
+      - {property_id: CCP-028, focus: unconnected-gradient-materialization, primary_oracle: exact-scalar, dimension: gradients, priority: high, seed_property_id: PTF-010}
+      - {property_id: CCP-029, focus: higher-order-gradient-retention, primary_oracle: gradient-availability, dimension: gradients, priority: high, annotation_status: queued}
+      - {property_id: CCP-030, focus: accumulation-and-reset, primary_oracle: state-transition, dimension: randomness-and-state, priority: medium, annotation_status: queued}
+
+  - group_id: G11-variance
+    split: development
+    source_apis: [torch.var]
+    target_apis: [tf.math.reduce_variance]
+    source_anchor: test/test_reductions.py::test_var_unbiased
+    target_evidence_entry: tensorflow/python/ops/math_ops.py plus official tests to be pinned
+    evidence_status: source-verified-target-anchor-pending
+    slots:
+      - {property_id: CCP-031, focus: default-sample-vs-population-correction, primary_oracle: approximate-sample-variance, dimension: reduction-and-statistics, priority: high, annotation_status: provisional-primary}
+      - {property_id: CCP-032, focus: explicit-population-variance, primary_oracle: approximate-value, dimension: reduction-and-statistics, priority: medium, annotation_status: queued}
+      - {property_id: CCP-033, focus: singleton-sample-variance, primary_oracle: output-is-nan, dimension: exceptions-and-validation, priority: high, annotation_status: queued}
+
+  - group_id: G12-softmax
+    split: development
+    source_apis: [torch.nn.functional.softmax]
+    target_apis: [tf.nn.softmax]
+    source_anchor: test/test_nn.py::test_softmax_cpu
+    target_evidence_entry: tensorflow/python/kernel_tests/nn_ops/softmax_op_test.py
+    evidence_status: source-and-target-files-verified-clauses-pending
+    slots:
+      - {property_id: CCP-034, focus: explicit-axis-transport, primary_oracle: approximate-tensor-value, dimension: axis-and-shape, priority: high, annotation_status: provisional-primary}
+      - {property_id: CCP-035, focus: computation-dtype, primary_oracle: dtype-equality, dimension: dtype-and-type-promotion, priority: high, annotation_status: provisional-primary}
+      - {property_id: CCP-036, focus: low-precision-gradient, primary_oracle: gradient-approximation, dimension: gradients, priority: medium, annotation_status: queued}
+
+  - group_id: H01-flatten
+    split: evaluation-holdout
+    source_apis: [torch.flatten]
+    target_apis: [tf.reshape]
+    source_anchor: test/test_view_ops.py::test_flatten_view
+    target_evidence_entry: tensorflow/python/kernel_tests/array_ops/reshape_op_test.py
+    evidence_status: family-and-files-frozen-clauses-sealed
+    slots:
+      - {property_id: CCP-037, focus: sealed, primary_oracle: sealed, dimension: sealed, priority: sealed, annotation_status: holdout-sealed}
+      - {property_id: CCP-038, focus: sealed, primary_oracle: sealed, dimension: sealed, priority: sealed, annotation_status: holdout-sealed}
+      - {property_id: CCP-039, focus: sealed, primary_oracle: sealed, dimension: sealed, priority: sealed, annotation_status: holdout-sealed}
+
+  - group_id: H02-pad
+    split: evaluation-holdout
+    source_apis: [torch.nn.functional.pad]
+    target_apis: [tf.pad]
+    source_anchor: test/test_nn.py::test_pad
+    target_evidence_entry: tensorflow/python/kernel_tests/array_ops/pad_op_test.py
+    evidence_status: family-and-files-frozen-clauses-sealed
+    slots:
+      - {property_id: CCP-040, focus: sealed, primary_oracle: sealed, dimension: sealed, priority: sealed, annotation_status: holdout-sealed}
+      - {property_id: CCP-041, focus: sealed, primary_oracle: sealed, dimension: sealed, priority: sealed, annotation_status: holdout-sealed}
+      - {property_id: CCP-042, focus: sealed, primary_oracle: sealed, dimension: sealed, priority: sealed, annotation_status: holdout-sealed}
+
+  - group_id: H03-normalize
+    split: evaluation-holdout
+    source_apis: [torch.nn.functional.normalize]
+    target_apis: [tf.math.l2_normalize]
+    source_anchor: test/test_nn.py::test_normalize
+    target_evidence_entry: official target source/test to be pinned without opening clauses before IR freeze
+    evidence_status: family-frozen-target-anchor-pending-clauses-sealed
+    slots:
+      - {property_id: CCP-043, focus: sealed, primary_oracle: sealed, dimension: sealed, priority: sealed, annotation_status: holdout-sealed}
+      - {property_id: CCP-044, focus: sealed, primary_oracle: sealed, dimension: sealed, priority: sealed, annotation_status: holdout-sealed}
+      - {property_id: CCP-045, focus: sealed, primary_oracle: sealed, dimension: sealed, priority: sealed, annotation_status: holdout-sealed}
+
+review_base_sample:
+  selection: one-high-priority-case-per-development-group
+  property_ids: [CCP-001, CCP-004, CCP-007, CCP-010, CCP-013, CCP-016, CCP-019, CCP-022, CCP-025, CCP-028, CCP-031, CCP-034]
+  mandatory_additions:
+    - every public-system-output
+    - every repository-migration
+    - every suspected-target-violation
+    - every primary-reviewer disagreement
+    - every case selected for the final real-candidate result table
+
+freeze:
+  ir_not_yet_frozen: true
+  holdout_clause_access_allowed: false
+  manifest_sha256: f7054df2d32bd19549b8312ed9d51371194bd19491eca1c370b0eb681868cb66

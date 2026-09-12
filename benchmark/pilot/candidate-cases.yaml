@@ -1,0 +1,106 @@
+dataset: cosmit-candidate-certification-pilot
+schema_version: 0.1
+annotation_status: provisional-primary
+
+records:
+  - case_id: CASE-CCP-031-REF
+    property_id: CCP-031
+    group_id: G11-variance
+    candidate:
+      origin: evidence-derived-reference
+      artifact_or_code: tf.math.reduce_variance(x) * n / (n - 1)
+      transformation_log: [convert population variance to sample variance using reduced element count]
+      residual_code: []
+    scope: {environment_id: macos-arm64-py310-torch291-tf2200-cpu, probe_budget: 1}
+    annotation:
+      semantic_relation: adapted-transport
+      evidence_state: supported-within-scope
+      diagnosis: []
+      condition: n greater than one and finite floating values
+      unresolved_assumptions: [dynamic multi-axis element counting]
+    evidence: [E-PT-CCP-031, E-TF-CCP-031, E-DYN-PILOT-001]
+
+  - case_id: CASE-CCP-031-MUT-01
+    property_id: CCP-031
+    group_id: G11-variance
+    candidate:
+      origin: researcher-mutant
+      artifact_or_code: tf.math.reduce_variance(x)
+      mutation: omit correction adapter
+      residual_code: []
+    scope: {environment_id: macos-arm64-py310-torch291-tf2200-cpu, probe_budget: 1}
+    annotation:
+      semantic_relation: adapted-transport
+      evidence_state: refuted
+      diagnosis: [invalid-mapping]
+      condition: null
+      unresolved_assumptions: []
+    counterexample: sampling-trace.json#CCP-031
+
+  - case_id: CASE-CCP-034-REF
+    property_id: CCP-034
+    group_id: G12-softmax
+    candidate:
+      origin: evidence-derived-reference
+      artifact_or_code: tf.nn.softmax(x, axis=0)
+      transformation_log: [rename dim to axis and preserve the explicit source dimension]
+      residual_code: []
+    scope: {environment_id: macos-arm64-py310-torch291-tf2200-cpu, probe_budget: 1}
+    annotation:
+      semantic_relation: adapted-transport
+      evidence_state: supported-within-scope
+      diagnosis: []
+      condition: finite rank-2 float32 inputs
+      unresolved_assumptions: []
+    evidence: [E-PT-CCP-034, E-TF-CCP-034, E-DYN-PILOT-001]
+
+  - case_id: CASE-CCP-034-MUT-01
+    property_id: CCP-034
+    group_id: G12-softmax
+    candidate:
+      origin: researcher-mutant
+      artifact_or_code: tf.nn.softmax(x)
+      mutation: omit explicit source axis and use target default axis
+      residual_code: []
+    scope: {environment_id: macos-arm64-py310-torch291-tf2200-cpu, probe_budget: 1}
+    annotation:
+      semantic_relation: adapted-transport
+      evidence_state: refuted
+      diagnosis: [invalid-mapping]
+      condition: null
+      unresolved_assumptions: []
+    counterexample: sampling-trace.json#CCP-034
+
+  - case_id: CASE-CCP-035-REF
+    property_id: CCP-035
+    group_id: G12-softmax
+    candidate:
+      origin: evidence-derived-reference
+      artifact_or_code: tf.nn.softmax(tf.cast(x, tf.float32), axis=1)
+      transformation_log: [materialize the explicit source computation dtype as an input cast]
+      residual_code: []
+    scope: {environment_id: macos-arm64-py310-torch291-tf2200-cpu, probe_budget: 1}
+    annotation:
+      semantic_relation: adapted-transport
+      evidence_state: supported-within-scope
+      diagnosis: []
+      condition: finite rank-2 float16 inputs with explicit float32 source dtype
+      unresolved_assumptions: [automatic mixed-precision policies]
+    evidence: [E-PT-CCP-035, E-TF-CCP-035, E-DYN-PILOT-001]
+
+  - case_id: CASE-CCP-035-MUT-01
+    property_id: CCP-035
+    group_id: G12-softmax
+    candidate:
+      origin: researcher-mutant
+      artifact_or_code: tf.nn.softmax(x, axis=1)
+      mutation: omit the explicit computation dtype adapter
+      residual_code: []
+    scope: {environment_id: macos-arm64-py310-torch291-tf2200-cpu, probe_budget: 1}
+    annotation:
+      semantic_relation: adapted-transport
+      evidence_state: refuted
+      diagnosis: [invalid-mapping]
+      condition: null
+      unresolved_assumptions: []
+    counterexample: sampling-trace.json#CCP-035

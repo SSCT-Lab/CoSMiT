@@ -1,0 +1,136 @@
+dataset: cosmit-candidate-certification-pilot
+schema_version: 0.1
+annotation_status: provisional-primary
+environment_id: macos-arm64-py310-torch291-tf2200-cpu
+trace_bundle: ../feasibility/dynamic-trace.json
+
+records:
+  - case_id: CASE-CCP-001-REF
+    property_id: CCP-001
+    group_id: G01-reduction-sum
+    candidate: {origin: evidence-derived-reference, artifact_or_code: "tf.reduce_sum(tf.cast(x, tf.int64))", transformation_log: [cast target input to int64 before reduction], residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: supported-within-scope, diagnosis: [], condition: int32 CPU inputs}
+    evidence: [E-PT-001, E-TF-001, E-DYN-001]
+  - case_id: CASE-CCP-001-MUT-01
+    property_id: CCP-001
+    group_id: G01-reduction-sum
+    candidate: {origin: researcher-mutant, artifact_or_code: "tf.reduce_sum(x)", mutation: omit integer upcast, residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: refuted, diagnosis: [invalid-mapping], condition: null}
+    counterexample: ../feasibility/dynamic-trace.json#PTF-001
+
+  - case_id: CASE-CCP-004-REF
+    property_id: CCP-004
+    group_id: G02-reduction-mean
+    candidate: {origin: evidence-derived-reference, artifact_or_code: "tf.reduce_mean(tf.cast(x, tf.float32))", transformation_log: [materialize requested float32 dtype before reduction], residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: supported-within-scope, diagnosis: [], condition: finite int64 values representable as float32}
+    evidence: [E-PT-002, E-TF-002, E-DYN-001]
+  - case_id: CASE-CCP-004-MUT-01
+    property_id: CCP-004
+    group_id: G02-reduction-mean
+    candidate: {origin: researcher-mutant, artifact_or_code: "tf.reduce_mean(x)", mutation: omit requested dtype conversion, residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: refuted, diagnosis: [invalid-mapping], condition: null}
+    counterexample: ../feasibility/dynamic-trace.json#PTF-002
+
+  - case_id: CASE-CCP-007-REF
+    property_id: CCP-007
+    group_id: G03-argmax
+    candidate: {origin: evidence-derived-reference, artifact_or_code: "tf.argmax(x, axis=1, output_type=tf.int64)", transformation_log: [preserve source output index dtype], residual_code: []}
+    annotation: {semantic_relation: identity-transport, evidence_state: supported-within-scope, diagnosis: [], condition: nonempty reduction axis}
+    evidence: [E-PT-003, E-TF-003, E-DYN-001]
+  - case_id: CASE-CCP-007-MUT-01
+    property_id: CCP-007
+    group_id: G03-argmax
+    candidate: {origin: researcher-mutant, artifact_or_code: "tf.argmax(x, axis=1, output_type=tf.int32)", mutation: change output index dtype to int32, residual_code: []}
+    annotation: {semantic_relation: identity-transport, evidence_state: refuted, diagnosis: [invalid-mapping], condition: null}
+    counterexample: ../feasibility/dynamic-trace.json#PTF-003
+
+  - case_id: CASE-CCP-010-REF
+    property_id: CCP-010
+    group_id: G04-transpose-permute
+    candidate: {origin: evidence-derived-reference, artifact_or_code: "tf.transpose(x, perm=[1, 0, 2])", transformation_log: [expand source two-dimension swap into a full target permutation], residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: supported-within-scope, diagnosis: [], condition: rank-3 tensors swapping dimensions zero and one}
+    evidence: [E-PT-004, E-TF-004, E-DYN-001]
+  - case_id: CASE-CCP-010-MUT-01
+    property_id: CCP-010
+    group_id: G04-transpose-permute
+    candidate: {origin: researcher-mutant, artifact_or_code: "tf.transpose(x)", mutation: omit full permutation so target reverses all dimensions, residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: refuted, diagnosis: [invalid-mapping], condition: null}
+    counterexample: ../feasibility/dynamic-trace.json#PTF-004
+
+  - case_id: CASE-CCP-013-REF
+    property_id: CCP-013
+    group_id: G05-squeeze
+    candidate: {origin: evidence-derived-reference, artifact_or_code: "tf.cond(tf.shape(x)[axis] == 1, lambda: tf.squeeze(x, axis), lambda: tf.identity(x))", transformation_log: [guard target squeeze with selected-axis size], residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: supported-within-scope, diagnosis: [], condition: selected axis size is observable}
+    evidence: [E-PT-005, E-TF-005, E-DYN-001]
+  - case_id: CASE-CCP-013-MUT-01
+    property_id: CCP-013
+    group_id: G05-squeeze
+    candidate: {origin: researcher-mutant, artifact_or_code: "tf.squeeze(x, axis=1)", mutation: omit nonunit-axis guard, residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: refuted, diagnosis: [invalid-mapping], condition: null}
+    counterexample: ../feasibility/dynamic-trace.json#PTF-005
+
+  - case_id: CASE-CCP-016-REF
+    property_id: CCP-016
+    group_id: G06-clamp-clip
+    candidate: {origin: evidence-derived-reference, artifact_or_code: "tf.maximum(x, 0)", transformation_log: [map one-sided lower clamp to maximum], residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: supported-within-scope, diagnosis: [], condition: ordered numeric inputs with lower bound only}
+    evidence: [E-PT-006, E-TF-006, E-DYN-001]
+  - case_id: CASE-CCP-016-MUT-01
+    property_id: CCP-016
+    group_id: G06-clamp-clip
+    candidate: {origin: researcher-mutant, artifact_or_code: "tf.clip_by_value(x, 0, 999)", mutation: invent a finite upper bound, residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: refuted, diagnosis: [invalid-mapping], condition: null}
+    counterexample: ../feasibility/dynamic-trace.json#PTF-006
+
+  - case_id: CASE-CCP-019-REF
+    property_id: CCP-019
+    group_id: G07-approximate-oracle
+    candidate: {origin: evidence-derived-reference, artifact_or_code: "tf.debugging.assert_near(actual, expected, rtol=0, atol=1e-5)", transformation_log: [copy explicit source rtol and atol], residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: supported-within-scope, diagnosis: [], condition: float32 scalar pairs under the explicit tolerance}
+    evidence: [E-PT-007, E-TF-007, E-DYN-001]
+  - case_id: CASE-CCP-019-MUT-01
+    property_id: CCP-019
+    group_id: G07-approximate-oracle
+    candidate: {origin: researcher-mutant, artifact_or_code: "tf.debugging.assert_near(actual, expected)", mutation: replace source tolerance with target defaults, residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: refuted, diagnosis: [oracle-mismatch], condition: null}
+    counterexample: ../feasibility/dynamic-trace.json#PTF-007
+
+  - case_id: CASE-CCP-022-REF
+    property_id: CCP-022
+    group_id: G08-cross-entropy
+    candidate: {origin: evidence-derived-reference, artifact_or_code: "tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=labels, logits=tf.transpose(logits, [0, 2, 1])))", transformation_log: [move source class axis to target last axis, preserve mean reduction], residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: supported-within-scope, diagnosis: [], condition: unweighted finite logits with valid sparse labels}
+    evidence: [E-PT-008, E-TF-008, E-DYN-001]
+  - case_id: CASE-CCP-022-MUT-01
+    property_id: CCP-022
+    group_id: G08-cross-entropy
+    candidate: {origin: researcher-mutant, artifact_or_code: "tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=labels, logits=logits))", mutation: omit class-axis transport, residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: refuted, diagnosis: [invalid-mapping], condition: null}
+    counterexample: ../feasibility/dynamic-trace.json#PTF-008
+
+  - case_id: CASE-CCP-025-REF
+    property_id: CCP-025
+    group_id: G09-random-normal
+    candidate: {origin: evidence-derived-reference, artifact_or_code: compare two target generators reset to the same seed, transformation_log: [transport replay relation instead of concrete source samples], residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: supported-within-scope, diagnosis: [], condition: same-version fresh CPU generators}
+    evidence: [E-PT-009, E-TF-009, E-DYN-001]
+  - case_id: CASE-CCP-025-MUT-01
+    property_id: CCP-025
+    group_id: G09-random-normal
+    candidate: {origin: researcher-mutant, artifact_or_code: compare PyTorch and TensorFlow seeded samples element by element, mutation: replace replay relation with cross-library bitwise equality, residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: refuted, diagnosis: [oracle-mismatch], condition: null}
+    counterexample: ../feasibility/dynamic-trace.json#PTF-009
+
+  - case_id: CASE-CCP-028-REF
+    property_id: CCP-028
+    group_id: G10-automatic-gradient
+    candidate: {origin: evidence-derived-reference, artifact_or_code: "tape.gradient(output, x, unconnected_gradients=tf.UnconnectedGradients.ZERO)", transformation_log: [map source gradient materialization to target zero policy], residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: supported-within-scope, diagnosis: [], condition: unconnected differentiable CPU inputs}
+    evidence: [E-PT-010, E-TF-010, E-DYN-001]
+  - case_id: CASE-CCP-028-MUT-01
+    property_id: CCP-028
+    group_id: G10-automatic-gradient
+    candidate: {origin: researcher-mutant, artifact_or_code: "tape.gradient(output, x)", mutation: omit unconnected-gradient materialization policy, residual_code: []}
+    annotation: {semantic_relation: adapted-transport, evidence_state: refuted, diagnosis: [invalid-mapping], condition: null}
+    counterexample: ../feasibility/dynamic-trace.json#PTF-010

@@ -1,0 +1,378 @@
+{
+  "environment": {
+    "device": "CPU",
+    "platform": "macOS-15.7.7-arm64-arm-64bit",
+    "python": "3.10.9",
+    "tensorflow": "2.20.0",
+    "torch": "2.9.1"
+  },
+  "records": {
+    "PTF-001": {
+      "adapted_preserves": true,
+      "adapted_target": {
+        "dtype": "int64",
+        "value": 6
+      },
+      "counterexample_input": {
+        "dtype": "int32",
+        "values": [
+          1,
+          2,
+          3
+        ]
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "dtype": "int32",
+        "value": 6
+      },
+      "source": {
+        "dtype": "torch.int64",
+        "value": 6
+      },
+      "violated_clause": "output-dtype"
+    },
+    "PTF-002": {
+      "adapted_preserves": true,
+      "adapted_target": {
+        "dtype": "float32",
+        "value": 1.5
+      },
+      "counterexample_input": {
+        "dtype": "int64",
+        "values": [
+          1,
+          2
+        ]
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "dtype": "int64",
+        "value": 1
+      },
+      "source": {
+        "dtype": "torch.float32",
+        "value": 1.5
+      },
+      "violated_clause": "input-cast-and-value"
+    },
+    "PTF-003": {
+      "adapted_preserves": true,
+      "adapted_target": {
+        "dtype": "int64",
+        "value": [
+          1,
+          0
+        ]
+      },
+      "counterexample_input": {
+        "axis": 1,
+        "contains_tie": true,
+        "values": [
+          [
+            1.0,
+            5.0,
+            5.0
+          ],
+          [
+            9.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "dtype": "int32",
+        "value": [
+          1,
+          0
+        ]
+      },
+      "source": {
+        "dtype": "torch.int64",
+        "value": [
+          1,
+          0
+        ]
+      },
+      "violated_clause": "output-dtype"
+    },
+    "PTF-004": {
+      "adapted_preserves": true,
+      "adapted_target": {
+        "sample": [
+          0,
+          1,
+          2,
+          3,
+          12,
+          13,
+          14,
+          15
+        ],
+        "shape": [
+          3,
+          2,
+          4
+        ]
+      },
+      "counterexample_input": {
+        "shape": [
+          2,
+          3,
+          4
+        ],
+        "source_dims": [
+          0,
+          1
+        ]
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "sample": [
+          0,
+          12,
+          4,
+          16,
+          8,
+          20,
+          1,
+          13
+        ],
+        "shape": [
+          4,
+          3,
+          2
+        ]
+      },
+      "source": {
+        "sample": [
+          0,
+          1,
+          2,
+          3,
+          12,
+          13,
+          14,
+          15
+        ],
+        "shape": [
+          3,
+          2,
+          4
+        ]
+      },
+      "violated_clause": "operation-axis-mapping"
+    },
+    "PTF-005": {
+      "adapted_preserves": true,
+      "adapted_target": {
+        "shape": [
+          1,
+          3
+        ],
+        "value": [
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "counterexample_input": {
+        "axis": 1,
+        "shape": [
+          1,
+          3
+        ]
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "error": "InvalidArgumentError"
+      },
+      "source": {
+        "shape": [
+          1,
+          3
+        ],
+        "value": [
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "violated_clause": "nonunit-axis-behavior"
+    },
+    "PTF-006": {
+      "adapted_preserves": true,
+      "adapted_target": {
+        "value": [
+          0,
+          0,
+          1000
+        ]
+      },
+      "counterexample_input": {
+        "dtype": "int32",
+        "min": 0,
+        "values": [
+          -1,
+          0,
+          1000
+        ]
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "invented_max": 999,
+        "value": [
+          0,
+          0,
+          999
+        ]
+      },
+      "source": {
+        "value": [
+          0,
+          0,
+          1000
+        ]
+      },
+      "violated_clause": "one-sided-bound"
+    },
+    "PTF-007": {
+      "adapted_preserves": true,
+      "adapted_target": {
+        "error": null,
+        "passes": true
+      },
+      "counterexample_input": {
+        "actual": 0.0,
+        "dtype": "float32",
+        "expected": 5e-06
+      },
+      "counterfactual_tight_tolerance": {
+        "atol": 1e-06,
+        "rtol": 0.0,
+        "source_passes": false,
+        "target_passes": false
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "error": "InvalidArgumentError",
+        "passes": false
+      },
+      "source": {
+        "atol": 1e-05,
+        "passes": true,
+        "rtol": 0.0
+      },
+      "violated_clause": "oracle-tolerance"
+    },
+    "PTF-008": {
+      "absolute_difference": 0.0,
+      "adapted_preserves": true,
+      "adapted_target": {
+        "class_axis": -1,
+        "value": 0.22928601503372192
+      },
+      "counterexample_input": {
+        "class_axis": 1,
+        "logits_shape": [
+          2,
+          3,
+          2
+        ]
+      },
+      "executable_wrong_mapping_witness": {
+        "adapted_absolute_difference": 1.4901161193847656e-08,
+        "adapted_target_value": 0.21132349967956543,
+        "logits_shape": [
+          2,
+          3,
+          3
+        ],
+        "naive_absolute_difference": 1.07240591943264,
+        "naive_target_value": 1.2837294340133667,
+        "source_value": 0.21132351458072662
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "error": "ValueError"
+      },
+      "source": {
+        "value": 0.22928601503372192
+      },
+      "violated_clause": "class-axis-and-reduction"
+    },
+    "PTF-009": {
+      "adapted_preserves": true,
+      "adapted_target": {
+        "first": [
+          0.8673864006996155,
+          -0.2989906668663025,
+          -0.9310336709022522,
+          -1.5828487873077393,
+          1.2481191158294678
+        ],
+        "second": [
+          0.8673864006996155,
+          -0.2989906668663025,
+          -0.9310336709022522,
+          -1.5828487873077393,
+          1.2481191158294678
+        ]
+      },
+      "counterexample_input": {
+        "seed": 123,
+        "shape": [
+          5
+        ]
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "cross_library_exact_equal": false
+      },
+      "source": {
+        "first": [
+          -0.11146711558103561,
+          0.12036294490098953,
+          -0.3696345090866089,
+          -0.2404179722070694,
+          -1.1969243288040161
+        ],
+        "second": [
+          -0.11146711558103561,
+          0.12036294490098953,
+          -0.3696345090866089,
+          -0.2404179722070694,
+          -1.1969243288040161
+        ]
+      },
+      "source_replay_equal": true,
+      "target_replay_equal": true,
+      "violated_clause": "observation-relation-exact-values-vs-replay"
+    },
+    "PTF-010": {
+      "adapted_preserves": true,
+      "adapted_target": {
+        "gradient": 0.0
+      },
+      "counterexample_input": {
+        "x": 1.0,
+        "y": 3.0,
+        "z": "2*y"
+      },
+      "naive_preserves": false,
+      "naive_target": {
+        "gradient": null
+      },
+      "source": {
+        "gradient": 0.0
+      },
+      "violated_clause": "unconnected-gradient-policy"
+    }
+  }
+}

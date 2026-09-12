@@ -1,0 +1,43 @@
+dataset: cosmit-intenttester-controlled-collisions
+schema_version: 0.1
+intenttester_commit: a906b7c49bbe0dec4d1d8b911e97281b7ce63063
+status: prompts-ready-results-pending-external-llm
+
+pairs:
+  - pair_id: ITC-001
+    left: test_sum_value_only
+    right: test_sum_value_and_dtype
+    fixed_goal: sum an int32 tensor and check the result
+    single_changed_clause: output dtype is part of the oracle
+    required_adapter_difference: direct target reduction is valid only for the value-only property
+    executable_basis: ../dynamic-trace.json#PTF-001
+
+  - pair_id: ITC-002
+    left: test_close_atol_1e5
+    right: test_close_atol_1e6
+    fixed_goal: assert that two float32 values are close
+    single_changed_clause: absolute tolerance
+    required_adapter_difference: target oracle must preserve 1e-5 versus 1e-6
+    executable_basis: ../dynamic-trace.json#PTF-007.counterfactual_tight_tolerance
+
+  - pair_id: ITC-003
+    left: test_squeeze_unit_axis
+    right: test_squeeze_nonunit_axis
+    fixed_goal: squeeze axis 1 and check the output shape
+    single_changed_clause: selected axis size is one versus nonunit
+    required_adapter_difference: direct target squeeze versus conditional squeeze-or-identity
+    executable_basis: ../dynamic-trace.json#PTF-005
+
+  - pair_id: ITC-004
+    left: test_cross_entropy_class_axis_one
+    right: test_cross_entropy_class_axis_last
+    fixed_goal: compute sparse cross entropy with mean reduction
+    single_changed_clause: which source dimension denotes classes
+    required_adapter_difference: target input permutation differs
+    executable_basis: ../dynamic-trace.json#PTF-008
+
+decision_rule:
+  distinguishable: The two generated TDLs explicitly retain the changed clause with the correct value in machine-auditable text.
+  collision: The TDLs omit, conflate, or incorrectly state the changed clause so that the required target adapters cannot be distinguished.
+  invalid_output: Either output is unparsable or contradicts the source test.
+  undetermined: Human reviewers cannot determine clause retention from the TDL alone.

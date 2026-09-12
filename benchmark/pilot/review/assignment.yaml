@@ -1,0 +1,32 @@
+dataset: cosmit-candidate-certification-pilot
+assignment_version: 0.1
+reviewer: null
+blind: true
+base_sample_fraction: 0.2667
+base_property_ids:
+  - CCP-001
+  - CCP-004
+  - CCP-007
+  - CCP-010
+  - CCP-013
+  - CCP-016
+  - CCP-019
+  - CCP-022
+  - CCP-025
+  - CCP-028
+  - CCP-031
+  - CCP-034
+mandatory_case_queries:
+  - candidate.origin == public-system-output
+  - candidate.origin == repository-migration
+  - annotation.diagnosis contains suspected-target-violation
+  - review.disagreement == true
+  - reporting.final_real_candidate_table == true
+forbidden_fields:
+  - annotation
+  - gold_adapter
+  - gold_counterexamples
+  - cosmit_output
+  - probe_trace
+  - suggested_condition
+status: assignment-frozen-cases-pending

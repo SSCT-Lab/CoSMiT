@@ -1,0 +1,126 @@
+dataset: cosmit-feasibility
+schema_version: 0.1
+status: feasibility-seed-complete-pending-independent-review
+created: 2026-08-18
+
+scope:
+  source_library: PyTorch
+  target_library: TensorFlow
+  source_version: 2.9.1
+  target_version: 2.20.0
+  python_version: 3.10.9
+  device_scope: CPU-first
+  operating_system: macOS 15.7.7
+  architecture: arm64
+  environment_id: macos-arm64-py310-torch291-tf2200-cpu
+  note: This is the frozen feasibility environment; later environments must use a distinct ID.
+
+sampling_requirements:
+  api_groups: 10
+  atomic_properties: 30-50
+  seed_properties_this_week: 10
+  minimum_nontrivial_adapters: 2
+  minimum_confirmed_collision_pairs: 2
+  required_semantic_dimensions:
+    - axis-and-shape
+    - dtype-and-type-promotion
+    - numerical-tolerance
+    - exceptions-and-validation
+    - randomness-and-state
+    - gradients
+
+groups:
+  - group_id: reduction-sum
+    source_candidates: [torch.sum]
+    target_candidates: [tf.reduce_sum]
+    property_focus: [value, axis, keepdims, dtype]
+    transport_risk_hypotheses: [axis-default, dtype-accumulation, empty-input]
+    source_test: PyTorch test/test_reductions.py::test_sum_integer_upcast
+    status: annotated-and-probed
+
+  - group_id: reduction-mean
+    source_candidates: [torch.mean]
+    target_candidates: [tf.reduce_mean]
+    property_focus: [value, dtype, type-promotion, empty-input]
+    transport_risk_hypotheses: [integer-input-policy, nan-behavior, dtype-default]
+    source_test: PyTorch test/test_reductions.py::test_mean_int_with_optdtype
+    status: annotated-and-probed
+
+  - group_id: argmax
+    source_candidates: [torch.argmax]
+    target_candidates: [tf.argmax]
+    property_focus: [index, axis, output-dtype, ties]
+    transport_risk_hypotheses: [axis-default, output-dtype, tie-observation]
+    source_test: PyTorch test/test_reductions.py::test_tensor_compare_ops_argmax_argmix_kthvalue_dim_empty
+    status: annotated-and-probed
+
+  - group_id: transpose-permute
+    source_candidates: [torch.transpose, torch.permute]
+    target_candidates: [tf.transpose]
+    property_focus: [shape, layout, value-order]
+    transport_risk_hypotheses: [two-axis-vs-full-permutation, layout-observation]
+    source_test: PyTorch test/test_view_ops.py::test_transpose_vs_numpy
+    status: annotated-and-probed
+
+  - group_id: squeeze
+    source_candidates: [torch.squeeze]
+    target_candidates: [tf.squeeze]
+    property_focus: [shape, axis, exception]
+    transport_risk_hypotheses: [invalid-axis-policy, multi-axis-form, dynamic-shape]
+    source_test: PyTorch test/test_torch.py::test_tensor_shape_empty plus one-factor counterfactual
+    status: annotated-and-probed
+
+  - group_id: clamp-clip
+    source_candidates: [torch.clamp]
+    target_candidates: [tf.clip_by_value]
+    property_focus: [value, bounds, exception, gradient]
+    transport_risk_hypotheses: [one-sided-bound, reversed-bound, boundary-gradient]
+    source_test: PyTorch test/test_torch.py::test_clamp
+    status: annotated-and-probed
+
+  - group_id: approximate-oracle
+    source_candidates: [torch.testing.assert_close]
+    target_candidates: [tf.debugging.assert_near]
+    property_focus: [oracle, rtol, atol, nan, diagnostic]
+    transport_risk_hypotheses: [tolerance-formula, default-tolerance, nan-policy]
+    source_test: PyTorch test/test_testing.py::test_not_close
+    status: annotated-and-probed
+
+  - group_id: cross-entropy
+    source_candidates: [torch.nn.functional.cross_entropy]
+    target_candidates: [tf.keras.losses.sparse_categorical_crossentropy, tf.keras.losses.categorical_crossentropy]
+    property_focus: [value, input-contract, reduction, label-format]
+    transport_risk_hypotheses: [logits-flag, class-axis, reduction-policy, label-encoding]
+    source_test: PyTorch test/test_nn.py::test_cross_entropy_loss_index_target_unit_weights
+    status: annotated-and-probed
+
+  - group_id: random-normal
+    source_candidates: [torch.randn, torch.Generator]
+    target_candidates: [tf.random.normal, tf.random.Generator]
+    property_focus: [shape, dtype, seed, state, distribution]
+    transport_risk_hypotheses: [global-vs-local-state, replay-semantics, distribution-oracle]
+    source_test: PyTorch test/test_torch.py::test_generator_cpu
+    status: annotated-and-probed
+
+  - group_id: automatic-gradient
+    source_candidates: [torch.autograd.grad]
+    target_candidates: [tf.GradientTape.gradient]
+    property_focus: [gradient-value, disconnected-input, higher-order, state]
+    transport_risk_hypotheses: [unconnected-gradient-policy, tape-lifetime, accumulation]
+    source_test: PyTorch test/test_autograd.py::test_grad_materialize_grads
+    status: annotated-and-probed
+
+representation_variants:
+  - tdl-style
+  - unrestricted-llm-summary
+  - tdl-plus-ast-facts
+  - property-ir-gold
+
+ledgers:
+  properties: properties.yaml
+  collisions: collisions.yaml
+  exclusions: exclusions.yaml
+  evidence: evidence.yaml
+  representations: representations.yaml
+  dynamic_trace: dynamic-trace.json
+  probe_runner: run_seed_probes.py

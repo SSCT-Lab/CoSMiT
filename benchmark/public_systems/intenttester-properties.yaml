@@ -1,0 +1,85 @@
+dataset: cosmit-intenttester-property-qualification
+schema_version: '0.1'
+property_basis: source-test-plus-producer-tdl
+gold_eligible: false
+gold_exclusion_reason: source-to-split-test alignment and target-operation obligation await independent review
+source_evidence:
+  repository: https://github.com/mmastrac/nanojson
+  commit: 81e84ca7c9703d3b0c544c1218d2209a09aa8b22
+  note: This is the parent of nanojson's JUnit5 conversion and preserves the JUnit4 source form used for clause recovery; the IntentTester bundle does not declare its exact source commit.
+environment:
+  python: '3.10'
+  target_library: simplejson
+  target_version: 3.20.1
+  execution: macOS sandbox-exec with network and non-temporary writes denied
+
+records:
+  - property_id: IT-PROP-001
+    candidate_id: IT-nanojson-to-simplejson-JsonParserTest_10_8
+    prompt_path: tmp/intenttest-baseline/experiments/results/nanojson-to-simplejson/test_prompt/JsonParserTest_10_8.txt
+    candidate_path: tmp/intenttest-baseline/experiments/results/nanojson-to-simplejson/test_prompt_result/JsonParserTest_10_8.txt
+    source_test:
+      path: src/test/java/com/grack/nanojson/JsonParserTest.java
+      method: testArrayWithEverything
+      clause: assertEquals(123, a.getObject(4).getInt("abc"))
+    property:
+      preconditions: ['input is the JSON array [1, -1.0e6, "abc", [1,2,3], {"abc":123}, true, false]']
+      operation: [parse with the target JSON library, retrieve index 4, read key abc]
+      observation: extracted integer value
+      oracle: {type: exact-scalar, expected: 123}
+    qualification_obligation: candidate must exercise simplejson rather than Python stdlib json
+    primary_review: provisional
+    independent_review: pending
+
+  - property_id: IT-PROP-002
+    candidate_id: IT-nanojson-to-simplejson-JsonTypesTest_1_9
+    prompt_path: tmp/intenttest-baseline/experiments/results/nanojson-to-simplejson/test_prompt/JsonTypesTest_1_9.txt
+    candidate_path: tmp/intenttest-baseline/experiments/results/nanojson-to-simplejson/test_prompt_result/JsonTypesTest_1_9.txt
+    source_test:
+      path: src/test/java/com/grack/nanojson/JsonTypesTest.java
+      method: testObjectInt
+      clause: assertFalse(o.isNull("key"))
+    property:
+      preconditions: ['input is the JSON object {"key": 1}']
+      operation: [parse with the target JSON library, read key]
+      observation: whether the key value is non-null
+      oracle: {type: exact-boolean, expected: true}
+    qualification_obligation: candidate must exercise simplejson rather than Python stdlib json
+    primary_review: provisional
+    independent_review: pending
+
+  - property_id: IT-PROP-003
+    candidate_id: IT-nanojson-to-simplejson-JsonTypesTest_8_1
+    prompt_path: tmp/intenttest-baseline/experiments/results/nanojson-to-simplejson/test_prompt/JsonTypesTest_8_1.txt
+    candidate_path: tmp/intenttest-baseline/experiments/results/nanojson-to-simplejson/test_prompt_result/JsonTypesTest_8_1.txt
+    source_test:
+      path: src/test/java/com/grack/nanojson/JsonTypesTest.java
+      method: testJsonArrayBuilder
+      clause: first builder value and serialized prefix preserve boolean true
+    property:
+      preconditions: [input boolean is true]
+      operation: [build a one-element JSON array and serialize it with the target JSON library]
+      observation: serialized string
+      oracle: {type: exact-string, expected: '[true]'}
+    qualification_obligation: candidate must exercise simplejson rather than Python stdlib json
+    primary_review: provisional
+    independent_review: pending
+
+  - property_id: IT-PROP-004
+    candidate_id: IT-gson-to-simplejson-JsonParserTest_7_1
+    prompt_path: tmp/intenttest-baseline/experiments/results/gson-to-simplejson/test_prompt/JsonParserTest_7_1.txt
+    candidate_path: tmp/intenttest-baseline/experiments/results/gson-to-simplejson/test_prompt_result/JsonParserTest_7_1.txt
+    source_repository: https://github.com/google/gson
+    source_commit: b3f4ca20087f9066de4c340522ff84e0558e1ad1
+    source_test:
+      path: gson/src/test/java/com/google/gson/JsonParserTest.java
+      method: testParseUnquotedMultiWordStringFails
+      clause: JsonSyntaxException is thrown for the unquoted multi-word input
+    property:
+      preconditions: [input is the unquoted multi-word string Test is a test..blah blah]
+      operation: [parse with the target JSON library]
+      observation: exception type
+      oracle: {type: exception-family, expected: JSONDecodeError}
+    qualification_obligation: candidate must execute the exception property through simplejson
+    primary_review: provisional
+    independent_review: pending

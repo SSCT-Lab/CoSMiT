@@ -1,0 +1,77 @@
+schema_version: "0.1"
+dataset: katrer-deepseek-r1-reproduction-pilot
+producer_label: KATRER-reproduction-variant
+upstream:
+  repository: https://github.com/Davidoxn/KATRER
+  commit: c28ebfca5e309cdf0be794ae0ab388c8f547fba4
+  source_library:
+    name: numpy
+    version: 2.3.0
+    repository: https://github.com/numpy/numpy
+    commit: 0532af47d6a815298b7841de00bdbc547104b237
+  target_library:
+    name: cupy
+    version: 13.5.1
+    repository: https://github.com/cupy/cupy
+    commit: f45081393d44e4c8e28d93873405b8391c2a3592
+model:
+  id: DeepSeek-R1
+  temperature: 0.6
+  top_p: 0.95
+  presence_penalty: 1
+  max_tokens: 4096
+limitations:
+  - The restricted KATRER Docker image and graph/retrieval intermediates are unavailable.
+  - The public QueryAns.py does not invoke its generation function and imports a missing Check module.
+  - This pilot reconstructs the published prompt stages from fixed source and target code, so it is not a strict full-pipeline rerun.
+cases:
+  - case_id: KATRER-NC-001
+    semantic_dimension: exception
+    source_test_path: tmp/katrer-baseline/TestRefactoringRes/numpy_cupy/pytest_numpy_numpy_fft_tests_test_pocketfft_split_1.py
+    source_property: Calling the one-dimensional FFT with n=0 raises ValueError.
+    source_symbols:
+      - qualified_name: numpy.fft.fft
+        path: tmp/numpy-2.3.0/numpy/fft/_pocketfft.py
+        name: fft
+    target_symbols:
+      - qualified_name: cupy.fft.fft
+        path: tmp/cupy-13.5.1/cupy/fft/_fft.py
+        name: fft
+
+  - case_id: KATRER-NC-002
+    semantic_dimension: boundary
+    source_test_path: tmp/katrer-baseline/TestRefactoringRes/numpy_cupy/pytest_numpy_numpy_fft_tests_test_pocketfft_split_remain_ori_tests_3.py
+    source_property: irfft and hfft accept the n=1 boundary, and irfft accepts a length-one complex input with n=10.
+    source_symbols:
+      - qualified_name: numpy.fft.irfft
+        path: tmp/numpy-2.3.0/numpy/fft/_pocketfft.py
+        name: irfft
+      - qualified_name: numpy.fft.hfft
+        path: tmp/numpy-2.3.0/numpy/fft/_pocketfft.py
+        name: hfft
+    target_symbols:
+      - qualified_name: cupy.fft.irfft
+        path: tmp/cupy-13.5.1/cupy/fft/_fft.py
+        name: irfft
+      - qualified_name: cupy.fft.hfft
+        path: tmp/cupy-13.5.1/cupy/fft/_fft.py
+        name: hfft
+
+  - case_id: KATRER-NC-003
+    semantic_dimension: shape
+    source_test_path: tmp/katrer-baseline/TestRefactoringRes/numpy_cupy/pytest_numpy_numpy_lib_tests_test_shape_base_split_13.py
+    source_property: squeeze removes all singleton axes while preserving values; squeezing a scalar-shaped result yields a zero-dimensional array.
+    source_symbols:
+      - qualified_name: numpy.squeeze
+        path: tmp/numpy-2.3.0/numpy/_core/fromnumeric.py
+        name: squeeze
+      - qualified_name: numpy.reshape
+        path: tmp/numpy-2.3.0/numpy/_core/fromnumeric.py
+        name: reshape
+    target_symbols:
+      - qualified_name: cupy.squeeze
+        path: tmp/cupy-13.5.1/cupy/_manipulation/dims.py
+        name: squeeze
+      - qualified_name: cupy.reshape
+        path: tmp/cupy-13.5.1/cupy/_manipulation/shape.py
+        name: reshape

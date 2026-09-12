@@ -1,0 +1,392 @@
+dataset: cosmit-feasibility
+schema_version: 0.2
+environment_id: macos-arm64-py310-torch291-tf2200-cpu
+annotation_status: provisional-single-annotator
+
+records:
+  - property_id: PTF-001
+    group_id: reduction-sum
+    parent_test_id: pytorch-test_sum_integer_upcast
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_reductions.py
+      test_name: test_sum_integer_upcast
+      evidence: [E-PT-001]
+    target:
+      library: TensorFlow
+      version: 2.20.0
+      candidate_api_or_composition: tf.reduce_sum(tf.cast(x, tf.int64))
+      evidence: [E-TF-001]
+    property:
+      preconditions: [x is an int32 CPU tensor]
+      operation: [torch.sum(x)]
+      observation: output dtype
+      oracle: {type: dtype-equality, expected: int64}
+      environment: {device: CPU}
+      provenance: [E-PT-001, E-TF-001, E-DYN-001]
+    gold_adapter:
+      input: [cast int32 input to target int64]
+      operation: [map torch.sum to tf.reduce_sum]
+      observation: [observe output dtype]
+      oracle: [require int64]
+      environment: [CPU]
+    valid_domain: [bounded to int32 tensors in the frozen environment]
+    excluded_domain: [overflow equivalence, accelerator-specific accumulation, complex inputs]
+    semantic_relation: adapted-transport
+    evidence_state: bounded-supported
+    gold_counterexamples: [dynamic-trace.json#PTF-001 direct tf.reduce_sum preserves value but returns int32]
+    unresolved_assumptions: [generalization to every integral dtype]
+    annotator: provisional-A
+    reviewer: null
+    adjudication: pending-independent-review
+
+  - property_id: PTF-002
+    group_id: reduction-mean
+    parent_test_id: pytorch-test_mean_int_with_optdtype
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_reductions.py
+      test_name: test_mean_int_with_optdtype
+      evidence: [E-PT-002]
+    target:
+      library: TensorFlow
+      version: 2.20.0
+      candidate_api_or_composition: tf.reduce_mean(tf.cast(x, tf.float32))
+      evidence: [E-TF-002]
+    property:
+      preconditions: [x is an int64 tensor, requested output dtype is float32]
+      operation: ["torch.mean(x, dtype=torch.float32)"]
+      observation: scalar value and dtype
+      oracle: {type: exact-value-and-dtype, expected_value: 1.5, expected_dtype: float32}
+      environment: {device: CPU}
+      provenance: [E-PT-002, E-TF-002, E-DYN-001]
+    gold_adapter:
+      input: [cast integer input to target float32 before reduction]
+      operation: [map torch.mean to tf.reduce_mean]
+      observation: [observe scalar value and dtype]
+      oracle: [exact 1.5 and float32 for the witness]
+      environment: [CPU]
+    valid_domain: [finite int64 inputs whose float32 cast is accepted]
+    excluded_domain: [values whose float32 conversion loses required precision, empty reductions]
+    semantic_relation: adapted-transport
+    evidence_state: bounded-supported
+    gold_counterexamples: [dynamic-trace.json#PTF-002 direct integer tf.reduce_mean truncates 1.5 to 1]
+    unresolved_assumptions: [precision boundary for large int64 values]
+    annotator: provisional-A
+    reviewer: null
+    adjudication: pending-independent-review
+
+  - property_id: PTF-003
+    group_id: argmax
+    parent_test_id: pytorch-test_tensor_compare_ops_argmax
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_reductions.py
+      test_name: test_tensor_compare_ops_argmax_argmix_kthvalue_dim_empty
+      evidence: [E-PT-003]
+    target:
+      library: TensorFlow
+      version: 2.20.0
+      candidate_api_or_composition: tf.argmax(x, axis=1, output_type=tf.int64)
+      evidence: [E-TF-003]
+    property:
+      preconditions: [x is a nonempty rank-2 float tensor, axis is 1]
+      operation: ["torch.argmax(x, dim=1)"]
+      observation: selected indices and output dtype
+      oracle: {type: exact-value-and-dtype, expected_value: [1, 0], expected_dtype: int64, tie_policy: first}
+      environment: {device: CPU}
+      provenance: [E-PT-003, E-TF-003, E-DYN-001]
+    gold_adapter:
+      input: [identity]
+      operation: [rename dim to axis, set output_type to int64]
+      observation: [indices]
+      oracle: [exact indices, int64 dtype]
+      environment: [CPU]
+    valid_domain: [nonempty rank-2 float tensors on axis 1]
+    excluded_domain: [empty reduction axes, NaN tie behavior]
+    semantic_relation: identity-transport
+    evidence_state: bounded-supported
+    gold_counterexamples: [dynamic-trace.json#PTF-003 output_type int32 violates the dtype clause]
+    unresolved_assumptions: [NaN ordering]
+    annotator: provisional-A
+    reviewer: null
+    adjudication: pending-independent-review
+
+  - property_id: PTF-004
+    group_id: transpose-permute
+    parent_test_id: pytorch-test_transpose_vs_numpy
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_view_ops.py
+      test_name: test_transpose_vs_numpy
+      evidence: [E-PT-004]
+    target:
+      library: TensorFlow
+      version: 2.20.0
+      candidate_api_or_composition: tf.transpose(x, perm=swap(identity_perm(rank(x)), 0, 1))
+      evidence: [E-TF-004]
+    property:
+      preconditions:
+        - "x has static shape [2, 3, 4]"
+        - source dimensions are 0 and 1
+      operation: ["torch.transpose(x, 0, 1)"]
+      observation: complete output shape and values
+      oracle: {type: exact-tensor-equality, expected_shape: [3, 2, 4]}
+      environment: {device: CPU}
+      provenance: [E-PT-004, E-TF-004, E-DYN-001]
+    gold_adapter:
+      input: [identity]
+      operation: [construct a full target permutation by swapping source dims 0 and 1]
+      observation: [complete tensor]
+      oracle: [exact tensor equality]
+      environment: [CPU]
+    valid_domain: [static rank-3 tensors with valid distinct dimensions]
+    excluded_domain: [unknown rank, invalid dimensions, aliasing/view identity requirements]
+    semantic_relation: adapted-transport
+    evidence_state: bounded-supported
+    gold_counterexamples: [dynamic-trace.json#PTF-004 omitted target perm reverses every dimension]
+    unresolved_assumptions: [transport of PyTorch view aliasing semantics]
+    annotator: provisional-A
+    reviewer: null
+    adjudication: pending-independent-review
+
+  - property_id: PTF-005
+    group_id: squeeze
+    parent_test_id: pytorch-test_tensor_shape_empty-counterfactual
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_torch.py
+      test_name: test_tensor_shape_empty plus one-factor nonunit-axis counterfactual
+      evidence: [E-PT-005]
+    target:
+      library: TensorFlow
+      version: 2.20.0
+      candidate_api_or_composition: conditional squeeze if target axis size is one, otherwise identity
+      evidence: [E-TF-005]
+    property:
+      preconditions:
+        - "x has shape [1, 3]"
+        - selected axis is 1 and has size 3
+      operation: ["torch.squeeze(x, dim=1)"]
+      observation: output shape and values
+      oracle: {type: no-op-on-nonunit-axis, expected_shape: [1, 3]}
+      environment: {device: CPU}
+      provenance: [E-PT-005, E-TF-005, E-DYN-001]
+    gold_adapter:
+      input: [identity]
+      operation: [if axis size equals one use tf.squeeze, else use tf.identity]
+      observation: [shape and values]
+      oracle: [preserve the source no-op behavior]
+      environment: [eager CPU]
+    valid_domain: [eager tensors with observable selected-axis size]
+    excluded_domain: [symbolic shapes whose selected-axis size cannot be resolved within budget]
+    semantic_relation: adapted-transport
+    evidence_state: bounded-supported
+    gold_counterexamples: [dynamic-trace.json#PTF-005 direct tf.squeeze raises InvalidArgumentError]
+    unresolved_assumptions: [DSL support for symbolic conditional shape guards]
+    annotator: provisional-A
+    reviewer: null
+    adjudication: pending-independent-review
+
+  - property_id: PTF-006
+    group_id: clamp-clip
+    parent_test_id: pytorch-test_clamp
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_torch.py
+      test_name: test_clamp
+      evidence: [E-PT-006]
+    target:
+      library: TensorFlow
+      version: 2.20.0
+      candidate_api_or_composition: tf.maximum(x, lower_bound)
+      evidence: [E-TF-006]
+    property:
+      preconditions: [x is int32, only lower bound 0 is supplied]
+      operation: ["torch.clamp(x, min=0)"]
+      observation: complete output values
+      oracle: {type: exact-tensor-equality, expected: [0, 0, 1000]}
+      environment: {device: CPU}
+      provenance: [E-PT-006, E-TF-006, E-DYN-001]
+    gold_adapter:
+      input: [identity]
+      operation: [map one-sided lower clamp to tf.maximum]
+      observation: [complete tensor]
+      oracle: [exact tensor equality]
+      environment: [CPU]
+    valid_domain: [ordered numeric int32 tensors]
+    excluded_domain: [complex values, NaN policy, gradient boundary behavior]
+    semantic_relation: adapted-transport
+    evidence_state: bounded-supported
+    gold_counterexamples: [dynamic-trace.json#PTF-006 inventing a finite upper bound changes value 1000 to 999]
+    unresolved_assumptions: [floating NaN and signed-zero behavior]
+    annotator: provisional-A
+    reviewer: null
+    adjudication: pending-independent-review
+
+  - property_id: PTF-007
+    group_id: approximate-oracle
+    parent_test_id: pytorch-test_not_close
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_testing.py
+      test_name: test_not_close
+      evidence: [E-PT-007]
+    target:
+      library: TensorFlow
+      version: 2.20.0
+      candidate_api_or_composition: tf.debugging.assert_near(actual, expected, rtol=0, atol=1e-5)
+      evidence: [E-TF-007]
+    property:
+      preconditions: [actual and expected are float32 scalars]
+      operation: ["assert_close(actual, expected, rtol=0, atol=1e-5)"]
+      observation: assertion pass or failure
+      oracle: {type: approximate, rtol: 0.0, atol: 0.00001}
+      environment: {device: CPU}
+      provenance: [E-PT-007, E-TF-007, E-DYN-001]
+    gold_adapter:
+      input: [identity]
+      operation: [map assert_close to assert_near]
+      observation: [assertion outcome]
+      oracle: [copy rtol and atol exactly]
+      environment: [eager CPU]
+    valid_domain: [float32 values under the explicit asymmetric tolerance relation]
+    excluded_domain: [NaN equality, dtype/device/stride attribute checks]
+    semantic_relation: adapted-transport
+    evidence_state: bounded-supported
+    gold_counterexamples: [dynamic-trace.json#PTF-007 target defaults reject a difference accepted by source atol]
+    unresolved_assumptions: [full formula equivalence for all magnitudes]
+    annotator: provisional-A
+    reviewer: null
+    adjudication: pending-independent-review
+
+  - property_id: PTF-008
+    group_id: cross-entropy
+    parent_test_id: pytorch-test_cross_entropy_loss_index_target_unit_weights
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_nn.py
+      test_name: test_cross_entropy_loss_index_target_unit_weights
+      evidence: [E-PT-008]
+    target:
+      library: TensorFlow
+      version: 2.20.0
+      candidate_api_or_composition: transpose class axis to last, sparse_softmax_cross_entropy_with_logits, reduce_mean
+      evidence: [E-TF-008]
+    property:
+      preconditions:
+        - "logits shape [N, C, L]"
+        - "sparse labels shape [N, L]"
+        - class axis is 1
+      operation: ["torch.nn.functional.cross_entropy(logits, labels, reduction=mean)"]
+      observation: scalar loss
+      oracle: {type: approximate-value, rtol: 0.0, atol: 0.0000001}
+      environment: {device: CPU}
+      provenance: [E-PT-008, E-TF-008, E-DYN-001]
+    gold_adapter:
+      input: ["transpose logits from [N, C, L] to [N, L, C]"]
+      operation: [tf.nn.sparse_softmax_cross_entropy_with_logits then tf.reduce_mean]
+      observation: [scalar reduced loss]
+      oracle: [absolute difference at most 1e-7]
+      environment: [CPU]
+    valid_domain: [finite float32 logits, valid int64 class labels, unweighted mean reduction]
+    excluded_domain: [class weights, ignore_index, label smoothing, invalid labels]
+    semantic_relation: adapted-transport
+    evidence_state: bounded-supported
+    gold_counterexamples: [dynamic-trace.json#PTF-008 direct target call either fails on shape or executes with a 1.0724 loss error when dimensions coincide]
+    unresolved_assumptions: [weighted mean denominator and ignored-label semantics]
+    annotator: provisional-A
+    reviewer: null
+    adjudication: pending-independent-review
+
+  - property_id: PTF-009
+    group_id: random-normal
+    parent_test_id: pytorch-test_generator_cpu
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_torch.py
+      test_name: test_generator_cpu
+      evidence: [E-PT-009]
+    target:
+      library: TensorFlow
+      version: 2.20.0
+      candidate_api_or_composition: two tf.random.Generator.from_seed instances followed by normal
+      evidence: [E-TF-009]
+    property:
+      preconditions: ["two fresh CPU generators use seed 123 and shape [5]"]
+      operation: [draw one normal sample from each source generator]
+      observation: pair of generated tensors
+      oracle: {type: replay-equality-within-implementation, cross_library_value_equality: false}
+      environment: {device: CPU, seed: 123}
+      provenance: [E-PT-009, E-TF-009, E-DYN-001]
+    gold_adapter:
+      input: ["map seed and shape, not PRNG internal state bytes"]
+      operation: [Generator.manual_seed plus randn to Generator.from_seed plus normal]
+      observation: [compare two target replays with each other]
+      oracle: ["exact replay equality inside each implementation, not exact PyTorch-TensorFlow values"]
+      environment: [CPU-local generator state]
+    valid_domain: [fresh generators, fixed implementation version and CPU backend]
+    excluded_domain: [cross-device sequences, cross-version sequences, exact cross-library values]
+    semantic_relation: adapted-transport
+    evidence_state: bounded-supported
+    gold_counterexamples: [dynamic-trace.json#PTF-009 exact cross-library sample equality is false although replay holds]
+    unresolved_assumptions: [distribution equivalence and long-sequence state consumption]
+    annotator: provisional-A
+    reviewer: null
+    adjudication: pending-independent-review
+
+  - property_id: PTF-010
+    group_id: automatic-gradient
+    parent_test_id: pytorch-test_grad_materialize_grads
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_autograd.py
+      test_name: test_grad_materialize_grads
+      evidence: [E-PT-010]
+    target:
+      library: TensorFlow
+      version: 2.20.0
+      candidate_api_or_composition: GradientTape.gradient with unconnected_gradients=ZERO
+      evidence: [E-TF-010]
+    property:
+      preconditions: [x is watched but z equals 2*y and is disconnected from x]
+      operation: [autograd.grad with allow_unused and materialize_grads]
+      observation: gradient with respect to x
+      oracle: {type: exact-scalar, expected: 0.0, none_is_not_zero: true}
+      environment: {device: CPU}
+      provenance: [E-PT-010, E-TF-010, E-DYN-001]
+    gold_adapter:
+      input: [watch x and y]
+      operation: [map materialize_grads to unconnected_gradients=ZERO]
+      observation: [gradient with respect to x]
+      oracle: [require numeric zero rather than None]
+      environment: [eager CPU]
+    valid_domain: [unconnected differentiable scalar or tensor inputs]
+    excluded_domain: [higher-order graph retention and custom-gradient side effects]
+    semantic_relation: adapted-transport
+    evidence_state: bounded-supported
+    gold_counterexamples: [dynamic-trace.json#PTF-010 default target policy returns None]
+    unresolved_assumptions: [higher-order gradient graph materialization]
+    annotator: provisional-A
+    reviewer: null
+    adjudication: pending-independent-review

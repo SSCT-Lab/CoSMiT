@@ -1,0 +1,123 @@
+dataset: cosmit-feasibility
+schema_version: 0.2
+source_commits:
+  pytorch: d38164a545b4a4e4e0cf73ce67173f70574890b6
+  tensorflow: 72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa
+
+records:
+  - evidence_id: E-PT-001
+    property_id: PTF-001
+    role: source-official-test
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_reductions.py#L949-L951
+    supports: Integer sum is tested for PyTorch integer upcast.
+  - evidence_id: E-TF-001
+    property_id: PTF-001
+    role: target-official-test
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/kernel_tests/math_ops/reduction_ops_test.py#L218-L250
+    supports: TensorFlow tests reduce_sum on int32 without PyTorch-style upcast.
+
+  - evidence_id: E-PT-002
+    property_id: PTF-002
+    role: source-official-test
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_reductions.py#L881-L888
+    supports: Integer input is explicitly cast when dtype is supplied to torch.mean.
+  - evidence_id: E-TF-002
+    property_id: PTF-002
+    role: target-official-test
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/kernel_tests/math_ops/reduction_ops_test.py#L490-L531
+    supports: TensorFlow integer reduce_mean uses truncating integer division.
+
+  - evidence_id: E-PT-003
+    property_id: PTF-003
+    role: source-official-test
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_reductions.py#L3530-L3565
+    supports: PyTorch tests argmax axes, keepdim and int64 result behavior.
+  - evidence_id: E-TF-003
+    property_id: PTF-003
+    role: target-official-test
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/kernel_tests/math_ops/argmax_op_test.py#L64-L112
+    supports: TensorFlow tests axis mapping, tie breaking and configurable output dtype.
+
+  - evidence_id: E-PT-004
+    property_id: PTF-004
+    role: source-official-test
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_view_ops.py#L1515-L1535
+    supports: torch.transpose swaps two selected dimensions and is checked against NumPy.
+  - evidence_id: E-TF-004
+    property_id: PTF-004
+    role: target-official-test
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/kernel_tests/math_ops/transpose_op_test.py#L35-L70
+    supports: tf.transpose consumes a full permutation and reverses dimensions when omitted.
+
+  - evidence_id: E-PT-005
+    property_id: PTF-005
+    role: source-official-test-plus-counterfactual
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_torch.py#L3928-L3942
+    supports: Official shape test supplies the squeeze seed; the nonunit-axis case is a one-factor counterfactual.
+  - evidence_id: E-TF-005
+    property_id: PTF-005
+    role: target-official-test
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/kernel_tests/array_ops/array_ops_test.py#L339-L347
+    supports: TensorFlow explicitly tests failure when a selected squeeze dimension is not one.
+
+  - evidence_id: E-PT-006
+    property_id: PTF-006
+    role: source-official-test
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_torch.py#L6489-L6535
+    supports: PyTorch tests lower-only and upper-only clamp independently.
+  - evidence_id: E-TF-006
+    property_id: PTF-006
+    role: target-official-test
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/kernel_tests/math_ops/clip_ops_test.py#L35-L67
+    supports: tf.clip_by_value requires both minimum and maximum bounds.
+
+  - evidence_id: E-PT-007
+    property_id: PTF-007
+    role: source-official-test
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_testing.py#L920-L931
+    supports: PyTorch assert_close behavior is parameterized by explicit rtol and atol.
+  - evidence_id: E-TF-007
+    property_id: PTF-007
+    role: target-official-test
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/kernel_tests/check_ops_test.py#L418-L480
+    supports: TensorFlow default and explicit assert_near tolerances are tested separately.
+
+  - evidence_id: E-PT-008
+    property_id: PTF-008
+    role: source-official-test
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_nn.py#L12316-L12352
+    supports: PyTorch tests class-index and one-hot cross entropy with class dimension at index one.
+  - evidence_id: E-TF-008
+    property_id: PTF-008
+    role: target-official-test
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/kernel_tests/sparse_ops/sparse_xent_op_test_base.py#L35-L82
+    supports: TensorFlow sparse cross entropy flattens batches while treating the last logits dimension as classes.
+
+  - evidence_id: E-PT-009
+    property_id: PTF-009
+    role: source-official-test
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_torch.py#L7278-L7308
+    supports: PyTorch tests generator state replay and equality of the regenerated normal sample.
+  - evidence_id: E-TF-009
+    property_id: PTF-009
+    role: target-official-test
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/kernel_tests/random/stateful_random_ops_test.py#L357-L381
+    supports: TensorFlow tests reset-from-seed replay for stateful normal generation.
+
+  - evidence_id: E-PT-010
+    property_id: PTF-010
+    role: source-official-test
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_autograd.py#L1306-L1323
+    supports: PyTorch tests materializing an unused gradient as zero instead of None.
+  - evidence_id: E-TF-010
+    property_id: PTF-010
+    role: target-official-test
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/eager/backprop_test.py#L1014-L1047
+    supports: TensorFlow distinguishes default None from explicit zero for unconnected gradients.
+
+  - evidence_id: E-DYN-001
+    role: dynamic-probe-bundle
+    path: benchmark/feasibility/dynamic-trace.json
+    runner: benchmark/feasibility/run_seed_probes.py
+    supports: All ten naive/adapted candidates were executed in the frozen environment.
+

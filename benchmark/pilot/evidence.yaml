@@ -1,0 +1,49 @@
+dataset: cosmit-candidate-certification-pilot
+schema_version: 0.1
+source_commits:
+  pytorch: d38164a545b4a4e4e0cf73ce67173f70574890b6
+  tensorflow: 72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa
+
+records:
+  - evidence_id: E-PT-CCP-031
+    property_id: CCP-031
+    role: source-official-test
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_reductions.py#L434-L447
+    supports: torch.var defaults to the unbiased/sample correction and distinguishes 0.5 from 0.25 on [1, 2].
+
+  - evidence_id: E-TF-CCP-031
+    property_id: CCP-031
+    role: target-official-source
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/ops/math_ops.py#L2601-L2659
+    supports: tf.math.reduce_variance computes the mean of squared deviations and therefore uses population denominator N.
+
+  - evidence_id: E-PT-CCP-034
+    property_id: CCP-034
+    role: source-official-test
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_nn.py#L10689-L10702
+    supports: PyTorch softmax tests pass the normalization dimension explicitly and compare values and gradients.
+
+  - evidence_id: E-TF-CCP-034
+    property_id: CCP-034
+    role: target-official-test
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/kernel_tests/nn_ops/softmax_op_test.py#L220-L245
+    supports: TensorFlow tests softmax along explicit first, second and negative dimensions.
+
+  - evidence_id: E-PT-CCP-035
+    property_id: CCP-035
+    role: source-official-test
+    url: https://github.com/pytorch/pytorch/blob/d38164a545b4a4e4e0cf73ce67173f70574890b6/test/test_nn.py#L10689-L10702
+    supports: PyTorch softmax exposes explicit computation dtype behavior in its test path.
+
+  - evidence_id: E-TF-CCP-035
+    property_id: CCP-035
+    role: target-official-test
+    url: https://github.com/tensorflow/tensorflow/blob/72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa/tensorflow/python/kernel_tests/nn_ops/softmax_op_test.py#L131-L184
+    supports: TensorFlow tests softmax separately for float, half, double and bfloat16 inputs.
+
+  - evidence_id: E-DYN-PILOT-001
+    property_ids: [CCP-031, CCP-034, CCP-035]
+    role: dynamic-probe-bundle
+    path: benchmark/pilot/sampling-trace.json
+    runner: benchmark/pilot/run_sampling_probes.py
+    supports: Fixed-environment witnesses for variance correction, softmax axis and softmax computation dtype.

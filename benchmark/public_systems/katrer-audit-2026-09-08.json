@@ -1,0 +1,86 @@
+{
+  "audit_date": "2026-09-08",
+  "network_calls": 0,
+  "historical_result_sha256": "6e94937b5c4ec396127a5bc2d6fa22aaf96787e98bbbddbb86d3d80bbb98c14f",
+  "checker_sha256": "c5c4372fe89f0770cef6dd38974e3df9bd45351c55752c29864168864ba2e071",
+  "runner_sha256": "6f6026cb8f03d3665ef7321ba7bf4cd5993a46f253dfa5d4e3c9f3dda9576a38",
+  "manifest_hash_matches": true,
+  "artifacts": [
+    {
+      "case_id": "KATRER-NC-001",
+      "candidate_summary_hash_matches": true,
+      "candidate_file_hash_matches": true,
+      "candidate_origin_hash_matches": true,
+      "generation_extract_matches": true,
+      "generation_prompt_hash_matches": true,
+      "generation_finish_reason": "stop",
+      "judgement_finish_reason": "stop",
+      "judgement_matches": true,
+      "historical_status": "supported-within-static-source-scope",
+      "audited_evidence_state": "undetermined"
+    },
+    {
+      "case_id": "KATRER-NC-002",
+      "candidate_summary_hash_matches": true,
+      "candidate_file_hash_matches": true,
+      "candidate_origin_hash_matches": true,
+      "generation_extract_matches": true,
+      "generation_prompt_hash_matches": true,
+      "generation_finish_reason": "stop",
+      "judgement_finish_reason": "stop",
+      "judgement_matches": true,
+      "historical_status": "undetermined-without-target-runtime",
+      "audited_evidence_state": "undetermined"
+    },
+    {
+      "case_id": "KATRER-NC-003",
+      "candidate_summary_hash_matches": true,
+      "candidate_file_hash_matches": true,
+      "candidate_origin_hash_matches": true,
+      "generation_extract_matches": true,
+      "generation_prompt_hash_matches": true,
+      "generation_finish_reason": "stop",
+      "judgement_finish_reason": "stop",
+      "judgement_matches": true,
+      "historical_status": "undetermined-without-target-runtime",
+      "audited_evidence_state": "undetermined"
+    }
+  ],
+  "synthetic_checker_diagnostics": [
+    {
+      "id": "wrong_library",
+      "case_id": "KATRER-NC-001",
+      "synthetic_code": "import cupy as cp\nimport numpy as np\nimport pytest\ndef test_wrong_library():\n    with pytest.raises(ValueError):\n        np.fft.fft([1], n=0)\n",
+      "expected_clause_preserved": false,
+      "legacy_clause_preserved": true,
+      "legacy_target_binding_observed": true
+    },
+    {
+      "id": "unreachable_fft",
+      "case_id": "KATRER-NC-001",
+      "synthetic_code": "import cupy as cp\nimport pytest\ndef test_unreachable():\n    with pytest.raises(ValueError):\n        raise ValueError('not raised by FFT')\n        cp.fft.fft(cp.array([1]), n=0)\n",
+      "expected_clause_preserved": false,
+      "legacy_clause_preserved": true,
+      "legacy_target_binding_observed": true
+    },
+    {
+      "id": "dead_boundary_calls",
+      "case_id": "KATRER-NC-002",
+      "synthetic_code": "import cupy as cp\ndef test_dead_code():\n    if False:\n        cp.fft.irfft([1], n=1)\n        cp.fft.hfft([1], n=1)\n        cp.fft.irfft([1], n=10)\n",
+      "expected_clause_preserved": false,
+      "legacy_clause_preserved": true,
+      "legacy_target_binding_observed": true
+    },
+    {
+      "id": "missing_oracles_wrong_comparison",
+      "case_id": "KATRER-NC-003",
+      "synthetic_code": "import cupy as cp\ndef test_no_oracle():\n    if False:\n        cp.squeeze(a)\n        cp.squeeze(b)\n        cp.squeeze(c)\n        cp.squeeze(d)\n        cp.reshape(a, (1,))\n        cp.reshape(b, (1,))\n        cp.reshape(c, (1,))\n        res.ndim != 0\n        cp.ndarray\n",
+      "expected_clause_preserved": false,
+      "legacy_clause_preserved": true,
+      "legacy_target_binding_observed": true
+    }
+  ],
+  "empty_text_syntax_status": "valid",
+  "unused_import_binding_status": true,
+  "interpretation": "False acceptance diagnoses heuristics only; it is not an observed defect in the three generated candidates. Historical supported status is not justified by this checker."
+}

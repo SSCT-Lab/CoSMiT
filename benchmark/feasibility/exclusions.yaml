@@ -1,0 +1,28 @@
+dataset: cosmit-feasibility
+schema_version: 0.2
+
+records:
+  - exclusion_id: EX-001
+    candidate: exact equality between PyTorch and TensorFlow seeded random samples
+    related_property: PTF-009
+    reason: Different PRNG algorithms may produce different values while both preserve replay determinism.
+    disposition: replaced by within-implementation replay relation
+
+  - exclusion_id: EX-002
+    candidate: map one-sided torch.clamp to tf.clip_by_value with an invented finite upper bound
+    related_property: PTF-006
+    reason: Any finite upper bound introduces a valid source value that is incorrectly clipped.
+    disposition: refuted by value 1000 in the dynamic trace
+
+  - exclusion_id: EX-003
+    candidate: treat direct execution success as semantic preservation for cross entropy
+    related_property: PTF-008
+    reason: When dimensions coincide, the wrong class-axis mapping executes but changes mean loss by 1.0724.
+    disposition: require explicit class-axis transport and numeric oracle
+
+  - exclusion_id: EX-004
+    candidate: report representation audit as an IntentTester baseline result
+    related_property: all
+    reason: The current TDL is a manual proxy and the official IntentTester extraction pipeline was not executed.
+    disposition: reserve current audit for feasibility and motivating-case selection only
+

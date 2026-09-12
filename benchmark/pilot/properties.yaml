@@ -1,0 +1,117 @@
+dataset: cosmit-candidate-certification-pilot
+schema_version: 0.1
+annotation_status: provisional-primary
+environment_id: macos-arm64-py310-torch291-tf2200-cpu
+
+legacy_seed_mapping:
+  note: The ten feasibility records require v0.2 atomization before they count as pilot-complete.
+  mappings:
+    PTF-001: CCP-001
+    PTF-002: CCP-004
+    PTF-003: CCP-007
+    PTF-004: CCP-010
+    PTF-005: CCP-013
+    PTF-006: CCP-016
+    PTF-007: CCP-019
+    PTF-008: CCP-022
+    PTF-009: CCP-025
+    PTF-010: CCP-028
+
+records:
+  - property_id: CCP-031
+    group_id: G11-variance
+    split: development
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_reductions.py
+      test_name: test_var_unbiased
+      evidence: [E-PT-CCP-031]
+    target_evidence:
+      library: TensorFlow
+      version: 2.20.0
+      evidence: [E-TF-CCP-031]
+    property:
+      preconditions:
+        - x is a finite float32 CPU tensor
+        - the reduced element count n is greater than one
+      operation: [torch.var(x) with default correction]
+      observation: scalar variance value
+      oracle:
+        type: approximate-sample-variance
+        expression: sum((x - mean(x)) ** 2) / (n - 1)
+        rtol: 0.0
+        atol: 0.0000001
+      environment: {device: CPU}
+      provenance: [E-PT-CCP-031, E-TF-CCP-031, E-DYN-PILOT-001]
+    valid_domain: [finite float32 reductions with n greater than one]
+    excluded_domain: [singleton reductions, empty reductions, complex values, accelerator-specific numerics]
+    unresolved_assumptions: [multi-axis dynamic-shape correction]
+    primary_annotator: provisional-A
+    independent_reviewer: null
+    adjudication: pending
+
+  - property_id: CCP-034
+    group_id: G12-softmax
+    split: development
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_nn.py
+      test_name: test_softmax_cpu
+      evidence: [E-PT-CCP-034]
+    target_evidence:
+      library: TensorFlow
+      version: 2.20.0
+      evidence: [E-TF-CCP-034]
+    property:
+      preconditions:
+        - x is a finite rank-2 float32 CPU tensor
+        - source normalization dimension is zero
+      operation: [torch.nn.functional.softmax(x, dim=0)]
+      observation: complete probability tensor
+      oracle:
+        type: approximate-tensor-value
+        reference: stable softmax normalized along source dimension zero
+        rtol: 0.0
+        atol: 0.0000001
+      environment: {device: CPU}
+      provenance: [E-PT-CCP-034, E-TF-CCP-034, E-DYN-PILOT-001]
+    valid_domain: [finite rank-2 float32 tensors]
+    excluded_domain: [empty axes, non-finite values, low-precision overflow, accelerator-specific kernels]
+    unresolved_assumptions: [all supported ranks and sparse representations]
+    primary_annotator: provisional-A
+    independent_reviewer: null
+    adjudication: pending
+
+  - property_id: CCP-035
+    group_id: G12-softmax
+    split: development
+    source:
+      library: PyTorch
+      version: 2.9.1
+      commit: d38164a545b4a4e4e0cf73ce67173f70574890b6
+      test_path: test/test_nn.py
+      test_name: test_softmax_cpu
+      evidence: [E-PT-CCP-035]
+    target_evidence:
+      library: TensorFlow
+      version: 2.20.0
+      evidence: [E-TF-CCP-035]
+    property:
+      preconditions:
+        - x is a finite rank-2 float16 CPU tensor
+        - source computation dtype is explicitly float32
+      operation: [torch.nn.functional.softmax(x, dim=1, dtype=torch.float32)]
+      observation: output dtype
+      oracle: {type: dtype-equality, expected: float32}
+      environment: {device: CPU}
+      provenance: [E-PT-CCP-035, E-TF-CCP-035, E-DYN-PILOT-001]
+    valid_domain: [finite rank-2 float16 inputs with explicit float32 computation dtype]
+    excluded_domain: [value-equivalence as a separate oracle, accelerator-specific mixed precision]
+    unresolved_assumptions: [automatic mixed-precision policies]
+    primary_annotator: provisional-A
+    independent_reviewer: null
+    adjudication: pending

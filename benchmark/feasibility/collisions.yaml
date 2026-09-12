@@ -1,0 +1,76 @@
+dataset: cosmit-feasibility
+schema_version: 0.2
+status: bounded-pilot
+
+abstractions:
+  goal_only_intent:
+    definition: Retain the tested operation and high-level goal; omit typed observation and oracle parameters.
+    purpose: Constructively test transport sufficiency of a common intent-only abstraction.
+  intenttester_tdl:
+    status: not-executed
+    interpretation: No collision result in this file may be attributed to the actual IntentTester pipeline.
+
+records:
+  - collision_id: COL-001
+    abstraction: goal_only_intent
+    source_basis: PTF-001
+    shared_representation: Sum the integer tensor and check the result.
+    left_property:
+      oracle: numerical result equals 6
+      valid_adapter_classes: [direct tf.reduce_sum, cast-input-then-tf.reduce_sum]
+    right_property:
+      oracle: numerical result equals 6 and output dtype is int64
+      valid_adapter_classes: [cast-input-then-tf.reduce_sum]
+    single_changed_clause: output dtype is part of the oracle
+    adapter_sets_differ: true
+    executable_discriminator: dynamic-trace.json#PTF-001
+    observation: Direct tf.reduce_sum returns value 6 but dtype int32; it satisfies only the value-only property.
+    result: confirmed
+    evidence_state: bounded-supported
+    validity_scope: PyTorch int32 sum to TensorFlow on the frozen CPU environment
+    intenttester_tdl_result: undetermined
+
+  - collision_id: COL-002
+    abstraction: goal_only_intent
+    source_basis: PTF-007
+    shared_representation: Assert that the two floating-point values are close.
+    left_property:
+      oracle: rtol=0 and atol=1e-5
+      valid_adapter_classes: [target assertion with rtol=0 and atol=1e-5]
+    right_property:
+      oracle: rtol=0 and atol=1e-6
+      valid_adapter_classes: [target assertion with rtol=0 and atol=1e-6]
+    single_changed_clause: absolute tolerance
+    adapter_sets_differ: true
+    executable_discriminator: dynamic-trace.json#PTF-007.counterfactual_tight_tolerance
+    observation: Difference 5e-6 passes at atol 1e-5 and fails at atol 1e-6 in both fixed implementations.
+    result: confirmed
+    evidence_state: bounded-supported
+    validity_scope: float32 scalar approximate assertions in the frozen CPU environment
+    intenttester_tdl_result: undetermined
+
+  - collision_id: COL-003
+    abstraction: goal_only_intent
+    source_basis: PTF-005
+    shared_representation: Squeeze axis 1 and verify the output shape.
+    left_property:
+      precondition: selected axis size is one
+      valid_adapter_classes: [direct tf.squeeze, conditional squeeze]
+    right_property:
+      precondition: selected axis size is three
+      valid_adapter_classes: [conditional squeeze-or-identity]
+    single_changed_clause: selected-axis size
+    adapter_sets_differ: true
+    executable_discriminator: dynamic-trace.json#PTF-005
+    result: confirmed-for-goal-only
+    tdl_plus_ast_result: rejected-representation-distinguishes
+    reason: Shape and axis literals expose the distinction when AST facts are retained.
+    evidence_state: bounded-supported
+    intenttester_tdl_result: undetermined
+
+summary:
+  confirmed_goal_only: 2
+  additional_confirmed_goal_only_but_ast_distinguishable: 1
+  confirmed_actual_intenttester_tdl: 0
+  actual_intenttester_tdl_undetermined: 3
+
