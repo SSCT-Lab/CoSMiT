@@ -50,3 +50,5 @@ python3 -m pytest -q
 - 自动候选 Mapping IR 恢复、随机状态覆盖、全部 40–60 条规则、ONNX 官方映射和真实 issue/PR 价值：仍需实现或补充证据。
 
 更详细的任务状态见 `docs/research-rq-progress-2026-09-09.md`。
+
+后续待办与验收见 [论文剩余任务](../../docs/research-remaining-tasks.md)。公开仓库不包含原始 run、模型响应和盲评答案；上述历史路径指本地生成产物，获取与发布边界见 [发布说明](../../docs/repository-publication.md)。
