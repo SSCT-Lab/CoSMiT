@@ -1,0 +1,39 @@
+{
+  "primary": {
+    "physical_calls": 455,
+    "completed": 278,
+    "failure_types": {
+      "URLError": 23,
+      "RuntimeError": 77,
+      "RejectedResponse": 59,
+      "TimeoutError": 10,
+      "JSONDecodeError": 8
+    },
+    "usage_available_calls": 345,
+    "usage_unknown_calls": 110,
+    "reported_tokens": 1804244,
+    "sum_recorded_seconds_including_user_pause": 76365.40582911833
+  },
+  "retry": {
+    "physical_calls": 33,
+    "completed": 17,
+    "failure_types": {
+      "URLError": 12,
+      "RejectedResponse": 1,
+      "RuntimeError": 2,
+      "JSONDecodeError": 1
+    },
+    "usage_available_calls": 19,
+    "usage_unknown_calls": 14,
+    "reported_tokens": 76758,
+    "sum_recorded_seconds_including_user_pause": 3476.9598673735745
+  },
+  "total_physical_calls": 488,
+  "reported_tokens": 1881002,
+  "usage_unknown_calls": 124,
+  "currency_cost": null,
+  "cost_limit": "No price or billing statement captured; missing usage is unknown, not zero. Excludes earlier debugging/generation campaigns and setup; derived views add zero calls.",
+  "timing_limit": "Two concurrent requests overlap; aggregate durations are not wall time. Calls spanning the recorded user pause include that pause and cannot be used as model latency.",
+  "pause": "2026-09-16T22:17:06.460452+08:00",
+  "resume": "2026-09-16T23:16:15.864968+08:00"
+}

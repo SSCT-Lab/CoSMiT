@@ -1,0 +1,612 @@
+[
+  {
+    "job_id": "117a63a29548ce1c0fc4",
+    "case_id": "C002",
+    "kind": "direct-llm",
+    "prompt_sha256": "da3ec78b02e092f3bc6775f40ed38f4f486691221cf6af04b84d8eeb795894d5",
+    "status": "completed",
+    "seconds": 251.52738720783964,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "verdict": "violated"
+    },
+    "usage": {
+      "prompt_tokens": 462,
+      "completion_tokens": 2421,
+      "total_tokens": 2883
+    },
+    "original_record_file_sha256": "53d77a59c378c38654c3ae6d6e63fd4140e31f52406fdf17e1ac78dd11469fad",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "15bc2be705fb14ca0847",
+    "case_id": "D0038",
+    "kind": "trace-llm",
+    "prompt_sha256": "49abcb9b13df572201fae9f446f6caf8c069a1edf1478a53a4acc7c9a323d346",
+    "status": "failed",
+    "seconds": 9.7464147079736,
+    "error_type": "RuntimeError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "975b4044cb33e923adae4667f7850988d9c6135acfee4a09e876c956f5d6217f",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "21f26f464d1406156e54",
+    "case_id": "D0036",
+    "kind": "trace-llm",
+    "prompt_sha256": "41dfd1f1d0ade1f138237a9646d2dcb1d4030a0f37c03d24f5b86877fa541868",
+    "status": "failed",
+    "seconds": 5.0207940000109375,
+    "error_type": "URLError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "0155a5f1f77e882093205e06875e6da47c2f5c0381c64e0e14990274a37dd31e",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "22c9d4f0adac29d338c5",
+    "case_id": "D0016",
+    "kind": "intenttester-source-tdl",
+    "prompt_sha256": "415005993bd5f8de74274bd1916c08e468abe338d9dcedd358bed036a19c1cc7",
+    "status": "failed",
+    "seconds": 5.026109166909009,
+    "error_type": "URLError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "7641919169bef07aca1b75ac37ee070bea5bc58b455c5b870a6d7c573aff426c",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "3552982a07e6174a2b2e",
+    "case_id": "D0015",
+    "kind": "intenttester-target-api",
+    "prompt_sha256": "efbe203294ef43c742dc017497c684a0b2085570dcacfd7ca68999d1ae2f3dc2",
+    "status": "failed",
+    "seconds": 5.016368915792555,
+    "error_type": "URLError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "1ffe8201ef6b600b72620f12709ff28d5edae0d8c3adccab280e0c9c87595583",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "3e7b7a2b86510db49487",
+    "case_id": "D0048",
+    "kind": "direct-llm",
+    "prompt_sha256": "38bce588d8ad17b1f5f7370fecf7cf19ce1cb3d005d903e7447e7284f4cb65c9",
+    "status": "failed",
+    "seconds": 425.1389215416275,
+    "error_type": "RejectedResponse",
+    "rejection_reason": "non-stop-termination",
+    "decision": {},
+    "usage": {
+      "prompt_tokens": 5142,
+      "completion_tokens": 4096,
+      "total_tokens": 9238
+    },
+    "original_record_file_sha256": "0ba6669e8209102ab673deb645414c78c0ef0d0cf105c98c072129f02506bb14",
+    "finish_reasons": [
+      "length"
+    ]
+  },
+  {
+    "job_id": "4eed94d4d0ee545ffe8d",
+    "case_id": "D0016",
+    "kind": "trace-llm",
+    "prompt_sha256": "ed0432b7e25837ed9414c23b3aa6e7c9803042bae6432633d41acf45a6c784ca",
+    "status": "failed",
+    "seconds": 5.016765916720033,
+    "error_type": "URLError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "d69dbb1ae812475cdff1f0a4808030f7e17c405a5cd7487008aaa02b6daeef3a",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "5b4f6bc8fdafa1e401bd",
+    "case_id": "D0047",
+    "kind": "intenttester-target-api",
+    "prompt_sha256": "4d3537e51780b1184571ac0988883f6aad5c9f9bf126486028b57757a5854686",
+    "status": "completed",
+    "seconds": 180.20301750022918,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "valid": true
+    },
+    "usage": {
+      "prompt_tokens": 199,
+      "completion_tokens": 1739,
+      "total_tokens": 1938
+    },
+    "original_record_file_sha256": "1040fedef86ed53139c341e681cee5a82b67e06d035f2f8b6a3d41988d83c5da",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "62359d22745d764cf816",
+    "case_id": "D0036",
+    "kind": "intenttester-source-tdl",
+    "prompt_sha256": "4e1a4b7c18333ebd9b4883224075f15eb8858b6ef2577f045df8c83fa0e778cc",
+    "status": "completed",
+    "seconds": 76.531508250162,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "valid": true
+    },
+    "usage": {
+      "prompt_tokens": 4696,
+      "completion_tokens": 654,
+      "total_tokens": 5350
+    },
+    "original_record_file_sha256": "e060a751dbd635fa2362f721e5c78b7f72eb12f59a686d4291a65a0b27e07fee",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "62b5a2d2bd63c03f4279",
+    "case_id": "D0015",
+    "kind": "intenttester-target-tdl-extension",
+    "prompt_sha256": "7c99bca849a346fba11c90ad9ce17b6e99760b6cdb202aa6831c9b5cf129ea00",
+    "status": "failed",
+    "seconds": 5.016705292277038,
+    "error_type": "URLError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "40541afb6694c81d1e61c203d97bdf8e13c1059e41e7899be8d2fc383b7f35ed",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "729a88700ca7ef665fda",
+    "case_id": "D0037",
+    "kind": "direct-llm",
+    "prompt_sha256": "e45adae6d1ce08d6b0d519b4ab0550c9c07107548909006940255495a29ce944",
+    "status": "completed",
+    "seconds": 338.4523444590159,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "verdict": "preserved"
+    },
+    "usage": {
+      "prompt_tokens": 5081,
+      "completion_tokens": 3146,
+      "total_tokens": 8227
+    },
+    "original_record_file_sha256": "53c7240526158a579c18cfa3be85b52cb140eaf9bd5c77d1c88f32e6868e7ad5",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "7df96af7f31a5649d9bb",
+    "case_id": "D0038",
+    "kind": "direct-llm",
+    "prompt_sha256": "c4d078645058e92b6f220754c7f1cfe8aa0d53bab1d3061d344614c92d5e0a2d",
+    "status": "failed",
+    "seconds": 278.4818438333459,
+    "error_type": "JSONDecodeError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": {
+      "prompt_tokens": 5253,
+      "completion_tokens": 2678,
+      "total_tokens": 7931
+    },
+    "original_record_file_sha256": "428af7541f123962ddee61cceaab8a47e875b1d6394d45fd68e31b37b40704fc",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "80d3790f1adabf706930",
+    "case_id": "C006",
+    "kind": "intenttester-target-tdl-extension",
+    "prompt_sha256": "7c67855cdd7c77722db78a7a4b6d5f424917ec2b81e77d07007e760bdc5c37f4",
+    "status": "completed",
+    "seconds": 101.19976929202676,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "valid": true
+    },
+    "usage": {
+      "prompt_tokens": 358,
+      "completion_tokens": 955,
+      "total_tokens": 1313
+    },
+    "original_record_file_sha256": "80424154c9e3affa6af19593e791b7c3addceb7ed73ed17585087ba87236ed25",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "819c9823f599c5848915",
+    "case_id": "C006",
+    "kind": "intenttester-source-tdl",
+    "prompt_sha256": "f09a74aa49329125ebe90f13ea8f3d0676e77506b200981370b41e59aafab293",
+    "status": "completed",
+    "seconds": 99.19535125000402,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "valid": true
+    },
+    "usage": {
+      "prompt_tokens": 358,
+      "completion_tokens": 947,
+      "total_tokens": 1305
+    },
+    "original_record_file_sha256": "f38fef26693e14a1c72f5d8104fd0478b73a6770e74e21419d12247c65a377a8",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "84c2c6b9c18e99373699",
+    "case_id": "D0003",
+    "kind": "direct-llm",
+    "prompt_sha256": "c0a64561330fe85d811889945bd678552465b18b111933bd8d6c1d7e538bd6b1",
+    "status": "completed",
+    "seconds": 366.3382466249168,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "verdict": "preserved"
+    },
+    "usage": {
+      "prompt_tokens": 5253,
+      "completion_tokens": 3304,
+      "total_tokens": 8557
+    },
+    "original_record_file_sha256": "30c526be3b1016e1769eddbd32575b266ccf849405c080c9283d5bd61e68b199",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "9f6d860adedbca43c8ae",
+    "case_id": "D0037",
+    "kind": "intenttester-source-tdl",
+    "prompt_sha256": "ce043c614f06aaa0245f897115d588960d3c6bf0297613481c127202420f0de7",
+    "status": "completed",
+    "seconds": 84.79629662493244,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "valid": true
+    },
+    "usage": {
+      "prompt_tokens": 4697,
+      "completion_tokens": 818,
+      "total_tokens": 5515
+    },
+    "original_record_file_sha256": "31e736149fa5e13368fd7441b5ab40c2e5ab563cde310b5dc9ba2dc95d939997",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "a4652f6c9932587d3056",
+    "case_id": "C002",
+    "kind": "trace-llm",
+    "prompt_sha256": "fa279eb8c130ac2faeedc7178784f57c6e2b0cf955a78818644f6d1b6e03eec6",
+    "status": "completed",
+    "seconds": 100.01425970811397,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "verdict": "violated"
+    },
+    "usage": {
+      "prompt_tokens": 1461,
+      "completion_tokens": 918,
+      "total_tokens": 2379
+    },
+    "original_record_file_sha256": "de8f608a95081bd8c6290459eec1ef77ea98939b486d73cbc5ccc111ed2305af",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "a5919ea70a6d1eea5371",
+    "case_id": "D0004",
+    "kind": "direct-llm",
+    "prompt_sha256": "ab0e516249171273164d13872c1b4e1759c420f6ec6249c9ca3d96c37af1902a",
+    "status": "failed",
+    "seconds": 5.034571458119899,
+    "error_type": "URLError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "2d6b60fef8994e308af319767d52cae74177f641ff1e83444c664094a25622dd",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "bb9095922b42afded59a",
+    "case_id": "C007",
+    "kind": "trace-llm",
+    "prompt_sha256": "8513cb4a780500821b3ba62bbe00e2eed29844e7ff3d48063e603fe8577f69a8",
+    "status": "completed",
+    "seconds": 175.74797450006008,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "verdict": "violated"
+    },
+    "usage": {
+      "prompt_tokens": 1458,
+      "completion_tokens": 1681,
+      "total_tokens": 3139
+    },
+    "original_record_file_sha256": "cb98f29511231936f60c36572dd213eaa001eb3c640e7135888036fe7c74b7c3",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "bd9b8e742524e6233544",
+    "case_id": "C007",
+    "kind": "direct-llm",
+    "prompt_sha256": "9cb1e794269f572db9fe52a2b394681d237d4ddf3eca263d19fda9f9899b007f",
+    "status": "completed",
+    "seconds": 193.4363224580884,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "verdict": "violated"
+    },
+    "usage": {
+      "prompt_tokens": 456,
+      "completion_tokens": 1803,
+      "total_tokens": 2259
+    },
+    "original_record_file_sha256": "9a355710fd1a59a8f89aa8666926896b00901b7d639d795b9b01910d9f92c895",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "ca9886568da49fbd39ed",
+    "case_id": "D0010",
+    "kind": "intenttester-source-tdl",
+    "prompt_sha256": "5fceb495ac5185a799ce1fdb2f3a61e823ac8eb8d19aa6d483e8407b9bbfe9ed",
+    "status": "failed",
+    "seconds": 5.024319875054061,
+    "error_type": "URLError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "ca5dfc852b915648b549ed3671d8b67d951b659c38cd93cbedfa6ee6f231ce98",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "cba21f4d2c492b39fb4a",
+    "case_id": "D0010",
+    "kind": "trace-llm",
+    "prompt_sha256": "b8135c3a076ec06a3468b301b91f8afcd3b508e2e3071f866b5cd1682ccf97d6",
+    "status": "failed",
+    "seconds": 5.018388291820884,
+    "error_type": "URLError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "6a03b70d5294c00a14caba2318c9688698fc3c31c8025650b6206f5993536ad2",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "cc7fa3f6ec98836a2187",
+    "case_id": "D0016",
+    "kind": "direct-llm",
+    "prompt_sha256": "39c42596e2fd942cd1561d3cf83fd60f93409806da5490e74f556d3663e74283",
+    "status": "failed",
+    "seconds": 5.025338207837194,
+    "error_type": "URLError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "4d68a4a653d6a5aead2f3500d988efe376c7fd461d4de54b1422d08029798543",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "d122ddb93097456af202",
+    "case_id": "D0037",
+    "kind": "intenttester-target-api",
+    "prompt_sha256": "342164a9cb250b090c26c4f741fd8fa83bbe634c33b55fc0f00e9d7c3bf039a2",
+    "status": "completed",
+    "seconds": 91.19898962508887,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "valid": true
+    },
+    "usage": {
+      "prompt_tokens": 199,
+      "completion_tokens": 849,
+      "total_tokens": 1048
+    },
+    "original_record_file_sha256": "8baaf5b17066fd59a62d52a0ea5ebda67af4d408e4e074d1e5e6e21e0165072d",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "d1792b74e729e7a2fedb",
+    "case_id": "D0037",
+    "kind": "trace-llm",
+    "prompt_sha256": "8545957aa45e83d5ac03ab930085bb618682e6a95487d01e09fda8e46daa147d",
+    "status": "failed",
+    "seconds": 58.39118183311075,
+    "error_type": "RuntimeError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "010e5a934ce2d1c6884058de54ef72b21ac66b9f7a8aa06b984e251549856350",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "d1e42bc112cb2c3667f0",
+    "case_id": "D0011",
+    "kind": "direct-llm",
+    "prompt_sha256": "7572e1309a9a8f54bb380a1138710dc54b8fd21b717174ac13f21cdf52a3d020",
+    "status": "failed",
+    "seconds": 5.020882459357381,
+    "error_type": "URLError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "59d37f1ed83d5b3f4cabd3ed18f90b8e3cc9a0e99d33fbab391fc42b3d7fbb65",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "d4195d8f5351542eabfb",
+    "case_id": "D0036",
+    "kind": "intenttester-target-tdl-extension",
+    "prompt_sha256": "6443ee0a721967e1a37fa9d897a9365e5190b2ce32961a08d75b287a7d7d9dcc",
+    "status": "completed",
+    "seconds": 96.46570391673595,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "valid": true
+    },
+    "usage": {
+      "prompt_tokens": 4696,
+      "completion_tokens": 856,
+      "total_tokens": 5552
+    },
+    "original_record_file_sha256": "a6291f9627b373074b7e90772582b7148c6f8f4f255f4052eab6b8603f7afc04",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "d50b285045233392a8ea",
+    "case_id": "D0035",
+    "kind": "intenttester-target-tdl-extension",
+    "prompt_sha256": "2d2221565899ad002ff0f5759cdbeedcc9ebb6daea1f88ab0f1fc7384a837e50",
+    "status": "failed",
+    "seconds": 5.030906040687114,
+    "error_type": "URLError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "27bdb1ecb73664bdced0231fdc004d383ee842cc9cf171825ad090a7d5125840",
+    "finish_reasons": []
+  },
+  {
+    "job_id": "d9dc4e986c5c852e5e9c",
+    "case_id": "D0037",
+    "kind": "intenttester-target-tdl-extension",
+    "prompt_sha256": "589f6713d98d1cdb17a3842b7b534f679ca73e1000f6e7bf39fbf35cfb724f31",
+    "status": "completed",
+    "seconds": 92.16177454171702,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "valid": true
+    },
+    "usage": {
+      "prompt_tokens": 4696,
+      "completion_tokens": 862,
+      "total_tokens": 5558
+    },
+    "original_record_file_sha256": "d4f49b124755076945a94ce494d29210029550e612cbf8f6b5e6b847b4e14edb",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "e7b7fc4700ebe6d9df8c",
+    "case_id": "D0036",
+    "kind": "intenttester-target-api",
+    "prompt_sha256": "54e93016e5cfd12ed1f2e74f40b4cb9d71a6fa239c0be5a2260038536fc18377",
+    "status": "completed",
+    "seconds": 162.68600420793518,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "valid": true
+    },
+    "usage": {
+      "prompt_tokens": 199,
+      "completion_tokens": 1556,
+      "total_tokens": 1755
+    },
+    "original_record_file_sha256": "e371a115c255b2816dbec7f972deb81ca6de840b0c9b5adf6d54e618e1720190",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "e9656da82b411f50ae5f",
+    "case_id": "C006",
+    "kind": "intenttester-target-api",
+    "prompt_sha256": "342164a9cb250b090c26c4f741fd8fa83bbe634c33b55fc0f00e9d7c3bf039a2",
+    "status": "completed",
+    "seconds": 61.29250108310953,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "valid": true
+    },
+    "usage": {
+      "prompt_tokens": 199,
+      "completion_tokens": 586,
+      "total_tokens": 785
+    },
+    "original_record_file_sha256": "696af8ade47b43cef69f413ce71e98b2ba703d748753b7127a07761f257ee0cc",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "ea5f8b6ea030a0aed1a9",
+    "case_id": "C007",
+    "kind": "intenttester-source-tdl",
+    "prompt_sha256": "f09a74aa49329125ebe90f13ea8f3d0676e77506b200981370b41e59aafab293",
+    "status": "completed",
+    "seconds": 173.67749695805833,
+    "error_type": null,
+    "rejection_reason": null,
+    "decision": {
+      "valid": true
+    },
+    "usage": {
+      "prompt_tokens": 358,
+      "completion_tokens": 1668,
+      "total_tokens": 2026
+    },
+    "original_record_file_sha256": "6af788a00b3d3e7a5c99d5afd5cb2172fba41039e4eeb065d33eab71668ed78e",
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  {
+    "job_id": "ee13e440db98ce1a6027",
+    "case_id": "D0036",
+    "kind": "direct-llm",
+    "prompt_sha256": "47525dded5e0ca63669a43c90ff481991e53406990478c8329ce5463864ff64a",
+    "status": "failed",
+    "seconds": 5.025407624896616,
+    "error_type": "URLError",
+    "rejection_reason": null,
+    "decision": {},
+    "usage": null,
+    "original_record_file_sha256": "35a3d2036374ea2f61f81ce8c21416990190cd25a3b007c317a76ab24c3d9061",
+    "finish_reasons": []
+  }
+]

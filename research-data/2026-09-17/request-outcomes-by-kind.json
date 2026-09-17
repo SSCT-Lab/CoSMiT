@@ -1,0 +1,60 @@
+{
+  "primary": {
+    "direct-llm": {
+      "URLError": 6,
+      "RejectedResponse": 57,
+      "completed": 17,
+      "TimeoutError": 4,
+      "JSONDecodeError": 7
+    },
+    "intenttester-source-tdl": {
+      "completed": 85,
+      "TimeoutError": 2,
+      "URLError": 4
+    },
+    "intenttester-target-api": {
+      "completed": 85,
+      "TimeoutError": 2,
+      "URLError": 3,
+      "RejectedResponse": 1
+    },
+    "intenttester-target-tdl-extension": {
+      "completed": 85,
+      "URLError": 4,
+      "RejectedResponse": 1,
+      "TimeoutError": 1
+    },
+    "trace-llm": {
+      "RuntimeError": 77,
+      "URLError": 6,
+      "JSONDecodeError": 1,
+      "completed": 6,
+      "TimeoutError": 1
+    }
+  },
+  "retry": {
+    "direct-llm": {
+      "URLError": 4,
+      "RejectedResponse": 1,
+      "completed": 4,
+      "JSONDecodeError": 1
+    },
+    "intenttester-source-tdl": {
+      "completed": 4,
+      "URLError": 2
+    },
+    "intenttester-target-api": {
+      "completed": 4,
+      "URLError": 1
+    },
+    "intenttester-target-tdl-extension": {
+      "URLError": 2,
+      "completed": 3
+    },
+    "trace-llm": {
+      "RuntimeError": 2,
+      "URLError": 3,
+      "completed": 2
+    }
+  }
+}

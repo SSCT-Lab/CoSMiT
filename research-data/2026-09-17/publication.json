@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "pair_counts": {
+    "controls": 60,
+    "discovery": 13248,
+    "unseen": 2304
+  },
+  "raw_artifact_manifest_sha256": "4ac90ee52bfb9f41d8a88bd7d6c04c7f7dee2f2c520ec0a3490e2357ed06560d",
+  "scope": "Observed data and decision audit; not a standalone exact rerun package",
+  "omissions": [
+    "credentials",
+    "machine paths",
+    "third-party program and prompt bodies",
+    "model prose and reasoning",
+    "environments and weights",
+    "blinded-review answer keys"
+  ],
+  "raw_data": "Original archives retained locally unchanged; published records link via SHA256",
+  "transfuzz": "method reference only; not a baseline"
+}

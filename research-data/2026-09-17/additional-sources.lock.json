@@ -1,0 +1,324 @@
+[
+  {
+    "name": "tensorscope",
+    "commit": "8015abe2340f2666242b07bd156ed533baf971bd",
+    "url": "https://github.com/tensorscopepro/Tensorscope.git",
+    "files": [
+      {
+        "path": "LICENSE",
+        "sha256": "bb1903b2282070e09f2e9aa12aa884ab8286097fa50d1b8aaeea67dee3d67429"
+      },
+      {
+        "path": "README.md",
+        "sha256": "929d2230bb96c82445cdc07e7f9a7aaad64b334603e1446160a0d26df696a01f"
+      },
+      {
+        "path": "src/counterpart_api/onnx2ms.json",
+        "sha256": "a8fd60a4353798815029d105a8970668d3efea4367dcd9c5edcd107263f91f2a"
+      },
+      {
+        "path": "src/counterpart_api/onnx2tf.json",
+        "sha256": "5c41608ef6e6a6311d0d80d0c8bcbe47fba0e5736b2e23329bd9f5c49958e028"
+      },
+      {
+        "path": "src/counterpart_api/pytorch2ms.json",
+        "sha256": "f506f76a9e116b767966bb1e019b015f58724b31b124728417439e5419b2fff6"
+      },
+      {
+        "path": "src/extract_constraints/cc.ORT_Assert.yaml",
+        "sha256": "0265d63ec05902001f6fa32a8d19fbbb7bcdba0fc1e35350348a994878479a94"
+      },
+      {
+        "path": "src/extract_constraints/cc.Paddle_Assert.yaml",
+        "sha256": "8fb0a88c6db9f3c15097dacc404878927f39880c202165781fa9bd3c9fe65958"
+      },
+      {
+        "path": "src/extract_constraints/constraint-extract-script.sh",
+        "sha256": "101e0f01a294f08641d465af53d8c2b5c194adf5661647adcd38503cf4d14628"
+      },
+      {
+        "path": "src/extract_constraints/py.Error.yaml",
+        "sha256": "354c6e28d2304821ac376773a0f1af6d0ea0b0253d683b0b38baedfb98419e74"
+      },
+      {
+        "path": "src/testing/400ops.txt",
+        "sha256": "8a46f055c1e0a1758d20d098741258d1ad4e1aac5aedce7810d73b4a755e2e17"
+      },
+      {
+        "path": "src/testing/constraint_solving.py",
+        "sha256": "18716bee30a29a2c7c8a5bd11c57b281a5969d9e29ed33276debab39ad234e10"
+      },
+      {
+        "path": "src/testing/ms_fuzzer.py",
+        "sha256": "dc15ac84a256577b1509d0e5fa5c51d9dd7013b09dfaa70ecb9952c2930ed209"
+      },
+      {
+        "path": "src/testing/onnx_op_test.py",
+        "sha256": "a6e522bcf632fc6095d91f3c9f56d16fad57e6df2bad81ee7d84bce30b1fe1fb"
+      },
+      {
+        "path": "src/testing/ops.pbtxt",
+        "sha256": "11a0dc19e8c32cd2cc8ee68fc579a3734096661441fe36ff5049794a6aad4d64"
+      },
+      {
+        "path": "src/testing/pytorch_op_test.py",
+        "sha256": "ae7c38a18dc75f67574f394106ba227602b984cde64fbc6f01d37a4ffa42f6c5"
+      },
+      {
+        "path": "src/testing/tf2torch_op_test.py",
+        "sha256": "d687b780ef26c77f5a16d64a6ed5d0e94f7bd636dca4d51cd0433fbacfd6b620"
+      },
+      {
+        "path": "src/testing/tf_fuzz_cov.py",
+        "sha256": "38a8790c1cb99a5433b8db0e91f8399983cf319b8c9e2c1ef9e0bb692c5d17cf"
+      },
+      {
+        "path": "src/testing/tf_fuzzer.py",
+        "sha256": "e3160d1e4d7eb2ed5b92c4451b960eed43be375291421f5c12ed83d40383facf"
+      },
+      {
+        "path": "src/testing/tf_py_env.sh",
+        "sha256": "9783704239b8d1dc20a3dd0c8137feca6cd4d70a5d5a11e9b643181b089e46b9"
+      },
+      {
+        "path": "src/testing/tflite_op_test.py",
+        "sha256": "63f5dfc58b97331a36185b76f50274bc00244994bc34b1534d913e8ae1de478a"
+      },
+      {
+        "path": "tensorscope_sec23.pdf",
+        "sha256": "ad63babef0468f34ca850bfa684319be0f18812592d12abb26dff7ebb7f8ff1a"
+      }
+    ],
+    "archive": "tensorscope.tar.gz",
+    "archive_sha256": "f04151d013b33410eb24108f125c695e17f91a6288a9954fbdd8974fa9ec5f30"
+  },
+  {
+    "name": "besser-nn-migration",
+    "commit": "4cd3e0b826989140c74bf64c3c929a2f48fea346",
+    "url": "https://github.com/BESSER-PEARL/BESSER-NN-Migration.git",
+    "files": [
+      {
+        "path": ".gitignore",
+        "sha256": "78a8d7af4f2028347aa0169aea09799b2027d4399196661067d718338716b3e6"
+      },
+      {
+        "path": "EXP_benchmark_datasets/alexnet_cifar10_tf.py",
+        "sha256": "099a67378d2131225a05dbcaa91eac8f7800c65e90d6699c35c8fb304cedf449"
+      },
+      {
+        "path": "EXP_benchmark_datasets/alexnet_cifar10_torch.py",
+        "sha256": "a583ce4dd533718185c0eb56367d5943cc3b20d20c822f96a21d0ced12fa2d70"
+      },
+      {
+        "path": "EXP_benchmark_datasets/alexnet_svhn_tf.py",
+        "sha256": "b9aa6b2df53d34192d1dab42996da282dbfb9c773cae509ca92bc465ba4a4eee"
+      },
+      {
+        "path": "EXP_benchmark_datasets/alexnet_svhn_torch.py",
+        "sha256": "765c8bde4ee268c928e5b80d18026edcec40b5d2be9fc19cd304c5293df6b1d3"
+      },
+      {
+        "path": "EXP_benchmark_datasets/cnn-rnn_imdb_tf.py",
+        "sha256": "f3ddca74b8f744f3b2a467e722fcdb7bea13915e7982a33c2455cf2716619df5"
+      },
+      {
+        "path": "EXP_benchmark_datasets/cnn-rnn_imdb_torch.py",
+        "sha256": "ff7078896553fda53acbaebddad8c596955827742bc50b41094cfc72e81db785"
+      },
+      {
+        "path": "EXP_benchmark_datasets/cnn-rnn_sst-2_tf.py",
+        "sha256": "68b20c27d29a592ee3e095c733d702932320b4e57053f3a8c04dd0cf017f9717"
+      },
+      {
+        "path": "EXP_benchmark_datasets/cnn-rnn_sst-2_torch.py",
+        "sha256": "f3863e0911eb7fcd5b9e024097430d3bcc01aba3d1876428c70e8593b1168d69"
+      },
+      {
+        "path": "EXP_benchmark_datasets/lstm_imdb_tf.py",
+        "sha256": "c8bf339b9b7a772500012369d3f27dd5e76a0fe7d11d86d3bcdb7a028c691ab5"
+      },
+      {
+        "path": "EXP_benchmark_datasets/lstm_imdb_torch.py",
+        "sha256": "80c07ed02d818b3ccb45ea509135fbe17a227fff40b6179a66745d6137772f6d"
+      },
+      {
+        "path": "EXP_benchmark_datasets/lstm_sst-2_tf.py",
+        "sha256": "76a36ef3a81ba89ab7711b904c2378ca1c114fd64d10c76c7693f4e4d18430a7"
+      },
+      {
+        "path": "EXP_benchmark_datasets/lstm_sst-2_torch.py",
+        "sha256": "5f69d2c7651a1aa552f3c22ed55ac2674d4243cabb09a15bee34780b3bdc222f"
+      },
+      {
+        "path": "EXP_benchmark_datasets/tf_tutorial_cifar10_tf.py",
+        "sha256": "73802d48fe768e12813dd3c86c9b35e12adaff098b5e3069f8c1ab028d395b24"
+      },
+      {
+        "path": "EXP_benchmark_datasets/tf_tutorial_cifar10_torch.py",
+        "sha256": "6771630a86a3c993c51c5fa8720b703055f37a8a9e4951447a60f9ec490375fb"
+      },
+      {
+        "path": "EXP_benchmark_datasets/tf_tutorial_svhn_tf.py",
+        "sha256": "cf2dcadbac41a34f5ef296c35f73e8ab561db49d1d43e80627e3aaf3bfada7fa"
+      },
+      {
+        "path": "EXP_benchmark_datasets/tf_tutorial_svhn_torch.py",
+        "sha256": "35be72403a55d4aead89d1d40c11019519e32076032c5147a47d3a44e3143042"
+      },
+      {
+        "path": "EXP_benchmark_datasets/vgg16_cifar10_tf.py",
+        "sha256": "e04f324a5ad2e8001e1c1af35df272552a79dd1c2bf8720189ca31fd107990d4"
+      },
+      {
+        "path": "EXP_benchmark_datasets/vgg16_cifar10_torch.py",
+        "sha256": "06814c69d2bf3910a0b0415983187e5f1f9175a3c7e8096b2d18dac1f8e17bff"
+      },
+      {
+        "path": "EXP_benchmark_datasets/vgg16_svhn_tf.py",
+        "sha256": "4507602ccbdd87e466f5fca1c40566f75391330160167dc66cba9642d1e394fa"
+      },
+      {
+        "path": "EXP_benchmark_datasets/vgg16_svhn_torch.py",
+        "sha256": "3c10f3d5cd3e9f4ccda6f73bca398a2a57ee1395088e7345cd98620a04df8ee3"
+      },
+      {
+        "path": "EXP_random_inputs/MAD_fig_tf2torch.pdf",
+        "sha256": "eb0509e2419ae420f8959e2f566b8b78ebe8da31c5a930ccaf486452230869fa"
+      },
+      {
+        "path": "EXP_random_inputs/MAD_fig_torch2tf.pdf",
+        "sha256": "e52cd9f0ff5b3754505e03979f362d4166a51d07220cec8cd0048de49379535d"
+      },
+      {
+        "path": "EXP_random_inputs/test_functional_behavior.py",
+        "sha256": "64bbce8b6d23c3832d88a34e8bdf77083708ca55cb3abb0b4adc0ea6be6ba5b5"
+      },
+      {
+        "path": "EXP_random_inputs/test_random_input_tf2torch.sh",
+        "sha256": "7265bef60b1809724a7b9edd749e26001c16127c901096d41b95d9f008d91b40"
+      },
+      {
+        "path": "EXP_random_inputs/test_random_input_torch2tf.sh",
+        "sha256": "aaa9a4bb282c8ea6f3b1ed5a18bcd3310abd49ed6c5ea86cccba6a956bd23b6f"
+      },
+      {
+        "path": "LICENSE.md",
+        "sha256": "cb3d60d652cfc8f68406a8576cb977b12f5258cf03bdef12f0f7b28cb355f109"
+      },
+      {
+        "path": "README.md",
+        "sha256": "5872ddeeb6b221c465470694daacafeb61b40f38afc8268f9426dbbb25455650"
+      },
+      {
+        "path": "ast_parser_nn.py",
+        "sha256": "818376f673b78d57f820ce73e00ac5db5705d8e0134ff3be12b3c3e5e7867fc8"
+      },
+      {
+        "path": "figs/overview_migration.png",
+        "sha256": "7f7e9d3b419399deacaac00c2acc083de9a0309c58b7628bb75181855335e804"
+      },
+      {
+        "path": "migrate_pytorch_to_tensorflow.sh",
+        "sha256": "1e5eb7db1cf976a20b97534bd3fe0e5cb3cd64ee315881ea456b5294e75acd7e"
+      },
+      {
+        "path": "migrate_tensorflow_to_pytorch.sh",
+        "sha256": "1ff8377b898f6374d5f80fb768fe19cda777d4b6a48940941401a5efcf75c4c9"
+      },
+      {
+        "path": "output/alexnet/pytorch_nn_subclassing.py",
+        "sha256": "58923ce04b62aa41170efeae31bbe3be6d5e8dffda72e5eb3c35664e4e68caf3"
+      },
+      {
+        "path": "output/alexnet/tf_nn_subclassing.py",
+        "sha256": "e9af74ce6ceb824742177dcd670ab73a571f059234df9c82e2c3fe705f55f395"
+      },
+      {
+        "path": "output/cnn_rnn/pytorch_nn_subclassing.py",
+        "sha256": "c7ba6514394c184b3208ff55ed725b9f24a341cc7dda8dfe7a9aa9bad4a994e6"
+      },
+      {
+        "path": "output/cnn_rnn/tf_nn_subclassing.py",
+        "sha256": "13f13a0fd1848ea4a1abeb6ec0ebfac5f9c198d17efb8ed9ec169a0ad978db5b"
+      },
+      {
+        "path": "output/lstm/pytorch_nn_subclassing.py",
+        "sha256": "699018e222b02430e2d4f898ced4a9f9b50baf3c7fe8cd35daec9d489ff210fb"
+      },
+      {
+        "path": "output/lstm/tf_nn_subclassing.py",
+        "sha256": "ab1e33dd4fe7e3410ff7a968a5957c3156daa7b6b3551c005f89935d5ef65268"
+      },
+      {
+        "path": "output/tf_tutorial/pytorch_nn_subclassing.py",
+        "sha256": "6a82a0361e47faba93e9c2a1a81acf9a20a35ddba281e5dad4e6c252291a9f12"
+      },
+      {
+        "path": "output/tf_tutorial/tf_nn_subclassing.py",
+        "sha256": "d39fa2b7a54ddcb1cd8ebd4b5bb72f689b5755115704247aa561bc8d3528675b"
+      },
+      {
+        "path": "output/vgg16/pytorch_nn_subclassing.py",
+        "sha256": "c0336d55a8612b3ff0259bea88c31f224f57c40c11277d10afad156285a1b186"
+      },
+      {
+        "path": "output/vgg16/tf_nn_subclassing.py",
+        "sha256": "43d9570d50d1b692d641961a1d95d70933dc5c4c5cf440ef53053311170cc2f0"
+      },
+      {
+        "path": "requirements.txt",
+        "sha256": "e51e44d735dfcc5ea89b2b0beaa0e3f40736b857f61c260c90a8b275e88b2208"
+      },
+      {
+        "path": "setup.py",
+        "sha256": "506ea4fff94f73e94fc4f017373967ef501551cd9de9d6c00f56b326687247c4"
+      },
+      {
+        "path": "tf2torch/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "tf2torch/ast_parser_tf.py",
+        "sha256": "d1a0fc51e43dad04b2f0b3d8a1ba9b53f6a1eb97ef270d699d09900c6518e080"
+      },
+      {
+        "path": "tf2torch/definitions.py",
+        "sha256": "1bc4aa018fa6ad2d4167379bddce0d529fc717e5c7018421a29c7ff8b7833873"
+      },
+      {
+        "path": "tf2torch/input_shape_retriever.py",
+        "sha256": "580a77ffc7df7ff4e67571d967acdb84187be95b8fa19866669eb51783e6e93f"
+      },
+      {
+        "path": "tf2torch/tf2torch_migrator.py",
+        "sha256": "cda18503224c6e52187024ec8874632cf81f597b3a3f96b28bcf2ea22ae6c027"
+      },
+      {
+        "path": "torch2tf/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "torch2tf/ast_parser_pytorch.py",
+        "sha256": "e729f35ac2ff8c85879423e3d297124f09b0a0d0b27d82ca95c3502bc442f066"
+      },
+      {
+        "path": "torch2tf/ast_parser_pytorch.py.bak",
+        "sha256": "7ff797ad18c5ef543fedb53ee7fd23f3a65fd80754bb4b487456fa9b570cce14"
+      },
+      {
+        "path": "torch2tf/definitions.py",
+        "sha256": "f5e1a4627e08701b78166626e496722a160635084ba2374ed7e3d95d095a2f45"
+      },
+      {
+        "path": "torch2tf/torch2tf_migrator.py",
+        "sha256": "4bc2ed4b269d9ede8610145f60685ec7f9227b90d70ff070f7a9d0890ae97efd"
+      },
+      {
+        "path": "transform_code.py",
+        "sha256": "d88baefc4150380ac6a9b8d77792900f882da817a2184fa24afb76ea15f5d116"
+      }
+    ],
+    "archive": "besser-nn-migration.tar.gz",
+    "archive_sha256": "96ebe09b448b7cb935f308ada2c0e2921ffd85dfa7b7f6a52b7a0534a420f467"
+  }
+]

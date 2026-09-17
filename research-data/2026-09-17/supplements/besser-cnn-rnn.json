@@ -1,0 +1,99 @@
+{
+  "source_sha256": "c7ba6514394c184b3208ff55ed725b9f24a341cc7dda8dfe7a9aa9bad4a994e6",
+  "declared_input": "rank-2 integer token array [batch, length], indices in [0,4999]",
+  "shape_derivation": [
+    "Embedding gives [B,L,50].",
+    "Conv1d(in_channels=50) on this unchanged layout requires L=50.",
+    "At L=50, last dimension 50 becomes floor((50-4+1)/2)=23 and floor((50-5+1)/2)=23 in the two branches.",
+    "Concatenating the unchanged last axis gives [B,200,46].",
+    "GRU requires last dimension 400; 46 != 400."
+  ],
+  "status": "source-contract-not-executable-for-declared-rank2-token-domain",
+  "target_bug_claim": false,
+  "records": [
+    {
+      "length": 49,
+      "repeat": 0,
+      "status": "source-execution-error",
+      "error": "RuntimeError",
+      "message": "Given groups=1, weight of size [200, 50, 4], expected input[1, 49, 50] to have 50 channels, but got 49 channels instead"
+    },
+    {
+      "length": 49,
+      "repeat": 1,
+      "status": "source-execution-error",
+      "error": "RuntimeError",
+      "message": "Given groups=1, weight of size [200, 50, 4], expected input[1, 49, 50] to have 50 channels, but got 49 channels instead"
+    },
+    {
+      "length": 49,
+      "repeat": 2,
+      "status": "source-execution-error",
+      "error": "RuntimeError",
+      "message": "Given groups=1, weight of size [200, 50, 4], expected input[1, 49, 50] to have 50 channels, but got 49 channels instead"
+    },
+    {
+      "length": 50,
+      "repeat": 0,
+      "status": "source-execution-error",
+      "error": "RuntimeError",
+      "message": "input.size(-1) must be equal to input_size. Expected 400, got 46"
+    },
+    {
+      "length": 50,
+      "repeat": 1,
+      "status": "source-execution-error",
+      "error": "RuntimeError",
+      "message": "input.size(-1) must be equal to input_size. Expected 400, got 46"
+    },
+    {
+      "length": 50,
+      "repeat": 2,
+      "status": "source-execution-error",
+      "error": "RuntimeError",
+      "message": "input.size(-1) must be equal to input_size. Expected 400, got 46"
+    },
+    {
+      "length": 51,
+      "repeat": 0,
+      "status": "source-execution-error",
+      "error": "RuntimeError",
+      "message": "Given groups=1, weight of size [200, 50, 4], expected input[1, 51, 50] to have 50 channels, but got 51 channels instead"
+    },
+    {
+      "length": 51,
+      "repeat": 1,
+      "status": "source-execution-error",
+      "error": "RuntimeError",
+      "message": "Given groups=1, weight of size [200, 50, 4], expected input[1, 51, 50] to have 50 channels, but got 51 channels instead"
+    },
+    {
+      "length": 51,
+      "repeat": 2,
+      "status": "source-execution-error",
+      "error": "RuntimeError",
+      "message": "Given groups=1, weight of size [200, 50, 4], expected input[1, 51, 50] to have 50 channels, but got 51 channels instead"
+    },
+    {
+      "length": 100,
+      "repeat": 0,
+      "status": "source-execution-error",
+      "error": "RuntimeError",
+      "message": "Given groups=1, weight of size [200, 50, 4], expected input[1, 100, 50] to have 50 channels, but got 100 channels instead"
+    },
+    {
+      "length": 100,
+      "repeat": 1,
+      "status": "source-execution-error",
+      "error": "RuntimeError",
+      "message": "Given groups=1, weight of size [200, 50, 4], expected input[1, 100, 50] to have 50 channels, but got 100 channels instead"
+    },
+    {
+      "length": 100,
+      "repeat": 2,
+      "status": "source-execution-error",
+      "error": "RuntimeError",
+      "message": "Given groups=1, weight of size [200, 50, 4], expected input[1, 100, 50] to have 50 channels, but got 100 channels instead"
+    }
+  ]
+}

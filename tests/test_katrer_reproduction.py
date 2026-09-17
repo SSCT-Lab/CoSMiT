@@ -1,7 +1,9 @@
 import importlib.util
+import json
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 MODULE_PATH = (
     Path(__file__).resolve().parents[1] / "benchmark/public_systems/katrer_reproduction.py"
@@ -23,6 +25,38 @@ CHECKER_SPEC.loader.exec_module(CHECKER)
 
 
 class KATRERReproductionTests(unittest.TestCase):
+    def test_rejected_sse_retains_usage_and_payload_without_credentials(self) -> None:
+        class Response:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def __iter__(self):
+                event = {
+                    "choices": [{"delta": {"content": "unfinished"}, "finish_reason": "length"}],
+                    "usage": {"prompt_tokens": 10, "completion_tokens": 20, "total_tokens": 30},
+                }
+                return iter([("data: " + json.dumps(event)).encode(), b"data: [DONE]"])
+
+        with (
+            patch.object(KATRER.urllib.request, "urlopen", return_value=Response()),
+            self.assertRaises(KATRER.RejectedResponse) as caught,
+        ):
+            KATRER.api_call(
+                "https://example.invalid",
+                "FAKE-SECRET",
+                "test prompt",
+                KATRER.ModelConfig("test-model", 0.6, 0.95, 1.0, 20),
+                1,
+            )
+        error = caught.exception
+        self.assertEqual(error.reason, "non-stop-termination")
+        self.assertEqual(error.response["usage"]["total_tokens"], 30)
+        self.assertEqual(error.request_payload["messages"][-1]["content"], "test prompt")
+        self.assertNotIn("FAKE-SECRET", json.dumps([error.request_payload, error.response]))
+
     def test_strip_reasoning_and_extract_reused_test(self) -> None:
         response = """<think>private reasoning</think>
 [Reused_Test]

@@ -1,0 +1,447 @@
+{
+  "controls-primary": {
+    "candidate_count": 10,
+    "source_group_count": 1,
+    "partition": "development-controls",
+    "formal_eligible": false,
+    "counts": {
+      "self-test": {
+        "passed": 8,
+        "invalid-source-test": 2
+      },
+      "target-binding": {
+        "observed": 6,
+        "not-observed": 2,
+        "invalid-source-test": 2
+      },
+      "dllens-port": {
+        "no-difference-on-tested-inputs": 8,
+        "invalid-source-test": 2
+      },
+      "cosmit-registered-clauses": {
+        "supported-on-tested-inputs": 2,
+        "refuted": 4,
+        "undetermined": 2,
+        "invalid-source-test": 2
+      },
+      "direct-llm": {
+        "preserved": 1,
+        "failed": 5,
+        "invalid-test": 3,
+        "violated": 1
+      },
+      "trace-llm": {
+        "preserved": 1,
+        "failed": 4,
+        "violated": 2,
+        "invalid-test": 3
+      },
+      "intenttester-verifier-port": {
+        "accepted": 5,
+        "rejected": 3,
+        "undetermined": 2
+      },
+      "intenttester-target-tdl-extension": {
+        "accepted": 1,
+        "rejected": 8,
+        "undetermined": 1
+      },
+      "docter-historical-constraints": {
+        "satisfied": 10
+      },
+      "control_check": {
+        "True": 10
+      }
+    },
+    "accuracy_metrics": "not-computed: this report has no independent formal reference labels"
+  },
+  "controls-format-sensitivity": {
+    "candidate_count": 10,
+    "source_group_count": 1,
+    "partition": "development-controls",
+    "formal_eligible": false,
+    "counts": {
+      "self-test": {
+        "passed": 8,
+        "invalid-source-test": 2
+      },
+      "target-binding": {
+        "observed": 6,
+        "not-observed": 2,
+        "invalid-source-test": 2
+      },
+      "dllens-port": {
+        "no-difference-on-tested-inputs": 8,
+        "invalid-source-test": 2
+      },
+      "cosmit-registered-clauses": {
+        "supported-on-tested-inputs": 2,
+        "refuted": 4,
+        "undetermined": 2,
+        "invalid-source-test": 2
+      },
+      "direct-llm": {
+        "preserved": 1,
+        "failed": 4,
+        "violated": 2,
+        "invalid-test": 3
+      },
+      "trace-llm": {
+        "preserved": 1,
+        "failed": 3,
+        "violated": 2,
+        "invalid-test": 4
+      },
+      "intenttester-verifier-port": {
+        "accepted": 5,
+        "rejected": 3,
+        "undetermined": 2
+      },
+      "intenttester-target-tdl-extension": {
+        "accepted": 1,
+        "rejected": 8,
+        "undetermined": 1
+      },
+      "docter-historical-constraints": {
+        "satisfied": 10
+      },
+      "control_check": {
+        "True": 10
+      }
+    },
+    "accuracy_metrics": "not-computed: this report has no independent formal reference labels"
+  },
+  "controls-retry": {
+    "candidate_count": 10,
+    "source_group_count": 1,
+    "partition": "development-controls",
+    "formal_eligible": false,
+    "counts": {
+      "self-test": {
+        "passed": 8,
+        "invalid-source-test": 2
+      },
+      "target-binding": {
+        "observed": 6,
+        "not-observed": 2,
+        "invalid-source-test": 2
+      },
+      "dllens-port": {
+        "no-difference-on-tested-inputs": 8,
+        "invalid-source-test": 2
+      },
+      "cosmit-registered-clauses": {
+        "supported-on-tested-inputs": 2,
+        "refuted": 4,
+        "undetermined": 2,
+        "invalid-source-test": 2
+      },
+      "direct-llm": {
+        "preserved": 1,
+        "violated": 3,
+        "failed": 3,
+        "invalid-test": 3
+      },
+      "trace-llm": {
+        "preserved": 1,
+        "violated": 4,
+        "failed": 2,
+        "invalid-test": 3
+      },
+      "intenttester-verifier-port": {
+        "accepted": 7,
+        "rejected": 3
+      },
+      "intenttester-target-tdl-extension": {
+        "accepted": 2,
+        "rejected": 8
+      },
+      "docter-historical-constraints": {
+        "satisfied": 10
+      },
+      "control_check": {
+        "True": 10
+      }
+    },
+    "accuracy_metrics": "not-computed: this report has no independent formal reference labels"
+  },
+  "discovery-primary": {
+    "candidate_count": 69,
+    "source_group_count": 24,
+    "partition": "public-discovery-exposed-families",
+    "formal_eligible": false,
+    "counts": {
+      "self-test": {
+        "passed": 69
+      },
+      "target-binding": {
+        "observed": 69
+      },
+      "dllens-port": {
+        "no-difference-on-tested-inputs": 68,
+        "difference-observed": 1
+      },
+      "cosmit-registered-clauses": {
+        "supported-on-tested-inputs": 68,
+        "refuted": 1
+      },
+      "direct-llm": {
+        "failed": 63,
+        "preserved": 6
+      },
+      "trace-llm": {
+        "failed": 69
+      },
+      "intenttester-verifier-port": {
+        "accepted": 60,
+        "undetermined": 6,
+        "rejected": 3
+      },
+      "intenttester-target-tdl-extension": {
+        "accepted": 59,
+        "undetermined": 7,
+        "rejected": 3
+      },
+      "docter-historical-constraints": {
+        "satisfied": 30,
+        "undetermined": 39
+      },
+      "control_check": {
+        "not-evaluated": 69
+      }
+    },
+    "accuracy_metrics": "not-computed: this report has no independent formal reference labels"
+  },
+  "discovery-format-sensitivity": {
+    "candidate_count": 69,
+    "source_group_count": 24,
+    "partition": "public-discovery-exposed-families",
+    "formal_eligible": false,
+    "counts": {
+      "self-test": {
+        "passed": 69
+      },
+      "target-binding": {
+        "observed": 69
+      },
+      "dllens-port": {
+        "no-difference-on-tested-inputs": 68,
+        "difference-observed": 1
+      },
+      "cosmit-registered-clauses": {
+        "supported-on-tested-inputs": 68,
+        "refuted": 1
+      },
+      "direct-llm": {
+        "failed": 58,
+        "preserved": 11
+      },
+      "trace-llm": {
+        "failed": 69
+      },
+      "intenttester-verifier-port": {
+        "accepted": 60,
+        "undetermined": 6,
+        "rejected": 3
+      },
+      "intenttester-target-tdl-extension": {
+        "accepted": 59,
+        "undetermined": 7,
+        "rejected": 3
+      },
+      "docter-historical-constraints": {
+        "satisfied": 30,
+        "undetermined": 39
+      },
+      "control_check": {
+        "not-evaluated": 69
+      }
+    },
+    "accuracy_metrics": "not-computed: this report has no independent formal reference labels"
+  },
+  "discovery-retry": {
+    "candidate_count": 69,
+    "source_group_count": 24,
+    "partition": "public-discovery-exposed-families",
+    "formal_eligible": false,
+    "counts": {
+      "self-test": {
+        "passed": 69
+      },
+      "target-binding": {
+        "observed": 69
+      },
+      "dllens-port": {
+        "no-difference-on-tested-inputs": 68,
+        "difference-observed": 1
+      },
+      "cosmit-registered-clauses": {
+        "supported-on-tested-inputs": 68,
+        "refuted": 1
+      },
+      "direct-llm": {
+        "failed": 61,
+        "preserved": 8
+      },
+      "trace-llm": {
+        "failed": 69
+      },
+      "intenttester-verifier-port": {
+        "accepted": 63,
+        "undetermined": 3,
+        "rejected": 3
+      },
+      "intenttester-target-tdl-extension": {
+        "accepted": 62,
+        "undetermined": 4,
+        "rejected": 3
+      },
+      "docter-historical-constraints": {
+        "satisfied": 30,
+        "undetermined": 39
+      },
+      "control_check": {
+        "not-evaluated": 69
+      }
+    },
+    "accuracy_metrics": "not-computed: this report has no independent formal reference labels"
+  },
+  "unseen-primary": {
+    "candidate_count": 12,
+    "source_group_count": 6,
+    "partition": "reserved-unseen-operation-families",
+    "formal_eligible": false,
+    "counts": {
+      "self-test": {
+        "passed": 12
+      },
+      "target-binding": {
+        "observed": 12
+      },
+      "dllens-port": {
+        "no-difference-on-tested-inputs": 12
+      },
+      "cosmit-registered-clauses": {
+        "supported-on-tested-inputs": 12
+      },
+      "direct-llm": {
+        "preserved": 5,
+        "failed": 6,
+        "invalid-assumption": 1
+      },
+      "trace-llm": {
+        "failed": 12
+      },
+      "intenttester-verifier-port": {
+        "accepted": 7,
+        "rejected": 4,
+        "undetermined": 1
+      },
+      "intenttester-target-tdl-extension": {
+        "accepted": 7,
+        "rejected": 5
+      },
+      "docter-historical-constraints": {
+        "satisfied": 7,
+        "undetermined": 4,
+        "violated": 1
+      },
+      "control_check": {
+        "not-evaluated": 12
+      }
+    },
+    "accuracy_metrics": "not-computed: this report has no independent formal reference labels"
+  },
+  "unseen-format-sensitivity": {
+    "candidate_count": 12,
+    "source_group_count": 6,
+    "partition": "reserved-unseen-operation-families",
+    "formal_eligible": false,
+    "counts": {
+      "self-test": {
+        "passed": 12
+      },
+      "target-binding": {
+        "observed": 12
+      },
+      "dllens-port": {
+        "no-difference-on-tested-inputs": 12
+      },
+      "cosmit-registered-clauses": {
+        "supported-on-tested-inputs": 12
+      },
+      "direct-llm": {
+        "preserved": 5,
+        "failed": 6,
+        "invalid-assumption": 1
+      },
+      "trace-llm": {
+        "failed": 12
+      },
+      "intenttester-verifier-port": {
+        "accepted": 7,
+        "rejected": 4,
+        "undetermined": 1
+      },
+      "intenttester-target-tdl-extension": {
+        "accepted": 7,
+        "rejected": 5
+      },
+      "docter-historical-constraints": {
+        "satisfied": 7,
+        "undetermined": 4,
+        "violated": 1
+      },
+      "control_check": {
+        "not-evaluated": 12
+      }
+    },
+    "accuracy_metrics": "not-computed: this report has no independent formal reference labels"
+  },
+  "unseen-retry": {
+    "candidate_count": 12,
+    "source_group_count": 6,
+    "partition": "reserved-unseen-operation-families",
+    "formal_eligible": false,
+    "counts": {
+      "self-test": {
+        "passed": 12
+      },
+      "target-binding": {
+        "observed": 12
+      },
+      "dllens-port": {
+        "no-difference-on-tested-inputs": 12
+      },
+      "cosmit-registered-clauses": {
+        "supported-on-tested-inputs": 12
+      },
+      "direct-llm": {
+        "preserved": 5,
+        "failed": 6,
+        "invalid-assumption": 1
+      },
+      "trace-llm": {
+        "failed": 12
+      },
+      "intenttester-verifier-port": {
+        "accepted": 7,
+        "rejected": 4,
+        "undetermined": 1
+      },
+      "intenttester-target-tdl-extension": {
+        "accepted": 7,
+        "rejected": 5
+      },
+      "docter-historical-constraints": {
+        "satisfied": 7,
+        "undetermined": 4,
+        "violated": 1
+      },
+      "control_check": {
+        "not-evaluated": 12
+      }
+    },
+    "accuracy_metrics": "not-computed: this report has no independent formal reference labels"
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "source_models": 10,
+  "supported": 9,
+  "undetermined": 1,
+  "observed_executions": 54,
+  "cross_framework_numerical_comparisons": 0,
+  "results": [
+    {
+      "model": "alexnet",
+      "framework": "pytorch",
+      "source_path": "output/alexnet/pytorch_nn_subclassing.py",
+      "source_sha256": "58923ce04b62aa41170efeae31bbe3be6d5e8dffda72e5eb3c35664e4e68caf3",
+      "scope": "unchanged NeuralNetwork class; source-only inference, no training or weight transfer",
+      "seed": 20260916,
+      "versions": {
+        "torch": "2.1.0",
+        "tensorflow": "2.15.0",
+        "numpy": "1.26.2"
+      },
+      "clauses": [
+        "batch-and-output-width",
+        "finite-float32"
+      ],
+      "input_origin": "researcher-constructed from source layer dimensions",
+      "status": "supported-on-tested-inputs"
+    },
+    {
+      "model": "alexnet",
+      "framework": "tensorflow",
+      "source_path": "output/alexnet/tf_nn_subclassing.py",
+      "source_sha256": "e9af74ce6ceb824742177dcd670ab73a571f059234df9c82e2c3fe705f55f395",
+      "scope": "unchanged NeuralNetwork class; source-only inference, no training or weight transfer",
+      "seed": 20260916,
+      "versions": {
+        "torch": "2.1.0",
+        "tensorflow": "2.15.0",
+        "numpy": "1.26.2"
+      },
+      "clauses": [
+        "batch-and-output-width",
+        "finite-float32"
+      ],
+      "input_origin": "researcher-constructed from source layer dimensions",
+      "status": "supported-on-tested-inputs"
+    },
+    {
+      "model": "cnn_rnn",
+      "framework": "pytorch",
+      "source_path": "output/cnn_rnn/pytorch_nn_subclassing.py",
+      "source_sha256": "c7ba6514394c184b3208ff55ed725b9f24a341cc7dda8dfe7a9aa9bad4a994e6",
+      "scope": "unchanged NeuralNetwork class; source-only inference, no training or weight transfer",
+      "seed": 20260916,
+      "versions": {
+        "torch": "2.1.0",
+        "tensorflow": "2.15.0",
+        "numpy": "1.26.2"
+      },
+      "clauses": [
+        "batch-and-output-width",
+        "finite-float32",
+        "unit-interval"
+      ],
+      "input_origin": "researcher-constructed from source layer dimensions",
+      "status": "undetermined",
+      "error": {
+        "type": "RuntimeError",
+        "message": "Given groups=1, weight of size [200, 50, 4], expected input[1, 100, 50] to have 50 channels, but got 100 channels instead"
+      }
+    },
+    {
+      "model": "cnn_rnn",
+      "framework": "tensorflow",
+      "source_path": "output/cnn_rnn/tf_nn_subclassing.py",
+      "source_sha256": "13f13a0fd1848ea4a1abeb6ec0ebfac5f9c198d17efb8ed9ec169a0ad978db5b",
+      "scope": "unchanged NeuralNetwork class; source-only inference, no training or weight transfer",
+      "seed": 20260916,
+      "versions": {
+        "torch": "2.1.0",
+        "tensorflow": "2.15.0",
+        "numpy": "1.26.2"
+      },
+      "clauses": [
+        "batch-and-output-width",
+        "finite-float32",
+        "unit-interval"
+      ],
+      "input_origin": "researcher-constructed from source layer dimensions",
+      "status": "supported-on-tested-inputs"
+    },
+    {
+      "model": "lstm",
+      "framework": "pytorch",
+      "source_path": "output/lstm/pytorch_nn_subclassing.py",
+      "source_sha256": "699018e222b02430e2d4f898ced4a9f9b50baf3c7fe8cd35daec9d489ff210fb",
+      "scope": "unchanged NeuralNetwork class; source-only inference, no training or weight transfer",
+      "seed": 20260916,
+      "versions": {
+        "torch": "2.1.0",
+        "tensorflow": "2.15.0",
+        "numpy": "1.26.2"
+      },
+      "clauses": [
+        "batch-and-output-width",
+        "finite-float32",
+        "probability-simplex"
+      ],
+      "input_origin": "researcher-constructed from source layer dimensions",
+      "status": "supported-on-tested-inputs"
+    },
+    {
+      "model": "lstm",
+      "framework": "tensorflow",
+      "source_path": "output/lstm/tf_nn_subclassing.py",
+      "source_sha256": "ab1e33dd4fe7e3410ff7a968a5957c3156daa7b6b3551c005f89935d5ef65268",
+      "scope": "unchanged NeuralNetwork class; source-only inference, no training or weight transfer",
+      "seed": 20260916,
+      "versions": {
+        "torch": "2.1.0",
+        "tensorflow": "2.15.0",
+        "numpy": "1.26.2"
+      },
+      "clauses": [
+        "batch-and-output-width",
+        "finite-float32",
+        "probability-simplex"
+      ],
+      "input_origin": "researcher-constructed from source layer dimensions",
+      "status": "supported-on-tested-inputs"
+    },
+    {
+      "model": "tf_tutorial",
+      "framework": "pytorch",
+      "source_path": "output/tf_tutorial/pytorch_nn_subclassing.py",
+      "source_sha256": "6a82a0361e47faba93e9c2a1a81acf9a20a35ddba281e5dad4e6c252291a9f12",
+      "scope": "unchanged NeuralNetwork class; source-only inference, no training or weight transfer",
+      "seed": 20260916,
+      "versions": {
+        "torch": "2.1.0",
+        "tensorflow": "2.15.0",
+        "numpy": "1.26.2"
+      },
+      "clauses": [
+        "batch-and-output-width",
+        "finite-float32"
+      ],
+      "input_origin": "researcher-constructed from source layer dimensions",
+      "status": "supported-on-tested-inputs"
+    },
+    {
+      "model": "tf_tutorial",
+      "framework": "tensorflow",
+      "source_path": "output/tf_tutorial/tf_nn_subclassing.py",
+      "source_sha256": "d39fa2b7a54ddcb1cd8ebd4b5bb72f689b5755115704247aa561bc8d3528675b",
+      "scope": "unchanged NeuralNetwork class; source-only inference, no training or weight transfer",
+      "seed": 20260916,
+      "versions": {
+        "torch": "2.1.0",
+        "tensorflow": "2.15.0",
+        "numpy": "1.26.2"
+      },
+      "clauses": [
+        "batch-and-output-width",
+        "finite-float32"
+      ],
+      "input_origin": "researcher-constructed from source layer dimensions",
+      "status": "supported-on-tested-inputs"
+    },
+    {
+      "model": "vgg16",
+      "framework": "pytorch",
+      "source_path": "output/vgg16/pytorch_nn_subclassing.py",
+      "source_sha256": "c0336d55a8612b3ff0259bea88c31f224f57c40c11277d10afad156285a1b186",
+      "scope": "unchanged NeuralNetwork class; source-only inference, no training or weight transfer",
+      "seed": 20260916,
+      "versions": {
+        "torch": "2.1.0",
+        "tensorflow": "2.15.0",
+        "numpy": "1.26.2"
+      },
+      "clauses": [
+        "batch-and-output-width",
+        "finite-float32"
+      ],
+      "input_origin": "researcher-constructed from source layer dimensions",
+      "status": "supported-on-tested-inputs"
+    },
+    {
+      "model": "vgg16",
+      "framework": "tensorflow",
+      "source_path": "output/vgg16/tf_nn_subclassing.py",
+      "source_sha256": "43d9570d50d1b692d641961a1d95d70933dc5c4c5cf440ef53053311170cc2f0",
+      "scope": "unchanged NeuralNetwork class; source-only inference, no training or weight transfer",
+      "seed": 20260916,
+      "versions": {
+        "torch": "2.1.0",
+        "tensorflow": "2.15.0",
+        "numpy": "1.26.2"
+      },
+      "clauses": [
+        "batch-and-output-width",
+        "finite-float32"
+      ],
+      "input_origin": "researcher-constructed from source layer dimensions",
+      "status": "supported-on-tested-inputs"
+    }
+  ]
+}

@@ -44,6 +44,16 @@ class ModelConfig:
     max_tokens: int
 
 
+class RejectedResponse(RuntimeError):
+    """A received response failed validation; preserve data without HTTP headers."""
+
+    def __init__(self, reason: str, response: dict[str, Any]) -> None:
+        super().__init__(reason)
+        self.reason = reason
+        self.response = response
+        self.request_payload: dict[str, Any] | None = None
+
+
 def sha256_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
@@ -275,7 +285,11 @@ def api_call(
     except urllib.error.HTTPError as error:
         body = error.read().decode("utf-8", errors="replace")
         raise RuntimeError(f"model endpoint returned HTTP {error.code}: {body[:500]}") from error
-    validate_response(result)
+    try:
+        validate_response(result)
+    except RejectedResponse as error:
+        error.request_payload = payload
+        raise
     return payload, result
 
 
@@ -283,12 +297,12 @@ def validate_response(response: dict[str, Any]) -> None:
     """Reject interrupted, truncated and non-text outputs before extraction."""
     choices = response.get("choices") or []
     if not choices or choices[0].get("finish_reason") != "stop":
-        raise RuntimeError("response did not terminate with stop")
+        raise RejectedResponse("non-stop-termination", response)
     content = choices[0].get("message", {}).get("content")
     if not isinstance(content, str) or not content.strip():
-        raise RuntimeError("response contains no text content")
+        raise RejectedResponse("empty-text-content", response)
     if content.lower().count("<think>") != content.lower().count("</think>"):
-        raise RuntimeError("response contains an unclosed reasoning block")
+        raise RejectedResponse("unclosed-reasoning-block", response)
 
 
 def api_call_with_retries(

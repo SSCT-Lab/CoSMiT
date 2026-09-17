@@ -1,0 +1,752 @@
+[
+  {
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "api": "torch.Tensor.abs"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "api": "tf.abs"
+    },
+    "group": "absolute-value",
+    "origin": "dllens-public-functions-with-locally-constructed-contract-and-inputs",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.Tensor.abs.json",
+    "contract": {
+      "domain_id": "finite-dense-floats-v1",
+      "description": "For finite real floating tensors, return elementwise absolute values with the same shape and dtype.",
+      "clauses": [
+        "value",
+        "shape",
+        "dtype"
+      ],
+      "atol": 1e-06,
+      "rtol": 1e-05,
+      "domain": "finite float32/float64 dense tensor; rank <= 4; <= 4096 elements",
+      "evidence": "public abs functions and source API documentation referenced by DocTer"
+    },
+    "docter_file": "constraints_extracted/pytorch1.5/torch.abs.yaml",
+    "inputs": [
+      {
+        "input": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -2.0,
+              1.0
+            ],
+            [
+              0.0,
+              -3.0
+            ]
+          ]
+        }
+      },
+      {
+        "input": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -1.0,
+              1e-06
+            ],
+            [
+              -1e-06,
+              -1.0
+            ]
+          ]
+        }
+      }
+    ],
+    "id": "C001",
+    "reviewed_code_sha256": "e8ccc558f49d012a6a5c18692d9ddbc2748a3eb932aae6f2ada5b683996161d9",
+    "original_case_file_sha256": "8a558643345fa8ff719e44e827c7479b157502576f1326f43a6fd8cc824b03fc",
+    "source_code_sha256": "de0c75302ae845abf26126466f688ef52ca8a89c3eb0219d9c2b5d7f740348e5",
+    "target_code_sha256": "bfa1a1527d44989674ae6895e84d3d4ffe9ad014b4ca91fbc8342f1c986fdb8c",
+    "verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    },
+    "original_record_file_sha256": "47c85b0dc5c1bb9f3b00fd5b2aa88ae4af261c0ad21ee4de753f6138064bef4e"
+  },
+  {
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "api": "torch.Tensor.abs"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "api": "tf.abs"
+    },
+    "group": "absolute-value",
+    "origin": "constructed-development-control",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.Tensor.abs.json",
+    "contract": {
+      "domain_id": "finite-dense-floats-v1",
+      "description": "For finite real floating tensors, return elementwise absolute values with the same shape and dtype.",
+      "clauses": [
+        "value",
+        "shape",
+        "dtype"
+      ],
+      "atol": 1e-06,
+      "rtol": 1e-05,
+      "domain": "finite float32/float64 dense tensor; rank <= 4; <= 4096 elements",
+      "evidence": "public abs functions and source API documentation referenced by DocTer"
+    },
+    "docter_file": "constraints_extracted/pytorch1.5/torch.abs.yaml",
+    "inputs": [
+      {
+        "input": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -2.0,
+              1.0
+            ],
+            [
+              0.0,
+              -3.0
+            ]
+          ]
+        }
+      },
+      {
+        "input": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -1.0,
+              1e-06
+            ],
+            [
+              -1e-06,
+              -1.0
+            ]
+          ]
+        }
+      }
+    ],
+    "id": "C002",
+    "reviewed_code_sha256": "f554771c03ecd43c64755facf7f52b25083ea354ab5ffc56ad5119f4568f31bd",
+    "original_case_file_sha256": "4b92e74078654863503e591b22cf13783cc1e0f9aa9b6984a74eac6154b21abc",
+    "source_code_sha256": "de0c75302ae845abf26126466f688ef52ca8a89c3eb0219d9c2b5d7f740348e5",
+    "target_code_sha256": "5a35aafa8029a4adfec23dd0ed673029af188250102a3f99f49a1745506211a1",
+    "verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "refuted"
+    },
+    "original_record_file_sha256": "f60535d85dd75a5928d61bebfca3b2e5f612b0ef1c73606ef038cac41ebd24f9"
+  },
+  {
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "api": "torch.Tensor.abs"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "api": "tf.abs"
+    },
+    "group": "absolute-value",
+    "origin": "constructed-development-control",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.Tensor.abs.json",
+    "contract": {
+      "domain_id": "finite-dense-floats-v1",
+      "description": "For finite real floating tensors, return elementwise absolute values with the same shape and dtype.",
+      "clauses": [
+        "value",
+        "shape",
+        "dtype"
+      ],
+      "atol": 1e-06,
+      "rtol": 1e-05,
+      "domain": "finite float32/float64 dense tensor; rank <= 4; <= 4096 elements",
+      "evidence": "public abs functions and source API documentation referenced by DocTer"
+    },
+    "docter_file": "constraints_extracted/pytorch1.5/torch.abs.yaml",
+    "inputs": [
+      {
+        "input": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -2.0,
+              1.0
+            ],
+            [
+              0.0,
+              -3.0
+            ]
+          ]
+        }
+      },
+      {
+        "input": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -1.0,
+              1e-06
+            ],
+            [
+              -1e-06,
+              -1.0
+            ]
+          ]
+        }
+      }
+    ],
+    "id": "C003",
+    "reviewed_code_sha256": "617c138b67663108d878097efef726c37e8f5e0ae4a043d0d6a5f7c33591ac52",
+    "original_case_file_sha256": "3aab494b90393b00a974801cc53349c4f425f5d0f07b028e6f27ba8e0f8cdc72",
+    "source_code_sha256": "de0c75302ae845abf26126466f688ef52ca8a89c3eb0219d9c2b5d7f740348e5",
+    "target_code_sha256": "692306b2ab8802864e3a8efc0d90a35751cc41b82c594fecf987cdbe9be80264",
+    "verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "refuted"
+    },
+    "original_record_file_sha256": "3b9a234ab76799ced593565d7877531474b96b6b2978b9dc1dc5a9c4529e916b"
+  },
+  {
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "api": "torch.Tensor.abs"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "api": "tf.abs"
+    },
+    "group": "absolute-value",
+    "origin": "constructed-development-control",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.Tensor.abs.json",
+    "contract": {
+      "domain_id": "finite-dense-floats-v1",
+      "description": "For finite real floating tensors, return elementwise absolute values with the same shape and dtype.",
+      "clauses": [
+        "value",
+        "shape",
+        "dtype"
+      ],
+      "atol": 1e-06,
+      "rtol": 1e-05,
+      "domain": "finite float32/float64 dense tensor; rank <= 4; <= 4096 elements",
+      "evidence": "public abs functions and source API documentation referenced by DocTer"
+    },
+    "docter_file": "constraints_extracted/pytorch1.5/torch.abs.yaml",
+    "inputs": [
+      {
+        "input": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -2.0,
+              1.0
+            ],
+            [
+              0.0,
+              -3.0
+            ]
+          ]
+        }
+      },
+      {
+        "input": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -1.0,
+              1e-06
+            ],
+            [
+              -1e-06,
+              -1.0
+            ]
+          ]
+        }
+      }
+    ],
+    "id": "C004",
+    "reviewed_code_sha256": "25c06f67c8a1464e3eb351df3a94651521c486d4eb056d4f0e6415bfc5e1545b",
+    "original_case_file_sha256": "95244837afe64485841eec11437cf6d299e92c742e4f65217dde0fedda60a1d9",
+    "source_code_sha256": "de0c75302ae845abf26126466f688ef52ca8a89c3eb0219d9c2b5d7f740348e5",
+    "target_code_sha256": "a74bd5901c18eecf2b059074334fe1d3e8f3d6d4f447319d3676bbdb963ff46e",
+    "verdicts": {
+      "self-test": "passed",
+      "target-binding": "not-observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "undetermined"
+    },
+    "original_record_file_sha256": "c2688fb5a391587f1ca9efc19b8dee83c3d0417f74a8ce240bfb923ed56f37e4"
+  },
+  {
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "api": "torch.Tensor.abs"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "api": "tf.abs"
+    },
+    "group": "absolute-value",
+    "origin": "constructed-development-control",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.Tensor.abs.json",
+    "contract": {
+      "domain_id": "finite-dense-floats-v1",
+      "description": "For finite real floating tensors, return elementwise absolute values with the same shape and dtype.",
+      "clauses": [
+        "value",
+        "shape",
+        "dtype"
+      ],
+      "atol": 1e-06,
+      "rtol": 1e-05,
+      "domain": "finite float32/float64 dense tensor; rank <= 4; <= 4096 elements",
+      "evidence": "public abs functions and source API documentation referenced by DocTer"
+    },
+    "docter_file": "constraints_extracted/pytorch1.5/torch.abs.yaml",
+    "inputs": [
+      {
+        "input": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -2.0,
+              1.0
+            ],
+            [
+              0.0,
+              -3.0
+            ]
+          ]
+        }
+      },
+      {
+        "input": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -1.0,
+              1e-06
+            ],
+            [
+              -1e-06,
+              -1.0
+            ]
+          ]
+        }
+      }
+    ],
+    "id": "C005",
+    "reviewed_code_sha256": "a1fb227c2cd9b3e0f10b205b888e38fd932188eda47f14552511d0ee8fbbecc6",
+    "original_case_file_sha256": "1dc3f11d402a6d6332670bb968632334b7b81250411b2e736da8f580bae92925",
+    "source_code_sha256": "2be64ba523528ff538f3ba8e195473a8992560f5c446900b508eab96d122ab80",
+    "target_code_sha256": "bfa1a1527d44989674ae6895e84d3d4ffe9ad014b4ca91fbc8342f1c986fdb8c",
+    "verdicts": {
+      "self-test": "invalid-source-test",
+      "target-binding": "invalid-source-test",
+      "dllens-port": "invalid-source-test",
+      "cosmit-registered-clauses": "invalid-source-test"
+    },
+    "original_record_file_sha256": "e6eeb111e1ff44d2ed4756e243583aa669e815aa08c264dde147b3c3df8065e9"
+  },
+  {
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "api": "tf.abs"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "api": "torch.abs"
+    },
+    "group": "absolute-value",
+    "origin": "dllens-public-functions-with-locally-constructed-contract-and-inputs",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.abs.json",
+    "contract": {
+      "domain_id": "finite-dense-floats-v1",
+      "description": "For finite real floating tensors, return elementwise absolute values with the same shape and dtype.",
+      "clauses": [
+        "value",
+        "shape",
+        "dtype"
+      ],
+      "atol": 1e-06,
+      "rtol": 1e-05,
+      "domain": "finite float32/float64 dense tensor; rank <= 4; <= 4096 elements",
+      "evidence": "public abs functions and source API documentation referenced by DocTer"
+    },
+    "docter_file": "constraints_extracted/tensorflow2.1/tf.math.abs.yaml",
+    "inputs": [
+      {
+        "x": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -2.0,
+              1.0
+            ],
+            [
+              0.0,
+              -3.0
+            ]
+          ]
+        }
+      },
+      {
+        "x": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -1.0,
+              1e-06
+            ],
+            [
+              -1e-06,
+              -1.0
+            ]
+          ]
+        }
+      }
+    ],
+    "id": "C006",
+    "reviewed_code_sha256": "185551db0cf9d86f907459a7b06f302a6be07971f025062797845b94e79b0496",
+    "original_case_file_sha256": "6c94d079aa516d6f741296955a64bee711a80f087989bc5055260d2f3ded9eb1",
+    "source_code_sha256": "5433b3f6b430a7e89511dde87304522cb324d63d50941cb1718314b1e55dd717",
+    "target_code_sha256": "fd79003fdda4ca67992cec893a2b33699c18a5e8039fc5f9875b4bb01c2686cd",
+    "verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    },
+    "original_record_file_sha256": "470e32ed180f234ccb176f8e0b8f37d412120fa160da85f97059006706e3a2c0"
+  },
+  {
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "api": "tf.abs"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "api": "torch.abs"
+    },
+    "group": "absolute-value",
+    "origin": "constructed-development-control",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.abs.json",
+    "contract": {
+      "domain_id": "finite-dense-floats-v1",
+      "description": "For finite real floating tensors, return elementwise absolute values with the same shape and dtype.",
+      "clauses": [
+        "value",
+        "shape",
+        "dtype"
+      ],
+      "atol": 1e-06,
+      "rtol": 1e-05,
+      "domain": "finite float32/float64 dense tensor; rank <= 4; <= 4096 elements",
+      "evidence": "public abs functions and source API documentation referenced by DocTer"
+    },
+    "docter_file": "constraints_extracted/tensorflow2.1/tf.math.abs.yaml",
+    "inputs": [
+      {
+        "x": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -2.0,
+              1.0
+            ],
+            [
+              0.0,
+              -3.0
+            ]
+          ]
+        }
+      },
+      {
+        "x": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -1.0,
+              1e-06
+            ],
+            [
+              -1e-06,
+              -1.0
+            ]
+          ]
+        }
+      }
+    ],
+    "id": "C007",
+    "reviewed_code_sha256": "4bc2e2272b5f5e52ea22be78f498857a7d004c45eae521cb43288dd008e42e53",
+    "original_case_file_sha256": "6eacf22fd1b11f0623904f5ce08838b136401e75ba80ef26c92eba5519635a1a",
+    "source_code_sha256": "5433b3f6b430a7e89511dde87304522cb324d63d50941cb1718314b1e55dd717",
+    "target_code_sha256": "141791278911d33a6753ab6ee442115abf51048c930a4101ad7737766143da6b",
+    "verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "refuted"
+    },
+    "original_record_file_sha256": "c2c9503314448e25af7e955d226018937ceab54a8150e5f29c9c6abc732bc346"
+  },
+  {
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "api": "tf.abs"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "api": "torch.abs"
+    },
+    "group": "absolute-value",
+    "origin": "constructed-development-control",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.abs.json",
+    "contract": {
+      "domain_id": "finite-dense-floats-v1",
+      "description": "For finite real floating tensors, return elementwise absolute values with the same shape and dtype.",
+      "clauses": [
+        "value",
+        "shape",
+        "dtype"
+      ],
+      "atol": 1e-06,
+      "rtol": 1e-05,
+      "domain": "finite float32/float64 dense tensor; rank <= 4; <= 4096 elements",
+      "evidence": "public abs functions and source API documentation referenced by DocTer"
+    },
+    "docter_file": "constraints_extracted/tensorflow2.1/tf.math.abs.yaml",
+    "inputs": [
+      {
+        "x": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -2.0,
+              1.0
+            ],
+            [
+              0.0,
+              -3.0
+            ]
+          ]
+        }
+      },
+      {
+        "x": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -1.0,
+              1e-06
+            ],
+            [
+              -1e-06,
+              -1.0
+            ]
+          ]
+        }
+      }
+    ],
+    "id": "C008",
+    "reviewed_code_sha256": "c56459b60e63c0ac4dbcdfffac07843db80443a85b708075f32174516731a1f8",
+    "original_case_file_sha256": "f8d6b7b8f6a3f930c68a41912c58f8fbbd7cec7cef5a2ff69962f2c596661e65",
+    "source_code_sha256": "5433b3f6b430a7e89511dde87304522cb324d63d50941cb1718314b1e55dd717",
+    "target_code_sha256": "11e53600d18718f299aa1d2b6893f46271bbb602c2ec3138e25380488ee028f7",
+    "verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "refuted"
+    },
+    "original_record_file_sha256": "f94a58e303c76362a59fd1ff8a2c676a9af2b3ab109e74305f8253e60761eced"
+  },
+  {
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "api": "tf.abs"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "api": "torch.abs"
+    },
+    "group": "absolute-value",
+    "origin": "constructed-development-control",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.abs.json",
+    "contract": {
+      "domain_id": "finite-dense-floats-v1",
+      "description": "For finite real floating tensors, return elementwise absolute values with the same shape and dtype.",
+      "clauses": [
+        "value",
+        "shape",
+        "dtype"
+      ],
+      "atol": 1e-06,
+      "rtol": 1e-05,
+      "domain": "finite float32/float64 dense tensor; rank <= 4; <= 4096 elements",
+      "evidence": "public abs functions and source API documentation referenced by DocTer"
+    },
+    "docter_file": "constraints_extracted/tensorflow2.1/tf.math.abs.yaml",
+    "inputs": [
+      {
+        "x": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -2.0,
+              1.0
+            ],
+            [
+              0.0,
+              -3.0
+            ]
+          ]
+        }
+      },
+      {
+        "x": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -1.0,
+              1e-06
+            ],
+            [
+              -1e-06,
+              -1.0
+            ]
+          ]
+        }
+      }
+    ],
+    "id": "C009",
+    "reviewed_code_sha256": "681db95156143f6e9ac6a947204cefb46977615b0a618bd2a5ab43c08e20ef28",
+    "original_case_file_sha256": "e1f074a071315b3d0fe2562ce2c9fbaff78ea7746872724c62869d83321104d0",
+    "source_code_sha256": "5433b3f6b430a7e89511dde87304522cb324d63d50941cb1718314b1e55dd717",
+    "target_code_sha256": "6f08cc4e6ad7f673b534f7a0b521db2693bfcd28e152fe1d5a785d6c64805a0c",
+    "verdicts": {
+      "self-test": "passed",
+      "target-binding": "not-observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "undetermined"
+    },
+    "original_record_file_sha256": "62b6076d0926cbce011b94d6443eabd1a408bb429d7580bcb412834de93a2d50"
+  },
+  {
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "api": "tf.abs"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "api": "torch.abs"
+    },
+    "group": "absolute-value",
+    "origin": "constructed-development-control",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.abs.json",
+    "contract": {
+      "domain_id": "finite-dense-floats-v1",
+      "description": "For finite real floating tensors, return elementwise absolute values with the same shape and dtype.",
+      "clauses": [
+        "value",
+        "shape",
+        "dtype"
+      ],
+      "atol": 1e-06,
+      "rtol": 1e-05,
+      "domain": "finite float32/float64 dense tensor; rank <= 4; <= 4096 elements",
+      "evidence": "public abs functions and source API documentation referenced by DocTer"
+    },
+    "docter_file": "constraints_extracted/tensorflow2.1/tf.math.abs.yaml",
+    "inputs": [
+      {
+        "x": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -2.0,
+              1.0
+            ],
+            [
+              0.0,
+              -3.0
+            ]
+          ]
+        }
+      },
+      {
+        "x": {
+          "kind": "tensor",
+          "dtype": "float32",
+          "values": [
+            [
+              -1.0,
+              1e-06
+            ],
+            [
+              -1e-06,
+              -1.0
+            ]
+          ]
+        }
+      }
+    ],
+    "id": "C010",
+    "reviewed_code_sha256": "6cc14a6bcb9d93bd70092a8852e1c626786e8013485d3ec1ec2050b090bfcc8c",
+    "original_case_file_sha256": "e00cb73bb81a9d5ad6c784c3737548aca330c00dd1830684bbd8d9c14bcea1f6",
+    "source_code_sha256": "7a6f368ff333bd0da4ee03b0bfd389b9a992bd7e3ccf5948befa81617fd9c1cf",
+    "target_code_sha256": "fd79003fdda4ca67992cec893a2b33699c18a5e8039fc5f9875b4bb01c2686cd",
+    "verdicts": {
+      "self-test": "invalid-source-test",
+      "target-binding": "invalid-source-test",
+      "dllens-port": "invalid-source-test",
+      "cosmit-registered-clauses": "invalid-source-test"
+    },
+    "original_record_file_sha256": "570846054a18f4d44c9c32dbe71e1779e2b8659a7e03b61e1d3610bb03b2208e"
+  }
+]

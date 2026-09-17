@@ -1,0 +1,158 @@
+{
+  "model": "lstm",
+  "kind": "public-paired-network-definitions",
+  "observations": [
+    {
+      "batch": 1,
+      "repeat": 0,
+      "input_sha256": "4ae51bc5c9c01dc0b403afd22451cdced88ed47ff859e8e92b53055ad5016963",
+      "source_values": [
+        [
+          0.48756924271583557,
+          0.5124307870864868
+        ]
+      ],
+      "target_values": [
+        [
+          0.48756924271583557,
+          0.5124307870864868
+        ]
+      ],
+      "same_shape": true,
+      "close": true,
+      "max_absolute_difference": 0.0
+    },
+    {
+      "batch": 1,
+      "repeat": 1,
+      "input_sha256": "4ae51bc5c9c01dc0b403afd22451cdced88ed47ff859e8e92b53055ad5016963",
+      "source_values": [
+        [
+          0.48756924271583557,
+          0.5124307870864868
+        ]
+      ],
+      "target_values": [
+        [
+          0.48756924271583557,
+          0.5124307870864868
+        ]
+      ],
+      "same_shape": true,
+      "close": true,
+      "max_absolute_difference": 0.0
+    },
+    {
+      "batch": 1,
+      "repeat": 2,
+      "input_sha256": "4ae51bc5c9c01dc0b403afd22451cdced88ed47ff859e8e92b53055ad5016963",
+      "source_values": [
+        [
+          0.48756924271583557,
+          0.5124307870864868
+        ]
+      ],
+      "target_values": [
+        [
+          0.48756924271583557,
+          0.5124307870864868
+        ]
+      ],
+      "same_shape": true,
+      "close": true,
+      "max_absolute_difference": 0.0
+    },
+    {
+      "batch": 2,
+      "repeat": 0,
+      "input_sha256": "d6b81b1f8cf4ae9c3f3ef5c365b2a0d4644e8af48259502621e0a81a63876992",
+      "source_values": [
+        [
+          0.4923821687698364,
+          0.5076178908348083
+        ],
+        [
+          0.4954383075237274,
+          0.504561722278595
+        ]
+      ],
+      "target_values": [
+        [
+          0.4923821687698364,
+          0.5076178908348083
+        ],
+        [
+          0.4954383075237274,
+          0.504561722278595
+        ]
+      ],
+      "same_shape": true,
+      "close": true,
+      "max_absolute_difference": 0.0
+    },
+    {
+      "batch": 2,
+      "repeat": 1,
+      "input_sha256": "d6b81b1f8cf4ae9c3f3ef5c365b2a0d4644e8af48259502621e0a81a63876992",
+      "source_values": [
+        [
+          0.4923821687698364,
+          0.5076178908348083
+        ],
+        [
+          0.4954383075237274,
+          0.504561722278595
+        ]
+      ],
+      "target_values": [
+        [
+          0.4923821687698364,
+          0.5076178908348083
+        ],
+        [
+          0.4954383075237274,
+          0.504561722278595
+        ]
+      ],
+      "same_shape": true,
+      "close": true,
+      "max_absolute_difference": 0.0
+    },
+    {
+      "batch": 2,
+      "repeat": 2,
+      "input_sha256": "d6b81b1f8cf4ae9c3f3ef5c365b2a0d4644e8af48259502621e0a81a63876992",
+      "source_values": [
+        [
+          0.4923821687698364,
+          0.5076178908348083
+        ],
+        [
+          0.4954383075237274,
+          0.504561722278595
+        ]
+      ],
+      "target_values": [
+        [
+          0.4923821687698364,
+          0.5076178908348083
+        ],
+        [
+          0.4954383075237274,
+          0.504561722278595
+        ]
+      ],
+      "same_shape": true,
+      "close": true,
+      "max_absolute_difference": 0.0
+    }
+  ],
+  "weight_alignment": "public copy_model_weights: PyTorch to TensorFlow",
+  "layout": "same NHWC for tf_tutorial; same token indices for lstm",
+  "clauses": [
+    "source-supported-shape",
+    "aligned-weight-output-values"
+  ],
+  "status": "supported-on-tested-inputs",
+  "pt_state_sha256": "e2523b4fffb37ca511e1263a27bd50be5798d0c1902ac5777728851a59514f09"
+}
