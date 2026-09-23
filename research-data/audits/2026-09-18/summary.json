@@ -1,0 +1,31 @@
+{
+  "scope": "research-data/2026-09-17 only; no pilot dataset or legacy RQ",
+  "cases": 91,
+  "pairs_rechecked": 15612,
+  "source_reference_rechecks": 15600,
+  "public_code_hash_matches": 81,
+  "controls_replayed_single_executions": 120,
+  "controls_match_historical_observations": true,
+  "public_cases_with_violations": [
+    "D0028"
+  ],
+  "control_cases_with_violations": [
+    "C002",
+    "C003",
+    "C007",
+    "C008"
+  ],
+  "model_status_counts": {
+    "model-primary.json": {
+      "completed": 278,
+      "failed": 177
+    },
+    "model-retry.json": {
+      "completed": 17,
+      "failed": 16
+    }
+  },
+  "audit_issues": 0,
+  "model_calls": 0,
+  "audit_script_sha256": "5b54167dae5312467b08fec94fea05ab1a7602dc5ed60e1a57adf9fb6287fd0e"
+}

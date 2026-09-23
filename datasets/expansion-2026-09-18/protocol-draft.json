@@ -1,0 +1,28 @@
+{
+  "status": "selection-ready; execution-protocol-not-yet-frozen",
+  "partition": "expansion-development",
+  "baseline": "research-data/2026-09-17",
+  "candidates": 30,
+  "families": 15,
+  "budget_proposal": {
+    "inputs_per_case": 64,
+    "repeats": 3,
+    "pairs_total": 5760,
+    "model_requests_if_all_five_components_run": 150
+  },
+  "actual_runs": 0,
+  "model_calls": 0,
+  "required_gates": [
+    "fixed-version source specifications",
+    "typed multiargument/list adapters",
+    "source-only qualification and reference checks",
+    "freeze inputs/tolerances and environment before target execution",
+    "common input pool for all dynamic comparators",
+    "retain source-invalid/target-error/unbound/unsupported outcomes",
+    "audit every reported counterexample",
+    "model pilot before batch requests"
+  ],
+  "comparison": "same input and observation budget; any revised model/prompt/environment version reported separately",
+  "preservation": "do not modify public counterparts; do not replace failed candidates after observing outcomes",
+  "not_an_executable_packet": "existing v3 workers only register unary/matrix domains; new domains and adapters must be implemented first"
+}

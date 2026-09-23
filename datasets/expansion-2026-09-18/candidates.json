@@ -1,0 +1,1539 @@
+[
+  {
+    "case_id": "E001",
+    "family": "add",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.add",
+    "source_signature": "torch.add(input, other, *, alpha=1, out=None)",
+    "argument_names": [
+      "input",
+      "other"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E001/source.py",
+      "code_sha256": "044e502d4ebbb8ce13ae0fa885519d9ce44e4c63c7d26172f4d5d192ee595274",
+      "syntactic_calls": [
+        "torch.add"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E001/target.py",
+      "code_sha256": "706c4f2c63a6e7819ee9bb3a3078df823fab84ecd5288516ded6d48334f45caf",
+      "syntactic_calls": [
+        "tf.add",
+        "tf.cast"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.add.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.add.json",
+    "upstream_worktree_sha256": "d5e9ccb55acb0543b99227180ff96e1a6eabad813e2655d4cedf998285f5b858",
+    "upstream_git_blob_sha256": "3df3f027cad742a40dab97efd75b99ec86e1898370486d939b0d0c3eff197c03",
+    "original_sample_inputs": 24,
+    "input_profile": "input-design.json#add",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E002",
+    "family": "add",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.add",
+    "source_signature": "tf.add(x,y,name=None)",
+    "argument_names": [
+      "x",
+      "y"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E002/source.py",
+      "code_sha256": "a0c5753fa9bd12d670051560b51c1cba9424f4557b494d29870f0777cfca3d56",
+      "syntactic_calls": [
+        "tf.add"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E002/target.py",
+      "code_sha256": "115e6b15be9586a3dbef7ba9b45ab8640122a421d2fdde76670a4e1863875c61",
+      "syntactic_calls": [
+        "torch.add"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.add.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.add.json",
+    "upstream_worktree_sha256": "0a830aba07b8e80bfd739b5b80ee7110352f163cd60c4f4a368c0ca92d5a317f",
+    "upstream_git_blob_sha256": "03588f258b33815a727699e41e3fbd6711fa5a610fbaa695675eba4eeecceef0",
+    "original_sample_inputs": 17,
+    "input_profile": "input-design.json#add",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E003",
+    "family": "subtract",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.sub",
+    "source_signature": "torch.sub(input, other, *, alpha=1, out=None)",
+    "argument_names": [
+      "input",
+      "other"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E003/source.py",
+      "code_sha256": "88dbd6ad009a20ddf6d1c7458410d3ab303027c900fb92714784ac92605dc2a3",
+      "syntactic_calls": [
+        "torch.sub"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E003/target.py",
+      "code_sha256": "6daeb7692bb865c4214504c4bd95f770bcd07b64c40ec5a2de9cb07e2e650f40",
+      "syntactic_calls": [
+        "tf.cast",
+        "tf.subtract"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.sub.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.sub.json",
+    "upstream_worktree_sha256": "9c4e12f141cd62108a1b026fdd067f84b33303904110fec15ea4ee584cd29076",
+    "upstream_git_blob_sha256": "13a8f01ada85038d5da04bfc05ed3b0d32e4cd572c80e603af3fae728eaea6e2",
+    "original_sample_inputs": 24,
+    "input_profile": "input-design.json#subtract",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E004",
+    "family": "subtract",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.subtract",
+    "source_signature": "tf.subtract(x,y,name=None)",
+    "argument_names": [
+      "x",
+      "y"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E004/source.py",
+      "code_sha256": "f160e11c61d14d5b5dbd03392d6ecba018650c73fa44f9ad3c14616938063621",
+      "syntactic_calls": [
+        "tf.subtract"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E004/target.py",
+      "code_sha256": "e08ddb897ab4fa68f8d6187fb2fd9891a357da4eca9c8606dba8961945e76e44",
+      "syntactic_calls": [
+        "torch.sub"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.subtract.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.subtract.json",
+    "upstream_worktree_sha256": "ee7f231f7245c2f70fae4dc2200d918b4a85e49da41ef99fe8cc03deb3a24ca6",
+    "upstream_git_blob_sha256": "582c1e6c6c781653c1228bca519271869f0605f79505749db1f47398bdee98f1",
+    "original_sample_inputs": 17,
+    "input_profile": "input-design.json#subtract",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E005",
+    "family": "multiply",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.mul",
+    "source_signature": "torch.mul(input, other, *, out=None)",
+    "argument_names": [
+      "input",
+      "other"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E005/source.py",
+      "code_sha256": "a7452dae34c78cb31a2d9839f3b29b99dc116154d441a0fcecac5380007897fb",
+      "syntactic_calls": [
+        "torch.mul"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E005/target.py",
+      "code_sha256": "57e306599fce7b17c9fe1379a781bd6ddbd77a97d8423ba60781cdabbc7f84e2",
+      "syntactic_calls": [
+        "tf.cast",
+        "tf.multiply"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.mul.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.mul.json",
+    "upstream_worktree_sha256": "31b6b506d8d22e64c31d9ce8a8e6d28f0ae841a447faf52a5ef68ba580698c08",
+    "upstream_git_blob_sha256": "e185535aa4fac6156976f1c20e9be8e586841d5d6052ca5d4bcee37a419c33e1",
+    "original_sample_inputs": 19,
+    "input_profile": "input-design.json#multiply",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E006",
+    "family": "multiply",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.multiply",
+    "source_signature": "tf.multiply(x,y,name=None)",
+    "argument_names": [
+      "x",
+      "y"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E006/source.py",
+      "code_sha256": "01fc3b20d75139e2896e5108bcbca9d53350d13433b91acbb0f2998e9ba79a45",
+      "syntactic_calls": [
+        "tf.multiply"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E006/target.py",
+      "code_sha256": "5c82273e9ac97c6c9077ccd4bfb5069fa61e8be857fc2fde00283524ca15bddf",
+      "syntactic_calls": [
+        "torch.mul"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.multiply.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.multiply.json",
+    "upstream_worktree_sha256": "8c0d3ec096d994325b93d8739951131f4f13e5e36314dbdf09c43ec567c37abb",
+    "upstream_git_blob_sha256": "e2ab55c7225254b052851409b1c369137ce088fd711e7dea482c1e8e8290ade7",
+    "original_sample_inputs": 17,
+    "input_profile": "input-design.json#multiply",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E007",
+    "family": "divide",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.div",
+    "source_signature": "torch.div(input, other, *, rounding_mode=None, out=None)",
+    "argument_names": [
+      "input",
+      "other"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E007/source.py",
+      "code_sha256": "dca1c975c7e419299b578eda91dbaacd36e3c0d5cd94df7bbedef4049edf8e30",
+      "syntactic_calls": [
+        "torch.div"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E007/target.py",
+      "code_sha256": "2e10a7dcbe4939471a075d018a6c79b495bc26affd294c49eb251e7cdf1da720",
+      "syntactic_calls": [
+        "tf.cast",
+        "tf.divide"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.div.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.div.json",
+    "upstream_worktree_sha256": "bdc113c56c91aaf512e8f370080b766fc00c70d035f5c7813f3ed61511a120ae",
+    "upstream_git_blob_sha256": "cfdc577a7b6c099afa64e8b93295b0305fe2d01dbb68b005c07a6451f8c0226d",
+    "original_sample_inputs": 25,
+    "input_profile": "input-design.json#divide",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E008",
+    "family": "divide",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.divide",
+    "source_signature": "tf.divide(x,y,name=None)",
+    "argument_names": [
+      "x",
+      "y"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E008/source.py",
+      "code_sha256": "861c5f0f8c305d44b487e1ec7c2a32ea1afefdfe6d50628761dd9418fb53a064",
+      "syntactic_calls": [
+        "tf.divide"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E008/target.py",
+      "code_sha256": "a69c30dd0c09f517c22d339c93ccfcdca1f6e830e22db56f72f71b7d502adbf2",
+      "syntactic_calls": [
+        "torch.div"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.divide.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.divide.json",
+    "upstream_worktree_sha256": "d17d1ab2608085230a9c4b9313dfc565ea5f4fdca75b2fd99dc524ed6e89f26f",
+    "upstream_git_blob_sha256": "7d3749bc8ab3ba8064bdac221010f5e42958db0819146f10c2ee21e1341ba359",
+    "original_sample_inputs": 18,
+    "input_profile": "input-design.json#divide",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E009",
+    "family": "maximum",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.maximum",
+    "source_signature": "torch.maximum(input, other, *, out=None)",
+    "argument_names": [
+      "input",
+      "other"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E009/source.py",
+      "code_sha256": "44d84557ed6043954fc1c4276af693e3a3c102154fa312debbcd50a51feff28d",
+      "syntactic_calls": [
+        "torch.maximum"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E009/target.py",
+      "code_sha256": "4abec080a843ee43eac2d690651c0ad31b51c9d6b2155813e4d73053bf5c9310",
+      "syntactic_calls": [
+        "tf.cast",
+        "tf.maximum"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.maximum.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.maximum.json",
+    "upstream_worktree_sha256": "ca29cc185d1108d864e3d491a99192775d4c522d518cbcf29200f2e77605a0b7",
+    "upstream_git_blob_sha256": "d1bd9e5c5546345542d4e6370bd36289ffca6b428650b54356e2dc1c1c3fbddf",
+    "original_sample_inputs": 24,
+    "input_profile": "input-design.json#maximum",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E010",
+    "family": "maximum",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.maximum",
+    "source_signature": "tf.maximum(x,y,name=None)",
+    "argument_names": [
+      "x",
+      "y"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E010/source.py",
+      "code_sha256": "59997fb0f1a6769c70bb8dd76c8e56fa3f9532dec4b4d25441fe22f4ee1bc350",
+      "syntactic_calls": [
+        "tf.maximum"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E010/target.py",
+      "code_sha256": "b03de79dfb8286cc362a7b0101d67147048303f61b0abc36ad5fb308ae091b76",
+      "syntactic_calls": [
+        "torch.maximum"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.maximum.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.maximum.json",
+    "upstream_worktree_sha256": "890e2dbf72cfda0049f1e6dab9f84f85d9ff43d13de2adf087b22a1afdcc2576",
+    "upstream_git_blob_sha256": "376459ceca689bc9bd254c8931b0c8214ad1fb584f59ed244d1611a57786f294",
+    "original_sample_inputs": 18,
+    "input_profile": "input-design.json#maximum",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E011",
+    "family": "minimum",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.minimum",
+    "source_signature": "torch.minimum(input, other, *, out=None)",
+    "argument_names": [
+      "input",
+      "other"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E011/source.py",
+      "code_sha256": "d5e95b1393ab7b4f22c0f6e2550e5b895caeaf0a6dcf131a0a32e0552d771a2b",
+      "syntactic_calls": [
+        "torch.minimum"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E011/target.py",
+      "code_sha256": "66ee38c6300b949bebab3bfd690d8807c33ef256d5efd9db24fdfed22e2a91ed",
+      "syntactic_calls": [
+        "tf.cast",
+        "tf.minimum"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.minimum.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.minimum.json",
+    "upstream_worktree_sha256": "063716e267381731099399c1a3a62e07f78c41305419aa498c54ee375184e1d1",
+    "upstream_git_blob_sha256": "af4d67e3a2e3db00396b369973e4758bdf5db035a417ebdd80923f28f7ac6dd8",
+    "original_sample_inputs": 21,
+    "input_profile": "input-design.json#minimum",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E012",
+    "family": "minimum",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.minimum",
+    "source_signature": "tf.minimum(x,y,name=None)",
+    "argument_names": [
+      "x",
+      "y"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E012/source.py",
+      "code_sha256": "b6454810bd6e08587987d825651b146a76fa1f03fabeeedf6cdaaae6b3a7d8a7",
+      "syntactic_calls": [
+        "tf.minimum"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E012/target.py",
+      "code_sha256": "d3929c19e2db23e93dedb542bdbe5eab23b53430c1a62a9d667591f0591d7540",
+      "syntactic_calls": [
+        "torch.min"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.minimum.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.minimum.json",
+    "upstream_worktree_sha256": "2cea9f190200962d516cf1c62d68947ba4824f31fbc1fdc5eaa36e18cb1a7d5d",
+    "upstream_git_blob_sha256": "6302686101323849d1c17ac936627a0843f324a681926ad6a635f70c30a71650",
+    "original_sample_inputs": 18,
+    "input_profile": "input-design.json#minimum",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E013",
+    "family": "power",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.pow",
+    "source_signature": "torch.pow(input, exponent, *, out=None)",
+    "argument_names": [
+      "input",
+      "exponent"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E013/source.py",
+      "code_sha256": "a0f792865561d8c01ae80866a76eb59ee917f51cfb50ed7f7847504f15439996",
+      "syntactic_calls": [
+        "torch.pow"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E013/target.py",
+      "code_sha256": "c2dcdef74238b620b5adece45699d59d8837522b4728b8bfc1b1575a2046b596",
+      "syntactic_calls": [
+        "tf.cast",
+        "tf.pow"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.pow.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.pow.json",
+    "upstream_worktree_sha256": "a3b6f227b8603531305e4b2d29d1009a27d783bc2440a7307f74860f4aa434a3",
+    "upstream_git_blob_sha256": "1ef4936b12fb8361c3067d3359d679784e28680e77e98eb4dfd4090adccc1736",
+    "original_sample_inputs": 24,
+    "input_profile": "input-design.json#power",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E014",
+    "family": "power",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.math.pow",
+    "source_signature": "tf.math.pow(x,y,name=None)",
+    "argument_names": [
+      "x",
+      "y"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E014/source.py",
+      "code_sha256": "8c10b20ec2de2bd7c235c4e99332cca75359707d5d19578638ebed130f27306e",
+      "syntactic_calls": [
+        "tf.math.pow"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E014/target.py",
+      "code_sha256": "59b736e2a325afb18b19a9716d1b84498c04fe02af16a8028afdfdcfe8767b6f",
+      "syntactic_calls": [
+        "torch.pow"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.math.pow.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.math.pow.json",
+    "upstream_worktree_sha256": "053c979b5f11f90dcb65b712cf04c23168cad171472bb1b7cb1381580eac136b",
+    "upstream_git_blob_sha256": "95f85a9f27a84ee77adbb8294392980b2749bee95c6931968b2345e0c07aadd4",
+    "original_sample_inputs": 19,
+    "input_profile": "input-design.json#power",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E015",
+    "family": "atan2",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.atan2",
+    "source_signature": "torch.atan2(input, other, *, out=None)",
+    "argument_names": [
+      "input",
+      "other"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E015/source.py",
+      "code_sha256": "c646528e0b0965022ba18f31aa1ce504fd93a83e2f69572cabe82e1c2c3f99e0",
+      "syntactic_calls": [
+        "torch.atan2"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E015/target.py",
+      "code_sha256": "80867123eb05e6c9cc5fbd2b29457c8185f97ae3fe13df927169ca5b2fa9f688",
+      "syntactic_calls": [
+        "tf.atan2",
+        "tf.cast"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.atan2.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.atan2.json",
+    "upstream_worktree_sha256": "f19c890506f8cb0197fe6d75ed9d669c6df62f781eef26aa49c4ea0842b5df87",
+    "upstream_git_blob_sha256": "12db9d38e88285dda1daf406a2bcdeb63d91ca6626cb3a4eca1bae340d3a528b",
+    "original_sample_inputs": 23,
+    "input_profile": "input-design.json#atan2",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E016",
+    "family": "atan2",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.atan2",
+    "source_signature": "tf.atan2(y,x,name=None)",
+    "argument_names": [
+      "y",
+      "x"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E016/source.py",
+      "code_sha256": "5de7513d80a2c4c7e541ef7fce05d545916d010d9800befa5e681588f427e308",
+      "syntactic_calls": [
+        "tf.atan2"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E016/target.py",
+      "code_sha256": "291a875f59dd920e7aee5505d2861b615e627725052947dd8f66734f88c0a788",
+      "syntactic_calls": [
+        "torch.atan2"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.atan2.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.atan2.json",
+    "upstream_worktree_sha256": "f04cb4b9d20cec046937aaceab421ac81928199e9f86f674a463f8be37e4260c",
+    "upstream_git_blob_sha256": "376f6d45f3ae72bd6299a5f404e45fed0de13f3fb2eca2023887a8925ac8287e",
+    "original_sample_inputs": 17,
+    "input_profile": "input-design.json#atan2",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "two typed tensor arguments and broadcasting reference"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E017",
+    "family": "reshape",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.reshape",
+    "source_signature": "torch.reshape(input, shape)",
+    "argument_names": [
+      "input",
+      "shape"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E017/source.py",
+      "code_sha256": "c057977ebae7805e549dfb0b7317fa03dcb0449b2b3ec1906511575278aa8f22",
+      "syntactic_calls": [
+        "torch.reshape"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E017/target.py",
+      "code_sha256": "73e07d79441ec4e79791aba8a54768c58c4e52b0876c720d6f7c16ae6d736d4e",
+      "syntactic_calls": [
+        "tf.reshape"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.reshape.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.reshape.json",
+    "upstream_worktree_sha256": "454f9430e9d775b31a51b80c8e91d1a6f1868e224897daeb8e5af2cf627463f0",
+    "upstream_git_blob_sha256": "463c63dd3e3957b213904474c65b5bbf6e07c9fbc8b61c15d5c803073c0d09db",
+    "original_sample_inputs": 6,
+    "input_profile": "input-design.json#reshape",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "typed literal/list/None arguments; source-specific default handling"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E018",
+    "family": "reshape",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.reshape",
+    "source_signature": "tf.reshape(tensor,shape,name=None)",
+    "argument_names": [
+      "tensor",
+      "shape"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E018/source.py",
+      "code_sha256": "4af9c1618be8417f0d3e6074fb1bdd0032565b69eedf14a334388aa77a41ed77",
+      "syntactic_calls": [
+        "tf.reshape"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E018/target.py",
+      "code_sha256": "a947bb54ed99f2785b311a8085652835ce4390416232ae783b89ae431545fc02",
+      "syntactic_calls": [
+        "tensor.view"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.reshape.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.reshape.json",
+    "upstream_worktree_sha256": "29e749264a42f0f849e8923fe0ae6ca0e7ccd37e5d400a7c442b33f87968945e",
+    "upstream_git_blob_sha256": "b56c182190a563ca50e97621542ac440d54479294c62ef543e4480b779f62f2c",
+    "original_sample_inputs": 6,
+    "input_profile": "input-design.json#reshape",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "typed literal/list/None arguments; source-specific default handling",
+      "resolve Tensor instance method binding; cannot infer no target call from absence of torch.* AST names"
+    ],
+    "review_notes": [
+      "Target calls tensor.view; record torch.Tensor.view. Contiguous constructed domain does not test noncontiguous views."
+    ],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E019",
+    "family": "transpose",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.transpose",
+    "source_signature": "torch.transpose(input, dim0, dim1)",
+    "argument_names": [
+      "input",
+      "dim0",
+      "dim1"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E019/source.py",
+      "code_sha256": "8b0eb32252043918d42c601f667e6bfaa9983a2dd9815a82c4a1f25ebdd44c4c",
+      "syntactic_calls": [
+        "torch.transpose"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E019/target.py",
+      "code_sha256": "2c90b67a5e87573b61f93df26ee215744c32fb8901a0a090eb75a2c8fa65a3d7",
+      "syntactic_calls": [
+        "len",
+        "list",
+        "range",
+        "tf.transpose"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.transpose.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.transpose.json",
+    "upstream_worktree_sha256": "524aaa7b6f404eaa0a8615c73766e0a96d9cefe9a795d13d7e0baf38f6262820",
+    "upstream_git_blob_sha256": "b7e8cd775c55c138dbea45e7a703a36a243b73aa88ab277ad08b83b5dd9c9656",
+    "original_sample_inputs": 19,
+    "input_profile": "input-design.json#transpose",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "typed literal/list/None arguments; source-specific default handling"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E020",
+    "family": "transpose",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.transpose",
+    "source_signature": "tf.transpose(a,perm=None,conjugate=False,name='transpose')",
+    "argument_names": [
+      "a",
+      "perm",
+      "conjugate"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E020/source.py",
+      "code_sha256": "1b2ddcc8ddc2a5ea3191b343392b0870cddda36d417418a3136444f072f0796c",
+      "syntactic_calls": [
+        "tf.transpose"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E020/target.py",
+      "code_sha256": "e23f899d8843951f201414b7d794130583fc43ace06b2faadbdcbc92c835b387",
+      "syntactic_calls": [
+        "a.conj",
+        "a.permute"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.transpose.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.transpose.json",
+    "upstream_worktree_sha256": "ad4ff5528862c760d2d8333f9bf5e8b3324a86d3e2473a4fe575e4aabe1861ae",
+    "upstream_git_blob_sha256": "423c8405d243423a2342eeec37cf22c459d2775520605226719433a39617b7f6",
+    "original_sample_inputs": 12,
+    "input_profile": "input-design.json#transpose",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "typed literal/list/None arguments; source-specific default handling",
+      "resolve Tensor instance method binding; cannot infer no target call from absence of torch.* AST names"
+    ],
+    "review_notes": [
+      "Source exposes perm=None; include its default semantics in source qualification, do not silently restrict to explicit perm after seeing target code."
+    ],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E021",
+    "family": "squeeze",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.squeeze",
+    "source_signature": "torch.squeeze(input, dim=None, *, out=None)",
+    "argument_names": [
+      "input",
+      "dim"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E021/source.py",
+      "code_sha256": "0cc63ef036eb350b43e0e95b168d2409c320ba3951f12317aa1532eb4ab1e8fb",
+      "syntactic_calls": [
+        "torch.squeeze"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E021/target.py",
+      "code_sha256": "27f39f2706efe455b3df377e534b6499b419842b34ab6db52bcfddb7275b789d",
+      "syntactic_calls": [
+        "tf.squeeze"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.squeeze.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.squeeze.json",
+    "upstream_worktree_sha256": "567a5fa8636622be3ae6f5974c2ab72112284962e1dd75a7eae5a8178898945e",
+    "upstream_git_blob_sha256": "5a3c00a544b5cc41693049b52d9a13a788955c79bca1cd3a11fd846089b9e423",
+    "original_sample_inputs": 13,
+    "input_profile": "input-design.json#squeeze",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "typed literal/list/None arguments; source-specific default handling"
+    ],
+    "review_notes": [
+      "PT and TF explicit nonunit-axis semantics differ. Include only source-valid cases; qualify callable's None handling before registering defaults."
+    ],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E022",
+    "family": "squeeze",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.squeeze",
+    "source_signature": "tf.squeeze(input,axis=None,name=None)",
+    "argument_names": [
+      "input",
+      "axis"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E022/source.py",
+      "code_sha256": "8fdc3163ab39c38f8035b4b352e5d62248f396dfc1d20064409cf1d3294f3e36",
+      "syntactic_calls": [
+        "tf.squeeze"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E022/target.py",
+      "code_sha256": "6c1393a586b32619a224f804b04938f68e455173753490f4161e9a8c1914b897",
+      "syntactic_calls": [
+        "input.squeeze"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.squeeze.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.squeeze.json",
+    "upstream_worktree_sha256": "ab56feabe9dcd3ff19593f7e1078beaef81c90b79972627fc9637d3d2cb740f0",
+    "upstream_git_blob_sha256": "c1d4efc6ac41f88764d86ef7cd3aef8b74f27f06587f3f87947ba1067adf73db",
+    "original_sample_inputs": 9,
+    "input_profile": "input-design.json#squeeze",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "typed literal/list/None arguments; source-specific default handling",
+      "resolve Tensor instance method binding; cannot infer no target call from absence of torch.* AST names"
+    ],
+    "review_notes": [
+      "PT and TF explicit nonunit-axis semantics differ. Include only source-valid cases; qualify callable's None handling before registering defaults."
+    ],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E023",
+    "family": "expand_dims",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.unsqueeze",
+    "source_signature": "torch.unsqueeze(input, dim)",
+    "argument_names": [
+      "input",
+      "dim"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E023/source.py",
+      "code_sha256": "64e84425cc78ad5f1f7546725593b44186b0aeb5400e9b634aea1a0787fd6f13",
+      "syntactic_calls": [
+        "torch.unsqueeze"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E023/target.py",
+      "code_sha256": "972c9c392eb0edd1f49997f9d774ec7d20be1fa90eeb6a8cb2ef3e85d0c5f26c",
+      "syntactic_calls": [
+        "tf.expand_dims"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.unsqueeze.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.unsqueeze.json",
+    "upstream_worktree_sha256": "d3788a9c01b30c910cd8f6539e266e59b552bf1a9b0ce27614a6f5f4ad45c6b6",
+    "upstream_git_blob_sha256": "907e0c5e0afcc25aee16ee2653fbdf57afc3b6803e3f4b88f5f34002ce3bbd2c",
+    "original_sample_inputs": 17,
+    "input_profile": "input-design.json#expand_dims",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "typed literal/list/None arguments; source-specific default handling"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E024",
+    "family": "expand_dims",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.expand_dims",
+    "source_signature": "tf.expand_dims(input,axis,name=None)",
+    "argument_names": [
+      "input",
+      "axis"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E024/source.py",
+      "code_sha256": "ef03a9fe9ea9f31854b6223d8ad980d7bdd6cd96815a1e25f3bee27f254655a2",
+      "syntactic_calls": [
+        "tf.expand_dims"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E024/target.py",
+      "code_sha256": "4ac6be3d6763634af54e53c40d392055691b32dfdeaca1ce61fdecbecaa6f0c7",
+      "syntactic_calls": [
+        "input.unsqueeze"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.expand_dims.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.expand_dims.json",
+    "upstream_worktree_sha256": "133f7afda36acc77580a7704ea56996cbd1d8b82f81a36f0239f7779517828f1",
+    "upstream_git_blob_sha256": "22f74549243b5eea37e7aa20f72d50c680ae42f53afefdc8710cd3377020472a",
+    "original_sample_inputs": 16,
+    "input_profile": "input-design.json#expand_dims",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "typed literal/list/None arguments; source-specific default handling",
+      "resolve Tensor instance method binding; cannot infer no target call from absence of torch.* AST names"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E025",
+    "family": "concat",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.concat",
+    "source_signature": "torch.concat(tensors, dim=0, *, out=None)",
+    "argument_names": [
+      "tensors",
+      "dim"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E025/source.py",
+      "code_sha256": "6393dfbe93f1bcf50b09d02ab7f79e82d996e2efd27e110fbb6b65074470b915",
+      "syntactic_calls": [
+        "torch.concat"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E025/target.py",
+      "code_sha256": "f3cffd87d06f16d94d16aa762b5c732289ac415151a3f41df6c047f48f3007c4",
+      "syntactic_calls": [
+        "tf.concat"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.concat.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.concat.json",
+    "upstream_worktree_sha256": "07e4fcd911ffcc6128c21659bbce8fdf1a5de57699bd5c8966df5c02a9cafda2",
+    "upstream_git_blob_sha256": "774ff9ef5f89f270c42fc4d72d620c65e466fd24cb1d9bbc2aa2831f3d6ce104",
+    "original_sample_inputs": 2,
+    "input_profile": "input-design.json#concat",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "recursive tensor-list arguments; derive list-length/axis output shape"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E026",
+    "family": "concat",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.concat",
+    "source_signature": "tf.concat(values,axis,name='concat')",
+    "argument_names": [
+      "values",
+      "axis"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E026/source.py",
+      "code_sha256": "298abe4709ad91464a5ccddae5cedc0fc37d7bbbdd9dc84955c147d724e322e7",
+      "syntactic_calls": [
+        "tf.concat"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E026/target.py",
+      "code_sha256": "20c9ae3be6668885892a31d975aa05a5b1a01f16b19cb269e520847c25b13ac0",
+      "syntactic_calls": [
+        "torch.cat"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.concat.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.concat.json",
+    "upstream_worktree_sha256": "3a9c8835a7b4dc7cf40e26f7bfd2bf976b46c9638517af7cdbc654df0828a8a9",
+    "upstream_git_blob_sha256": "e1ebc7578de5bb20305767f9ec71d8d62a4248a812d470e52e410dc9b4ca6fd9",
+    "original_sample_inputs": 2,
+    "input_profile": "input-design.json#concat",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "recursive tensor-list arguments; derive list-length/axis output shape"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E027",
+    "family": "stack",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.stack",
+    "source_signature": "torch.stack(tensors, dim=0, *, out=None)",
+    "argument_names": [
+      "tensors",
+      "dim"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E027/source.py",
+      "code_sha256": "6eca81317dd4d64e80338623faa2de537dc28bc65b40edd86d4461f88ced34d0",
+      "syntactic_calls": [
+        "torch.stack"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E027/target.py",
+      "code_sha256": "7033d18b1cad0db73622b245b98dd9ad986c73cc79e1adf4671ee0e00266cac8",
+      "syntactic_calls": [
+        "tf.stack"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.stack.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.stack.json",
+    "upstream_worktree_sha256": "53866892d7a70d23cbcd956f5fee2fa951545dea71623e473d09d21879244ccc",
+    "upstream_git_blob_sha256": "258c2aac15ea4b3754c85af7ac4ef9e314b1cbf4b42d84a02cc3a9756c939351",
+    "original_sample_inputs": 5,
+    "input_profile": "input-design.json#stack",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "recursive tensor-list arguments; derive list-length/axis output shape"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E028",
+    "family": "stack",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.stack",
+    "source_signature": "tf.stack(values,axis=0,name='stack')",
+    "argument_names": [
+      "values",
+      "axis"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E028/source.py",
+      "code_sha256": "42739428971e2e021b8b9c8eea0506441eaabfa10f53aa71f7798c46b915e776",
+      "syntactic_calls": [
+        "tf.stack"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E028/target.py",
+      "code_sha256": "8f63cb33ac7dac76ef1a382a39d2e06f4727407ff6dd75f91ec63aa14b149f6e",
+      "syntactic_calls": [
+        "torch.stack"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.stack.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.stack.json",
+    "upstream_worktree_sha256": "6d7f4ef65d77d53455c666e4762f8f3eb1801a3e8c0878ed889d51960380378a",
+    "upstream_git_blob_sha256": "a48290ddeae88750786c2f06c7315fecb6d4d29fba59e8297db13327b8ec04cf",
+    "original_sample_inputs": 4,
+    "input_profile": "input-design.json#stack",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "recursive tensor-list arguments; derive list-length/axis output shape"
+    ],
+    "review_notes": [],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E029",
+    "family": "clip",
+    "direction": "pytorch-to-tensorflow",
+    "source_api": "torch.clip",
+    "source_signature": "torch.clip(input, min=None, max=None, *, out=None)",
+    "argument_names": [
+      "input",
+      "min",
+      "max"
+    ],
+    "source": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E029/source.py",
+      "code_sha256": "aae932b349ce68577483a7f2d48aaf2795e41cee28f7d5ba7f89c72f85220ec9",
+      "syntactic_calls": [
+        "torch.clip"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E029/target.py",
+      "code_sha256": "b29bb78761f0d7204d896b88be914592779f1fce8102c59fa8b616928a21238e",
+      "syntactic_calls": [
+        "tf.cast",
+        "tf.where"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/pytorch/counterparts/torch.clip.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/pytorch/counterparts/torch.clip.json",
+    "upstream_worktree_sha256": "0277fd6ca73e93f35d49bb1ae29005b7399b67d963434d233b7f838c083a4673",
+    "upstream_git_blob_sha256": "96dea2af8a37fdc6aa753ef794df87b61b9f2ebb4e74820973d10de50b48f598",
+    "original_sample_inputs": 33,
+    "input_profile": "input-design.json#clip",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "typed literal/list/None arguments; source-specific default handling"
+    ],
+    "review_notes": [
+      "Inspect actual bound argument types; scalar tensors and None are not interchangeable. Preserve original target code, including its composite operations."
+    ],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  },
+  {
+    "case_id": "E030",
+    "family": "clip",
+    "direction": "tensorflow-to-pytorch",
+    "source_api": "tf.clip_by_value",
+    "source_signature": "tf.clip_by_value(t,clip_value_min,clip_value_max,name=None)",
+    "argument_names": [
+      "t",
+      "clip_value_min",
+      "clip_value_max"
+    ],
+    "source": {
+      "framework": "tensorflow",
+      "entry": "tensorflow_call",
+      "code_path": "local-sources/E030/source.py",
+      "code_sha256": "e577caa98a44d08360320f3d1c771c9a5ed27e3268bf154f39822f705e67e7ce",
+      "syntactic_calls": [
+        "tf.clip_by_value"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "target": {
+      "framework": "pytorch",
+      "entry": "pytorch_call",
+      "code_path": "local-sources/E030/target.py",
+      "code_sha256": "e8e1a4aa9838caec2e018920f1e6c235cc8fece94d1e54fe32ce146fd21ecc81",
+      "syntactic_calls": [
+        "clip_value_max.new_ones",
+        "float",
+        "torch.clamp",
+        "torch.max"
+      ],
+      "runtime_binding_status": "not-executed"
+    },
+    "upstream_commit": "0f617e92c34d60bfdd3bc06d80c17d938879ed9c",
+    "upstream_path": "data/working_dir/rq1/dllens/tensorflow/counterparts/tf.clip_by_value.json",
+    "upstream_url": "https://github.com/maybeLee/DLLens/blob/0f617e92c34d60bfdd3bc06d80c17d938879ed9c/data/working_dir/rq1/dllens/tensorflow/counterparts/tf.clip_by_value.json",
+    "upstream_worktree_sha256": "7c4134aa722943c8697c5aa57699e9ae92bca4fb62c64af026ac24f30aef5a6f",
+    "upstream_git_blob_sha256": "559b21a7492dd7931a96131c1afbddc592ff267bad5512bdb2153a566702209f",
+    "original_sample_inputs": 17,
+    "input_profile": "input-design.json#clip",
+    "required_adaptations": [
+      "two-framework isolated execution with preserved argument names",
+      "source reference, shaped observation and actual target-call logging",
+      "typed literal/list/None arguments; source-specific default handling",
+      "resolve Tensor instance method binding; cannot infer no target call from absence of torch.* AST names"
+    ],
+    "review_notes": [
+      "Inspect actual bound argument types; scalar tensors and None are not interchangeable. Preserve original target code, including its composite operations."
+    ],
+    "selection_reason": "one canonical public counterpart per family and direction; no runtime outcome selection",
+    "status": "selected-source-validation-pending",
+    "execution_count": 0,
+    "exposure": "new-to-2026-09-17-campaign; code-reviewed expansion-development; not unseen holdout",
+    "prior_research_exposure": "not audited; some families occurred in older development work",
+    "formal_gold": false
+  }
+]

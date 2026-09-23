@@ -1,0 +1,1592 @@
+[
+  {
+    "case_id": "C001",
+    "partition": "controls",
+    "family": "absolute-value",
+    "source_api": "torch.Tensor.abs",
+    "target_api": "tf.abs",
+    "pairs": 6,
+    "source_reference_rechecks": 6,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "C002",
+    "partition": "controls",
+    "family": "absolute-value",
+    "source_api": "torch.Tensor.abs",
+    "target_api": "tf.abs",
+    "pairs": 6,
+    "source_reference_rechecks": 6,
+    "stable": true,
+    "failing_input_indices": [
+      0,
+      1
+    ],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "refuted"
+    }
+  },
+  {
+    "case_id": "C003",
+    "partition": "controls",
+    "family": "absolute-value",
+    "source_api": "torch.Tensor.abs",
+    "target_api": "tf.abs",
+    "pairs": 6,
+    "source_reference_rechecks": 6,
+    "stable": true,
+    "failing_input_indices": [
+      0,
+      1
+    ],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "refuted"
+    }
+  },
+  {
+    "case_id": "C004",
+    "partition": "controls",
+    "family": "absolute-value",
+    "source_api": "torch.Tensor.abs",
+    "target_api": "tf.abs",
+    "pairs": 6,
+    "source_reference_rechecks": 6,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "not-observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "undetermined"
+    }
+  },
+  {
+    "case_id": "C005",
+    "partition": "controls",
+    "family": "absolute-value",
+    "source_api": "torch.Tensor.abs",
+    "target_api": "tf.abs",
+    "pairs": 6,
+    "source_reference_rechecks": 0,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "invalid-source-test",
+      "target-binding": "invalid-source-test",
+      "dllens-port": "invalid-source-test",
+      "cosmit-registered-clauses": "invalid-source-test"
+    }
+  },
+  {
+    "case_id": "C006",
+    "partition": "controls",
+    "family": "absolute-value",
+    "source_api": "tf.abs",
+    "target_api": "torch.abs",
+    "pairs": 6,
+    "source_reference_rechecks": 6,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "C007",
+    "partition": "controls",
+    "family": "absolute-value",
+    "source_api": "tf.abs",
+    "target_api": "torch.abs",
+    "pairs": 6,
+    "source_reference_rechecks": 6,
+    "stable": true,
+    "failing_input_indices": [
+      0,
+      1
+    ],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "refuted"
+    }
+  },
+  {
+    "case_id": "C008",
+    "partition": "controls",
+    "family": "absolute-value",
+    "source_api": "tf.abs",
+    "target_api": "torch.abs",
+    "pairs": 6,
+    "source_reference_rechecks": 6,
+    "stable": true,
+    "failing_input_indices": [
+      0,
+      1
+    ],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "refuted"
+    }
+  },
+  {
+    "case_id": "C009",
+    "partition": "controls",
+    "family": "absolute-value",
+    "source_api": "tf.abs",
+    "target_api": "torch.abs",
+    "pairs": 6,
+    "source_reference_rechecks": 6,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "not-observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "undetermined"
+    }
+  },
+  {
+    "case_id": "C010",
+    "partition": "controls",
+    "family": "absolute-value",
+    "source_api": "tf.abs",
+    "target_api": "torch.abs",
+    "pairs": 6,
+    "source_reference_rechecks": 0,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "invalid-source-test",
+      "target-binding": "invalid-source-test",
+      "dllens-port": "invalid-source-test",
+      "cosmit-registered-clauses": "invalid-source-test"
+    }
+  },
+  {
+    "case_id": "D0001",
+    "partition": "discovery",
+    "family": "abs",
+    "source_api": "torch.abs",
+    "target_api": "tf.abs",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0002",
+    "partition": "discovery",
+    "family": "acos",
+    "source_api": "torch.acos",
+    "target_api": "tf.acos",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0003",
+    "partition": "discovery",
+    "family": "acos",
+    "source_api": "torch.arccos",
+    "target_api": "tf.acos",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0004",
+    "partition": "discovery",
+    "family": "asin",
+    "source_api": "torch.arcsin",
+    "target_api": "tf.asin",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0005",
+    "partition": "discovery",
+    "family": "atan",
+    "source_api": "torch.arctan",
+    "target_api": "tf.math.atan",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0006",
+    "partition": "discovery",
+    "family": "asin",
+    "source_api": "torch.asin",
+    "target_api": "tf.asin",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0007",
+    "partition": "discovery",
+    "family": "atan",
+    "source_api": "torch.atan",
+    "target_api": "tf.math.atan",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0008",
+    "partition": "discovery",
+    "family": "ceil",
+    "source_api": "torch.ceil",
+    "target_api": "tf.math.ceil",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0009",
+    "partition": "discovery",
+    "family": "cos",
+    "source_api": "torch.cos",
+    "target_api": "tf.cos",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0010",
+    "partition": "discovery",
+    "family": "cosh",
+    "source_api": "torch.cosh",
+    "target_api": "tf.cosh",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0011",
+    "partition": "discovery",
+    "family": "exp",
+    "source_api": "torch.exp",
+    "target_api": "tf.exp",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0012",
+    "partition": "discovery",
+    "family": "expm1",
+    "source_api": "torch.expm1",
+    "target_api": "tf.exp",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0013",
+    "partition": "discovery",
+    "family": "floor",
+    "source_api": "torch.floor",
+    "target_api": "tf.floor",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0014",
+    "partition": "discovery",
+    "family": "log",
+    "source_api": "torch.log",
+    "target_api": "tf.math.log",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0015",
+    "partition": "discovery",
+    "family": "log1p",
+    "source_api": "torch.log1p",
+    "target_api": "tf.math.log1p",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0016",
+    "partition": "discovery",
+    "family": "neg",
+    "source_api": "torch.neg",
+    "target_api": "tf.negative",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0017",
+    "partition": "discovery",
+    "family": "neg",
+    "source_api": "torch.negative",
+    "target_api": "tf.negative",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0018",
+    "partition": "discovery",
+    "family": "reciprocal",
+    "source_api": "torch.reciprocal",
+    "target_api": "tf.math.reciprocal",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0019",
+    "partition": "discovery",
+    "family": "round",
+    "source_api": "torch.round",
+    "target_api": "tf.round",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0020",
+    "partition": "discovery",
+    "family": "sigmoid",
+    "source_api": "torch.sigmoid",
+    "target_api": "tf.sigmoid",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0021",
+    "partition": "discovery",
+    "family": "sign",
+    "source_api": "torch.sign",
+    "target_api": "tf.sign",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0022",
+    "partition": "discovery",
+    "family": "sin",
+    "source_api": "torch.sin",
+    "target_api": "tf.sin",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0023",
+    "partition": "discovery",
+    "family": "sinh",
+    "source_api": "torch.sinh",
+    "target_api": "tf.sinh",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0024",
+    "partition": "discovery",
+    "family": "sqrt",
+    "source_api": "torch.sqrt",
+    "target_api": "tf.sqrt",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0025",
+    "partition": "discovery",
+    "family": "square",
+    "source_api": "torch.square",
+    "target_api": "tf.square",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0026",
+    "partition": "discovery",
+    "family": "tan",
+    "source_api": "torch.tan",
+    "target_api": "tf.tan",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0027",
+    "partition": "discovery",
+    "family": "tanh",
+    "source_api": "torch.tanh",
+    "target_api": "tf.tanh",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0028",
+    "partition": "discovery",
+    "family": "trunc",
+    "source_api": "torch.trunc",
+    "target_api": "tf.where",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [
+      0,
+      2,
+      3,
+      8,
+      9,
+      10,
+      11,
+      16,
+      17,
+      18,
+      19,
+      24,
+      25,
+      26,
+      27,
+      32,
+      34,
+      35,
+      40,
+      41,
+      42,
+      43,
+      48,
+      49,
+      50,
+      51,
+      56,
+      57,
+      58,
+      59
+    ],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "difference-observed",
+      "cosmit-registered-clauses": "refuted"
+    }
+  },
+  {
+    "case_id": "D0029",
+    "partition": "discovery",
+    "family": "abs",
+    "source_api": "tf.abs",
+    "target_api": "torch.abs",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0030",
+    "partition": "discovery",
+    "family": "acos",
+    "source_api": "tf.acos",
+    "target_api": "torch.acos",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0031",
+    "partition": "discovery",
+    "family": "asin",
+    "source_api": "tf.asin",
+    "target_api": "torch.asin",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0032",
+    "partition": "discovery",
+    "family": "atan",
+    "source_api": "tf.atan",
+    "target_api": "torch.atan",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0033",
+    "partition": "discovery",
+    "family": "cos",
+    "source_api": "tf.cos",
+    "target_api": "torch.cos",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0034",
+    "partition": "discovery",
+    "family": "cosh",
+    "source_api": "tf.cosh",
+    "target_api": "torch.cosh",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0035",
+    "partition": "discovery",
+    "family": "exp",
+    "source_api": "tf.exp",
+    "target_api": "torch.exp",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0036",
+    "partition": "discovery",
+    "family": "floor",
+    "source_api": "tf.floor",
+    "target_api": "torch.floor",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0037",
+    "partition": "discovery",
+    "family": "abs",
+    "source_api": "tf.math.abs",
+    "target_api": "torch.abs",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0038",
+    "partition": "discovery",
+    "family": "acos",
+    "source_api": "tf.math.acos",
+    "target_api": "torch.acos",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0039",
+    "partition": "discovery",
+    "family": "asin",
+    "source_api": "tf.math.asin",
+    "target_api": "torch.asin",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0040",
+    "partition": "discovery",
+    "family": "atan",
+    "source_api": "tf.math.atan",
+    "target_api": "torch.atan",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0041",
+    "partition": "discovery",
+    "family": "ceil",
+    "source_api": "tf.math.ceil",
+    "target_api": "torch.ceil",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0042",
+    "partition": "discovery",
+    "family": "cos",
+    "source_api": "tf.math.cos",
+    "target_api": "torch.cos",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0043",
+    "partition": "discovery",
+    "family": "cosh",
+    "source_api": "tf.math.cosh",
+    "target_api": "torch.cosh",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0044",
+    "partition": "discovery",
+    "family": "exp",
+    "source_api": "tf.math.exp",
+    "target_api": "torch.exp",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0045",
+    "partition": "discovery",
+    "family": "expm1",
+    "source_api": "tf.math.expm1",
+    "target_api": "torch.expm1",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0046",
+    "partition": "discovery",
+    "family": "floor",
+    "source_api": "tf.math.floor",
+    "target_api": "torch.floor",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0047",
+    "partition": "discovery",
+    "family": "log",
+    "source_api": "tf.math.log",
+    "target_api": "torch.log",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0048",
+    "partition": "discovery",
+    "family": "log1p",
+    "source_api": "tf.math.log1p",
+    "target_api": "torch.log1p",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0049",
+    "partition": "discovery",
+    "family": "neg",
+    "source_api": "tf.math.negative",
+    "target_api": "torch.neg",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0050",
+    "partition": "discovery",
+    "family": "reciprocal",
+    "source_api": "tf.math.reciprocal",
+    "target_api": "torch.Tensor.__rtruediv__",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0051",
+    "partition": "discovery",
+    "family": "round",
+    "source_api": "tf.math.round",
+    "target_api": "torch.round",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0052",
+    "partition": "discovery",
+    "family": "sigmoid",
+    "source_api": "tf.math.sigmoid",
+    "target_api": "torch.sigmoid",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0053",
+    "partition": "discovery",
+    "family": "sign",
+    "source_api": "tf.math.sign",
+    "target_api": "torch.sign",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0054",
+    "partition": "discovery",
+    "family": "sin",
+    "source_api": "tf.math.sin",
+    "target_api": "torch.sin",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0055",
+    "partition": "discovery",
+    "family": "sinh",
+    "source_api": "tf.math.sinh",
+    "target_api": "torch.sinh",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0056",
+    "partition": "discovery",
+    "family": "sqrt",
+    "source_api": "tf.math.sqrt",
+    "target_api": "torch.sqrt",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0057",
+    "partition": "discovery",
+    "family": "square",
+    "source_api": "tf.math.square",
+    "target_api": "torch.square",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0058",
+    "partition": "discovery",
+    "family": "tan",
+    "source_api": "tf.math.tan",
+    "target_api": "torch.tan",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0059",
+    "partition": "discovery",
+    "family": "tanh",
+    "source_api": "tf.math.tanh",
+    "target_api": "torch.tanh",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0060",
+    "partition": "discovery",
+    "family": "neg",
+    "source_api": "tf.negative",
+    "target_api": "torch.negative",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0061",
+    "partition": "discovery",
+    "family": "round",
+    "source_api": "tf.round",
+    "target_api": "torch.round",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0062",
+    "partition": "discovery",
+    "family": "sigmoid",
+    "source_api": "tf.sigmoid",
+    "target_api": "torch.sigmoid",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0063",
+    "partition": "discovery",
+    "family": "sign",
+    "source_api": "tf.sign",
+    "target_api": "torch.sign",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0064",
+    "partition": "discovery",
+    "family": "sin",
+    "source_api": "tf.sin",
+    "target_api": "torch.sin",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0065",
+    "partition": "discovery",
+    "family": "sinh",
+    "source_api": "tf.sinh",
+    "target_api": "torch.sinh",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0066",
+    "partition": "discovery",
+    "family": "sqrt",
+    "source_api": "tf.sqrt",
+    "target_api": "torch.sqrt",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0067",
+    "partition": "discovery",
+    "family": "square",
+    "source_api": "tf.square",
+    "target_api": "torch.square",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0068",
+    "partition": "discovery",
+    "family": "tan",
+    "source_api": "tf.tan",
+    "target_api": "torch.tan",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "D0069",
+    "partition": "discovery",
+    "family": "tanh",
+    "source_api": "tf.tanh",
+    "target_api": "torch.tanh",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "H001",
+    "partition": "unseen",
+    "family": "prod",
+    "source_api": "torch.prod",
+    "target_api": "tf.reduce_prod",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "H002",
+    "partition": "unseen",
+    "family": "matmul",
+    "source_api": "torch.matmul",
+    "target_api": "tf.matmul",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "H003",
+    "partition": "unseen",
+    "family": "det",
+    "source_api": "torch.det",
+    "target_api": "tf.linalg.det",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "H004",
+    "partition": "unseen",
+    "family": "trace",
+    "source_api": "torch.trace",
+    "target_api": "tf.linalg.trace",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "H005",
+    "partition": "unseen",
+    "family": "cumsum",
+    "source_api": "torch.cumsum",
+    "target_api": "tf.cumsum",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "H006",
+    "partition": "unseen",
+    "family": "cumprod",
+    "source_api": "torch.cumprod",
+    "target_api": "tf.math.cumprod",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "H007",
+    "partition": "unseen",
+    "family": "prod",
+    "source_api": "tf.reduce_prod",
+    "target_api": "torch.prod",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "H008",
+    "partition": "unseen",
+    "family": "matmul",
+    "source_api": "tf.matmul",
+    "target_api": "torch.matmul",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "H009",
+    "partition": "unseen",
+    "family": "det",
+    "source_api": "tf.linalg.det",
+    "target_api": "torch.linalg.det",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "H010",
+    "partition": "unseen",
+    "family": "trace",
+    "source_api": "tf.linalg.trace",
+    "target_api": "torch.diagonal",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "H011",
+    "partition": "unseen",
+    "family": "cumsum",
+    "source_api": "tf.cumsum",
+    "target_api": "torch.cumsum",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  },
+  {
+    "case_id": "H012",
+    "partition": "unseen",
+    "family": "cumprod",
+    "source_api": "tf.math.cumprod",
+    "target_api": "torch.cumprod",
+    "pairs": 192,
+    "source_reference_rechecks": 192,
+    "stable": true,
+    "failing_input_indices": [],
+    "recorded_verdicts": {
+      "self-test": "passed",
+      "target-binding": "observed",
+      "dllens-port": "no-difference-on-tested-inputs",
+      "cosmit-registered-clauses": "supported-on-tested-inputs"
+    }
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "case_id": "D0028",
+  "audit": {
+    "pairs": 192,
+    "historical_observations_match": true,
+    "violation_pairs": 90,
+    "distinct_failing_inputs": 30,
+    "independent_faults": 1,
+    "code_hashes_match": true
+  },
+  "scope": "external counterpart, not complete migrated test",
+  "cause": "negative integer input takes floor(x)+1 branch",
+  "example": {
+    "dtype": "float32",
+    "input": -8,
+    "source": -8,
+    "target": -7
+  },
+  "replay_evidence_directory": "artifacts/counterexample-audit-20260918/external-and-legacy-final",
+  "replay_manifest_sha256": "0f06af95f46c434ba932286d532c3df7c241ee624c18027dcc7d5397ba76eea3",
+  "counting_unit": "1 erroneous counterpart; 30 distinct failing registered inputs; 90 repeated failing pairs"
+}
