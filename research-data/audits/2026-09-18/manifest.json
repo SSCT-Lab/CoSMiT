@@ -1,0 +1,16 @@
+{
+  "scope": "Completed 2026-09-17 research-data experiment only. Prior pilot dataset excluded.",
+  "full_evidence_directory": "artifacts/research-data-audit-20260918-final",
+  "full_evidence_manifest_sha256": "e5e7fd7b9e5431c44483f3eb5d6def1a2d619c79d3bf3dc122255533beb624b9",
+  "audit_script": "benchmark/baselines/audit_recorded_counterexamples.py",
+  "audit_script_sha256": "5b54167dae5312467b08fec94fea05ab1a7602dc5ed60e1a57adf9fb6287fd0e",
+  "frozen_input_manifest_sha256": "ac4569d9a086620e586b15fee20f2cf951f095774f832cf6cd2ff63bbfef7638",
+  "limitations": [
+    "Archive clause recalculation reuses registered scalar reference routines; not independent human gold.",
+    "Only existing controls replayed in this continuation; D0028 replay evidence retained from earlier audit.",
+    "Other 80 public counterparts checked against archive observations, not dynamically rerun.",
+    "Supplemental model/ONNX outputs audited as recorded, not dynamically rerun.",
+    "Model prose omitted from export; negative decisions do not supply executable witnesses.",
+    "Original frozen text files match hashes only after CRLF to LF normalization; gzip files match byte hashes."
+  ]
+}

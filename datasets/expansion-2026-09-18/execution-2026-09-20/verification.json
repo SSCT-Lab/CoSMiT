@@ -1,0 +1,25 @@
+{
+  "integrity": "passed",
+  "job_identity_and_source_gate": "passed",
+  "repeat_stability_and_uninstrumented_replay": "passed",
+  "input_outcomes_recomputed": "passed",
+  "cases": 30,
+  "qualified_inputs": 1904,
+  "witness_inputs": 48,
+  "dense_dllens_on_behavior_witnesses": {
+    "True": 16
+  },
+  "versions": {
+    "pytorch": {
+      "version": "2.9.1+cpu",
+      "numpy": "2.4.6",
+      "python": "3.11.16 | packaged by Anaconda, Inc. | (main, Aug 27 2026, 14:36:16) [MSC v.1942 64 bit (AMD64)]"
+    },
+    "tensorflow": {
+      "version": "2.20.0",
+      "numpy": "2.4.6",
+      "python": "3.11.16 | packaged by Anaconda, Inc. | (main, Aug 27 2026, 14:36:16) [MSC v.1942 64 bit (AMD64)]"
+    }
+  },
+  "independent_human_gold": false
+}

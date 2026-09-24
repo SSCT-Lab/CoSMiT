@@ -1,0 +1,886 @@
+{
+  "add": {
+    "family": "add",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "broadcasted scalar a+b",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch",
+      "broadcast-compatible input shapes; values in [-4,4]"
+    ],
+    "structural_strata": [
+      "same shape [2,3] with asymmetric values",
+      "scalar [] with tensor [2,3]",
+      "[2,1] with [1,3]",
+      "[1,2,1] with [3,1,4]"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "subtract": {
+    "family": "subtract",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "broadcasted scalar a-b",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch",
+      "broadcast-compatible input shapes; values in [-4,4]"
+    ],
+    "structural_strata": [
+      "same shape [2,3] with asymmetric values",
+      "scalar [] with tensor [2,3]",
+      "[2,1] with [1,3]",
+      "[1,2,1] with [3,1,4]"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "multiply": {
+    "family": "multiply",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "broadcasted scalar a*b",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch",
+      "broadcast-compatible input shapes; values in [-4,4]"
+    ],
+    "structural_strata": [
+      "same shape [2,3] with asymmetric values",
+      "scalar [] with tensor [2,3]",
+      "[2,1] with [1,3]",
+      "[1,2,1] with [3,1,4]"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "divide": {
+    "family": "divide",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "broadcasted scalar a/b",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch",
+      "broadcast-compatible input shapes; values in [-4,4]",
+      "abs(denominator) >= 0.25; retain both signs"
+    ],
+    "structural_strata": [
+      "same shape [2,3] with asymmetric values",
+      "scalar [] with tensor [2,3]",
+      "[2,1] with [1,3]",
+      "[1,2,1] with [3,1,4]"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "maximum": {
+    "family": "maximum",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "broadcasted scalar max(a,b)",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch",
+      "broadcast-compatible input shapes; values in [-4,4]"
+    ],
+    "structural_strata": [
+      "same shape [2,3] with asymmetric values",
+      "scalar [] with tensor [2,3]",
+      "[2,1] with [1,3]",
+      "[1,2,1] with [3,1,4]"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "minimum": {
+    "family": "minimum",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "broadcasted scalar min(a,b)",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch",
+      "broadcast-compatible input shapes; values in [-4,4]"
+    ],
+    "structural_strata": [
+      "same shape [2,3] with asymmetric values",
+      "scalar [] with tensor [2,3]",
+      "[2,1] with [1,3]",
+      "[1,2,1] with [3,1,4]"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "power": {
+    "family": "power",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "broadcasted scalar math.pow(a,b)",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch",
+      "broadcast-compatible input shapes; values in [-4,4]",
+      "base in [0.25,4], exponent in [-3,3]; positive base only for this batch"
+    ],
+    "structural_strata": [
+      "same shape [2,3] with asymmetric values",
+      "scalar [] with tensor [2,3]",
+      "[2,1] with [1,3]",
+      "[1,2,1] with [3,1,4]"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "atan2": {
+    "family": "atan2",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "broadcasted scalar math.atan2(first,second)",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch",
+      "broadcast-compatible input shapes; values in [-4,4]",
+      "exclude simultaneous zero operands and sign-of-zero assertions in this first domain"
+    ],
+    "structural_strata": [
+      "same shape [2,3] with asymmetric values",
+      "scalar [] with tensor [2,3]",
+      "[2,1] with [1,3]",
+      "[1,2,1] with [3,1,4]"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "reshape": {
+    "family": "reshape",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "preserve row-major flattened sequence; derive shape from element count and at most one -1",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch",
+      "contiguous constructed inputs only; no alias/view/storage-preservation claim"
+    ],
+    "structural_strata": [
+      "[2,3] to [3,2]",
+      "[2,3,4] to [4,6]",
+      "[2,3] to [-1]",
+      "[2,3,4] to [2,-1,2]"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "transpose": {
+    "family": "transpose",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "derive output shape and index permutation from source dim0/dim1 or perm, including source defaults",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch"
+    ],
+    "structural_strata": [
+      "non-square rank-2 axis swap",
+      "rank-3 nontrivial permutation/swap",
+      "equivalent negative axes where source allows",
+      "PT same-axis identity; TF perm=None default reversal"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "squeeze": {
+    "family": "squeeze",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "remove axes allowed by SOURCE signature; PT nonunit explicit dim is identity; TF explicit axes must be unit",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch",
+      "do not impose a common PT/TF explicit-axis domain; source None handling requires qualification"
+    ],
+    "structural_strata": [
+      "leading unit axis [1,2,3]",
+      "interior unit axis [2,1,3]",
+      "multiple unit axes [1,2,1,3]",
+      "PT explicit nonunit axis identity; TF legal unit-axis list/all-axis default"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "expand_dims": {
+    "family": "expand_dims",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "insert one unit axis; preserve original index order",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch"
+    ],
+    "structural_strata": [
+      "rank-0 scalar insertion",
+      "rank-1 beginning/end insertion",
+      "rank-2 interior insertion",
+      "rank-3 negative legal insertion axis"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "concat": {
+    "family": "concat",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "sum sizes on selected axis; concatenate index ranges in list order",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch"
+    ],
+    "structural_strata": [
+      "two [1,3] tensors axis 0",
+      "[2,1] and [2,2] axis 1",
+      "three rank-3 tensors with different concatenated lengths",
+      "equivalent negative axis with unequal concatenated lengths"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "stack": {
+    "family": "stack",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "insert list-length axis; map each output slice to corresponding input tensor",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch"
+    ],
+    "structural_strata": [
+      "two rank-0 tensors",
+      "two [3] tensors axis 0",
+      "three [2,3] tensors interior axis",
+      "three rank-3 tensors negative legal axis"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  },
+  "clip": {
+    "family": "clip",
+    "status": "proposed-not-executed-not-source-qualified",
+    "reference_design": "scalar min(max(x,lower),upper); source-specific optional-bound rules checked separately",
+    "constraints": [
+      "CPU, dense finite real tensors; input rank <= 3, output rank <= 4; <= 256 elements per tensor",
+      "same dtype across tensor operands; float32 and float64 evaluated separately",
+      "source-valid inputs only; source runtime/signature errors retained separately",
+      "no NaN/Inf, complex, sparse, gradients, devices or implicit mixed-dtype promotion in this batch",
+      "both finite bounds ordered when present; optional None tested only if source accepts it; no both-None inputs"
+    ],
+    "structural_strata": [
+      "scalar input and scalar tensor bounds",
+      "[2,3] with ordered scalar tensor bounds",
+      "[1,2,3] with equal scalar tensor bounds",
+      "PT one-sided None bound; TF ordered scalar bounds at input endpoints"
+    ],
+    "value_patterns_per_stratum": [
+      "zero/equality landmarks within domain",
+      "positive landmarks",
+      "negative or lower-domain landmarks",
+      "asymmetric boundary-adjacent landmarks",
+      "seeded finite pattern A",
+      "seeded finite pattern B",
+      "seeded finite pattern C",
+      "seeded finite pattern D"
+    ],
+    "planned_inputs_per_candidate": 64,
+    "allocation": "2 dtypes x 4 source-specific structural strata x 8 value patterns",
+    "deduplication": "require 64 distinct serialized inputs; deterministic refill within same source-valid stratum if landmarks coincide",
+    "repetitions": 3,
+    "seed": 20260918,
+    "clauses": [
+      "source-reference-validity",
+      "value",
+      "operation-derived-shape",
+      "dtype",
+      "actual-target-operation-binding"
+    ],
+    "tolerance_proposal": {
+      "float32": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      },
+      "float64": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      }
+    },
+    "exact_value_families": [
+      "reshape",
+      "transpose",
+      "squeeze",
+      "expand_dims",
+      "concat",
+      "stack"
+    ],
+    "freeze_gate": "verify source specification and source-only numerical reference before finalizing inputs/tolerance; never tune to target outcomes"
+  }
+}
