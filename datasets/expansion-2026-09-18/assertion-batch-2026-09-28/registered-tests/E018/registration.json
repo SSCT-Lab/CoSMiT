@@ -1,0 +1,26 @@
+{
+  "case_id": "E018",
+  "family": "reshape",
+  "source_framework": "tensorflow",
+  "scope": "shape-only",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/tf_reshape.py",
+    "class": "ReshapeTest",
+    "method": "_testReshape",
+    "start": 33,
+    "end": 46,
+    "text": "def _testReshape(self, x, y, use_gpu=False):\n    with self.cached_session(use_gpu=use_gpu):\n      np_ans = x.reshape(y)\n      tf_ans = array_ops.reshape(x, y)\n      out = self.evaluate(tf_ans)\n      self.assertEqual(tf_ans.get_shape(), out.shape)\n      self.assertShapeEqual(np_ans, tf_ans)\n\n      # Repeat with an int64 shape tensor.\n      y64 = constant_op.constant(y, dtype=dtypes.int64)\n      tf_ans = array_ops.reshape(x, y64)\n      out = self.evaluate(tf_ans)\n      self.assertEqual(tf_ans.get_shape(), out.shape)\n      self.assertShapeEqual(np_ans, tf_ans)",
+    "sha256": "009e5b775a2dfc99e813377cdae9a08ef52f2573ca8150846138e4138c20034c"
+  },
+  "assertion_expression": "self.assertEqual(expected.shape, actual.shape)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [
+    "metadata/evaluation consistency assertion and graph/GPU variants"
+  ],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}

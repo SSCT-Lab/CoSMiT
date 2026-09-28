@@ -1,0 +1,776 @@
+[
+  {
+    "case_id": "E001",
+    "family": "add",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_binary.py",
+      "class": "TestBinaryUfuncs",
+      "method": "assertEqualHelper",
+      "start": 86,
+      "end": 118,
+      "text": "def assertEqualHelper(\n        self, actual, expected, msg, *, dtype, exact_dtype=True, **kwargs\n    ):\n        assert isinstance(actual, torch.Tensor)\n\n        # Some NumPy functions return scalars, not arrays\n        if isinstance(expected, Number):\n            self.assertEqual(actual.item(), expected, msg=msg, **kwargs)\n        elif isinstance(expected, np.ndarray):\n            # Handles exact dtype comparisons between arrays and tensors\n            if exact_dtype:\n                # Allows array dtype to be float32 when comparing with bfloat16 tensors\n                #   since NumPy doesn't support the bfloat16 dtype\n                # Also ops like scipy.special.erf, scipy.special.erfc, etc, promote float16\n                # to float32\n                if expected.dtype == np.float32:\n                    assert actual.dtype in (\n                        torch.float16,\n                        torch.bfloat16,\n                        torch.float32,\n                    )\n                else:\n                    assert expected.dtype == torch_to_numpy_dtype_dict[actual.dtype]\n\n            self.assertEqual(\n                actual,\n                torch.from_numpy(expected).to(actual.dtype),\n                msg,\n                exact_device=False,\n                **kwargs,\n            )\n        else:\n            self.assertEqual(actual, expected, msg, exact_device=False, **kwargs)",
+      "sha256": "30e2d56b4c0c96bd4bae3f39d93fc094eaaa6989e2bc513de4591fd7e24be46d"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "full _test_reference_numerics input generator, promotion and scalar branches"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E002",
+    "family": "add",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_binary.py",
+      "class": "BinaryOpTest",
+      "method": "_compareCpu",
+      "start": 79,
+      "end": 106,
+      "text": "def _compareCpu(self, x, y, np_func, tf_func, also_compare_variables=False):\n    np_ans = np_func(x, y)\n    with test_util.force_cpu():\n      inx = ops.convert_to_tensor(x)\n      iny = ops.convert_to_tensor(y)\n      out = tf_func(inx, iny)\n      tf_cpu = self.evaluate(out)\n      # Test that the op takes precedence over numpy operators.\n      np_left = self.evaluate(tf_func(x, iny))\n      np_right = self.evaluate(tf_func(inx, y))\n\n      if also_compare_variables:\n        var_x = variables.Variable(x)\n        var_y = variables.Variable(y)\n        self.evaluate(variables.global_variables_initializer())\n        print(type(x), type(y), type(var_x), type(var_y))\n        print(type(tf_func(x, var_y)), type(tf_func(var_x, y)))\n        np_var_left = self.evaluate(tf_func(x, var_y))\n        np_var_right = self.evaluate(tf_func(var_x, y))\n\n    if np_ans.dtype != np.object_:\n      self.assertAllClose(np_ans, tf_cpu)\n      self.assertAllClose(np_ans, np_left)\n      self.assertAllClose(np_ans, np_right)\n      if also_compare_variables:\n        self.assertAllClose(np_ans, np_var_left)\n        self.assertAllClose(np_ans, np_var_right)\n    self.assertShapeEqual(np_ans, out)",
+      "sha256": "50939e22a70a2964536ecd0150dd06db82d21296c4c9ac6811c28c4a7a7c1828"
+    },
+    "assertion_expression": "self.assertAllClose(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "NumPy/tensor mixed operands, Variable and gradient paths"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E003",
+    "family": "subtract",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_binary.py",
+      "class": "TestBinaryUfuncs",
+      "method": "assertEqualHelper",
+      "start": 86,
+      "end": 118,
+      "text": "def assertEqualHelper(\n        self, actual, expected, msg, *, dtype, exact_dtype=True, **kwargs\n    ):\n        assert isinstance(actual, torch.Tensor)\n\n        # Some NumPy functions return scalars, not arrays\n        if isinstance(expected, Number):\n            self.assertEqual(actual.item(), expected, msg=msg, **kwargs)\n        elif isinstance(expected, np.ndarray):\n            # Handles exact dtype comparisons between arrays and tensors\n            if exact_dtype:\n                # Allows array dtype to be float32 when comparing with bfloat16 tensors\n                #   since NumPy doesn't support the bfloat16 dtype\n                # Also ops like scipy.special.erf, scipy.special.erfc, etc, promote float16\n                # to float32\n                if expected.dtype == np.float32:\n                    assert actual.dtype in (\n                        torch.float16,\n                        torch.bfloat16,\n                        torch.float32,\n                    )\n                else:\n                    assert expected.dtype == torch_to_numpy_dtype_dict[actual.dtype]\n\n            self.assertEqual(\n                actual,\n                torch.from_numpy(expected).to(actual.dtype),\n                msg,\n                exact_device=False,\n                **kwargs,\n            )\n        else:\n            self.assertEqual(actual, expected, msg, exact_device=False, **kwargs)",
+      "sha256": "30e2d56b4c0c96bd4bae3f39d93fc094eaaa6989e2bc513de4591fd7e24be46d"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "full _test_reference_numerics input generator, promotion and scalar branches"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E004",
+    "family": "subtract",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_binary.py",
+      "class": "BinaryOpTest",
+      "method": "_compareCpu",
+      "start": 79,
+      "end": 106,
+      "text": "def _compareCpu(self, x, y, np_func, tf_func, also_compare_variables=False):\n    np_ans = np_func(x, y)\n    with test_util.force_cpu():\n      inx = ops.convert_to_tensor(x)\n      iny = ops.convert_to_tensor(y)\n      out = tf_func(inx, iny)\n      tf_cpu = self.evaluate(out)\n      # Test that the op takes precedence over numpy operators.\n      np_left = self.evaluate(tf_func(x, iny))\n      np_right = self.evaluate(tf_func(inx, y))\n\n      if also_compare_variables:\n        var_x = variables.Variable(x)\n        var_y = variables.Variable(y)\n        self.evaluate(variables.global_variables_initializer())\n        print(type(x), type(y), type(var_x), type(var_y))\n        print(type(tf_func(x, var_y)), type(tf_func(var_x, y)))\n        np_var_left = self.evaluate(tf_func(x, var_y))\n        np_var_right = self.evaluate(tf_func(var_x, y))\n\n    if np_ans.dtype != np.object_:\n      self.assertAllClose(np_ans, tf_cpu)\n      self.assertAllClose(np_ans, np_left)\n      self.assertAllClose(np_ans, np_right)\n      if also_compare_variables:\n        self.assertAllClose(np_ans, np_var_left)\n        self.assertAllClose(np_ans, np_var_right)\n    self.assertShapeEqual(np_ans, out)",
+      "sha256": "50939e22a70a2964536ecd0150dd06db82d21296c4c9ac6811c28c4a7a7c1828"
+    },
+    "assertion_expression": "self.assertAllClose(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "NumPy/tensor mixed operands, Variable and gradient paths"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E005",
+    "family": "multiply",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_binary.py",
+      "class": "TestBinaryUfuncs",
+      "method": "assertEqualHelper",
+      "start": 86,
+      "end": 118,
+      "text": "def assertEqualHelper(\n        self, actual, expected, msg, *, dtype, exact_dtype=True, **kwargs\n    ):\n        assert isinstance(actual, torch.Tensor)\n\n        # Some NumPy functions return scalars, not arrays\n        if isinstance(expected, Number):\n            self.assertEqual(actual.item(), expected, msg=msg, **kwargs)\n        elif isinstance(expected, np.ndarray):\n            # Handles exact dtype comparisons between arrays and tensors\n            if exact_dtype:\n                # Allows array dtype to be float32 when comparing with bfloat16 tensors\n                #   since NumPy doesn't support the bfloat16 dtype\n                # Also ops like scipy.special.erf, scipy.special.erfc, etc, promote float16\n                # to float32\n                if expected.dtype == np.float32:\n                    assert actual.dtype in (\n                        torch.float16,\n                        torch.bfloat16,\n                        torch.float32,\n                    )\n                else:\n                    assert expected.dtype == torch_to_numpy_dtype_dict[actual.dtype]\n\n            self.assertEqual(\n                actual,\n                torch.from_numpy(expected).to(actual.dtype),\n                msg,\n                exact_device=False,\n                **kwargs,\n            )\n        else:\n            self.assertEqual(actual, expected, msg, exact_device=False, **kwargs)",
+      "sha256": "30e2d56b4c0c96bd4bae3f39d93fc094eaaa6989e2bc513de4591fd7e24be46d"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "full _test_reference_numerics input generator, promotion and scalar branches"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E006",
+    "family": "multiply",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_binary.py",
+      "class": "BinaryOpTest",
+      "method": "_compareCpu",
+      "start": 79,
+      "end": 106,
+      "text": "def _compareCpu(self, x, y, np_func, tf_func, also_compare_variables=False):\n    np_ans = np_func(x, y)\n    with test_util.force_cpu():\n      inx = ops.convert_to_tensor(x)\n      iny = ops.convert_to_tensor(y)\n      out = tf_func(inx, iny)\n      tf_cpu = self.evaluate(out)\n      # Test that the op takes precedence over numpy operators.\n      np_left = self.evaluate(tf_func(x, iny))\n      np_right = self.evaluate(tf_func(inx, y))\n\n      if also_compare_variables:\n        var_x = variables.Variable(x)\n        var_y = variables.Variable(y)\n        self.evaluate(variables.global_variables_initializer())\n        print(type(x), type(y), type(var_x), type(var_y))\n        print(type(tf_func(x, var_y)), type(tf_func(var_x, y)))\n        np_var_left = self.evaluate(tf_func(x, var_y))\n        np_var_right = self.evaluate(tf_func(var_x, y))\n\n    if np_ans.dtype != np.object_:\n      self.assertAllClose(np_ans, tf_cpu)\n      self.assertAllClose(np_ans, np_left)\n      self.assertAllClose(np_ans, np_right)\n      if also_compare_variables:\n        self.assertAllClose(np_ans, np_var_left)\n        self.assertAllClose(np_ans, np_var_right)\n    self.assertShapeEqual(np_ans, out)",
+      "sha256": "50939e22a70a2964536ecd0150dd06db82d21296c4c9ac6811c28c4a7a7c1828"
+    },
+    "assertion_expression": "self.assertAllClose(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "NumPy/tensor mixed operands, Variable and gradient paths"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E007",
+    "family": "divide",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_binary.py",
+      "class": "TestBinaryUfuncs",
+      "method": "assertEqualHelper",
+      "start": 86,
+      "end": 118,
+      "text": "def assertEqualHelper(\n        self, actual, expected, msg, *, dtype, exact_dtype=True, **kwargs\n    ):\n        assert isinstance(actual, torch.Tensor)\n\n        # Some NumPy functions return scalars, not arrays\n        if isinstance(expected, Number):\n            self.assertEqual(actual.item(), expected, msg=msg, **kwargs)\n        elif isinstance(expected, np.ndarray):\n            # Handles exact dtype comparisons between arrays and tensors\n            if exact_dtype:\n                # Allows array dtype to be float32 when comparing with bfloat16 tensors\n                #   since NumPy doesn't support the bfloat16 dtype\n                # Also ops like scipy.special.erf, scipy.special.erfc, etc, promote float16\n                # to float32\n                if expected.dtype == np.float32:\n                    assert actual.dtype in (\n                        torch.float16,\n                        torch.bfloat16,\n                        torch.float32,\n                    )\n                else:\n                    assert expected.dtype == torch_to_numpy_dtype_dict[actual.dtype]\n\n            self.assertEqual(\n                actual,\n                torch.from_numpy(expected).to(actual.dtype),\n                msg,\n                exact_device=False,\n                **kwargs,\n            )\n        else:\n            self.assertEqual(actual, expected, msg, exact_device=False, **kwargs)",
+      "sha256": "30e2d56b4c0c96bd4bae3f39d93fc094eaaa6989e2bc513de4591fd7e24be46d"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "full _test_reference_numerics input generator, promotion and scalar branches"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E008",
+    "family": "divide",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_binary.py",
+      "class": "BinaryOpTest",
+      "method": "_compareCpu",
+      "start": 79,
+      "end": 106,
+      "text": "def _compareCpu(self, x, y, np_func, tf_func, also_compare_variables=False):\n    np_ans = np_func(x, y)\n    with test_util.force_cpu():\n      inx = ops.convert_to_tensor(x)\n      iny = ops.convert_to_tensor(y)\n      out = tf_func(inx, iny)\n      tf_cpu = self.evaluate(out)\n      # Test that the op takes precedence over numpy operators.\n      np_left = self.evaluate(tf_func(x, iny))\n      np_right = self.evaluate(tf_func(inx, y))\n\n      if also_compare_variables:\n        var_x = variables.Variable(x)\n        var_y = variables.Variable(y)\n        self.evaluate(variables.global_variables_initializer())\n        print(type(x), type(y), type(var_x), type(var_y))\n        print(type(tf_func(x, var_y)), type(tf_func(var_x, y)))\n        np_var_left = self.evaluate(tf_func(x, var_y))\n        np_var_right = self.evaluate(tf_func(var_x, y))\n\n    if np_ans.dtype != np.object_:\n      self.assertAllClose(np_ans, tf_cpu)\n      self.assertAllClose(np_ans, np_left)\n      self.assertAllClose(np_ans, np_right)\n      if also_compare_variables:\n        self.assertAllClose(np_ans, np_var_left)\n        self.assertAllClose(np_ans, np_var_right)\n    self.assertShapeEqual(np_ans, out)",
+      "sha256": "50939e22a70a2964536ecd0150dd06db82d21296c4c9ac6811c28c4a7a7c1828"
+    },
+    "assertion_expression": "self.assertAllClose(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "NumPy/tensor mixed operands, Variable and gradient paths"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E009",
+    "family": "maximum",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_binary.py",
+      "class": "TestBinaryUfuncs",
+      "method": "assertEqualHelper",
+      "start": 86,
+      "end": 118,
+      "text": "def assertEqualHelper(\n        self, actual, expected, msg, *, dtype, exact_dtype=True, **kwargs\n    ):\n        assert isinstance(actual, torch.Tensor)\n\n        # Some NumPy functions return scalars, not arrays\n        if isinstance(expected, Number):\n            self.assertEqual(actual.item(), expected, msg=msg, **kwargs)\n        elif isinstance(expected, np.ndarray):\n            # Handles exact dtype comparisons between arrays and tensors\n            if exact_dtype:\n                # Allows array dtype to be float32 when comparing with bfloat16 tensors\n                #   since NumPy doesn't support the bfloat16 dtype\n                # Also ops like scipy.special.erf, scipy.special.erfc, etc, promote float16\n                # to float32\n                if expected.dtype == np.float32:\n                    assert actual.dtype in (\n                        torch.float16,\n                        torch.bfloat16,\n                        torch.float32,\n                    )\n                else:\n                    assert expected.dtype == torch_to_numpy_dtype_dict[actual.dtype]\n\n            self.assertEqual(\n                actual,\n                torch.from_numpy(expected).to(actual.dtype),\n                msg,\n                exact_device=False,\n                **kwargs,\n            )\n        else:\n            self.assertEqual(actual, expected, msg, exact_device=False, **kwargs)",
+      "sha256": "30e2d56b4c0c96bd4bae3f39d93fc094eaaa6989e2bc513de4591fd7e24be46d"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "full _test_reference_numerics input generator, promotion and scalar branches"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E010",
+    "family": "maximum",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_binary.py",
+      "class": "BinaryOpTest",
+      "method": "_compareCpu",
+      "start": 79,
+      "end": 106,
+      "text": "def _compareCpu(self, x, y, np_func, tf_func, also_compare_variables=False):\n    np_ans = np_func(x, y)\n    with test_util.force_cpu():\n      inx = ops.convert_to_tensor(x)\n      iny = ops.convert_to_tensor(y)\n      out = tf_func(inx, iny)\n      tf_cpu = self.evaluate(out)\n      # Test that the op takes precedence over numpy operators.\n      np_left = self.evaluate(tf_func(x, iny))\n      np_right = self.evaluate(tf_func(inx, y))\n\n      if also_compare_variables:\n        var_x = variables.Variable(x)\n        var_y = variables.Variable(y)\n        self.evaluate(variables.global_variables_initializer())\n        print(type(x), type(y), type(var_x), type(var_y))\n        print(type(tf_func(x, var_y)), type(tf_func(var_x, y)))\n        np_var_left = self.evaluate(tf_func(x, var_y))\n        np_var_right = self.evaluate(tf_func(var_x, y))\n\n    if np_ans.dtype != np.object_:\n      self.assertAllClose(np_ans, tf_cpu)\n      self.assertAllClose(np_ans, np_left)\n      self.assertAllClose(np_ans, np_right)\n      if also_compare_variables:\n        self.assertAllClose(np_ans, np_var_left)\n        self.assertAllClose(np_ans, np_var_right)\n    self.assertShapeEqual(np_ans, out)",
+      "sha256": "50939e22a70a2964536ecd0150dd06db82d21296c4c9ac6811c28c4a7a7c1828"
+    },
+    "assertion_expression": "self.assertAllClose(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "NumPy/tensor mixed operands, Variable and gradient paths"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E011",
+    "family": "minimum",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_binary.py",
+      "class": "TestBinaryUfuncs",
+      "method": "assertEqualHelper",
+      "start": 86,
+      "end": 118,
+      "text": "def assertEqualHelper(\n        self, actual, expected, msg, *, dtype, exact_dtype=True, **kwargs\n    ):\n        assert isinstance(actual, torch.Tensor)\n\n        # Some NumPy functions return scalars, not arrays\n        if isinstance(expected, Number):\n            self.assertEqual(actual.item(), expected, msg=msg, **kwargs)\n        elif isinstance(expected, np.ndarray):\n            # Handles exact dtype comparisons between arrays and tensors\n            if exact_dtype:\n                # Allows array dtype to be float32 when comparing with bfloat16 tensors\n                #   since NumPy doesn't support the bfloat16 dtype\n                # Also ops like scipy.special.erf, scipy.special.erfc, etc, promote float16\n                # to float32\n                if expected.dtype == np.float32:\n                    assert actual.dtype in (\n                        torch.float16,\n                        torch.bfloat16,\n                        torch.float32,\n                    )\n                else:\n                    assert expected.dtype == torch_to_numpy_dtype_dict[actual.dtype]\n\n            self.assertEqual(\n                actual,\n                torch.from_numpy(expected).to(actual.dtype),\n                msg,\n                exact_device=False,\n                **kwargs,\n            )\n        else:\n            self.assertEqual(actual, expected, msg, exact_device=False, **kwargs)",
+      "sha256": "30e2d56b4c0c96bd4bae3f39d93fc094eaaa6989e2bc513de4591fd7e24be46d"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "full _test_reference_numerics input generator, promotion and scalar branches"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E012",
+    "family": "minimum",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_binary.py",
+      "class": "BinaryOpTest",
+      "method": "_compareCpu",
+      "start": 79,
+      "end": 106,
+      "text": "def _compareCpu(self, x, y, np_func, tf_func, also_compare_variables=False):\n    np_ans = np_func(x, y)\n    with test_util.force_cpu():\n      inx = ops.convert_to_tensor(x)\n      iny = ops.convert_to_tensor(y)\n      out = tf_func(inx, iny)\n      tf_cpu = self.evaluate(out)\n      # Test that the op takes precedence over numpy operators.\n      np_left = self.evaluate(tf_func(x, iny))\n      np_right = self.evaluate(tf_func(inx, y))\n\n      if also_compare_variables:\n        var_x = variables.Variable(x)\n        var_y = variables.Variable(y)\n        self.evaluate(variables.global_variables_initializer())\n        print(type(x), type(y), type(var_x), type(var_y))\n        print(type(tf_func(x, var_y)), type(tf_func(var_x, y)))\n        np_var_left = self.evaluate(tf_func(x, var_y))\n        np_var_right = self.evaluate(tf_func(var_x, y))\n\n    if np_ans.dtype != np.object_:\n      self.assertAllClose(np_ans, tf_cpu)\n      self.assertAllClose(np_ans, np_left)\n      self.assertAllClose(np_ans, np_right)\n      if also_compare_variables:\n        self.assertAllClose(np_ans, np_var_left)\n        self.assertAllClose(np_ans, np_var_right)\n    self.assertShapeEqual(np_ans, out)",
+      "sha256": "50939e22a70a2964536ecd0150dd06db82d21296c4c9ac6811c28c4a7a7c1828"
+    },
+    "assertion_expression": "self.assertAllClose(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "NumPy/tensor mixed operands, Variable and gradient paths"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E013",
+    "family": "power",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_binary.py",
+      "class": "TestBinaryUfuncs",
+      "method": "assertEqualHelper",
+      "start": 86,
+      "end": 118,
+      "text": "def assertEqualHelper(\n        self, actual, expected, msg, *, dtype, exact_dtype=True, **kwargs\n    ):\n        assert isinstance(actual, torch.Tensor)\n\n        # Some NumPy functions return scalars, not arrays\n        if isinstance(expected, Number):\n            self.assertEqual(actual.item(), expected, msg=msg, **kwargs)\n        elif isinstance(expected, np.ndarray):\n            # Handles exact dtype comparisons between arrays and tensors\n            if exact_dtype:\n                # Allows array dtype to be float32 when comparing with bfloat16 tensors\n                #   since NumPy doesn't support the bfloat16 dtype\n                # Also ops like scipy.special.erf, scipy.special.erfc, etc, promote float16\n                # to float32\n                if expected.dtype == np.float32:\n                    assert actual.dtype in (\n                        torch.float16,\n                        torch.bfloat16,\n                        torch.float32,\n                    )\n                else:\n                    assert expected.dtype == torch_to_numpy_dtype_dict[actual.dtype]\n\n            self.assertEqual(\n                actual,\n                torch.from_numpy(expected).to(actual.dtype),\n                msg,\n                exact_device=False,\n                **kwargs,\n            )\n        else:\n            self.assertEqual(actual, expected, msg, exact_device=False, **kwargs)",
+      "sha256": "30e2d56b4c0c96bd4bae3f39d93fc094eaaa6989e2bc513de4591fd7e24be46d"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "full _test_reference_numerics input generator, promotion and scalar branches"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E014",
+    "family": "power",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_binary.py",
+      "class": "BinaryOpTest",
+      "method": "_compareCpu",
+      "start": 79,
+      "end": 106,
+      "text": "def _compareCpu(self, x, y, np_func, tf_func, also_compare_variables=False):\n    np_ans = np_func(x, y)\n    with test_util.force_cpu():\n      inx = ops.convert_to_tensor(x)\n      iny = ops.convert_to_tensor(y)\n      out = tf_func(inx, iny)\n      tf_cpu = self.evaluate(out)\n      # Test that the op takes precedence over numpy operators.\n      np_left = self.evaluate(tf_func(x, iny))\n      np_right = self.evaluate(tf_func(inx, y))\n\n      if also_compare_variables:\n        var_x = variables.Variable(x)\n        var_y = variables.Variable(y)\n        self.evaluate(variables.global_variables_initializer())\n        print(type(x), type(y), type(var_x), type(var_y))\n        print(type(tf_func(x, var_y)), type(tf_func(var_x, y)))\n        np_var_left = self.evaluate(tf_func(x, var_y))\n        np_var_right = self.evaluate(tf_func(var_x, y))\n\n    if np_ans.dtype != np.object_:\n      self.assertAllClose(np_ans, tf_cpu)\n      self.assertAllClose(np_ans, np_left)\n      self.assertAllClose(np_ans, np_right)\n      if also_compare_variables:\n        self.assertAllClose(np_ans, np_var_left)\n        self.assertAllClose(np_ans, np_var_right)\n    self.assertShapeEqual(np_ans, out)",
+      "sha256": "50939e22a70a2964536ecd0150dd06db82d21296c4c9ac6811c28c4a7a7c1828"
+    },
+    "assertion_expression": "self.assertAllClose(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "NumPy/tensor mixed operands, Variable and gradient paths"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E015",
+    "family": "atan2",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_binary.py",
+      "class": "TestBinaryUfuncs",
+      "method": "assertEqualHelper",
+      "start": 86,
+      "end": 118,
+      "text": "def assertEqualHelper(\n        self, actual, expected, msg, *, dtype, exact_dtype=True, **kwargs\n    ):\n        assert isinstance(actual, torch.Tensor)\n\n        # Some NumPy functions return scalars, not arrays\n        if isinstance(expected, Number):\n            self.assertEqual(actual.item(), expected, msg=msg, **kwargs)\n        elif isinstance(expected, np.ndarray):\n            # Handles exact dtype comparisons between arrays and tensors\n            if exact_dtype:\n                # Allows array dtype to be float32 when comparing with bfloat16 tensors\n                #   since NumPy doesn't support the bfloat16 dtype\n                # Also ops like scipy.special.erf, scipy.special.erfc, etc, promote float16\n                # to float32\n                if expected.dtype == np.float32:\n                    assert actual.dtype in (\n                        torch.float16,\n                        torch.bfloat16,\n                        torch.float32,\n                    )\n                else:\n                    assert expected.dtype == torch_to_numpy_dtype_dict[actual.dtype]\n\n            self.assertEqual(\n                actual,\n                torch.from_numpy(expected).to(actual.dtype),\n                msg,\n                exact_device=False,\n                **kwargs,\n            )\n        else:\n            self.assertEqual(actual, expected, msg, exact_device=False, **kwargs)",
+      "sha256": "30e2d56b4c0c96bd4bae3f39d93fc094eaaa6989e2bc513de4591fd7e24be46d"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "full _test_reference_numerics input generator, promotion and scalar branches"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E016",
+    "family": "atan2",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_binary.py",
+      "class": "BinaryOpTest",
+      "method": "_compareCpu",
+      "start": 79,
+      "end": 106,
+      "text": "def _compareCpu(self, x, y, np_func, tf_func, also_compare_variables=False):\n    np_ans = np_func(x, y)\n    with test_util.force_cpu():\n      inx = ops.convert_to_tensor(x)\n      iny = ops.convert_to_tensor(y)\n      out = tf_func(inx, iny)\n      tf_cpu = self.evaluate(out)\n      # Test that the op takes precedence over numpy operators.\n      np_left = self.evaluate(tf_func(x, iny))\n      np_right = self.evaluate(tf_func(inx, y))\n\n      if also_compare_variables:\n        var_x = variables.Variable(x)\n        var_y = variables.Variable(y)\n        self.evaluate(variables.global_variables_initializer())\n        print(type(x), type(y), type(var_x), type(var_y))\n        print(type(tf_func(x, var_y)), type(tf_func(var_x, y)))\n        np_var_left = self.evaluate(tf_func(x, var_y))\n        np_var_right = self.evaluate(tf_func(var_x, y))\n\n    if np_ans.dtype != np.object_:\n      self.assertAllClose(np_ans, tf_cpu)\n      self.assertAllClose(np_ans, np_left)\n      self.assertAllClose(np_ans, np_right)\n      if also_compare_variables:\n        self.assertAllClose(np_ans, np_var_left)\n        self.assertAllClose(np_ans, np_var_right)\n    self.assertShapeEqual(np_ans, out)",
+      "sha256": "50939e22a70a2964536ecd0150dd06db82d21296c4c9ac6811c28c4a7a7c1828"
+    },
+    "assertion_expression": "self.assertAllClose(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "NumPy/tensor mixed operands, Variable and gradient paths"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E017",
+    "family": "reshape",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_view.py",
+      "class": "TestOldViewOps",
+      "method": "test_reshape",
+      "start": 1180,
+      "end": 1212,
+      "text": "def test_reshape(self, device):\n        x = torch.randn(3, 3, device=device)\n        self.assertEqual(x.data_ptr(), x.reshape(-1).data_ptr())\n        self.assertEqual(x.data_ptr(), x.reshape(1, 9, 1).data_ptr())\n        self.assertEqual(torch.reshape(x, (9,)), x.reshape(9))\n        self.assertRaises(RuntimeError, lambda: x.reshape(-1, -1))\n\n        y = torch.randn(4, 4, 4, device=device)[:, 0, :]\n        # .data_ptr() on meta tensors is always 0 so they are equal regardless of the reshape\n        if device != \"meta\":\n            self.assertNotEqual(y.data_ptr(), y.reshape(-1).data_ptr())\n        self.assertEqual(y.contiguous().view(-1), y.reshape(-1))\n        self.assertEqual(y.reshape(2, 2, 4).data_ptr(), y.data_ptr())\n\n        s = torch.randn((), device=device)\n        self.assertEqual(s.data_ptr(), s.reshape(()).data_ptr())\n        self.assertEqual(s.reshape(-1).shape, (1,))\n        self.assertRaises(RuntimeError, lambda: s.reshape(2))\n\n        empty = torch.tensor([], device=device)\n        self.assertEqual(empty, empty.reshape(-1))\n        self.assertEqual(empty, empty.reshape([0]))\n        # TODO: fix these once we have multi-dimensional empty tensors\n        self.assertEqual(empty.reshape([0, 1]).shape, (0, 1))\n        self.assertEqual(empty.reshape([1, -1]).shape, (1, 0))\n        self.assertRaises(RuntimeError, lambda: empty.reshape(1))\n\n        x = torch.randn(3, 3, device=device)\n        self.assertEqual(x.data_ptr(), x.reshape_as(torch.rand(9)).data_ptr())\n        self.assertEqual(x.data_ptr(), x.reshape_as(torch.rand(1, 9, 1)).data_ptr())\n        self.assertRaises(\n            RuntimeError, lambda: x.reshape_as(torch.rand(10, device=device))\n        )",
+      "sha256": "71a1357c7d2c547e8b5c97f08a5d3779c688b9dd9abf7e8c0984870da39bc1cb"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "view/storage aliasing, mutation propagation, contiguity and original input generation"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E018",
+    "family": "reshape",
+    "source_framework": "tensorflow",
+    "scope": "shape-only",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_reshape.py",
+      "class": "ReshapeTest",
+      "method": "_testReshape",
+      "start": 33,
+      "end": 46,
+      "text": "def _testReshape(self, x, y, use_gpu=False):\n    with self.cached_session(use_gpu=use_gpu):\n      np_ans = x.reshape(y)\n      tf_ans = array_ops.reshape(x, y)\n      out = self.evaluate(tf_ans)\n      self.assertEqual(tf_ans.get_shape(), out.shape)\n      self.assertShapeEqual(np_ans, tf_ans)\n\n      # Repeat with an int64 shape tensor.\n      y64 = constant_op.constant(y, dtype=dtypes.int64)\n      tf_ans = array_ops.reshape(x, y64)\n      out = self.evaluate(tf_ans)\n      self.assertEqual(tf_ans.get_shape(), out.shape)\n      self.assertShapeEqual(np_ans, tf_ans)",
+      "sha256": "009e5b775a2dfc99e813377cdae9a08ef52f2573ca8150846138e4138c20034c"
+    },
+    "assertion_expression": "self.assertEqual(expected.shape, actual.shape)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "metadata/evaluation consistency assertion and graph/GPU variants"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E019",
+    "family": "transpose",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_view.py",
+      "class": "TestOldViewOps",
+      "method": "test_transpose_vs_numpy",
+      "start": 1515,
+      "end": 1559,
+      "text": "def test_transpose_vs_numpy(self, device, dtype):\n        for fn in (torch.swapdims, torch.swapaxes, torch.transpose):\n            for nd in range(5):\n                shape = _rand_shape(nd, min_size=5, max_size=10)\n                x = _generate_input(shape, dtype, device, with_extremal=False)\n                for random_negative in [True, False]:\n                    for src_dim, dst_dim in permutations(range(nd), r=2):\n                        random_prob = random.random()\n\n                        if random_negative and random_prob > 0.66:\n                            src_dim = src_dim - nd\n                        elif random_negative and random_prob > 0.33:\n                            dst_dim = dst_dim - nd\n                        elif random_negative:\n                            src_dim = src_dim - nd\n                            dst_dim = dst_dim - nd\n\n                        partial_map = {\n                            torch.swapdims: partial(\n                                torch.swapdims, dim0=src_dim, dim1=dst_dim\n                            ),\n                            torch.swapaxes: partial(\n                                torch.swapaxes, axis0=src_dim, axis1=dst_dim\n                            ),\n                            torch.transpose: partial(\n                                torch.transpose, dim0=src_dim, dim1=dst_dim\n                            ),\n                        }\n\n                        torch_fn = partial_map[fn]\n                        np_fn = partial(np.swapaxes, axis1=src_dim, axis2=dst_dim)\n                        self.compare_with_numpy(\n                            torch_fn, np_fn, x, device=None, dtype=None\n                        )\n\n            # Move dim to same position\n            x = torch.randn(2, 3, 5, 7, 11)\n            partial_map = {\n                torch.swapdims: partial(torch.swapdims, dim0=0, dim1=0),\n                torch.swapaxes: partial(torch.swapaxes, axis0=0, axis1=0),\n                torch.transpose: partial(torch.transpose, dim0=0, dim1=0),\n            }\n            torch_fn = partial_map[fn]\n            np_fn = partial(np.swapaxes, axis1=0, axis2=0)\n            self.compare_with_numpy(torch_fn, np_fn, x, device=None, dtype=None)",
+      "sha256": "71a1357c7d2c547e8b5c97f08a5d3779c688b9dd9abf7e8c0984870da39bc1cb"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "view/storage aliasing, mutation propagation, contiguity and original input generation"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E020",
+    "family": "transpose",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_transpose.py",
+      "class": "TransposeTest",
+      "method": "_compareCpu",
+      "start": 40,
+      "end": 67,
+      "text": "def _compareCpu(self, x, p, conjugate=False):\n    if p is None:\n      rank = x.ndim\n      perm = (rank - 1) - np.arange(rank)\n    else:\n      perm = p\n    np_ans = self._np_transpose(x, perm)\n    if conjugate:\n      np_ans = np.conj(np_ans)\n    with self.cached_session(use_gpu=False):\n      inx = ops.convert_to_tensor(x)\n      y = array_ops.transpose(inx, p, conjugate=conjugate)\n      tf_ans = self.evaluate(y)\n      self.assertShapeEqual(np_ans, y)\n      self.assertAllEqual(np_ans, tf_ans)\n\n      jacob_t = None\n      # Gradient check on CPU.\n      if x.dtype in [np.float32, np.complex64]:\n        jacob_t, jacob_n = gradient_checker_v2.compute_gradient(\n            lambda x: array_ops.transpose(x, p, conjugate=conjugate), [inx])\n        self.assertAllClose(jacob_t, jacob_n, 1e-3, 1e-3)\n      elif x.dtype in [np.float64, np.complex128]:\n        jacob_t, jacob_n = gradient_checker_v2.compute_gradient(\n            lambda x: array_ops.transpose(x, p, conjugate=conjugate), [inx])\n        self.assertAllClose(jacob_t, jacob_n, 1e-6, 1e-6)\n\n      return tf_ans, jacob_t",
+      "sha256": "834246703ddb8620c56ea0eaec8f92633b1b45c9bd5f7b4400f0c31c400e0b2c"
+    },
+    "assertion_expression": "self.assertAllEqual(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "gradient assertions and conjugate/complex paths"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E021",
+    "family": "squeeze",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_view.py",
+      "class": "TestViewOps",
+      "method": "test_squeeze_view",
+      "start": 704,
+      "end": 709,
+      "text": "def test_squeeze_view(self, device):\n        t = torch.ones(5, 1, 5, device=device)\n        v = torch.squeeze(t)\n        self.assertTrue(self.is_view_of(t, v))\n        v[0, 1] = 0\n        self.assertEqual(t, v._base)",
+      "sha256": "71a1357c7d2c547e8b5c97f08a5d3779c688b9dd9abf7e8c0984870da39bc1cb"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "view/storage aliasing, mutation propagation, contiguity and original input generation"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E022",
+    "family": "squeeze",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_shape.py",
+      "class": "ShapeOpsTest",
+      "method": "_compareSqueeze",
+      "start": 297,
+      "end": 308,
+      "text": "def _compareSqueeze(self, x, squeeze_dims, use_gpu):\n    with self.cached_session(use_gpu=use_gpu):\n      if squeeze_dims:\n        np_ans = np.squeeze(x, axis=tuple(squeeze_dims))\n        tensor = array_ops.squeeze(x, squeeze_dims)\n        tf_ans = self.evaluate(tensor)\n      else:\n        np_ans = np.squeeze(x)\n        tensor = array_ops.squeeze(x)\n        tf_ans = self.evaluate(tensor)\n    self.assertShapeEqual(np_ans, tensor)\n    self.assertAllEqual(np_ans, tf_ans)",
+      "sha256": "32d081fb015431eb4a738969dd872c52df044048f81e2dd924e1734f0cd0436a"
+    },
+    "assertion_expression": "self.assertAllEqual(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E023",
+    "family": "expand_dims",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_view.py",
+      "class": "TestViewOps",
+      "method": "test_unsqueeze_view",
+      "start": 719,
+      "end": 725,
+      "text": "def test_unsqueeze_view(self, device):\n        t = torch.ones(5, 5, device=device)\n        v = torch.unsqueeze(t, 1)\n        self.assertTrue(self.is_view_of(t, v))\n\n        v[0, 0, 1] = 0\n        self.assertEqual(t[0, 1], v[0, 0, 1])",
+      "sha256": "71a1357c7d2c547e8b5c97f08a5d3779c688b9dd9abf7e8c0984870da39bc1cb"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "view/storage aliasing, mutation propagation, contiguity and original input generation"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E024",
+    "family": "expand_dims",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_shape.py",
+      "class": "ShapeOpsTest",
+      "method": "_compareExpandDims",
+      "start": 198,
+      "end": 204,
+      "text": "def _compareExpandDims(self, x, dim, use_gpu):\n    np_ans = np.expand_dims(x, axis=dim)\n    with self.cached_session(use_gpu=use_gpu):\n      tensor = array_ops.expand_dims(x, dim)\n      tf_ans = self.evaluate(tensor)\n    self.assertShapeEqual(np_ans, tensor)\n    self.assertAllEqual(np_ans, tf_ans)",
+      "sha256": "32d081fb015431eb4a738969dd872c52df044048f81e2dd924e1734f0cd0436a"
+    },
+    "assertion_expression": "self.assertAllEqual(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E025",
+    "family": "concat",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_tensor.py",
+      "class": "TestTensorCreation",
+      "method": "test_cat",
+      "start": 748,
+      "end": 767,
+      "text": "def test_cat(self, device):\n        SIZE = 10\n        for dim in range(-3, 3):\n            pos_dim = dim if dim >= 0 else 3 + dim\n            x = torch.rand(13, SIZE, SIZE, device=device).transpose(0, pos_dim)\n            y = torch.rand(17, SIZE, SIZE, device=device).transpose(0, pos_dim)\n            z = torch.rand(19, SIZE, SIZE, device=device).transpose(0, pos_dim)\n\n            res1 = torch.cat((x, y, z), dim)\n            self.assertEqual(res1.narrow(pos_dim, 0, 13), x, atol=0, rtol=0)\n            self.assertEqual(res1.narrow(pos_dim, 13, 17), y, atol=0, rtol=0)\n            self.assertEqual(res1.narrow(pos_dim, 30, 19), z, atol=0, rtol=0)\n\n        x = torch.randn(20, SIZE, SIZE, device=device)\n        self.assertEqual(torch.cat(torch.split(x, 7)), x)\n        self.assertEqual(torch.cat(torch.chunk(x, 7)), x)\n\n        y = torch.randn(1, SIZE, SIZE, device=device)\n        z = torch.cat([x, y])\n        self.assertEqual(z.size(), (21, SIZE, SIZE))",
+      "sha256": "4c12479d61006056f796f49410f97e88423e5b7682e2181635f5090d751df05e"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "original per-input segment assertions, alias relations, device and dtype coverage"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E026",
+    "family": "concat",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_concat.py",
+      "class": "ConcatOpTest",
+      "method": "testHStack",
+      "start": 38,
+      "end": 51,
+      "text": "def testHStack(self):\n    with self.session():\n      p1 = array_ops.placeholder(dtypes.float32, shape=[4, 4])\n      p2 = array_ops.placeholder(dtypes.float32, shape=[4, 4])\n      c = array_ops.concat([p1, p2], 0)\n      params = {\n          p1: np.random.rand(4, 4).astype(\"f\"),\n          p2: np.random.rand(4, 4).astype(\"f\")\n      }\n      result = c.eval(feed_dict=params)\n\n    self.assertEqual(result.shape, c.get_shape())\n    self.assertAllEqual(result[:4, :], params[p1])\n    self.assertAllEqual(result[4:, :], params[p2])",
+      "sha256": "e3f6c6a67a9095e9039c088f5536a4dd3b838df55270e1ba9bbe80d531a731df"
+    },
+    "assertion_expression": "self.assertAllEqual(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "graph placeholders and individual segment assertions"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E027",
+    "family": "stack",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_tensor.py",
+      "class": "TestTensorCreation",
+      "method": "test_stack",
+      "start": 1164,
+      "end": 1177,
+      "text": "def test_stack(self, device):\n        for dtype in (torch.half, torch.double, torch.int):\n            x = torch.randint(low=-100, high=100, size=(2, 3, 4), device=device, dtype=dtype)\n            y = torch.randint(low=-100, high=100, size=(2, 3, 4), device=device, dtype=dtype)\n            z = torch.randint(low=-100, high=100, size=(2, 3, 4), device=device, dtype=dtype)\n            for dim in range(4):\n                res = torch.stack((x, y, z), dim)\n                res_neg = torch.stack((x, y, z), dim - 4)\n                expected_size = x.size()[:dim] + (3,) + x.size()[dim:]\n                self.assertEqual(res, res_neg)\n                self.assertEqual(res.size(), expected_size)\n                self.assertEqual(res.select(dim, 0), x, atol=0, rtol=0)\n                self.assertEqual(res.select(dim, 1), y, atol=0, rtol=0)\n                self.assertEqual(res.select(dim, 2), z, atol=0, rtol=0)",
+      "sha256": "4c12479d61006056f796f49410f97e88423e5b7682e2181635f5090d751df05e"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "original per-input segment assertions, alias relations, device and dtype coverage"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E028",
+    "family": "stack",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_stack.py",
+      "class": "StackOpTest",
+      "method": "testSimple",
+      "start": 53,
+      "end": 71,
+      "text": "def testSimple(self):\n    np.random.seed(7)\n    for shape in (2,), (3,), (2, 3), (3, 2), (8, 2, 10):\n      rank = len(shape)\n      for axis in range(-rank, rank):\n        for dtype in [\n            np.bool_,\n            np.float32,\n            np.int32,\n            np.int64,\n            dtypes.float8_e5m2.as_numpy_dtype,\n            dtypes.float8_e4m3fn.as_numpy_dtype,\n        ]:\n          data = self.randn(shape, dtype)\n          xs = np_split_squeeze(data, axis)\n          # Stack back into a single tensorflow tensor\n          with self.subTest(shape=shape, axis=axis, dtype=dtype):\n            c = array_ops_stack.stack(xs, axis=axis)\n            self.assertAllEqual(c, data)",
+      "sha256": "bd7583a4686103045e4169154bbd11b641b94bf1df4db043f986c3a6474e9f6a"
+    },
+    "assertion_expression": "self.assertAllEqual(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "original dtype and axis enumeration"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E029",
+    "family": "clip",
+    "source_framework": "pytorch",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/pt_torch.py",
+      "class": "TestDevicePrecision",
+      "method": "test_clamp",
+      "start": 6489,
+      "end": 6528,
+      "text": "def test_clamp(self, device, dtype):\n        test_args = [\n            *product(\n                [(100, 50), (10, 64), (97,)],  # shape\n                (True, False),  # non-contiguous\n            )\n        ]\n\n        for shape, noncontig in test_args:\n            x = make_tensor(shape, device=device, dtype=dtype,\n                            noncontiguous=noncontig)\n            ub = make_tensor(shape, device=device, dtype=dtype,\n                             noncontiguous=noncontig)\n            lb = make_tensor(shape, device=device, dtype=dtype,\n                             noncontiguous=noncontig)\n\n            expect = x.max(lb).min(ub)\n            actual = x.clamp(lb, ub)\n            self.assertEqual(expect, actual)\n\n            expect = np.clip(x.cpu().numpy(), lb.cpu().numpy(), ub.cpu().numpy())\n            self.assertEqual(expect, actual)\n\n            expect = x.max(lb)\n            actual = x.clamp(min=lb)\n            self.assertEqual(expect, actual)\n\n            expect = x.min(ub)\n            actual = x.clamp(max=ub)\n            self.assertEqual(expect, actual)\n\n            # Test broadcasting min & max\n            expect = x.max(lb[0]).min(ub[..., :1])\n            actual = x.clamp(lb[0], ub[..., :1])\n            self.assertEqual(expect, actual)\n\n            # Test broadcasting x\n            expect = x[..., :1].max(lb).min(ub)\n            actual = x[..., :1].clamp(lb, ub)\n            self.assertEqual(expect, actual)",
+      "sha256": "0b9e6ae927c81d39680ef70bfd5c943bd2710b5700a444b63609f531d0aa267a"
+    },
+    "assertion_expression": "self.assertEqual(actual, expected)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [
+      "original random/noncontiguous input generation and complete broadcast paths"
+    ],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  },
+  {
+    "case_id": "E030",
+    "family": "clip",
+    "source_framework": "tensorflow",
+    "scope": "value-and-shape",
+    "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+    "source_anchor": {
+      "file": "upstream/tf_clip.py",
+      "class": "ClipTest",
+      "method": "testClipByValue",
+      "start": 35,
+      "end": 43,
+      "text": "def testClipByValue(self):\n    with self.session():\n      x = constant_op.constant([-5.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3])\n      np_ans = [[-4.4, 2.0, 3.0], [4.0, 4.4, 4.4]]\n      clip_value = 4.4\n      ans = clip_ops.clip_by_value(x, -clip_value, clip_value)\n      tf_ans = self.evaluate(ans)\n\n    self.assertAllClose(np_ans, tf_ans)",
+      "sha256": "df6df6f01cd1e23702862eb7667fa9b11970b493472c6b4fa0ab7c25a22e7cf3"
+    },
+    "assertion_expression": "self.assertAllClose(expected, actual)",
+    "source_target_assertions_identical_by_construction": true,
+    "excluded_obligations": [],
+    "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+    "independent_human_review": false,
+    "authentic_full_test_pair_available": false,
+    "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+    "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+  }
+]

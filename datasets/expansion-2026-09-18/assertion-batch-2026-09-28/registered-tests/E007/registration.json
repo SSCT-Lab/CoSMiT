@@ -1,0 +1,26 @@
+{
+  "case_id": "E007",
+  "family": "divide",
+  "source_framework": "pytorch",
+  "scope": "value-and-shape",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/pt_binary.py",
+    "class": "TestBinaryUfuncs",
+    "method": "assertEqualHelper",
+    "start": 86,
+    "end": 118,
+    "text": "def assertEqualHelper(\n        self, actual, expected, msg, *, dtype, exact_dtype=True, **kwargs\n    ):\n        assert isinstance(actual, torch.Tensor)\n\n        # Some NumPy functions return scalars, not arrays\n        if isinstance(expected, Number):\n            self.assertEqual(actual.item(), expected, msg=msg, **kwargs)\n        elif isinstance(expected, np.ndarray):\n            # Handles exact dtype comparisons between arrays and tensors\n            if exact_dtype:\n                # Allows array dtype to be float32 when comparing with bfloat16 tensors\n                #   since NumPy doesn't support the bfloat16 dtype\n                # Also ops like scipy.special.erf, scipy.special.erfc, etc, promote float16\n                # to float32\n                if expected.dtype == np.float32:\n                    assert actual.dtype in (\n                        torch.float16,\n                        torch.bfloat16,\n                        torch.float32,\n                    )\n                else:\n                    assert expected.dtype == torch_to_numpy_dtype_dict[actual.dtype]\n\n            self.assertEqual(\n                actual,\n                torch.from_numpy(expected).to(actual.dtype),\n                msg,\n                exact_device=False,\n                **kwargs,\n            )\n        else:\n            self.assertEqual(actual, expected, msg, exact_device=False, **kwargs)",
+    "sha256": "30e2d56b4c0c96bd4bae3f39d93fc094eaaa6989e2bc513de4591fd7e24be46d"
+  },
+  "assertion_expression": "self.assertEqual(actual, expected)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [
+    "full _test_reference_numerics input generator, promotion and scalar branches"
+  ],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}

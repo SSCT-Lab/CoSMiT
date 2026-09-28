@@ -1,0 +1,24 @@
+{
+  "case_id": "E024",
+  "family": "expand_dims",
+  "source_framework": "tensorflow",
+  "scope": "value-and-shape",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/tf_shape.py",
+    "class": "ShapeOpsTest",
+    "method": "_compareExpandDims",
+    "start": 198,
+    "end": 204,
+    "text": "def _compareExpandDims(self, x, dim, use_gpu):\n    np_ans = np.expand_dims(x, axis=dim)\n    with self.cached_session(use_gpu=use_gpu):\n      tensor = array_ops.expand_dims(x, dim)\n      tf_ans = self.evaluate(tensor)\n    self.assertShapeEqual(np_ans, tensor)\n    self.assertAllEqual(np_ans, tf_ans)",
+    "sha256": "32d081fb015431eb4a738969dd872c52df044048f81e2dd924e1734f0cd0436a"
+  },
+  "assertion_expression": "self.assertAllEqual(expected, actual)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}

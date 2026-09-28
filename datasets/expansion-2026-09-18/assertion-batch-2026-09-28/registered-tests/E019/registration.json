@@ -1,0 +1,26 @@
+{
+  "case_id": "E019",
+  "family": "transpose",
+  "source_framework": "pytorch",
+  "scope": "value-and-shape",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/pt_view.py",
+    "class": "TestOldViewOps",
+    "method": "test_transpose_vs_numpy",
+    "start": 1515,
+    "end": 1559,
+    "text": "def test_transpose_vs_numpy(self, device, dtype):\n        for fn in (torch.swapdims, torch.swapaxes, torch.transpose):\n            for nd in range(5):\n                shape = _rand_shape(nd, min_size=5, max_size=10)\n                x = _generate_input(shape, dtype, device, with_extremal=False)\n                for random_negative in [True, False]:\n                    for src_dim, dst_dim in permutations(range(nd), r=2):\n                        random_prob = random.random()\n\n                        if random_negative and random_prob > 0.66:\n                            src_dim = src_dim - nd\n                        elif random_negative and random_prob > 0.33:\n                            dst_dim = dst_dim - nd\n                        elif random_negative:\n                            src_dim = src_dim - nd\n                            dst_dim = dst_dim - nd\n\n                        partial_map = {\n                            torch.swapdims: partial(\n                                torch.swapdims, dim0=src_dim, dim1=dst_dim\n                            ),\n                            torch.swapaxes: partial(\n                                torch.swapaxes, axis0=src_dim, axis1=dst_dim\n                            ),\n                            torch.transpose: partial(\n                                torch.transpose, dim0=src_dim, dim1=dst_dim\n                            ),\n                        }\n\n                        torch_fn = partial_map[fn]\n                        np_fn = partial(np.swapaxes, axis1=src_dim, axis2=dst_dim)\n                        self.compare_with_numpy(\n                            torch_fn, np_fn, x, device=None, dtype=None\n                        )\n\n            # Move dim to same position\n            x = torch.randn(2, 3, 5, 7, 11)\n            partial_map = {\n                torch.swapdims: partial(torch.swapdims, dim0=0, dim1=0),\n                torch.swapaxes: partial(torch.swapaxes, axis0=0, axis1=0),\n                torch.transpose: partial(torch.transpose, dim0=0, dim1=0),\n            }\n            torch_fn = partial_map[fn]\n            np_fn = partial(np.swapaxes, axis1=0, axis2=0)\n            self.compare_with_numpy(torch_fn, np_fn, x, device=None, dtype=None)",
+    "sha256": "71a1357c7d2c547e8b5c97f08a5d3779c688b9dd9abf7e8c0984870da39bc1cb"
+  },
+  "assertion_expression": "self.assertEqual(actual, expected)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [
+    "view/storage aliasing, mutation propagation, contiguity and original input generation"
+  ],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}

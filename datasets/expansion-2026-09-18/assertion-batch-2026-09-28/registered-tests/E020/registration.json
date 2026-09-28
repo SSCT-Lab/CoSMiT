@@ -1,0 +1,26 @@
+{
+  "case_id": "E020",
+  "family": "transpose",
+  "source_framework": "tensorflow",
+  "scope": "value-and-shape",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/tf_transpose.py",
+    "class": "TransposeTest",
+    "method": "_compareCpu",
+    "start": 40,
+    "end": 67,
+    "text": "def _compareCpu(self, x, p, conjugate=False):\n    if p is None:\n      rank = x.ndim\n      perm = (rank - 1) - np.arange(rank)\n    else:\n      perm = p\n    np_ans = self._np_transpose(x, perm)\n    if conjugate:\n      np_ans = np.conj(np_ans)\n    with self.cached_session(use_gpu=False):\n      inx = ops.convert_to_tensor(x)\n      y = array_ops.transpose(inx, p, conjugate=conjugate)\n      tf_ans = self.evaluate(y)\n      self.assertShapeEqual(np_ans, y)\n      self.assertAllEqual(np_ans, tf_ans)\n\n      jacob_t = None\n      # Gradient check on CPU.\n      if x.dtype in [np.float32, np.complex64]:\n        jacob_t, jacob_n = gradient_checker_v2.compute_gradient(\n            lambda x: array_ops.transpose(x, p, conjugate=conjugate), [inx])\n        self.assertAllClose(jacob_t, jacob_n, 1e-3, 1e-3)\n      elif x.dtype in [np.float64, np.complex128]:\n        jacob_t, jacob_n = gradient_checker_v2.compute_gradient(\n            lambda x: array_ops.transpose(x, p, conjugate=conjugate), [inx])\n        self.assertAllClose(jacob_t, jacob_n, 1e-6, 1e-6)\n\n      return tf_ans, jacob_t",
+    "sha256": "834246703ddb8620c56ea0eaec8f92633b1b45c9bd5f7b4400f0c31c400e0b2c"
+  },
+  "assertion_expression": "self.assertAllEqual(expected, actual)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [
+    "gradient assertions and conjugate/complex paths"
+  ],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}

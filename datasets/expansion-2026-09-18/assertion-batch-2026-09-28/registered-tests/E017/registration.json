@@ -1,0 +1,26 @@
+{
+  "case_id": "E017",
+  "family": "reshape",
+  "source_framework": "pytorch",
+  "scope": "value-and-shape",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/pt_view.py",
+    "class": "TestOldViewOps",
+    "method": "test_reshape",
+    "start": 1180,
+    "end": 1212,
+    "text": "def test_reshape(self, device):\n        x = torch.randn(3, 3, device=device)\n        self.assertEqual(x.data_ptr(), x.reshape(-1).data_ptr())\n        self.assertEqual(x.data_ptr(), x.reshape(1, 9, 1).data_ptr())\n        self.assertEqual(torch.reshape(x, (9,)), x.reshape(9))\n        self.assertRaises(RuntimeError, lambda: x.reshape(-1, -1))\n\n        y = torch.randn(4, 4, 4, device=device)[:, 0, :]\n        # .data_ptr() on meta tensors is always 0 so they are equal regardless of the reshape\n        if device != \"meta\":\n            self.assertNotEqual(y.data_ptr(), y.reshape(-1).data_ptr())\n        self.assertEqual(y.contiguous().view(-1), y.reshape(-1))\n        self.assertEqual(y.reshape(2, 2, 4).data_ptr(), y.data_ptr())\n\n        s = torch.randn((), device=device)\n        self.assertEqual(s.data_ptr(), s.reshape(()).data_ptr())\n        self.assertEqual(s.reshape(-1).shape, (1,))\n        self.assertRaises(RuntimeError, lambda: s.reshape(2))\n\n        empty = torch.tensor([], device=device)\n        self.assertEqual(empty, empty.reshape(-1))\n        self.assertEqual(empty, empty.reshape([0]))\n        # TODO: fix these once we have multi-dimensional empty tensors\n        self.assertEqual(empty.reshape([0, 1]).shape, (0, 1))\n        self.assertEqual(empty.reshape([1, -1]).shape, (1, 0))\n        self.assertRaises(RuntimeError, lambda: empty.reshape(1))\n\n        x = torch.randn(3, 3, device=device)\n        self.assertEqual(x.data_ptr(), x.reshape_as(torch.rand(9)).data_ptr())\n        self.assertEqual(x.data_ptr(), x.reshape_as(torch.rand(1, 9, 1)).data_ptr())\n        self.assertRaises(\n            RuntimeError, lambda: x.reshape_as(torch.rand(10, device=device))\n        )",
+    "sha256": "71a1357c7d2c547e8b5c97f08a5d3779c688b9dd9abf7e8c0984870da39bc1cb"
+  },
+  "assertion_expression": "self.assertEqual(actual, expected)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [
+    "view/storage aliasing, mutation propagation, contiguity and original input generation"
+  ],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}

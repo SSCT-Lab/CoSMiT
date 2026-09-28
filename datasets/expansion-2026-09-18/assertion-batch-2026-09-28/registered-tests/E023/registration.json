@@ -1,0 +1,26 @@
+{
+  "case_id": "E023",
+  "family": "expand_dims",
+  "source_framework": "pytorch",
+  "scope": "value-and-shape",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/pt_view.py",
+    "class": "TestViewOps",
+    "method": "test_unsqueeze_view",
+    "start": 719,
+    "end": 725,
+    "text": "def test_unsqueeze_view(self, device):\n        t = torch.ones(5, 5, device=device)\n        v = torch.unsqueeze(t, 1)\n        self.assertTrue(self.is_view_of(t, v))\n\n        v[0, 0, 1] = 0\n        self.assertEqual(t[0, 1], v[0, 0, 1])",
+    "sha256": "71a1357c7d2c547e8b5c97f08a5d3779c688b9dd9abf7e8c0984870da39bc1cb"
+  },
+  "assertion_expression": "self.assertEqual(actual, expected)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [
+    "view/storage aliasing, mutation propagation, contiguity and original input generation"
+  ],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}

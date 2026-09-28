@@ -1,0 +1,26 @@
+{
+  "case_id": "E029",
+  "family": "clip",
+  "source_framework": "pytorch",
+  "scope": "value-and-shape",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/pt_torch.py",
+    "class": "TestDevicePrecision",
+    "method": "test_clamp",
+    "start": 6489,
+    "end": 6528,
+    "text": "def test_clamp(self, device, dtype):\n        test_args = [\n            *product(\n                [(100, 50), (10, 64), (97,)],  # shape\n                (True, False),  # non-contiguous\n            )\n        ]\n\n        for shape, noncontig in test_args:\n            x = make_tensor(shape, device=device, dtype=dtype,\n                            noncontiguous=noncontig)\n            ub = make_tensor(shape, device=device, dtype=dtype,\n                             noncontiguous=noncontig)\n            lb = make_tensor(shape, device=device, dtype=dtype,\n                             noncontiguous=noncontig)\n\n            expect = x.max(lb).min(ub)\n            actual = x.clamp(lb, ub)\n            self.assertEqual(expect, actual)\n\n            expect = np.clip(x.cpu().numpy(), lb.cpu().numpy(), ub.cpu().numpy())\n            self.assertEqual(expect, actual)\n\n            expect = x.max(lb)\n            actual = x.clamp(min=lb)\n            self.assertEqual(expect, actual)\n\n            expect = x.min(ub)\n            actual = x.clamp(max=ub)\n            self.assertEqual(expect, actual)\n\n            # Test broadcasting min & max\n            expect = x.max(lb[0]).min(ub[..., :1])\n            actual = x.clamp(lb[0], ub[..., :1])\n            self.assertEqual(expect, actual)\n\n            # Test broadcasting x\n            expect = x[..., :1].max(lb).min(ub)\n            actual = x[..., :1].clamp(lb, ub)\n            self.assertEqual(expect, actual)",
+    "sha256": "0b9e6ae927c81d39680ef70bfd5c943bd2710b5700a444b63609f531d0aa267a"
+  },
+  "assertion_expression": "self.assertEqual(actual, expected)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [
+    "original random/noncontiguous input generation and complete broadcast paths"
+  ],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}

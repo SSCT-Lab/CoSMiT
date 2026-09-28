@@ -1,0 +1,24 @@
+{
+  "case_id": "E030",
+  "family": "clip",
+  "source_framework": "tensorflow",
+  "scope": "value-and-shape",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/tf_clip.py",
+    "class": "ClipTest",
+    "method": "testClipByValue",
+    "start": 35,
+    "end": 43,
+    "text": "def testClipByValue(self):\n    with self.session():\n      x = constant_op.constant([-5.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3])\n      np_ans = [[-4.4, 2.0, 3.0], [4.0, 4.4, 4.4]]\n      clip_value = 4.4\n      ans = clip_ops.clip_by_value(x, -clip_value, clip_value)\n      tf_ans = self.evaluate(ans)\n\n    self.assertAllClose(np_ans, tf_ans)",
+    "sha256": "df6df6f01cd1e23702862eb7667fa9b11970b493472c6b4fa0ab7c25a22e7cf3"
+  },
+  "assertion_expression": "self.assertAllClose(expected, actual)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}
