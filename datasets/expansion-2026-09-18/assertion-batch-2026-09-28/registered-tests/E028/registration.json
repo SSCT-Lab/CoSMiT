@@ -1,0 +1,26 @@
+{
+  "case_id": "E028",
+  "family": "stack",
+  "source_framework": "tensorflow",
+  "scope": "value-and-shape",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/tf_stack.py",
+    "class": "StackOpTest",
+    "method": "testSimple",
+    "start": 53,
+    "end": 71,
+    "text": "def testSimple(self):\n    np.random.seed(7)\n    for shape in (2,), (3,), (2, 3), (3, 2), (8, 2, 10):\n      rank = len(shape)\n      for axis in range(-rank, rank):\n        for dtype in [\n            np.bool_,\n            np.float32,\n            np.int32,\n            np.int64,\n            dtypes.float8_e5m2.as_numpy_dtype,\n            dtypes.float8_e4m3fn.as_numpy_dtype,\n        ]:\n          data = self.randn(shape, dtype)\n          xs = np_split_squeeze(data, axis)\n          # Stack back into a single tensorflow tensor\n          with self.subTest(shape=shape, axis=axis, dtype=dtype):\n            c = array_ops_stack.stack(xs, axis=axis)\n            self.assertAllEqual(c, data)",
+    "sha256": "bd7583a4686103045e4169154bbd11b641b94bf1df4db043f986c3a6474e9f6a"
+  },
+  "assertion_expression": "self.assertAllEqual(expected, actual)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [
+    "original dtype and axis enumeration"
+  ],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}

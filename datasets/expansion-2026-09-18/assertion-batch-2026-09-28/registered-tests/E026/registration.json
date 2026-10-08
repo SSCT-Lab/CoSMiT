@@ -1,0 +1,26 @@
+{
+  "case_id": "E026",
+  "family": "concat",
+  "source_framework": "tensorflow",
+  "scope": "value-and-shape",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/tf_concat.py",
+    "class": "ConcatOpTest",
+    "method": "testHStack",
+    "start": 38,
+    "end": 51,
+    "text": "def testHStack(self):\n    with self.session():\n      p1 = array_ops.placeholder(dtypes.float32, shape=[4, 4])\n      p2 = array_ops.placeholder(dtypes.float32, shape=[4, 4])\n      c = array_ops.concat([p1, p2], 0)\n      params = {\n          p1: np.random.rand(4, 4).astype(\"f\"),\n          p2: np.random.rand(4, 4).astype(\"f\")\n      }\n      result = c.eval(feed_dict=params)\n\n    self.assertEqual(result.shape, c.get_shape())\n    self.assertAllEqual(result[:4, :], params[p1])\n    self.assertAllEqual(result[4:, :], params[p2])",
+    "sha256": "e3f6c6a67a9095e9039c088f5536a4dd3b838df55270e1ba9bbe80d531a731df"
+  },
+  "assertion_expression": "self.assertAllEqual(expected, actual)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [
+    "graph placeholders and individual segment assertions"
+  ],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}

@@ -1,0 +1,26 @@
+{
+  "case_id": "E006",
+  "family": "multiply",
+  "source_framework": "tensorflow",
+  "scope": "value-and-shape",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/tf_binary.py",
+    "class": "BinaryOpTest",
+    "method": "_compareCpu",
+    "start": 79,
+    "end": 106,
+    "text": "def _compareCpu(self, x, y, np_func, tf_func, also_compare_variables=False):\n    np_ans = np_func(x, y)\n    with test_util.force_cpu():\n      inx = ops.convert_to_tensor(x)\n      iny = ops.convert_to_tensor(y)\n      out = tf_func(inx, iny)\n      tf_cpu = self.evaluate(out)\n      # Test that the op takes precedence over numpy operators.\n      np_left = self.evaluate(tf_func(x, iny))\n      np_right = self.evaluate(tf_func(inx, y))\n\n      if also_compare_variables:\n        var_x = variables.Variable(x)\n        var_y = variables.Variable(y)\n        self.evaluate(variables.global_variables_initializer())\n        print(type(x), type(y), type(var_x), type(var_y))\n        print(type(tf_func(x, var_y)), type(tf_func(var_x, y)))\n        np_var_left = self.evaluate(tf_func(x, var_y))\n        np_var_right = self.evaluate(tf_func(var_x, y))\n\n    if np_ans.dtype != np.object_:\n      self.assertAllClose(np_ans, tf_cpu)\n      self.assertAllClose(np_ans, np_left)\n      self.assertAllClose(np_ans, np_right)\n      if also_compare_variables:\n        self.assertAllClose(np_ans, np_var_left)\n        self.assertAllClose(np_ans, np_var_right)\n    self.assertShapeEqual(np_ans, out)",
+    "sha256": "50939e22a70a2964536ecd0150dd06db82d21296c4c9ac6811c28c4a7a7c1828"
+  },
+  "assertion_expression": "self.assertAllClose(expected, actual)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [
+    "NumPy/tensor mixed operands, Variable and gradient paths"
+  ],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}

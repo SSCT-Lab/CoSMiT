@@ -1,0 +1,26 @@
+{
+  "case_id": "E027",
+  "family": "stack",
+  "source_framework": "pytorch",
+  "scope": "value-and-shape",
+  "evidence_grade": "new-protocol-assertion-with-upstream-anchor; not original full test migration",
+  "source_anchor": {
+    "file": "upstream/pt_tensor.py",
+    "class": "TestTensorCreation",
+    "method": "test_stack",
+    "start": 1164,
+    "end": 1177,
+    "text": "def test_stack(self, device):\n        for dtype in (torch.half, torch.double, torch.int):\n            x = torch.randint(low=-100, high=100, size=(2, 3, 4), device=device, dtype=dtype)\n            y = torch.randint(low=-100, high=100, size=(2, 3, 4), device=device, dtype=dtype)\n            z = torch.randint(low=-100, high=100, size=(2, 3, 4), device=device, dtype=dtype)\n            for dim in range(4):\n                res = torch.stack((x, y, z), dim)\n                res_neg = torch.stack((x, y, z), dim - 4)\n                expected_size = x.size()[:dim] + (3,) + x.size()[dim:]\n                self.assertEqual(res, res_neg)\n                self.assertEqual(res.size(), expected_size)\n                self.assertEqual(res.select(dim, 0), x, atol=0, rtol=0)\n                self.assertEqual(res.select(dim, 1), y, atol=0, rtol=0)\n                self.assertEqual(res.select(dim, 2), z, atol=0, rtol=0)",
+    "sha256": "4c12479d61006056f796f49410f97e88423e5b7682e2181635f5090d751df05e"
+  },
+  "assertion_expression": "self.assertEqual(actual, expected)",
+  "source_target_assertions_identical_by_construction": true,
+  "excluded_obligations": [
+    "original per-input segment assertions, alias relations, device and dtype coverage"
+  ],
+  "input_origin": "all 64 frozen expansion inputs; not upstream original test setup",
+  "independent_human_review": false,
+  "authentic_full_test_pair_available": false,
+  "candidate_origin": "unchanged published counterpart in new generated assertion wrapper",
+  "scope_gap": "all full-source-intent conclusions pending; excluded obligations are not assumed preserved"
+}
