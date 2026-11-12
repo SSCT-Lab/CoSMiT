@@ -1,0 +1,85 @@
+{
+  "job_id": "ad0403400ed6c87bb362fb4f2b0cfabca40e1e09e8276d18209bb05c2a72eac9",
+  "candidate_id": "D0010",
+  "kind": "trace-llm",
+  "input_indices": [
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "d76c39be4772146206596588f56f7a110e45cd328c26c40b0758b64ce0f7f83e",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793073203.7270334,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace each {\"__shared_ref__\":\"sN\"} with shared.sN to recover the data.\n\n The shared dictionary is provided. We'll reconstruct the data by replacing shared references.\n\n Steps:\n 1. Replace all shared references in the entire input with the corresponding value from the shared dictionary.\n 2. Analyze the adapter tests and the observations for each input index.\n\n The task is to assess the controlled adapter tests for the given batch input indices [25,26,...,47].\n\n We are to return a JSON with:\n   verdict: \"preserved\", \"violated\", \"invalid-test\", \"invalid-assumption\", or \"undetermined\"\n   behavior_verdict: \"preserved\", \"violated\", or \"undetermined\"\n   intent_verdict: same as above\n   reason: a string of at most 200 words\n   input_indices: list of all assessed batch indices (which are [25,26,...,47])\n\n The verdicts:\n   - \"verdict\": refers to the bounded adapter-test preservation claim. We are testing whether the adapter for the target framework (tensorflow) produces the same output as the source framework (torch) for the same inputs, as recorded in the test expectations.\n\n   - \"behavior_verdict\": whether the actual behavior (output) of the target matches the source for the given inputs.\n\n   - \"intent_verdict\": whether the intent of the test is preserved. Note: a failing test does not necessarily mean the intent was lost.\n\n Important: The observations are provided for each input index. Each observation has groups of observations (which may be shared or a list). Each group has an observation that includes:\n      source_output, target_output, source_error, target_error, and the lines of code that were executed.\n\n We note that the test for each input index is considered passed if the target_output matches the source_output (within the tolerances) and there are no errors.\n\n However, note that the test code (adapter_runtime) uses a function `value_test` that does numerical comparisons with tolerances.\n\n We are to look at the observations for each input index in the batch and check if the target behavior matches the source.\n\n Steps for assessment:\n\n 1. For each input index in [25,26,...,47]:\n    - Look up the observation for that input index. Note: the observations are provided as a list in the \"observations\" field, each with an \"input_index\".\n    - The observation may be a shared reference (so we must resolve) or a list of groups. Each group has an \"observation\" and \"repeats\". But note: the test is run multiple times? However, the provided observations seem to have one group per input index (with repeats [0,1,2] meaning three runs?).\n\n 2. In each observation group, we check:\n    - If there is a source_error or target_error, then that test failed.\n    - Otherwise, we compare the source_output and target_output. But note: the test code already does the comparison, so the observation should reflect the outcome.\n\n 3. However, note that the observations are the recorded outcomes. We are to trust that the test was run and the observation is the result.\n\n 4. We must check for each input index whether the target test passed (i.e., target_output matches source_output and no error) or not.\n\n 5. But note: the test might have passed in the observation even if the value_test function passed? However, the observation includes the outputs and errors.\n\n 6. How the test is structured:\n    - The source test runs the source operation (torch.cosh) and records the output (source_reference) and also records the source_output in the observation.\n    - The target test runs the target operation (tf.cosh) and records the target_output.\n\n    The test passes if the target_output matches the source_reference (within tolerances) and also if the target_output matches the source_output (which is the same as source_reference?).\n\n 7. Actually, the source_reference is the expected output. The source_output in the observation is the output from the source run during the test? But note: the test for the source is run in the source adapter, and the target in the target adapter.\n\n 8. However, the problem states: \"The fixture includes recorded source outputs as test expectations; they are not human labels.\" So the source_reference is the recorded source output.\n\n 9. In the observation, we have:\n      source_output: the output from running the source operation during the test (should match source_reference? but note: the test might be run again, so it should be the same).\n      target_output: the output from running the target operation.\n\n 10. We are to check if the target_output matches the source_output (which is the oracle).\n\n 11. But note: the test code (adapter_runtime) does:\n        actual = fn(**kwargs)   # target operation\n        expected = decode(item['source_reference'])\n        ... then calls value_test( ... )\n\n 12. The observation records the source_output and target_output. We can use these to see if the test passed.\n\n 13. For each input index, if the observation shows:\n        source_error: null and target_error: null and the target_output matches the source_output (we don't have to compare because the test already did, but we can see if they are equal or if the test passed) then the test passed.\n\n 14. However, the observation does not directly say \"pass\" or \"fail\". We have to infer from the outputs and errors.\n\n 15. Since the test code does an assertion (via value_test) and also other assertions (like for sparse mode and gradient), if any of these fail, then the test would raise an exception and we would see a target_error.\n\n 16. Therefore, if target_error is not null, then the test for that input index failed.\n\n 17. If target_error is null and source_error is null, then the test passed.\n\n 18. But note: what if the source run fails? Then source_error would be non-null, and that would be a problem because the source_reference is the expected output. However, the test expects the source to run without error. So if source_error occurs, that test case is invalid? But in the provided data, we see source_error is null for all.\n\n 19. Let's look at the observations for the given input indices:\n\n      We have 23 input indices: 25 to 47.\n\n      The observations are provided as a list. We must map by input_index.\n\n      Example for input_index=25: \n          {\"groups\": {\"__shared_ref__\":\"s21\"}, \"input_index\":25}\n\n      Resolving s21: \n          s21: [{\"__shared_ref__\":\"s22\"}]\n          s22: {\"observation\": {\"__shared_ref__\":\"s23\"}, \"repeats\":[0,1,2]}\n          s23: {\"source_error\":null, \"source_lines\":[2], \"source_output\": ... , \"target_error\":null, \"target_output\": ... }\n\n      For input_index=25, the observation (s23) shows:\n          source_output: [1.0] (float64, shape [1])\n          target_output: [1.0] (same)\n\n      And both errors are null -> passed.\n\n 20. Similarly, for input_index=26: \n          groups: [{\"observation\": ... , \"repeats\":[0,1,2]}]\n          observation: source_output: 1.5430806348152437 (scalar float64), target_output: same -> passed.\n\n 21. We must check every input index.\n\n 22. However, note that some input indices have the same shared observation group? For example, input_index=30 and 31 both have groups: {\"__shared_ref__\":\"s27\"}.\n\n      s27: [{\"__shared_ref__\":\"s28\"}]\n      s28: {\"observation\": {\"__shared_ref__\":\"s29\"}, \"repeats\":[0,1,2]}\n      s29: {\"source_error\":null, ... , \"source_output\": {\"__shared_ref__\":\"s11\"}, ... , \"target_output\": {\"__shared_ref__\":\"s11\"}}\n\n      s11: {\"__ndarray__\":true, ... , \"values\": [{\"__float__\":\"inf\"}]} -> an array of one element which is inf.\n\n      So both source_output and target_output are the same (inf) -> passed.\n\n 23. We must check for any input index that has a non-null target_error or source_error, or a mismatch in the outputs.\n\n 24. Let's look at input_index=41: \n          groups: [{\"observation\": ...}]\n          observation: source_output: inf (float64), target_output: inf -> passed.\n\n 25. After scanning, it appears that all observations show:\n        source_error: null\n        target_error: null\n        and the source_output and target_output are the same (by value, and by shared reference meaning same object).\n\n 26. Therefore, all 23 tests passed.\n\n 27. But note: the test for input_index=28 and 29 have source_output and target_output as shared references (s5 and s7) but when resolved, they are arrays of the same values? Actually, they are the same shared object? For example, for input_index=28, both source_output and target_output are s5 -> same.\n\n 28. Therefore, for every input index in the batch, the test passed.\n\n 29. Verdicts:\n      behavior_verdict: \"preserved\" because the target behavior (output) matches the source for every input.\n      intent_verdict: \"preserved\" because the test passed and the intent of the test (to check that the target framework produces the same output as the source) was achieved.\n\n      The overall verdict: \"preserved\" because the adapter-test preservation claim (that the target adapter produces the same output as the source for the given tests) holds.\n\n 30. However, note the warning: \"a failing target test alone does not imply its intent was lost\". But here, all tests passed.\n\n 31. Therefore, we return:\n      verdict: \"preserved\"\n      behavior_verdict: \"preserved\"\n      intent_verdict: \"preserved\"\n      reason: \"All 23 tests passed: target outputs match source outputs for the given inputs.\"\n      input_indices: [25,26,...,47] (the list of 23 indices)\n\n 32. But note: the input_indices must be exactly the batch_input_indices: [25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n\n 33. However, we must be cautious: are there any hidden issues?\n\n      - The test code for the adapter_runtime has a section for sparse mode, but the inputs we are looking at are in dense mode (see the \"mode\" field in inputs). So that part is skipped.\n\n      - Also, there is a gradient check for some inputs? But note: the inputs that have 'source_gradient' in the item would run the gradient check. Looking at the inputs, only some have 'source_gradient'. However, in the provided inputs for the batch, none of the inputs have the key 'source_gradient'. So that part is skipped.\n\n      - The test code also has a check for official_sign (which is false in this case) so the shape check is not done.\n\n      Therefore, the test only runs the value_test.\n\n 34. Since the observations show that the value_test passed (because the target_output equals the source_output and there was no error), we are confident.\n\n 35. One more thing: the test code might have raised an exception that was caught and recorded as an error? But the observations show no errors.\n\n 36. Therefore, we conclude.\n\n 37. Reason must be concise (<=200 words).\n\n Let's write the reason: \"All 23 test cases in the batch passed: the target framework (TensorFlow) produced outputs matching the source framework (PyTorch) for the same inputs, within the specified tolerances. Both behavior and intent are preserved.\"\n\n 38. Input indices: we list all 23 indices.\n\n Implementation note: we don't need to write code to resolve the entire tree because the problem states that the shared references are exact values. But we did a manual inspection of the shared references and found no discrepancies.\n\n However, to be thorough, we note that the shared references for the outputs are the same for source and target in every observation.\n\n Therefore, the JSON output is:\n</think>\n{\n  \"verdict\": \"preserved\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"preserved\",\n  \"reason\": \"All 23 test cases passed: target outputs match source outputs exactly across all inputs. Observations show null errors and identical numerical results (including edge cases like inf and extreme values) for both frameworks. The adapter correctly handles dense mode, bfloat16, float32/64, and array shapes. Gradient checks and sparse modes were not triggered in this batch.\",\n  \"input_indices\": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 7668,
+      "completion_tokens": 2885,
+      "total_tokens": 10553
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "preserved",
+    "behavior_verdict": "preserved",
+    "intent_verdict": "preserved",
+    "reason": "All 23 test cases passed: target outputs match source outputs exactly across all inputs. Observations show null errors and identical numerical results (including edge cases like inf and extreme values) for both frameworks. The adapter correctly handles dense mode, bfloat16, float32/64, and array shapes. Gradient checks and sparse modes were not triggered in this batch.",
+    "input_indices": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 384.604
+}

@@ -1,0 +1,39 @@
+{
+  "job_id": "542da7aeb5440ac9eac72734a19b45c0bcb0013bc87d1d829acae8294d7b4f1a",
+  "candidate_id": "D0034",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    45
+  ],
+  "prompt_sha256": "73e387354b2ed828c53b1085c490ed0a1139e1737e86bb3c761a5f3e25a05c8a",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793165353.2523906,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and a Test Code. We must assess whether the TDL correctly expresses the intent of the Test Code.\n\nTDL (Test Description Language) summary:\n- Assertions:\n  1. \"dtype\": applicable to input index 45. Obligation: \"Require identical dtype via value_test(test_dtypes=True).\"\n  2. \"helper_shape\": applicable to input index 45. Obligation: \"Require identical shape through assert_same_type_and_shape invoked by value_test(test_dtypes=True).\"\n  3. \"value\": applicable to input index 45. Obligation: \"Compare actual values with frozen source values using the listed tolerances.\"\n- Goal: \"Preserve the supplied source test output obligations on the listed input subset\"\n- Input fixture indices: [45]\n- Scope: \"controlled native-output adapter tests; not full original frontend modes\"\n\nTest Code summary:\n- This is an adapter test that runs a specific test for input index 45.\n- The test code loads the input and the expected output (source_reference) from JSON files.\n- It then calls the function (either from PyTorch or TensorFlow) with the input and compares the result with the expected output.\n- The comparison is done via `value_test` function, which is imported from `ivy_tests.test_ivy.helpers.assertions`.\n- The `value_test` function is called with parameters including `test_dtypes=setting['test_dtypes']` (which for input 45 is true) and tolerances.\n- Additionally, there are some extra checks for sparse mode and gradients, but input 45 is in \"dense\" mode (as per the input provided).\n\nNow, let's map the TDL assertions to the Test Code:\n\n1. dtype assertion: The TDL says it requires identical dtype via `value_test(test_dtypes=True)`. In the Test Code, the `value_test` function is called with `test_dtypes=setting['test_dtypes']` which is true for input 45. The `value_test` function, when `test_dtypes` is true, will check the dtypes (via `assert_same_type_and_shape` which is called inside `value_test` when `test_dtypes` is true). So this matches.\n\n2. helper_shape: The TDL says it requires identical shape through `assert_same_type_and_shape` invoked by `value_test(test_dtypes=True)`. Indeed, when `test_dtypes` is true, `value_test` calls `assert_same_type_and_shape` which checks both the type (dtype) and the shape. So the shape is checked as part of that function. This matches.\n\n3. value: The TDL says to compare actual values with frozen source values using the listed tolerances. The Test Code does exactly that by calling `value_test` with the actual and expected arrays and the tolerances.\n\nTherefore, the TDL assertions are correctly implemented in the Test Code for input index 45.\n\nNote: The TDL is only applicable to input index 45, and the Test Code is run for that input.\n\nThus, the TDL correctly expresses the intent of the Test Code.\n\nOutput:\n{\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value are correctly implemented in the test code via value_test with test_dtypes=True and tolerance settings for input index 45.\", \"input_indices\": [45]}\n</think>\n{\"valid\": true, \"reason\": \"TDL assertions align with test code implementation: dtype/shape checks via value_test(test_dtypes=True) enforce type consistency, value comparison uses source_reference with specified tolerances, and input index 45 coverage matches fixture. Adapter correctly handles dense mode without unclaimed features.\", \"input_indices\": [45]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 12056,
+      "completion_tokens": 791,
+      "total_tokens": 12847
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions align with test code implementation: dtype/shape checks via value_test(test_dtypes=True) enforce type consistency, value comparison uses source_reference with specified tolerances, and input index 45 coverage matches fixture. Adapter correctly handles dense mode without unclaimed features.",
+    "input_indices": [
+      45
+    ]
+  },
+  "seconds": 81.351
+}

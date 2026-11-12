@@ -1,0 +1,61 @@
+{
+  "job_id": "cd6401bbd1d2baad0e44451f80afaa4133ed1f0bfde78f7ca4b49aa9f80a6bfe",
+  "candidate_id": "H006",
+  "kind": "intenttester-target-api",
+  "input_indices": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "9b16491c1ecced3f5d2b4c91919cdbf23a69e69f789923e43a98246d1d8283b9",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792553560.9469237,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a test code block and a set of inputs. We are to check for syntax errors and incorrect API usages in the test code.\n\nThe test code is provided as a string in the \"adapter_runtime\" field. We also have a helper function \"oracle_helper_code\" and the \"target_operation\" code.\n\nHowever, note that the task is to assess only the controlled adapter tests and the listed inputs (batch_input_indices: [36,37,38,39,40,41,42,43,44,45,46,47]). We are to look for code syntax errors or incorrect API usages in the provided test code.\n\nThe test code in \"adapter_runtime\" is a Python module that defines:\n- A `decode` function for handling special array structures.\n- An `invoke_test` function that sets up the test environment, converts inputs, executes the target operation, and checks the results.\n\nWe are also provided with the \"oracle_helper_code\" which defines functions for value testing (like `value_test`, `assert_all_close`, etc.), and the \"target_operation\" which defines the function to be tested (in this case, `tensorflow_call`).\n\nSteps:\n\n1. Check the syntax of the provided test code (the `adapter_runtime` string) by attempting to parse it. However, note that we are not allowed to run the code, so we must rely on static analysis.\n\n2. Check for any incorrect API usages. For example:\n   - Are all imported modules available? We are told the framework versions (numpy 2.1.3, tensorflow 2.20.0, torch 2.9.1+cpu). We must check if the code uses these APIs correctly.\n   - Look for any obvious mistakes, such as calling a function with the wrong number of arguments, using deprecated methods, or incorrect attribute access.\n\nLet's break down the `adapter_runtime` code:\n\n- It imports `json`, `sys`, `pathlib`, `numpy`, and `ml_dtypes`.\n- Defines a `decode` function that handles:\n   - Sparse arrays (with `__sparse__` key)\n   - Dense arrays (with `__ndarray__` key, including complex arrays)\n   - Dictionaries and lists recursively.\n- The `invoke_test` function:\n   - Imports `torch` and `tensorflow` (note: these are heavy imports, but we are only concerned with syntax and API usage).\n   - Reads some JSON files to get metadata and input data.\n   - Adjusts the system path to import a helper function `value_test` from `ivy_tests.test_ivy.helpers.assertions`.\n   - Defines a `convert` function to convert numpy arrays to the framework's tensor (either torch or tensorflow). Handles bfloat16 for torch.\n   - Defines an `array` function to convert framework tensors (including sparse) to numpy arrays. Handles bfloat16 by converting to float and then to ml_dtypes.bfloat16.\n   - Executes the operation code (either 'pytorch_call' or 'tensorflow_call') from a file in the given folder.\n   - For sparse mode, it does some special setup.\n   - Calls the function and then uses `value_test` to compare the result.\n\nPotential issues:\n\na) Syntax: We must check for any syntax errors in the provided code.\n\nb) API usage:\n\n   - In the `convert` function, when `fw` is 'torch', it does:\n        `torch.tensor(v.astype(np.float32), dtype=torch.bfloat16)`\n     This is acceptable.\n\n   - In the `array` function for torch sparse tensors, it calls `v.to_dense()`. This is correct.\n\n   - For bfloat16, it uses `ml_dtypes.bfloat16`. We note that `ml_dtypes` is imported, so that should be okay.\n\n   - The `exec` statement: it compiles and executes the operation code. This is dynamic but acceptable.\n\n   - The `value_test` function is called with parameters that match its signature? Let's check the definition in the oracle_helper_code:\n\n        value_test(*, ret_np_flat, ret_np_from_gt_flat, rtol, atol, specific_tolerance_dict, backend, ground_truth_backend, test_dtypes)\n\n     In the adapter_runtime code, the call is:\n\n        value_test(ret_np_flat=[array(actual)], ret_np_from_gt_flat=[expected], rtol=setting['rtol'], atol=setting['atol'], specific_tolerance_dict=setting['tolerance_dict'], test_dtypes=setting['test_dtypes'], backend=fw, ground_truth_backend=meta['source_framework'])\n\n     This matches.\n\n   - After that, there are additional checks for shape (if official_sign is True) and for sparse mode and gradient.\n\n   - In the gradient check for tensorflow, it uses `tf.Variable` and `tf.GradientTape`. This is standard.\n\n   - For torch, it uses `torch.autograd.grad`. This is standard.\n\n   - The use of `np.testing.assert_allclose` in the gradient check is acceptable.\n\nc) Shared references: The input data uses shared references (like `__shared_ref__`). The `decode` function does not handle these. However, note the instruction: when the JSON payload has encoding=lossless-subtree-sharing-v1, we must replace each `{\"__shared_ref__\":\"sN\"}` with `shared.sN` to recover data. But in the provided `decode` function, there is no handling for `__shared_ref__`. This is a problem because the inputs include shared references (e.g., input_index 40, 41, 43, 44).\n\nLooking at the inputs:\n\n   - input_index 40: `\"input\": {\"__shared_ref__\":\"s1\"}`\n   - input_index 41: `\"input\": {\"__shared_ref__\":\"s2\"}`\n   - input_index 43: `\"input\": {\"__shared_ref__\":\"s3\"}`\n   - input_index 44: `\"input\": {\"__shared_ref__\":\"s3\"}`\n\nThe `decode` function only handles:\n   - dict with `__sparse__`\n   - dict with `__ndarray__`\n   - generic dict (recursively)\n   - list (recursively)\n\nSo when it encounters a dict with `__shared_ref__`, it will treat it as a generic dict and try to decode each key. The key `__shared_ref__` is a string, and the value is a string (like \"s1\"). So it will return a dict: `{'__shared_ref__': 's1'}`. But what we need is to replace it by the actual shared value (which is in the `shared` object).\n\nThis means that the `decode` function does not implement the required substitution for shared references. Therefore, when the test runs, it will pass a dictionary `{'__shared_ref__': 's1'}` as an argument to the function, which is not the intended tensor.\n\nThis will cause an error because the target function (tensorflow_call) expects a tensor, not a dictionary.\n\nTherefore, the test code has a flaw in not handling shared references during decoding.\n\nAdditionally, note that the `source_reference` for these inputs also uses shared references (e.g., `{\"__shared_ref__\":\"s1\"}`). The `decode` function is also used on `item['source_reference']`, so it will similarly not expand the shared reference, leading to an incorrect expected value.\n\nThis is an incorrect API usage in the test code because it fails to follow the specified data encoding.\n\nHow should it be fixed?\n\nAccording to the instructions, we must replace each `{\"__shared_ref__\":\"sN\"}` with `shared.sN` (where `shared` is a mapping from string identifiers to values). The `shared` object is provided in the input context (under the key \"shared\").\n\nBut note: the `decode` function is called on the input arguments and the source_reference. We must modify the `decode` function to handle the shared references.\n\nWe can change the `decode` function to take an optional `shared` mapping? But in the current code, `decode` does not have access to the `shared` data.\n\nLooking at the context of the `invoke_test` function: the `shared` data is not passed to `decode`. Therefore, the current implementation cannot handle shared references.\n\nThis is a critical flaw.\n\nConclusion:\n\nThe test code is syntactically correct (no syntax errors), but it has an incorrect API usage: it does not handle the shared references in the input data and the source_reference, as required by the encoding specification.\n\nThus, the test code is invalid for the given inputs that use shared references.\n\nWe must return:\n   {\"valid\": false, \"reason\": \"The decode function does not handle shared references (__shared_ref__) as required by the encoding specification, which will cause incorrect arguments and expected values for inputs with shared references.\", \"input_indices\": [36,37,38,39,40,41,42,43,44,45,46,47]}\n\nNote: The issue affects the inputs that use shared references (40,41,43,44) and also the source_reference for these inputs. But note that the batch includes 12 inputs, and the issue only occurs for the ones with shared references. However, the test code is written to run on all inputs, so the entire batch is affected because the same `decode` function is used for every input.\n\nTherefore, we mark the entire batch as invalid.\n\nBut note: the problem might also occur for other inputs that have shared references in the source_reference? For example, input_index 42 does not have a shared reference in the arguments, but its source_reference is a complex array (without shared reference). However, input_index 40,41,43,44 have shared references in the arguments and in the source_reference.\n\nHowever, the test code is broken for any shared reference, so the entire batch of tests that use this adapter runtime is at risk.\n\nGiven the instructions, we are to assess the entire batch (input_indices 36 to 47). Since the test code does not handle shared references, it will fail for inputs 40,41,43,44. Therefore, the test code is not valid for the entire batch.\n\nWe return false for the entire batch.\n\nNote: The reason must be concise (at most 200 words). We have written a reason that fits.\n\nLet's check the output format: \n   {\"valid\":true|false|null,\"reason\":\"...\",\"input_indices\":[...]}\n\nWe must list all assessed batch indices: [36,37,38,39,40,41,42,43,44,45,46,47]\n\nTherefore, the output is:\n</think>\n{\"valid\": false, \"reason\": \"The decode function fails to handle shared references (__shared_ref__) as required by the encoding specification. Inputs 40,41,43,44 contain shared references that are not resolved, causing incorrect argument parsing and test execution.\", \"input_indices\": [36,37,38,39,40,41,42,43,44,45,46,47]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 4740,
+      "completion_tokens": 2418,
+      "total_tokens": 7158
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": false,
+    "reason": "The decode function fails to handle shared references (__shared_ref__) as required by the encoding specification. Inputs 40,41,43,44 contain shared references that are not resolved, causing incorrect argument parsing and test execution.",
+    "input_indices": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 314.141
+}

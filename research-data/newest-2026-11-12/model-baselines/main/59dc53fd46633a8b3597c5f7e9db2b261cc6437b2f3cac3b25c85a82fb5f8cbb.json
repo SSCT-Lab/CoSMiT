@@ -1,0 +1,85 @@
+{
+  "job_id": "59dc53fd46633a8b3597c5f7e9db2b261cc6437b2f3cac3b25c85a82fb5f8cbb",
+  "candidate_id": "E028",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "prompt_sha256": "e9685e38b3fb391ea861089c9d941e23eafd1141a513650658c499753b1c771d",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793075336.7258456,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL (Test Description Language) and Test Code.\n The TDL has:\n   - assertions: which describe what is being tested (dtype, helper_shape, value) and on which input indices.\n   - goal: to preserve the supplied source test output obligations on the listed input subset.\n   - input_fixture_indices: [0,1,...,23] (all 24 indices)\n   - other metadata.\n\n The Test Code is a JSON with:\n   - data: contains the code for the adapter, the inputs, and the oracle helper code.\n   - encoding: \"lossless-subtree-sharing-v1\", so we must replace any {\"__shared_ref__\":\"sN\"} with shared.sN.\n\n Steps:\n 1. We note that the TDL has three assertions: dtype, helper_shape, and value. They are applicable to all 24 input indices.\n\n 2. We must look at the Test Code to see what the test does.\n\n The Test Code has:\n   - adapter_runtime: a Python module that defines:\n        - decode: for decoding the shared data structures.\n        - invoke_test: the main function that runs the test for a given input index.\n\n   - inputs: a list of 24 test cases (input_index 0 to 23). Each input has:\n        - arguments: the input to the function (which might be shared via __shared_ref__)\n        - mode: mostly \"dense\", but note input_index 2 and 19 are different? Actually, all are dense except for the ones that are sparse? But in the inputs, we see mode: \"dense\" for all.\n        - oracle_settings: shared_ref s4 (which we can look up in shared)\n        - source_reference: the expected output (might be shared)\n\n   - shared: a dictionary of shared values (s0, s1, ...). We can decode them by replacing __shared_ref__ with the corresponding value.\n\n   - oracle_helper_code: the code that defines the assertion functions (value_test, assert_all_close, assert_same_type_and_shape).\n\n   - target_operation: the function being tested (pytorch_call for torch, which is torch.stack).\n\n 3. How the test runs (from invoke_test):\n    - It decodes the input item (from the inputs.json, which we have in the shared structure).\n    - It sets up the framework (fw) based on the role (which for target is torch).\n    - It defines a convert function to convert numpy arrays to the framework (torch or tensorflow).\n    - It defines an array function to convert framework tensors back to numpy.\n    - It compiles and executes the operation code (which for target is the 'pytorch_call' for torch).\n    - It calls the function (fn) with the converted arguments.\n    - It then gets the expected output by decoding the source_reference.\n    - It calls value_test with:\n          ret_np_flat=[array(actual)]\n          ret_np_from_gt_flat=[expected]\n          and the settings from oracle_settings (which is s4: {atol:1e-06, rtol:null, test_dtypes:true, ...})\n\n    - Additionally, if the mode is 'sparse', it does extra checks (but in our inputs, all are dense? Actually, note that in the inputs, all have mode='dense' except for input_index 6,7,...? Actually, all 24 are dense? Let me check: \n          input_index 0: dense\n          ... until 23: dense. So no sparse tests in this batch.\n\n    - Also, if there is a 'source_gradient' in the item, it checks gradients. But in the provided inputs, none of the items have 'source_gradient'. So we skip that.\n\n 4. The value_test function (from oracle_helper_code) does:\n    - If test_dtypes is True, it calls assert_same_type_and_shape (which checks the dtype and shape of the returned arrays).\n    - Then it compares the values with the given tolerances.\n\n 5. Now, the TDL assertions:\n    - dtype: \"Require identical dtype via value_test(test_dtypes=True).\"\n        This matches because value_test is called with test_dtypes=True (from the oracle_settings s4: test_dtypes:true) and inside value_test, if test_dtypes is True, it calls assert_same_type_and_shape which checks the dtype (and shape).\n\n    - helper_shape: \"Require identical shape through assert_same_type_and_shape invoked by value_test(test_dtypes=True).\"\n        This is also covered by the same call to assert_same_type_and_shape.\n\n    - value: \"Compare actual values with frozen source values using the listed tolerances.\"\n        This is done by the rest of value_test (the numerical comparison).\n\n 6. Therefore, the TDL assertions exactly match what the test code does for all 24 inputs.\n\n 7. However, note that the TDL says the assertions are applicable to all 24 input indices. We must check if there is any input that might not be covered? But the test code runs the same value_test for every input.\n\n 8. Also note: the TDL's input_fixture_indices are [0,1,...,23] and the test code's batch_input_indices are the same.\n\n 9. There is one more thing: the test code has an extra check for 'official_sign'. But note that in the provided data, \"official_sign\":false. So the shape check (assert array(actual).shape == expected.shape) is not run. Therefore, the shape check is only done via the helper_shape assertion (which is part of value_test when test_dtypes is True). So that's consistent.\n\n 10. Also, the TDL does not mention the gradient check or sparse check, but in this batch there are no sparse or gradient tests. So it's okay.\n\n Conclusion: The TDL correctly expresses the intent of the Test Code for the given batch.\n\n Therefore, we return:\n   {\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value match the test code's value_test with test_dtypes=True, which is applied to all 24 inputs.\", \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]}\n\n Note: The reason must be at most 200 words. This is about 50 words.\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions for dtype, helper_shape, and value align with test code execution. The test invokes value_test(test_dtypes=True) for all 24 inputs, enforcing dtype/shape checks via assert_same_type_and_shape and value comparisons using source references and tolerances as specified in TDL obligations.\",\n  \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 8406,
+      "completion_tokens": 1518,
+      "total_tokens": 9924
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions for dtype, helper_shape, and value align with test code execution. The test invokes value_test(test_dtypes=True) for all 24 inputs, enforcing dtype/shape checks via assert_same_type_and_shape and value comparisons using source references and tolerances as specified in TDL obligations.",
+    "input_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  "seconds": 202.475
+}

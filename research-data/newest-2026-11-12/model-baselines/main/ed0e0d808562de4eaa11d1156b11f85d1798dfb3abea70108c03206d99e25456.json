@@ -1,0 +1,39 @@
+{
+  "job_id": "ed0e0d808562de4eaa11d1156b11f85d1798dfb3abea70108c03206d99e25456",
+  "candidate_id": "D0034",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    12
+  ],
+  "prompt_sha256": "048ab2dd77bd18bbd8a4fb6707bd769d0bc628e3b612d96199097d88a9c02bc0",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793157993.1714268,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and a Test Code. We must decide if the TDL correctly expresses the intent of the Test Code.\n\nTDL (Test Description Language) has:\n- assertions: three assertions (dtype, helper_shape, value) that apply to input index 12.\n- goal: to preserve the source test output obligations on the input subset.\n- input_fixture_indices: [12]\n- other metadata.\n\nTest Code is a JSON object that includes:\n- adapter_runtime: a Python function `invoke_test` that runs the test for a given input index.\n- batch_input_indices: [12] (so only index 12 is tested in this batch)\n- inputs: a list with one element at index 12, which includes:\n    - arguments: the input tensor (a large array of floats)\n    - mode: \"dense\"\n    - oracle_settings: atol=1e-06, rtol=null, test_dtypes=true, test_values=true, tolerance_dict=null\n    - source_reference: the expected output (with some inf values)\n- official_sign: false\n- oracle_helper_code: the code for `value_test` and `assert_all_close` functions that are used in the test.\n- original_source_test_excerpt: the original test function (for context, but we are only concerned with the adapter test)\n- scope: controlled native-output adapter tests\n- source_adapter: the code that runs the test for the source (TensorFlow) for 48 inputs, but we are only concerned with index 12.\n- source_api: tf.cosh\n- source_framework: tensorflow\n- source_operation: a function that calls tf.cosh(x)\n- target_framework: torch\n- unadapted_modes: modes not implemented by the adapter.\n\nThe Test Code's adapter_runtime function `invoke_test` does the following for the given input index (12):\n1. Loads the test case metadata and the specific input item (index 12).\n2. Sets up the framework (fw) based on the role (which for the target is 'torch'? but note: in the test, the role is passed as \"source\" for the source test and \"target\" for the target test? However, in the provided test code, we are running the target test? Actually, the source_adapter runs `invoke_test(HERE, \"source\", input_index)` for the source, but the test code provided is for the adapter runtime that is shared. The test code we are given is for the target? But note the candidate_id is D0034 and the framework_versions include torch and tensorflow.\n\nHowever, note the TASK: we are to assess the TDL against the Test Code. The TDL is about the adapter tests.\n\nLooking at the TDL assertions:\n\n1. dtype: obligation is to require identical dtype via value_test(test_dtypes=True). This applies to input index 12.\n2. helper_shape: obligation is to require identical shape through assert_same_type_and_shape (which is called by value_test when test_dtypes=True). Applies to index 12.\n3. value: obligation is to compare actual values with frozen source values using the listed tolerances. Applies to index 12.\n\nNow, in the Test Code, the `invoke_test` function for the target (when run for the target framework) does:\n\n- It runs the function (either pytorch_call or tensorflow_call) for the given input (after converting appropriately).\n- Then it calls:\n    value_test(ret_np_flat=[array(actual)], ret_np_from_gt_flat=[expected], rtol=setting['rtol'], atol=setting['atol'], specific_tolerance_dict=setting['tolerance_dict'], test_dtypes=setting['test_dtypes'], backend=fw, ground_truth_backend=meta['source_framework'])\n\nThe setting for the input index 12 has:\n    \"oracle_settings\": {\"atol\":1e-06,\"rtol\":null,\"test_dtypes\":true,\"test_values\":true,\"tolerance_dict\":null}\n\nSo, in the call to value_test:\n    test_dtypes = True (from setting)\n\nThe `value_test` function (from the oracle_helper_code) does:\n    if test_dtypes:\n        assert_same_type_and_shape([ret_np_flat, ret_np_from_gt_flat])\n\nThe `assert_same_type_and_shape` function checks:\n    - The shape of the returned array and the ground truth array are the same.\n    - The dtype (with some normalization) is the same.\n\nAdditionally, the value_test function then does value comparisons (with tolerances) for each element.\n\nTherefore, the TDL assertions are:\n\n- dtype: covered by the `test_dtypes=True` in value_test, which triggers the dtype check in `assert_same_type_and_shape`.\n- helper_shape: covered by the same `assert_same_type_and_shape` (which checks shape and dtype).\n- value: covered by the value comparisons in `value_test`.\n\nThus, the TDL correctly captures the intent of the test code for input index 12.\n\nNote: The TDL only applies to input index 12, and the test code is run for index 12.\n\nTherefore, we return:\n    valid: true\n    reason: The TDL assertions for dtype, helper_shape, and value are correctly implemented by the test code via the value_test function with test_dtypes=True and the value comparisons.\n    input_indices: [12]\n\nBut note: the TDL says the value assertion uses \"the listed tolerances\". In the test, the tolerances come from the oracle_settings (atol=1e-06, rtol=null, and then the value_test uses the TOLERANCE_DICT for rtol when rtol is null). The TDL does not specify the exact tolerances, but it says \"using the listed tolerances\", and the test uses the ones from the fixture (oracle_settings). So that matches.\n\nAlso, note that the TDL has an assertion \"helper_shape\" that is covered by the same call to assert_same_type_and_shape. The TDL says the helper_shape is required through assert_same_type_and_shape, which is exactly what the test does.\n\nTherefore, the TDL is valid.\n\nOutput in the required JSON format:\n{\n    \"valid\": true,\n    \"reason\": \"The TDL assertions for dtype, helper_shape, and value are correctly implemented by the test code via the value_test function with test_dtypes=True and the value comparisons.\",\n    \"input_indices\": [12]\n}\n\nBut note: the reason must be at most 200 words. This is within limit.\n\nHowever, note the instruction: \"Return concise JSON only, with a nonempty reason of at most 200 words. input_indices must list all assessed batch indices.\"\n\nWe assessed only input index 12.\n\nBut wait: the TDL's assertions are only applicable to input index 12 (as per the applicable_input_indices). And the test code runs for input index 12. So we are only concerned with that.\n\nTherefore, the output is as above.\n</think>\n{\"valid\": true, \"reason\": \"The TDL assertions correctly map to the test code's implementation: dtype and shape checks are enforced via value_test(test_dtypes=True) calling assert_same_type_and_shape, and value comparison uses the specified tolerances from oracle_settings. The test executes these checks exclusively for input index 12 as defined.\", \"input_indices\": [12]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 7781,
+      "completion_tokens": 1580,
+      "total_tokens": 9361
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "The TDL assertions correctly map to the test code's implementation: dtype and shape checks are enforced via value_test(test_dtypes=True) calling assert_same_type_and_shape, and value comparison uses the specified tolerances from oracle_settings. The test executes these checks exclusively for input index 12 as defined.",
+    "input_indices": [
+      12
+    ]
+  },
+  "seconds": 188.013
+}

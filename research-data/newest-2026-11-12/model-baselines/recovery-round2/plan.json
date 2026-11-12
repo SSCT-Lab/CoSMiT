@@ -1,0 +1,244 @@
+{
+  "model": "DeepSeek-R1",
+  "workers": 2,
+  "max_recovery_attempts": 3,
+  "jobs": [
+    {
+      "job": {
+        "job_id": "1b5c43982c07f0eef3ed898347f0512e967c645bbbe485c1b171054e35492bc0",
+        "candidate_id": "D0045",
+        "kind": "trace-llm",
+        "batch": 1,
+        "input_indices": [
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43
+        ],
+        "prompt_sha256": "31f0e04cf432d55504c35583a2e706674c598e09edfc2681533b0a2d0bb02148",
+        "protocol_sha256": "cfa6cdd0e19416815b6b54961dc5de0715c6a7c59f98b099638d927cbd8707d7",
+        "characters": 23695,
+        "status": "prepared",
+        "model_calls": 0,
+        "path": "candidates\\D0045\\001-trace-llm.json"
+      },
+      "original_result_sha256": "a525971ba97a8672561f01eb4bc4f2fd0c00010e4ce24ef6676df0ae62deeb28",
+      "max_tokens": 16384,
+      "socket_timeout_seconds": 600,
+      "wall_timeout_seconds": 3600,
+      "original_failure": {
+        "job_id": "1b5c43982c07f0eef3ed898347f0512e967c645bbbe485c1b171054e35492bc0",
+        "candidate_id": "D0045",
+        "kind": "trace-llm",
+        "error_type": "RejectedResponse",
+        "http_status": null,
+        "reason": "non-stop-termination",
+        "finish": [
+          "length"
+        ],
+        "completion_tokens": 8192
+      }
+    },
+    {
+      "job": {
+        "job_id": "79857a3488d7e23edd42b5fa31e8431c68653ca8bb801d1c1160cb167ef7ff82",
+        "candidate_id": "D0050",
+        "kind": "trace-llm",
+        "batch": 3,
+        "input_indices": [
+          44
+        ],
+        "prompt_sha256": "12567b7e72eedca720efa26c874b7773d5405a1d0f9366f0380e21d43f22e67b",
+        "protocol_sha256": "cfa6cdd0e19416815b6b54961dc5de0715c6a7c59f98b099638d927cbd8707d7",
+        "characters": 38893,
+        "status": "prepared",
+        "model_calls": 0,
+        "path": "candidates\\D0050\\003-trace-llm.json"
+      },
+      "original_result_sha256": "c8e19be5ccd0ef1a1dcd9d7d3bb0be21138e41e98a552e66d06a0bca84e3d933",
+      "max_tokens": 8192,
+      "socket_timeout_seconds": 600,
+      "wall_timeout_seconds": 2400,
+      "original_failure": {
+        "job_id": "79857a3488d7e23edd42b5fa31e8431c68653ca8bb801d1c1160cb167ef7ff82",
+        "candidate_id": "D0050",
+        "kind": "trace-llm",
+        "error_type": "RuntimeError",
+        "http_status": 424,
+        "reason": null,
+        "finish": [],
+        "completion_tokens": null
+      }
+    },
+    {
+      "job": {
+        "job_id": "ba2486eb2d00e08b0a0b7d57207153483ce038495d031760992db78a338d990e",
+        "candidate_id": "D0050",
+        "kind": "trace-llm",
+        "batch": 4,
+        "input_indices": [
+          45
+        ],
+        "prompt_sha256": "99968007d95caa6eaa220283e8c899b4e26bcfa693090dfbb906660be8ec263b",
+        "protocol_sha256": "cfa6cdd0e19416815b6b54961dc5de0715c6a7c59f98b099638d927cbd8707d7",
+        "characters": 38893,
+        "status": "prepared",
+        "model_calls": 0,
+        "path": "candidates\\D0050\\004-trace-llm.json"
+      },
+      "original_result_sha256": "a31874981798694e2862a7a0474675830ec9410b1ee940e20d9171ebeb52b27f",
+      "max_tokens": 8192,
+      "socket_timeout_seconds": 600,
+      "wall_timeout_seconds": 2400,
+      "original_failure": {
+        "job_id": "ba2486eb2d00e08b0a0b7d57207153483ce038495d031760992db78a338d990e",
+        "candidate_id": "D0050",
+        "kind": "trace-llm",
+        "error_type": "RuntimeError",
+        "http_status": 424,
+        "reason": null,
+        "finish": [],
+        "completion_tokens": null
+      }
+    },
+    {
+      "job": {
+        "job_id": "0fef595ead036be92795b10668df70c6d887d41e19739dcde6c3af8a9e869bad",
+        "candidate_id": "D0050",
+        "kind": "trace-llm",
+        "batch": 5,
+        "input_indices": [
+          46
+        ],
+        "prompt_sha256": "6c1c37ae34d272d1a3dabf9b3862ae8f08b98234c6239d2801c272fa801b0439",
+        "protocol_sha256": "cfa6cdd0e19416815b6b54961dc5de0715c6a7c59f98b099638d927cbd8707d7",
+        "characters": 38880,
+        "status": "prepared",
+        "model_calls": 0,
+        "path": "candidates\\D0050\\005-trace-llm.json"
+      },
+      "original_result_sha256": "dcf3dd23db12a58b79b5a9592f78c1916594ecddb712b895f12c0333d970467b",
+      "max_tokens": 8192,
+      "socket_timeout_seconds": 600,
+      "wall_timeout_seconds": 2400,
+      "original_failure": {
+        "job_id": "0fef595ead036be92795b10668df70c6d887d41e19739dcde6c3af8a9e869bad",
+        "candidate_id": "D0050",
+        "kind": "trace-llm",
+        "error_type": "RuntimeError",
+        "http_status": 424,
+        "reason": null,
+        "finish": [],
+        "completion_tokens": null
+      }
+    },
+    {
+      "job": {
+        "job_id": "acab8a5b6920fc33931b4469f288052232008cee60b3e3ca7e6861589eeeb124",
+        "candidate_id": "D0050",
+        "kind": "trace-llm",
+        "batch": 6,
+        "input_indices": [
+          47
+        ],
+        "prompt_sha256": "6622e2662b7f53dfb00fff1840a10c845a74e45e6d2532b675dad8483aab3a12",
+        "protocol_sha256": "cfa6cdd0e19416815b6b54961dc5de0715c6a7c59f98b099638d927cbd8707d7",
+        "characters": 38870,
+        "status": "prepared",
+        "model_calls": 0,
+        "path": "candidates\\D0050\\006-trace-llm.json"
+      },
+      "original_result_sha256": "57d7e0dc915ebe4187614875463a27de1632869240f84044258b8be2b5a54c9a",
+      "max_tokens": 8192,
+      "socket_timeout_seconds": 600,
+      "wall_timeout_seconds": 2400,
+      "original_failure": {
+        "job_id": "acab8a5b6920fc33931b4469f288052232008cee60b3e3ca7e6861589eeeb124",
+        "candidate_id": "D0050",
+        "kind": "trace-llm",
+        "error_type": "RuntimeError",
+        "http_status": 424,
+        "reason": null,
+        "finish": [],
+        "completion_tokens": null
+      }
+    },
+    {
+      "job": {
+        "job_id": "ba74b6a004762e32e6cb9d6069b2384b0ef980dce00a2cf52e3113104001adfa",
+        "candidate_id": "E015",
+        "kind": "trace-llm",
+        "batch": 1,
+        "input_indices": [
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36
+        ],
+        "prompt_sha256": "a51c8364c0211bef712d103c6dc9cdefa68d52194bea1da62cd5594ab6654d9a",
+        "protocol_sha256": "cfa6cdd0e19416815b6b54961dc5de0715c6a7c59f98b099638d927cbd8707d7",
+        "characters": 23610,
+        "status": "prepared",
+        "model_calls": 0,
+        "path": "candidates\\E015\\001-trace-llm.json"
+      },
+      "original_result_sha256": "cb506c9a07969d1e9ed61ff26e7c0439cdb7b65dc996962149eb642ae6c6c1a3",
+      "max_tokens": 16384,
+      "socket_timeout_seconds": 600,
+      "wall_timeout_seconds": 3600,
+      "original_failure": {
+        "job_id": "ba74b6a004762e32e6cb9d6069b2384b0ef980dce00a2cf52e3113104001adfa",
+        "candidate_id": "E015",
+        "kind": "trace-llm",
+        "error_type": "RejectedResponse",
+        "http_status": null,
+        "reason": "non-stop-termination",
+        "finish": [
+          "length"
+        ],
+        "completion_tokens": 8192
+      }
+    }
+  ],
+  "code_hashes": {
+    "benchmark\\baselines\\run_model_recovery_1029_round2.py": "cbffb0aa258eb05604a7c33f75a723a1642f7134b132137a3a2308d2f09b5540",
+    "benchmark\\baselines\\run_unified_model_full.py": "ec41375a466473420573a9a044e4c8217a430ef080495f3bf4135c20ae72577d",
+    "benchmark\\public_systems\\katrer_reproduction.py": "b723aa21186a73646ce5a47252a77e16892a57f910fdff3c9dd9be6b6721263f",
+    "benchmark\\baselines\\verification_ports.py": "088a2ced882e4777d819558a735c660ec6ce0c5fb17908044484e9f273944f49"
+  }
+}

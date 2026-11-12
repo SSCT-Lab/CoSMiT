@@ -1,0 +1,57 @@
+{
+  "job_id": "b0391a693c2e73ccfbd025f77a3fd8f19c2880116c818964fb12f0a35dbca4a7",
+  "candidate_id": "E017",
+  "kind": "trace-llm",
+  "input_indices": [
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "a7a2a2e24448257aae5bc1810aa93d1953e28519338b1420b05d223fafaf7fe6",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793180813.3041673,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace each {\"__shared_ref__\":\"sN\"} with shared.sN to recover the data.\n The shared dictionary is provided under the key \"shared\".\n\n Steps:\n 1. Reconstruct the entire data by replacing shared references.\n 2. Focus only on the controlled adapter tests and the listed inputs (batch_input_indices: [39,40,41,42,43,44,45,46,47]).\n 3. The original public tests are accepted as valid; we do not re-investigate their authenticity.\n 4. The fixture includes recorded source outputs as test expectations; they are not human labels.\n 5. We are to assess the adapter-test preservation claim for the given batch of inputs.\n\n The verdicts we can return are:\n   verdict: \"preserved\", \"violated\", \"invalid-test\", \"invalid-assumption\", or \"undetermined\"\n   behavior_verdict: \"preserved\", \"violated\", or \"undetermined\"\n   intent_verdict: \"preserved\", \"violated\", or \"undetermined\"\n\n We must also provide a reason (<=200 words) and list all assessed input indices.\n\n Important: The verdict refers to the bounded adapter-test preservation claim. Behavior and intent are distinct.\n\n How to assess:\n - We are given a list of inputs (with input_index from 39 to 47) and observations for each.\n - For each input, we have observations (from the \"observations\" list) that record the source and target outputs (or errors) for the same input.\n\n The observations structure:\n   For each input_index, there is an entry in the observations list. Some are shared via references.\n\n We need to check for each input in the batch:\n   - If the source and target outputs match (within the test's tolerance) and the errors (if any) are the same.\n\n However, note that the test might have multiple runs (repeats) and multiple groups? But in the provided data, each input_index has one group and multiple repeats (0,1,2) for some, and for others (42,43,44,45,46) they are shared via references.\n\n Steps for each input index in [39,40,41,42,43,44,45,46,47]:\n   - Reconstruct the observation for that input index.\n   - Check the source_output and target_output (if no error) or source_error and target_error.\n\n But note: the test function in the adapter (invoke_test) does more than just compare the output. It also:\n   - For sparse mode: checks the indices and shape, and that the result is a sparse tensor.\n   - For gradient: checks the gradient.\n\n However, the observations we have are the recorded outputs and errors. We are to use these to determine if the test passed.\n\n But note: the observations are the actual recorded results from running the test. So we can rely on them.\n\n How the test is structured in the adapter_runtime:\n   - It runs the function (either source or target) and then compares the output with the source_reference (which is the expected output from the source framework).\n   - Then it does additional checks (for sparse and gradient) if applicable.\n\n However, the observations we have are from the test runs. They are:\n   - For each input index, we have one or more groups (but in the data, each input has one group) and within the group, we have an observation for each repeat (but the same observation is repeated 3 times?).\n\n Actually, the data shows for input_index 39,40,41,47: \n   \"groups\": [{\"observation\": {...}, \"repeats\": [0,1,2]}]\n\n And for input_index 42,43: \n   \"groups\": {\"__shared_ref__\":\"s12\"} -> which is [{\"__shared_ref__\":\"s13\"}], and s13 is a group with an observation (s14) and repeats.\n\n Similarly, 44,45,46: shared_ref s15 -> s16 -> s17.\n\n And s14 and s17 are the actual observations.\n\n So we can reconstruct:\n\n   input_index 39: \n        groups[0].observation: \n            source_output: s0 -> an array of int64[7]\n            target_output: s0 -> same\n            source_error: null, target_error: null -> passed.\n\n   input_index 40:\n        groups[0].observation:\n            source_output: s2 -> complex64 array of shape [10]\n            target_output: s2 -> same -> passed.\n\n   input_index 41:\n        groups[0].observation:\n            source_output: s5 -> float64 array of shape [9]\n            target_output: s5 -> same -> passed.\n\n   input_index 42 and 43: \n        groups[0] = s13 -> which points to s14:\n            source_output: s8 -> float32[5]\n            target_output: s8 -> same -> passed.\n\n   input_index 44,45,46:\n        groups[0] = s16 -> which points to s17:\n            source_output: s11 -> float32[1] with value -2.220446049250313e-16\n            target_output: s11 -> same -> passed.\n\n   input_index 47:\n        groups[0].observation:\n            source_output: [46] (uint8[1])\n            target_output: [46] -> same -> passed.\n\n So for every input in the batch, the source and target outputs are exactly the same (as per the recorded observations) and there are no errors.\n\n Therefore, the tests passed for all provided inputs.\n\n However, note that the test might have additional checks (like for sparse mode or gradient) but in the observations we only see the outputs. But the test function in the adapter_runtime would have run those checks and if they failed, the test would have thrown an exception and we would see an error in the observation.\n\n Since for all inputs the target_error is null (meaning no exception) and the outputs are as expected, we can conclude that the tests passed.\n\n But note: the test for input_index 47 is a simple uint8 array, and it passed.\n\n Therefore, the adapter-test preservation claim is preserved for this batch.\n\n However, we must also consider the possibility of invalid tests or assumptions.\n\n Looking at the inputs:\n\n   input_index 39: \n        arguments: { \"input\": an int64 array, \"shape\": [7] }\n        mode: dense -> no sparse check.\n\n   input_index 40: \n        arguments: { \"input\": shared_ref s2 (complex64 array), \"shape\": [10] }\n\n   input_index 41: \n        arguments: { \"input\": a float64 array with extreme values, \"shape\": [9] }\n\n   input_index 42 and 43: \n        arguments: shared_ref s7 -> which is { \"input\": s8 (float32[5]), \"shape\": [5] }\n\n   input_index 44,45,46: \n        arguments: shared_ref s10 -> which is { \"input\": s11 (float32[1]), \"shape\": [1] }\n\n   input_index 47: \n        arguments: { \"input\": uint8[1] with value 46, \"shape\": [1] }\n\n None of these are in sparse mode (all are dense) and none have a source_gradient (so no gradient check). Therefore, the additional checks (sparse and gradient) were not run for these inputs.\n\n So the tests are valid and the assumptions hold.\n\n Therefore:\n   verdict: \"preserved\" (the adapter-test preservation claim holds for the entire batch)\n   behavior_verdict: \"preserved\" (the observed behavior of the target matches the source for these inputs)\n   intent_verdict: \"preserved\" (since the tests passed and the intent of the test is to check the output, which matched)\n\n However, note that the intent_verdict is about the intent of the original test. Since the original test is a reshape operation, and the outputs are exactly as expected, the intent is preserved.\n\n But note: the problem says \"a failing target test alone does not imply its intent was lost\". Here, the tests passed, so we can say the intent is preserved.\n\n However, we are only assessing the bounded claim (the adapter tests) and we see they passed.\n\n Therefore, the JSON response should be:\n\n {\n   \"verdict\": \"preserved\",\n   \"behavior_verdict\": \"preserved\",\n   \"intent_verdict\": \"preserved\",\n   \"reason\": \"All 9 inputs in the batch passed: source and target outputs matched exactly and no errors occurred. The tests did not require sparse or gradient checks for these inputs.\",\n   \"input_indices\": [39,40,41,42,43,44,45,46,47]\n }\n\n But note: the reason must be at most 200 words. The above is concise.\n\n However, let's check the shared references for the observations of input_index 42,43,44,45,46 to be sure.\n\n   For 42 and 43: \n        groups: s12 -> which is a list of one element: s13 (a group)\n        s13: \n            observation: s14\n            repeats: [0,1,2]\n        s14: \n            source_output: s8 -> a float32 array of 5 elements\n            target_output: s8 -> same\n\n   For 44,45,46: \n        groups: s15 -> list of one element: s16\n        s16: \n            observation: s17\n            repeats: [0,1,2]\n        s17: \n            source_output: s11 -> float32[1] with value -2.220446049250313e-16\n            target_output: s11 -> same\n\n So all are passing.\n\n One more note: the test for input_index 41 has extreme values (like -1.6342664862384688e+308) and the observation shows the same array for source and target. So it passed.\n\n Therefore, we are confident.\n</think>\n{\n  \"verdict\": \"preserved\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"preserved\",\n  \"reason\": \"All 9 inputs (indices 39-47) show identical source/target outputs with null errors in observations. Outputs match recorded references (including extreme float values and shared refs). No test failures, sparse/gradient checks, or dtype mismatches occurred. Oracle tolerances were satisfied per value_test logic.\",\n  \"input_indices\": [39,40,41,42,43,44,45,46,47]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 5160,
+      "completion_tokens": 2270,
+      "total_tokens": 7430
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "preserved",
+    "behavior_verdict": "preserved",
+    "intent_verdict": "preserved",
+    "reason": "All 9 inputs (indices 39-47) show identical source/target outputs with null errors in observations. Outputs match recorded references (including extreme float values and shared refs). No test failures, sparse/gradient checks, or dtype mismatches occurred. Oracle tolerances were satisfied per value_test logic.",
+    "input_indices": [
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 245.078
+}

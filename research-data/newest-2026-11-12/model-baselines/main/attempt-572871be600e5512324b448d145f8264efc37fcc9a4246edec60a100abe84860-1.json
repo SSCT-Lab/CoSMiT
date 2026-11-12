@@ -1,0 +1,53 @@
+{
+  "job_id": "572871be600e5512324b448d145f8264efc37fcc9a4246edec60a100abe84860",
+  "candidate_id": "E016",
+  "kind": "trace-llm",
+  "input_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "prompt_sha256": "0ffa192d626fa0205edb53d8e9eda8ce10f301497ef7cf87d20099438cda8f39",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793161310.0100713,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace any {\"__shared_ref__\":\"sN\"} with shared.sN.\n The shared dictionary is provided under the key \"shared\".\n\n Steps:\n 1. Reconstruct the data by replacing shared references.\n 2. Focus on the controlled adapter tests (source and target) for the given batch_input_indices [0,1,2,3,4,5,6].\n 3. The observations for each input index are provided. Each observation has groups, and each group has an observation with source and target outputs and errors.\n\n Important: The test is about the preservation of the adapter's behavior and intent. The verdicts are:\n   - verdict: overall preservation claim for the adapter-test (preserved, violated, invalid-test, invalid-assumption, undetermined)\n   - behavior_verdict: whether the observed behavior (outputs) is preserved.\n   - intent_verdict: whether the intended behavior (as per the test's design) is preserved.\n\n We are to assess only the provided batch of inputs (indices 0 to 6).\n\n Observations:\n   For each input index, we have one group of observations (with 3 repeats, but the outputs are the same in each repeat).\n   The source and target outputs are provided and are identical in all cases? Let's check:\n\n   input_index:0 -> source_output and target_output are both scalar float16 -2.35546875 -> preserved.\n   input_index:1 -> both are [ -2.35546875 ] -> preserved.\n   input_index:2 -> both reference s3, which is an array of 8 float16 values (from shared.s4) -> preserved.\n   input_index:3 -> both reference s7, which is an array of 6 float16 values (all -2.35546875) -> preserved.\n   input_index:4 -> both reference s8, which is a 5x2 bfloat16 array (from shared.s9) -> preserved.\n   input_index:5 -> both reference s10, which is a scalar bfloat16 1.3805065841367707e-29 -> preserved.\n   input_index:6 -> both are scalar float64 3.141592653589793 -> preserved.\n\n   Also, note that the source_error and target_error are null for all, meaning no errors.\n\n However, we must note that the test function in the adapter_runtime does more than just compare the output. It also:\n   - For sparse mode: checks the sparse representation (indices and shape) and that the output is a sparse tensor.\n   - For gradients: if 'source_gradient' is present, it checks the gradient.\n\n But looking at the inputs, all the provided inputs are in \"mode\":\"dense\". So the sparse checks are not run for these inputs.\n\n Also, note that input_index 5 and 6 are not present in the provided inputs? Actually, the inputs are provided for indices 0 to 6.\n\n However, in the inputs, we see that input_index 5 and 6 do not have a 'source_gradient' key, so the gradient check is skipped.\n\n Therefore, for the provided inputs, the test only runs the dense value test and the shape check (if official_sign is true, but it's false).\n\n Since the official_sign is false, the shape check is not run.\n\n So the test only runs the value_test function.\n\n Now, the value_test function in the oracle_helper_code is provided. But note: the adapter_runtime uses its own value_test? \n Actually, the adapter_runtime imports from ivy_tests.test_ivy.helpers.assertions. However, the provided oracle_helper_code is for the source and target tests? \n\n But note: the problem states that the fixture includes recorded source outputs as test expectations. The test in the adapter_runtime is replaying the captured source output as the expected value.\n\n In the observations, we see that for every input, the source and target outputs are exactly the same as the expected (source_reference) and the actual (target_output) are the same.\n\n However, we must note that the value_test function in the adapter_runtime might have done a tolerant comparison? But the observations show the exact outputs that were recorded.\n\n Since the observations show that the target_output is exactly the same as the source_reference (and the source_output is also the same as the source_reference) for every input, we can conclude that the behavior is preserved.\n\n But note: the test might have passed because the value_test function passed? However, we are not running the test again. We are given the observations.\n\n The observations for each input index show:\n   - source_error: null -> source ran without error.\n   - target_error: null -> target ran without error.\n   - source_output: ... (as above)\n   - target_output: ... (same as source_output)\n\n Therefore, the behavior (output) is preserved.\n\n What about intent? The intent of the test is to check that the target framework (torch) produces the same result as the source framework (tensorflow) for the function atan2. Since the outputs are the same, the intent is also preserved.\n\n However, note that the test might be invalid? Let's check for any red flags.\n\n The adapter_runtime code: \n   - It decodes the input arguments and the source_reference.\n   - It converts the arguments to the framework (torch for target, tensorflow for source) and then runs the function.\n   - Then it compares the actual with the expected (source_reference) using value_test.\n\n The value_test function in the provided oracle_helper_code does:\n   - Check dtypes (if test_dtypes is true) and then does an allclose.\n\n But note: the test_dtypes in the oracle_settings (s1) is true. So the value_test would check dtypes.\n\n However, in the observations, we see that the outputs are exactly the same (including the dtype and shape) as the source_reference. Therefore, the value_test must have passed.\n\n Therefore, for all the provided inputs, the test passed.\n\n But note: the problem says \"a failing target test alone does not imply its intent was lost\". However, in this case, the test passed.\n\n Therefore, the verdict should be \"preserved\" for both behavior and intent.\n\n However, we must consider the entire batch. We are to list all assessed input indices: [0,1,2,3,4,5,6].\n\n But note: the batch_input_indices in the data is [0,1,2,3,4,5,6] and we have observations for each.\n\n There is one caveat: the test might have passed because the source_reference was used for both? But that is the design: the target is expected to match the source_reference (which is the recorded output from the source framework).\n\n Therefore, we return:\n   verdict: \"preserved\"\n   behavior_verdict: \"preserved\"\n   intent_verdict: \"preserved\"\n   reason: concise explanation.\n   input_indices: [0,1,2,3,4,5,6]\n\n Reason: For all 7 inputs, the target outputs exactly matched the source outputs (as recorded in the source_reference) and no errors occurred. The test passed for the provided dense inputs.\n\n However, note that the test also includes other modes (like sparse) and gradient checks, but these were not triggered by the provided inputs. Therefore, we are only assessing the dense value checks.\n\n But the problem says: \"The original frontend modes not implemented by this adapter are outside this batch claim\". And the provided inputs are all dense. So we are only concerned with the provided batch.\n\n Therefore, the reason can be: \"All 7 dense inputs passed: target outputs matched source references exactly, with no errors.\"\n\n But note: the test might have used tolerant comparison? However, the observations show the exact outputs that were compared, and they are identical. So even if the value_test used a tolerant check, the fact that the outputs are exactly the same means it would pass.\n\n However, the problem says: \"Do not infer whole-domain correctness from samples\". We are not inferring for the whole domain; we are only reporting on the provided samples.\n\n Therefore, the JSON response is:\n</think>\n{\n  \"verdict\": \"preserved\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"preserved\",\n  \"reason\": \"All 7 inputs show identical source/target outputs with null errors. Dense mode value tests passed; sparse/gradient checks unused. Outputs match recorded references exactly across repeats.\",\n  \"input_indices\": [0, 1, 2, 3, 4, 5, 6]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 5336,
+      "completion_tokens": 1839,
+      "total_tokens": 7175
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "preserved",
+    "behavior_verdict": "preserved",
+    "intent_verdict": "preserved",
+    "reason": "All 7 inputs show identical source/target outputs with null errors. Dense mode value tests passed; sparse/gradient checks unused. Outputs match recorded references exactly across repeats.",
+    "input_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "seconds": 196.66
+}

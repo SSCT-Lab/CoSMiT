@@ -1,0 +1,55 @@
+{
+  "job_id": "fc8add7a3e2fd6ff9fb2e7b24246ed70510196ae737ec60032ad72f1129e90d9",
+  "candidate_id": "E010",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "d3b5e5ba826ea6f7b066d4d9fed21e8200472c21a90315d5434c6322a694e142",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793000004.3628395,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and Test Code. The TDL describes the test obligations for specific input indices (39-47). The Test Code is the implementation of the test.\n\nTDL assertions:\n- dtype: Requires identical dtype via value_test(test_dtypes=True). Applicable to inputs 39-47.\n- helper_shape: Requires identical shape via assert_same_type_and_shape (invoked by value_test(test_dtypes=True)). Applicable to inputs 39-47.\n- value: Compare actual values with frozen source values using the listed tolerances. Applicable to inputs 39-47.\n\nTest Code:\nThe test code is an adapter that runs tests for the target framework (torch) by comparing against frozen source outputs (from tensorflow). The main function is `invoke_test`, which:\n1. Decodes the input and source reference from a JSON-like structure.\n2. Converts the input to the target framework (torch or tensorflow) as needed.\n3. Executes the operation (torch.maximum) on the input.\n4. Compares the result with the source reference using `value_test`.\n\nThe `value_test` function (from the oracle_helper_code) is critical. It does:\n- If `test_dtypes` is True, it calls `assert_same_type_and_shape` which checks that the dtype and shape of the returned arrays match.\n- Then, it compares the values with the given tolerances.\n\nIn the TDL, the obligations for dtype and helper_shape are both tied to `value_test(test_dtypes=True)`. The TDL also has a value obligation that is met by the value comparisons in `value_test`.\n\nLooking at the Test Code, the `value_test` is called with `test_dtypes=setting['test_dtypes']`. The setting for each input is provided in the inputs. For all inputs in the batch (39-47), the setting is a shared reference `s0` which decodes to:\n  {\"atol\":1e-06,\"rtol\":null,\"test_dtypes\":true,\"test_values\":true,\"tolerance_dict\":null}\n\nTherefore, for every input in 39-47, `test_dtypes` is set to True. This means that the `value_test` function will check dtypes and shapes (via `assert_same_type_and_shape`) and also the values.\n\nThus, the TDL correctly captures that:\n- The dtype is checked (via `test_dtypes=True` in `value_test`).\n- The shape is checked (by the same mechanism, because `assert_same_type_and_shape` is called when `test_dtypes` is True).\n- The values are compared (by the subsequent value comparisons in `value_test`).\n\nAdditionally, the TDL states the goal: \"Preserve the supplied source test output obligations on the listed input subset\", and the Test Code does exactly that by using the frozen source outputs as expectations.\n\nThere are no discrepancies between the TDL and the Test Code for the given input indices (39-47). Therefore, the TDL is valid.\n\nNote: We are only assessing the controlled adapter tests for the input indices 39-47. The TDL does not claim to cover other modes (like sparse, which is handled in the test code but not in the provided inputs for this batch? Actually, the inputs for this batch are all mode='dense'). The TDL also correctly notes that the source expectations are frozen and not human labels.\n\nThus, we return:\n{\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value are implemented by value_test with test_dtypes=True, which is set for all inputs in the batch.\", \"input_indices\": [39,40,41,42,43,44,45,46,47]}\n</think>\n{\"valid\": true, \"reason\": \"TDL assertions align with test code implementation: dtype/shape checks via value_test(test_dtypes=True) enforce identical type/shape obligations, while value comparisons use frozen source outputs with configured tolerances. All batch inputs 39-47 invoke these checks consistently.\", \"input_indices\": [39,40,41,42,43,44,45,46,47]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 4572,
+      "completion_tokens": 872,
+      "total_tokens": 5444
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions align with test code implementation: dtype/shape checks via value_test(test_dtypes=True) enforce identical type/shape obligations, while value comparisons use frozen source outputs with configured tolerances. All batch inputs 39-47 invoke these checks consistently.",
+    "input_indices": [
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 108.657
+}

@@ -1,0 +1,67 @@
+{
+  "job_id": "2d0a70bf3e81b13acb3989845a459afcdb7feb23038e36bf6072287de73fe680",
+  "candidate_id": "E025",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "prompt_sha256": "eaa987accdbd50386daaa3767e4d7750fbcdf4e8ea6278691569f927aa919fef",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792997789.6334496,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and a Test Code. We must decide if the TDL correctly expresses the intent of the Test Code.\n\nTDL (Test Description Language) has:\n- assertions: three assertions (dtype, helper_shape, value) that apply to input indices [0,1,...,14]\n- goal: to preserve the supplied source test output obligations on the listed input subset\n- input_fixture_indices: [0,1,...,14]\n- other metadata\n\nTest Code is a JSON object that includes:\n- adapter_runtime: the code for the adapter that runs the test\n- batch_input_indices: [0,1,...,14] (same as TDL's input_fixture_indices)\n- inputs: a list of 15 test inputs (indices 0 to 14) with their arguments, mode, oracle_settings, and source_reference\n- oracle_helper_code: the code for the helper functions (assert_all_close, assert_same_type_and_shape, value_test) that are used in the test\n- target_operation: the function being tested (tensorflow_call, which is tf.concat)\n\nThe TDL assertions are:\n1. dtype: requires identical dtype via value_test(test_dtypes=True)\n2. helper_shape: requires identical shape via assert_same_type_and_shape (invoked by value_test(test_dtypes=True))\n3. value: compares actual values with frozen source values using the listed tolerances.\n\nNow, let's look at the Test Code to see what it does:\n\nIn the adapter_runtime (invoke_test function):\n- It decodes the input and source_reference.\n- It converts the input to the target framework (TensorFlow or PyTorch).\n- For sparse mode, it does some special handling.\n- It calls the function (fn) with the arguments.\n- Then it calls:\n      value_test(ret_np_flat=[array(actual)], ret_np_from_gt_flat=[expected], ... test_dtypes=setting['test_dtypes'], ...)\n- Additionally, if meta['official_sign'] is true, it checks the shape (but in this case, official_sign is false).\n- For sparse mode, it does additional checks on the sparse tensor.\n- If there's a source_gradient, it checks the gradient.\n\nHowever, note that the TDL only covers the value_test part and the shape check that is inside value_test when test_dtypes is True.\n\nLooking at the oracle_helper_code (value_test function):\n- If test_dtypes is True, it calls assert_same_type_and_shape, which checks the dtype and shape.\n- Then, it does the value comparison (with tolerances) in assert_all_close.\n\nTherefore, the TDL assertions are aligned with what the test code does:\n\n- The \"dtype\" assertion is covered by the test_dtypes=True in value_test, which triggers the dtype check in assert_same_type_and_shape.\n- The \"helper_shape\" assertion is covered by the same test_dtypes=True, which triggers the shape check in assert_same_type_and_shape.\n- The \"value\" assertion is covered by the value comparison in value_test (via assert_all_close).\n\nMoreover, the TDL states that these assertions apply to all 15 input indices (0 to 14). The Test Code also runs the same value_test for all these inputs (as per the inputs list and the batch_input_indices).\n\nHowever, note that the Test Code has additional checks for sparse mode and gradients. But the TDL does not claim to cover those. The TDL's scope is the \"controlled native-output adapter tests\", and it explicitly states that the original frontend modes not implemented by this adapter are outside the batch claim.\n\nTherefore, the TDL correctly captures the intent of the Test Code for the given input indices.\n\nBut note: the TDL does not mention the sparse tensor checks or gradient checks. However, the TDL's goal is to \"Preserve the supplied source test output obligations on the listed input subset\". The source test output obligations are the ones that are captured in the source_reference and the oracle_settings. The TDL assertions are about the dtype, shape, and value of the main output. The additional checks (sparse and gradient) are not part of the TDL assertions. Since the TDL does not claim to cover them, it is acceptable.\n\nAlso, note that the TDL's \"helper_shape\" assertion is described as being invoked by value_test(test_dtypes=True). This matches the code.\n\nTherefore, we can say that the TDL is valid.\n\nBut wait: the TDL has an assertion \"helper_shape\" that says it requires identical shape through assert_same_type_and_shape. In the code, the value_test function does call assert_same_type_and_shape when test_dtypes is True. However, note that the value_test function in the helper code also checks the shape and dtype. So that matches.\n\nHowever, there is an additional shape check in the adapter_runtime code for sparse mode. But that is only for sparse mode and is not covered by the TDL. The TDL does not have an assertion for the sparse indices and shape. But the TDL does not claim to cover that. The TDL only covers the main output value, dtype, and shape (as per the value_test). The sparse mode check in the adapter_runtime is an extra.\n\nMoreover, the TDL's value_test covers the shape and dtype for all inputs (including sparse) because the value_test function is called for every input. The sparse mode input (if any) would have been converted to a dense array in the `array` function (via `tf.sparse.to_dense` or `to_dense` for torch) and then passed to value_test. So the shape and dtype being checked in value_test are for the dense representation. The TDL does not specify that it is for the dense representation, but the source_reference for sparse mode is the dense representation? Actually, in the inputs, for sparse mode, the source_reference is a dense array? Let's check:\n\nIn the inputs, for example, input_index=5 has mode='dense'. But input_index=12 and 13 have mode='dense' as well. Actually, all 15 inputs are mode='dense'. How do I know? The inputs list for the Test Code has each input with a \"mode\". Looking at the provided inputs:\n\n- input_index 0: mode dense\n- input_index 1: dense\n- ... up to 14: dense\n\nSo there are no sparse mode inputs in this batch. Therefore, the extra sparse checks in the adapter_runtime are not triggered for this batch. So the TDL assertions are the only ones that matter.\n\nThus, the TDL is valid for this batch.\n\nConclusion: The TDL correctly expresses the intent of the Test Code for the given input indices.\n\nOutput:\n{\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value align with the test code's value_test calls and helper functions, covering all 15 input indices without discrepancy.\", \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]}\n</think>\n{\"valid\":true,\"reason\":\"TDL assertions for dtype, shape, and value align with test code implementation. The value_test function enforces dtype and shape via test_dtypes=True, and value comparisons via tolerances, matching TDL obligations. All 15 input indices are covered identically. Additional sparse/gradient checks are out of scope per TDL goal.\",\"input_indices\":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 8633,
+      "completion_tokens": 1611,
+      "total_tokens": 10244
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions for dtype, shape, and value align with test code implementation. The value_test function enforces dtype and shape via test_dtypes=True, and value comparisons via tolerances, matching TDL obligations. All 15 input indices are covered identically. Additional sparse/gradient checks are out of scope per TDL goal.",
+    "input_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ]
+  },
+  "seconds": 199.892
+}

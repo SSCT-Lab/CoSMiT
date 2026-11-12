@@ -1,0 +1,97 @@
+{
+  "job_id": "8b28d2d6e15b9e8e42d19810fb094165223532832ad674f87b14bc491192a317",
+  "candidate_id": "D0034",
+  "kind": "intenttester-target-api",
+  "input_indices": [
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44
+  ],
+  "prompt_sha256": "e371fd057e904ecfcd5feba4a0c3a7acbe1cf5f24e1ef7f3f16811e0fff794cc",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793185928.0238109,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a test code in the context of an adapter for testing between frameworks (TensorFlow and PyTorch). The task is to check for syntax errors and incorrect API usages.\n\nSteps:\n1. **Syntax Check**: We need to look for any Python syntax errors in the provided code.\n2. **API Usage Check**: We need to check if the code uses the APIs correctly, especially with respect to the frameworks (TensorFlow and PyTorch) and the helper functions.\n\nLet's break down the provided code:\n\n### Test Code (adapter_runtime)\nThe code defines:\n- `decode(v)`: A function to decode a dictionary representation of arrays (including sparse, ndarray, complex) into actual numpy arrays.\n- `invoke_test(folder, role, index)`: The main test function that:\n   - Reads test case metadata and inputs.\n   - Sets up the environment and imports the test helper (`value_test` from `ivy_tests.test_ivy.helpers.assertions`).\n   - Defines a `convert(v)` function to convert numpy arrays to the framework's tensor (either TensorFlow or PyTorch).\n   - Defines an `array(v)` function to convert framework tensors back to numpy arrays, handling sparse and bfloat16 types.\n   - Executes the operation code (either `pytorch_call` or `tensorflow_call` from the respective file) to get the function `fn`.\n   - For sparse mode, it creates a sparse tensor from the input.\n   - Calls `fn` with the converted arguments to get `actual`.\n   - Compares `actual` with the expected output using `value_test`.\n   - Additional checks for shape, sparsity, and gradients.\n\n### Potential Issues\n\n#### Syntax\n- The code seems to be well-structured. We don't see any obvious syntax errors (like missing colons, brackets, etc.) at first glance.\n\n#### API Usage\n\n1. **Importing `value_test`**:\n   - The code does: `from ivy_tests.test_ivy.helpers.assertions import value_test`\n   - This import is inside the `invoke_test` function. While it is valid, it might be inefficient, but not an error.\n\n2. **Handling of `bfloat16` in PyTorch**:\n   - In the `convert` function, for `bfloat16` numpy arrays, it does:\n     ```python\n     if fw == 'torch':\n         if str(v.dtype) == 'bfloat16':\n             return torch.tensor(v.astype(np.float32), dtype=torch.bfloat16)\n     ```\n   - This is a valid way to handle bfloat16 in PyTorch because PyTorch doesn't support direct conversion from numpy bfloat16. So converting to float32 and then to torch.bfloat16 is acceptable.\n\n3. **Sparse Tensor Creation**:\n   - For TensorFlow: `tf.SparseTensor(idx, vals, x.shape)`\n   - For PyTorch: `torch.sparse_coo_tensor(torch.tensor(idx.T), torch.tensor(vals), x.shape).coalesce()`\n   - This is correct.\n\n4. **Gradient Calculation**:\n   - For TensorFlow: Uses `tf.Variable` and `tf.GradientTape`.\n   - For PyTorch: Uses `torch.tensor(..., requires_grad=True)` and `torch.autograd.grad`.\n   - This is correct.\n\n5. **Use of `array` function**:\n   - The `array` function is used to convert the framework tensors to numpy for comparison. It handles sparse tensors by converting to dense and also handles bfloat16 by converting to float32 and then to bfloat16 numpy (via `ml_dtypes.bfloat16`). This seems correct.\n\n6. **Call to `value_test`**:\n   - The parameters passed are:\n     - `ret_np_flat=[array(actual)]`\n     - `ret_np_from_gt_flat=[expected]`\n     - `rtol=setting['rtol']`\n     - `atol=setting['atol']`\n     - `specific_tolerance_dict=setting['tolerance_dict']`\n     - `test_dtypes=setting['test_dtypes']`\n     - `backend=fw`\n     - `ground_truth_backend=meta['source_framework']`\n   - This matches the signature of `value_test` as defined in the `oracle_helper_code` (which is provided and not part of the test code we are reviewing, but we assume it is available).\n\n7. **Handling of complex numbers**:\n   - The `decode` function handles complex arrays by checking for the 'imag' key. This is correct.\n\n8. **Shared References**:\n   - The input data uses shared references (like `\"__shared_ref__\": \"s0\"`). The test code does not directly handle these because the inputs are passed through the `decode` function. However, note that the `decode` function does not handle `__shared_ref__`. But the problem states that when the encoding is `lossless-subtree-sharing-v1`, we should replace shared references. However, the test code does not do this replacement.\n\n   This is a critical issue: the test code does not handle the shared references in the input. The `decode` function only handles `__sparse__`, `__ndarray__`, and then recursively processes dicts and lists. It does not look for `__shared_ref__`.\n\n   The instructions say: \"recursively replace each {'__shared_ref__':'sN'} with shared.sN to recover data\". But the test code does not have this step.\n\n   Therefore, when the input contains a shared reference (like in input_index 16: `\"arguments\": {\"__shared_ref__\":\"s1\"}`, the `decode` function will return a dictionary `{'__shared_ref__': 's1'}` instead of the actual value. This will cause the test to fail because the function being tested (e.g., `torch.cosh`) will be called with a dictionary instead of a tensor.\n\n   This is an API usage error because the test code does not correctly decode the input as per the specified encoding.\n\n### Conclusion\nThe test code has a significant flaw: it does not handle the shared references in the input data. The `decode` function does not account for the `__shared_ref__` keys. Therefore, when the input contains a shared reference, the test will pass a dictionary to the function under test, which expects a tensor.\n\nThus, the test code is invalid.\n\n### Output\nWe return:\n```json\n{\n  \"valid\": false,\n  \"reason\": \"The test code does not handle shared references (__shared_ref__) in the input data. The decode function does not replace shared references with the actual values from the shared dictionary, which will cause the function under test to receive incorrect input types.\",\n  \"input_indices\": [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44]\n}\n```\n\nNote: The `input_indices` are the batch indices provided: [15,16,...,44]. We list all of them because the issue affects any input that uses shared references (and several in the batch do).\n</think>\n{\n  \"valid\": false,\n  \"reason\": \"The test code fails to handle shared references (__shared_ref__) during input decoding. The decode() function processes __sparse__ and __ndarray__ but ignores __shared_ref__ keys, causing the test to pass raw reference objects (e.g., {'__shared_ref__':'s1'}) as function arguments instead of resolved values. This violates the specified encoding=lossless-subtree-sharing-v1 protocol.\",\n  \"input_indices\": [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 6908,
+      "completion_tokens": 1745,
+      "total_tokens": 8653
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": false,
+    "reason": "The test code fails to handle shared references (__shared_ref__) during input decoding. The decode() function processes __sparse__ and __ndarray__ but ignores __shared_ref__ keys, causing the test to pass raw reference objects (e.g., {'__shared_ref__':'s1'}) as function arguments instead of resolved values. This violates the specified encoding=lossless-subtree-sharing-v1 protocol.",
+    "input_indices": [
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
+    ]
+  },
+  "seconds": 177.023
+}

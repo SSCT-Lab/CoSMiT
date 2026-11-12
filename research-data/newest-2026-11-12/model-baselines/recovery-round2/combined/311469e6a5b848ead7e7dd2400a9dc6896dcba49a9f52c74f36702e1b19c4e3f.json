@@ -1,0 +1,103 @@
+{
+  "job_id": "311469e6a5b848ead7e7dd2400a9dc6896dcba49a9f52c74f36702e1b19c4e3f",
+  "candidate_id": "D0025",
+  "kind": "intenttester-target-api",
+  "input_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+  ],
+  "prompt_sha256": "a0f5c38fe639ef22fd5736d5e32deafb647dbc6e576a05e95e965e9aa761a5ce",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793240458.5174115,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a test code block and a set of inputs. We must check for syntax errors and incorrect API usages in the test code.\n\n Steps:\n 1. The test code is provided as a string in the \"adapter_runtime\" field.\n 2. We note that the test code is written in Python and uses libraries like json, sys, pathlib, numpy, ml_dtypes, torch, and tensorflow.\n 3. We must look for any syntax errors (like missing colons, incorrect indentation, etc.) and API usage errors (like calling a function that doesn't exist, or with wrong arguments).\n\n However, note that we are not running the code, but statically analyzing it.\n\n Important: The test code is intended to run in a specific environment (with torch, tensorflow, etc.), but we are only concerned with the code as written.\n\n Let's break down the code and look for potential issues:\n\n  a) The `decode` function: This function recursively decodes a dictionary that may contain special keys (like '__sparse__', '__ndarray__') into numpy arrays. It seems correctly structured.\n\n  b) The `invoke_test` function: This is the main function that runs a test.\n\n Potential issues:\n\n  1. In the `invoke_test` function, we have:\n     - It imports `torch` and `tensorflow` inside the function. This is acceptable but note that the function is called multiple times and the imports might be redundant. However, that's not a syntax error.\n\n  2. The line: `sys.path.insert(0, str(root / '.codex-experiments/ivy-real-test'))`\n     - This is a path operation. It uses `root` which comes from `config['workspace_root']`. We don't know if that path exists, but that's a runtime issue.\n\n  3. The line: `from ivy_tests.test_ivy.helpers.assertions import value_test`\n     - This imports a function `value_test` from an external module. We must check if this function is defined in the provided context? Actually, note that the input context also provides an \"oracle_helper_code\" which defines a function `value_test`. However, in the test code we are reviewing, it is imported from `ivy_tests.test_ivy.helpers.assertions`. This might be a problem because the provided helper code is not necessarily the same as the one in the path. But note: the test code is written to use the one from the path. However, the problem states that we are to check the test code as given. Since the import is valid Python syntax, it is acceptable.\n\n  4. The function `convert`:\n     - It converts numpy arrays to torch or tensorflow tensors. For torch, it handles bfloat16 by converting to float32 and then to bfloat16. For tensorflow, it uses `tf.constant`.\n     - It also recursively converts dicts and lists.\n\n  5. The function `array`:\n     - It converts tensorflow and torch tensors (including sparse) to numpy arrays. For torch bfloat16, it converts to float and then to ml_dtypes.bfloat16.\n\n  6. Then, the code uses `exec` to run the operation file (either 'target-operation.py' or similar) and then gets the function `pytorch_call` or `tensorflow_call` from the namespace.\n\n  7. It then decodes the input arguments and converts them using `convert(decode(...))`.\n\n  8. There is a special handling for 'sparse' mode.\n\n  9. Then it calls the function `fn` and compares the result with the expected value using `value_test`.\n\n  10. There are additional checks for shape and sparse indices.\n\n  11. There is a gradient check if 'source_gradient' is in the item.\n\n Now, let's look for potential issues:\n\n  - In the sparse mode handling, we have:\n        kwargs = {'x': tf.SparseTensor(idx, vals, x.shape) if fw == 'tensorflow' else torch.sparse_coo_tensor(torch.tensor(idx.T), torch.tensor(vals), x.shape).coalesce()}\n    This line is very long and complex. Let's break it:\n\n    For tensorflow: `tf.SparseTensor(idx, vals, x.shape)`\n    For torch: `torch.sparse_coo_tensor(torch.tensor(idx.T), torch.tensor(vals), x.shape).coalesce()`\n\n    However, note that in the torch sparse tensor creation, the indices are expected to be of shape (sparse_dim, nnz). The `idx` array is of shape (nnz, ndim). We are transposing it to (ndim, nnz) and then passing to torch, which expects the first dimension to be the number of dimensions and the second the number of non-zero elements. This is correct.\n\n  - But note: the `torch.sparse_coo_tensor` returns a tensor that is not necessarily coalesced. We call `.coalesce()` to coalesce it. This is acceptable.\n\n  - However, there is a potential issue: the `torch.tensor(idx.T)` and `torch.tensor(vals)` might not have the same data type as expected. But that's a runtime issue.\n\n  - In the gradient check for tensorflow:\n        v = tf.Variable(x)\n        with tf.GradientTape() as tape:\n            total = tf.reduce_sum(fn(x=v))\n        gradient = tape.gradient(total, v)\n\n    This is standard.\n\n  - For torch:\n        v = torch.tensor(x, requires_grad=True)\n        gradient, = torch.autograd.grad(fn(x=v).sum(), v)\n\n    This is also standard.\n\n  - However, note that the gradient computation uses `.sum()` on the output of `fn`. This assumes that `fn` returns a tensor. If it returns a tuple, this might break.\n\n  - But the test code does not handle multiple returns. The `value_test` function is called with `ret_np_flat=[array(actual)]` and `ret_np_from_gt_flat=[expected]`. This implies that the function `fn` is expected to return a single tensor. Therefore, the gradient computation using `sum()` is safe.\n\n  - Now, note the `value_test` function call:\n\n        value_test(ret_np_flat=[array(actual)], ret_np_from_gt_flat=[expected], rtol=setting['rtol'], atol=setting['atol'], specific_tolerance_dict=setting['tolerance_dict'], test_dtypes=setting['test_dtypes'], backend=fw, ground_truth_backend=meta['source_framework'])\n\n    The parameters are passed correctly.\n\n  - But note: the `value_test` function is defined in the helper code (oracle_helper_code) and also in the imported module? We are not sure which one is used. However, the test code imports it from `ivy_tests.test_ivy.helpers.assertions`. We are not to worry about the implementation of `value_test` because it is provided by the environment.\n\n  - However, we must check the parameters: the `value_test` function in the provided helper code (oracle_helper_code) has the following signature:\n\n        def value_test(*, ret_np_flat, ret_np_from_gt_flat, rtol=None, atol=1e-06, specific_tolerance_dict=None, backend: str, ground_truth_backend='TensorFlow', test_dtypes=True):\n\n    The call in the test code matches: we are passing all the parameters by name (except that we are passing by position, but the function uses keyword-only parameters). Actually, the function is defined with `*` meaning that the first few parameters must be passed by keyword. The call in the test code uses keyword arguments (by the names) so it is safe.\n\n  - However, note that the test code passes `rtol=setting['rtol']` and `atol=setting['atol']`. The `setting` comes from `item['oracle_settings']`. We don't know the type of `setting['rtol']` and `setting['atol']` but they are expected to be numbers. The provided inputs show that `oracle_settings` is a shared reference to `s2` which is a dictionary with keys: atol, rtol, etc. This is acceptable.\n\n  - Another issue: the test code uses `array(actual)` to convert the actual result to a numpy array. The `array` function defined in the test code handles torch and tensorflow tensors. But what if `actual` is a scalar? The `array` function returns `np.asarray(v.numpy())` for a tensorflow tensor, and for a torch tensor it returns a numpy array. For a scalar, it will become a 0-d array. This is acceptable.\n\n  - In the gradient check, the test code uses `array(gradient)` and compares it to `decode(item['source_gradient'])`. This is acceptable.\n\n  - Now, note the inputs: we have a list of inputs. The test code is designed to run for each input index. The code uses `item = ... [index]` to get the input.\n\n  - There is a potential issue in the sparse mode: the code does:\n\n        x = decode(item['arguments'])['x'].copy()\n        x[x < 0.5] = 0\n        idx = np.stack(np.nonzero(x), axis=1)\n        vals = x[tuple(idx.T)]\n\n    This creates a sparse tensor from the dense array by thresholding at 0.5. However, note that the original input might not be in the range [0,1]. This might be a problem because the test input for sparse mode might be arbitrary. But the test inputs for sparse mode are provided in the inputs. Looking at the inputs, we see that the test indices 26,27,28,30,31 are using shared references that lead to sparse representations? Actually, the inputs for the sparse mode are not explicitly provided in the given input list. The input indices 0 to 32 are provided, and their 'mode' is mostly 'dense'. The only exception is input_index 26,27,28,30,31 which have mode 'dense'? Actually, all the provided inputs have mode 'dense'. So the sparse branch might not be taken for any of these inputs. Therefore, we don't have to worry about the sparse branch for this batch.\n\n  - However, the test code has a branch for sparse mode that is triggered if `item['mode'] == 'sparse'`. Since none of the inputs in the batch have mode 'sparse', that branch is not taken. So even if there is an issue in that branch, it won't affect this batch.\n\n  - But note: the input_index 26,27,28,30,31 have a source_reference that is a shared_ref (like s11, s15) which are arrays? Actually, the input_index 26,27,28 have source_reference as a shared_ref to s11 (which is a scalar) and 30,31 to s15 (which is an array). But the mode is 'dense'. So the sparse branch is not taken.\n\n  - Now, let's look for syntax errors:\n\n    The code seems to be well indented and structured. There are no obvious syntax errors.\n\n  - Potential API issues:\n\n    - The code uses `torch.tensor(v.astype(np.float32), dtype=torch.bfloat16)` for bfloat16. This is acceptable.\n\n    - The code uses `tf.constant(v.copy())` for tensorflow. This is acceptable.\n\n    - The code uses `tf.sparse.to_dense()` for a sparse tensor. This is acceptable.\n\n    - The code uses `torch.tensor.detach().numpy()` for torch tensors. This is acceptable.\n\n    - The code uses `ml_dtypes.bfloat16` for converting torch bfloat16 to numpy. This is acceptable if the ml_dtypes module is available.\n\n  - The `ml_dtypes` module is imported, so that's fine.\n\n  - The code uses `np.asarray(v.numpy())` for a tensorflow tensor. But note: if `v` is a tensorflow tensor, then `v.numpy()` returns a numpy array, and then `np.asarray` is redundant. But it's harmless.\n\n  - The code uses `exec` to run the operation file. This is acceptable.\n\n  - The operation file is read from `folder / f'{role}-operation.py'`. For the target role, it would be 'target-operation.py'. The test code then expects to find a function named either 'pytorch_call' or 'tensorflow_call'. This is provided in the input context in the \"target_operation\" field. But note: the test code does not define that function; it is in a separate file. We are not to worry about the content of that file because it is provided by the test environment.\n\n  - However, note that the test code for the target operation is provided in the input context as a string in the \"target_operation\" field. It is:\n\n        def tensorflow_call(input):\n            return tf.square(input)\n\n    This is a simple function and is correct.\n\n  - The test code also has a test for the gradient. The gradient is computed only if the item has 'source_gradient'. Looking at the inputs, none of the provided inputs have a 'source_gradient' key. Therefore, that branch is not taken.\n\n  - Therefore, for the given batch of inputs, the sparse branch and the gradient branch are not taken.\n\n  - The only potential issue we might have is if the `value_test` function is not available in the path. But that is a runtime issue and not a syntax or API usage issue in the code we are reviewing.\n\n  - Another note: the test code uses `np.testing.assert_allclose` in the gradient check. This is acceptable.\n\n  - The test code uses `torch.tensor(x, requires_grad=True)` for the gradient. This is acceptable.\n\n  - The test code uses `torch.autograd.grad(...)` which returns a tuple, and we unpack it to `gradient, = ...`. This is safe because the gradient of a scalar with respect to a single variable is a single tensor.\n\n  - The test code uses `array(actual).shape` for the shape check. This is acceptable.\n\n  - The test code uses `actual.indices().T.tolist()` for torch sparse tensors. Note: the `indices` method of a torch sparse tensor returns a tensor, and then we transpose and convert to list. This is acceptable.\n\n  - The test code uses `actual.dense_shape.numpy().tolist()` for tensorflow sparse tensors. This is acceptable.\n\n  - The test code uses `actual.indices.numpy().tolist()` for tensorflow sparse tensors. This is acceptable.\n\n  - The test code uses `actual.coalesce()` for torch sparse tensors. This is acceptable.\n\n  - The test code uses `actual.is_sparse` for torch tensors. This is acceptable.\n\n  - The test code uses `isinstance(actual, tf.SparseTensor)` for tensorflow. This is acceptable.\n\n  - The test code uses `tf.Variable` and `tf.GradientTape` which are standard.\n\n  - The test code uses `torch.tensor(x, requires_grad=True)` and `torch.autograd.grad` which are standard.\n\n  - The test code uses `np.nonzero` and `np.stack` which are standard.\n\n  - The test code uses `v.astype(np.float32)` for a numpy array. This is acceptable.\n\n  - The test code uses `v.copy()` for numpy arrays. This is acceptable.\n\n  - The test code uses `tuple(np.asarray(v['indices']).T` in the sparse decoding. This is acceptable.\n\n  - The test code uses `reshape(v['shape'])` for the dense array. This is acceptable.\n\n  - The test code uses `np.empty` and then assigns real and imag parts for complex arrays. This is acceptable.\n\n  - The test code uses `sys.path.insert` to add a path. This is acceptable.\n\n  - The test code uses `Path` and `read_text` which are standard.\n\n  - The test code uses `json.loads` which is standard.\n\n  - The test code uses `import` inside a function. This is acceptable.\n\n  - The test code uses `if __name__ == '__main__'`? No, it doesn't. It's a module.\n\n  - The test code does not have any obvious syntax errors.\n\n  - Therefore, we conclude that the test code is valid for the given batch.\n\n However, note that the batch_input_indices are [0,1,...,32]. We must return all these indices in the output.\n\n But wait: the test code is designed to run for a specific input index. The batch_input_indices in the input context are [0,1,...,32]. The test code uses `item = ... [index]` to get the input. This is acceptable.\n\n Therefore, we return:\n\n   {\"valid\": true, \"reason\": \"No syntax or API usage errors found in the test code for the provided batch.\", \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]}\n\n However, note that the problem says: \"Return concise JSON only, with a nonempty reason of at most 200 words.\"\n\n We are within the word limit.\n\n But note: the problem says \"null means insufficient evidence\". We have sufficient evidence to say it is valid.\n\n However, we must note that the test code might have issues that we did not catch. But based on the static analysis, we did not find any.\n\n One more note: the test code uses `exec` to run the operation file. The operation file is provided and is correct (as per the \"target_operation\" field). But the test code itself does not define the operation, so we are safe.\n\n Therefore, the output is:\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"No syntax errors or incorrect API usages detected in the test code. The code correctly handles data decoding, framework-specific tensor conversions, sparse/dense modes, and value comparisons. All operations align with PyTorch and TensorFlow APIs for the given inputs, and execution paths for the provided batch indices (0-32) are properly structured without logical or syntactic flaws.\",\n  \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 8297,
+      "completion_tokens": 4075,
+      "total_tokens": 12372
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "No syntax errors or incorrect API usages detected in the test code. The code correctly handles data decoding, framework-specific tensor conversions, sparse/dense modes, and value comparisons. All operations align with PyTorch and TensorFlow APIs for the given inputs, and execution paths for the provided batch indices (0-32) are properly structured without logical or syntactic flaws.",
+    "input_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ]
+  },
+  "seconds": 423.666
+}

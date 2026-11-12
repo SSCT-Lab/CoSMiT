@@ -1,0 +1,81 @@
+{
+  "job_id": "2f040cbb4314870ab68cabb4cd711bccba179436913814aa22a8d648ef4e5733",
+  "candidate_id": "D0018",
+  "kind": "trace-llm",
+  "input_indices": [
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "prompt_sha256": "6cd53364124cf5b6400d914c4b046673f20fa68dbec46e6aa7a24bc56885c757",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792928432.7067142,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace each {\"__shared_ref__\":\"sN\"} with shared.sN to recover the data.\n\nFirst, let's decode the shared references in the provided data.\n\nThe shared dictionary is provided under the key \"shared\". We'll use that to resolve references.\n\nWe are to assess only the controlled adapter tests for the input indices [23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43]. However, note that the batch_input_indices in the data are exactly these indices.\n\nThe task is to check for each input index whether the test passed (preserved) or failed (violated) according to the observations. The observations are provided for each input index.\n\nWe note that the \"observations\" array contains entries for each input index in the batch. Each observation has a \"groups\" field which may be a shared reference or a list of groups. Each group has an \"observation\" which contains the source and target outputs and errors.\n\nWe are to return a verdict for the entire batch (the adapter-test preservation claim) and also behavior_verdict and intent_verdict. However, note the instructions:\n\n- verdict: \"preserved\" if all tests passed, \"violated\" if at least one test failed, \"invalid-test\" if the test setup is invalid, \"invalid-assumption\" if the test relies on an invalid assumption, or \"undetermined\" if we cannot determine.\n\n- behavior_verdict: whether the behavior (output) is preserved. This is \"preserved\" if for every test the output matches, \"violated\" if at least one output does not match, or \"undetermined\".\n\n- intent_verdict: whether the intent (as per the test) is preserved. This is more abstract. However, the instructions say: \"a failing target test alone does not imply its intent was lost\". We might not have enough to determine intent, so we set to \"undetermined\" unless we have clear evidence.\n\nBut note: the problem states that the fixture includes recorded source outputs as test expectations; they are not human labels. So we are only comparing the target output against the source output (which was recorded from the source framework).\n\nWe are to look at the \"observations\" for each input index. Each observation group has an observation object that has:\n  - source_output: the expected output (from the source framework)\n  - target_output: the output from the target framework (via the adapter)\n  - source_error: if not null, the source had an error (but in our case, it's null for all, meaning no error in source)\n  - target_error: if not null, the target had an error.\n\nIf the target_error is not null, then the test failed (violated). If the outputs do not match (as per the test's value_test function) then it's a failure.\n\nHowever, note that the observations are already the result of running the tests. We don't have to run the tests again. We just have to check the observation records.\n\nBut note: the value_test function in the oracle_helper_code does more than just comparing arrays. It also checks dtypes and shapes. However, the observation already records the outputs and any errors.\n\nLooking at the observations:\n\nFor each input index, we have one or more groups. Each group has an observation and repeats. But note: the repeats are [0,1,2] meaning the test was run 3 times? However, the observation is the same for each repeat? Actually, the same observation is recorded for each repeat. So we only need to look at one.\n\nBut note: the groups might have multiple observations? Actually, for most input indices, the \"groups\" is a shared reference to a list with one group. But for some, it's a list of groups? Actually, the structure is:\n\n- For input_index 27, 32, 33, 35, 36, 38, 40, 41, 42, 43: the \"groups\" is a list of one group (with an observation and repeats).\n- For the others, it's a shared reference to a list of one group.\n\nBut note: the shared references for groups (like s25, s28, s31, s34) are lists of one group.\n\nSo for every input index, we have exactly one group (with an observation) and the same observation for 3 repeats.\n\nTherefore, for each input index, we can look at the observation in the first group.\n\nIn the observation, we have:\n  - source_output: the expected output (from the source framework)\n  - target_output: the output from the target framework\n  - source_error: if not null, the source framework had an error (which would be a problem, but in our data it's always null)\n  - target_error: if not null, the target framework had an error (then the test failed)\n\nIf target_error is not null, then the test failed.\n\nIf target_error is null, then we must check if the outputs match. But note: the test already ran and passed? How do we know? Actually, the observation is the record of what happened when the test was run.\n\nHowever, the problem says: \"The fixture includes recorded source outputs as test expectations\". And the observations are the results of running the tests.\n\nBut note: the test might have passed or failed. We can see that by the presence of target_error and by the outputs.\n\nBut the value_test function in the oracle_helper_code does an assert. So if the test passed, then the outputs must have matched (within tolerance). Therefore, if target_error is null, then the test passed.\n\nBut wait: what if the test passed because the outputs matched? Then target_error is null and the outputs are present.\n\nIf the test failed due to an exception (like an error in the function) then target_error would be set.\n\nAlso, if the test failed because the value_test assertion failed, then the test would raise an exception and target_error would be set? Actually, the value_test function does an assert. If the assert fails, it raises an AssertionError. So that would be caught and recorded as target_error.\n\nTherefore, we can rely on target_error: if it is non-null, the test failed; if null, the test passed.\n\nBut note: the source_error is always null in our data, so we don't have to worry about the source failing.\n\nSo for each input index, if the observation for that index has target_error as null, then the test passed (preserved). Otherwise, it failed (violated).\n\nNow, let's check the observations for each input index in the batch [23,24,...,43].\n\nWe'll go through each input index and look at the observation:\n\n- input_index 23: groups: s25 -> which is [{\"observation\": s27, \"repeats\":[0,1,2]}]\n  s27: source_error: null, target_error: null -> passed.\n\n- input_index 24: groups: s28 -> [{\"observation\": s30, ...}]\n  s30: target_error: null -> passed.\n\n- input_index 25: same as 24 -> passed.\n\n- input_index 26: same as 23 -> passed.\n\n- input_index 27: groups: [{\"observation\": ...}] (directly in the input, not shared ref) -> but note: the observation is not a shared ref? Actually, it's an object. We see: \n      \"observation\": {\n        \"source_error\": null,\n        \"source_lines\": [2],\n        \"source_output\": {\"__shared_ref__\":\"s3\"},\n        \"target_error\": null,\n        \"target_lines\": [2],\n        \"target_output\": {\"__ndarray__\":true,\"dtype\":\"float64\",\"shape\":[4],\"values\":[1.8194708734283954e-16,1.000010000100001,0.0,1.1102230246251565e-16]}\n      }\n  target_error is null -> passed.\n\n- input_index 28: groups: s31 -> [{\"observation\": s33, ...}]\n  s33: target_error: null -> passed.\n\n- input_index 29: same as 28 -> passed.\n\n- input_index 30: same -> passed.\n\n- input_index 31: same -> passed.\n\n- input_index 32: groups: [{\"observation\": ...}] (directly) -> target_error: null -> passed.\n\n- input_index 33: groups: [{\"observation\": ...}] -> target_error: null -> passed.\n\n- input_index 34: groups: s25 -> same as 23 -> passed.\n\n- input_index 35: groups: [{\"observation\": ...}] -> target_error: null -> passed.\n\n- input_index 36: groups: [{\"observation\": ...}] -> \n      \"target_output\": {\"__ndarray__\":true,\"dtype\":\"float32\",\"shape\":[2,6],\"values\":[[4.642727873732709e-17,0.9090908765792847,1.0000000116860974e-07,0.0,0.0,1.2075461104669426e-38],{\"__shared_ref__\":\"s11\"}]}\n  But note: the target_output has a shared reference? We must resolve it? Actually, the test already ran and passed? The target_error is null. So it passed.\n\n- input_index 37: groups: s34 -> [{\"observation\": s36, ...}]\n  s36: target_error: null -> passed.\n\n- input_index 38: groups: [{\"observation\": ...}] -> target_error: null -> passed.\n\n- input_index 39: same as 37 -> passed.\n\n- input_index 40: groups: [{\"observation\": ...}] -> target_error: null -> passed.\n\n- input_index 41: groups: [{\"observation\": ...}] -> target_error: null -> passed.\n\n- input_index 42: groups: [{\"observation\": ...}] -> target_error: null -> passed.\n\n- input_index 43: groups: [{\"observation\": ...}] -> target_error: null -> passed.\n\nSo every test passed? Then the verdict should be \"preserved\".\n\nBut wait: let's look at input_index 36. The target_output has a shared reference to s11. What is s11?\n  s11: [1.0000000116860974e-07,0.6666666865348816,1.100000023841858,1.1102230246251565e-16,2.580694819632957e-17,1.100000023841858]\n\nAnd the source_output for 36 is s8, which is:\n  s8: shared_ref to s9 -> which is [s10, s11]\n  s10: [4.642727873732709e-17,0.9090908765792847,1.0000000116860974e-07,3.232609184501598e-39,3.232609184501598e-39,1.2075461104669426e-38]\n\nBut the target_output for 36 is: \n  [[4.642727873732709e-17,0.9090908765792847,1.0000000116860974e-07,0.0,0.0,1.2075461104669426e-38], s11]\n\nBut note: the source_output is a 2x6 array. The target_output is represented as a list of two rows: the first row is the list of 6 numbers, and the second row is a shared_ref to s11 (which is a list of 6 numbers). So the target_output is a 2x6 array.\n\nThe test passed (target_error is null) so the value_test must have passed. Therefore, we don't need to worry.\n\nSimilarly, for input_index 40, the target_output has shared references, but the test passed.\n\nTherefore, all tests passed.\n\nBut note: the problem says \"Do not infer whole-domain correctness from samples\". We are only looking at the provided indices.\n\nSo the verdict for the entire batch is \"preserved\".\n\nNow, for behavior_verdict: since all tests passed, the behavior (output) is preserved for every test. So \"preserved\".\n\nFor intent_verdict: we don't have information to determine if the intent (the original purpose of the test) was preserved. The instructions say that a failing test does not imply intent was lost, but we don't have any failing tests. However, we also don't have a way to know the intent beyond the output. So we set to \"undetermined\".\n\nBut note: the test is for the function reciprocal. The intent is to compute the reciprocal. Since the outputs match, the intent is preserved? However, the instructions say that behavior and intent are distinct. We are not told what the intent is beyond the output. So we leave as \"undetermined\".\n\nAlternatively, the problem says: \"intent_verdict\" is about the test intent. Since the test passed, the intent of the test (to check the reciprocal function) was achieved? But the adapter might have changed the intent? We don't have information. So we set to \"undetermined\".\n\nTherefore, we return:\n\n{\n  \"verdict\": \"preserved\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"undetermined\",\n  \"reason\": \"All 21 tests passed: target_error is null for every input index in the batch.\",\n  \"input_indices\": [23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43]\n}\n\nBut note: the input_indices must list all assessed batch indices. We are to list the input indices that we assessed, which are the ones in the batch: [23,24,...,43].\n\nHowever, the problem says: \"input_indices must list all assessed batch indices\". So we list exactly the 21 indices.\n\nBut note: the batch_input_indices in the data are [23,24,...,43] (21 indices). We assessed all of them.\n\nSo we return the above.\n\nBut wait: what about the official_sign? The data has \"official_sign\": false. But that doesn't affect the test results we have.\n\nWe are only using the observations.\n\nTherefore, the final answer.\n</think>\n{\n  \"verdict\": \"preserved\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"undetermined\",\n  \"reason\": \"All 21 tests passed: target_error is null and outputs match source expectations per observations. Intent cannot be fully inferred from outputs alone.\",\n  \"input_indices\": [23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 7717,
+      "completion_tokens": 3196,
+      "total_tokens": 10913
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "preserved",
+    "behavior_verdict": "preserved",
+    "intent_verdict": "undetermined",
+    "reason": "All 21 tests passed: target_error is null and outputs match source expectations per observations. Intent cannot be fully inferred from outputs alone.",
+    "input_indices": [
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43
+    ]
+  },
+  "seconds": 376.742
+}

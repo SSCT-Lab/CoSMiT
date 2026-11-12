@@ -1,0 +1,31 @@
+{
+  "job_id": "98f8c34d6d63f7af522157ad5e4565dd30dbadf700b906c2880f9c93e1a30b0d",
+  "candidate_id": "D0055",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    44
+  ],
+  "prompt_sha256": "b394bdfcc6015b85a49102d26fe3d79aa2cbe74dbe3af4882e31f30d57688fb3",
+  "attempt": 1,
+  "status": "failed",
+  "started_unix": 1792474807.937951,
+  "error_type": "RejectedResponse",
+  "http_status": null,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": null,
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and a Test Code. We must decide if the TDL correctly expresses the intent of the Test Code.\n\nTDL:\n{\n  \"assertions\": {\n    \"dtype\": {\n      \"applicable_input_indices\": [44],\n      \"obligation\": \"Require identical dtype via value_test(test_dtypes=True).\"\n    },\n    \"helper_shape\": {\n      \"applicable_input_indices\": [44],\n      \"obligation\": \"Require identical shape through assert_same_type_and_shape invoked by value_test(test_dtypes=True).\"\n    },\n    \"value\": {\n      \"applicable_input_indices\": [44],\n      \"obligation\": \"Compare actual values with frozen source values using the listed tolerances.\"\n    }\n  },\n  \"goal\": \"Preserve the supplied source test output obligations on the listed input subset\",\n  \"input_fixture_indices\": [44],\n  \"input_fixture_location\": \"testCode.inputs; same input and source expectations, not a second copy\",\n  \"scope\": \"controlled native-output adapter tests; not full original frontend modes\"\n}\n\nTest Code:\nThis is a complex test that runs a function (either TensorFlow or PyTorch) on a given input and compares the output to a source reference.\n\nKey elements of the Test Code:\n1. It decodes the input and"
+        }
+      }
+    ],
+    "usage": null,
+    "transport": "openai-compatible-sse"
+  },
+  "reason": "non-stop-termination",
+  "seconds": 42.795
+}

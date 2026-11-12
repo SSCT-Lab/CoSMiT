@@ -1,0 +1,4978 @@
+[
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "complex128",
+        "shape": [],
+        "values": -7.810022267779524e-14,
+        "imag": -7.810022267779524e-14
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 0,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "complex128",
+            "shape": [],
+            "values": -7.810022267779524e-14,
+            "imag": -7.810022267779524e-14
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "complex128",
+          "shape": [],
+          "digest": "0327a0b1f3067306b618162f5929a88f977f8bcae6d6bd6e0deecb432504a525",
+          "bound": true,
+          "values": -7.810022267779524e-14,
+          "imag": -7.810022267779524e-14
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "complex128",
+          "shape": [],
+          "digest": "0327a0b1f3067306b618162f5929a88f977f8bcae6d6bd6e0deecb432504a525",
+          "bound": true,
+          "values": -7.810022267779524e-14,
+          "imag": -7.810022267779524e-14
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "complex128",
+          "shape": [],
+          "digest": "0327a0b1f3067306b618162f5929a88f977f8bcae6d6bd6e0deecb432504a525",
+          "bound": true,
+          "values": -7.810022267779524e-14,
+          "imag": -7.810022267779524e-14
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 36,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "float16",
+        "shape": [],
+        "values": -0.343505859375
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 1,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "float16",
+            "shape": [],
+            "values": -0.343505859375
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float16",
+          "shape": [],
+          "digest": "456aa681b946e04e853c454000873c9decdcf316b6be19af5332828912726433",
+          "bound": true,
+          "values": -0.343505859375
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float16",
+          "shape": [],
+          "digest": "456aa681b946e04e853c454000873c9decdcf316b6be19af5332828912726433",
+          "bound": true,
+          "values": -0.343505859375
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float16",
+          "shape": [],
+          "digest": "456aa681b946e04e853c454000873c9decdcf316b6be19af5332828912726433",
+          "bound": true,
+          "values": -0.343505859375
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 37,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "float16",
+        "shape": [],
+        "values": 1.0
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 2,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "float16",
+            "shape": [],
+            "values": 1.0
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float16",
+          "shape": [],
+          "digest": "f5ccabe7bdf3a0889393150d42307c0757598a4285ff272110f794fda134e620",
+          "bound": true,
+          "values": 1.0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float16",
+          "shape": [],
+          "digest": "f5ccabe7bdf3a0889393150d42307c0757598a4285ff272110f794fda134e620",
+          "bound": true,
+          "values": 1.0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float16",
+          "shape": [],
+          "digest": "f5ccabe7bdf3a0889393150d42307c0757598a4285ff272110f794fda134e620",
+          "bound": true,
+          "values": 1.0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 38,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "complex64",
+        "shape": [],
+        "values": -0.0135240089148283,
+        "imag": -0.0135240089148283
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 3,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "complex64",
+            "shape": [],
+            "values": -0.0135240089148283,
+            "imag": -0.0135240089148283
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "complex64",
+          "shape": [],
+          "digest": "488633a695327fdfa52f19f026331333b42423a8e4baef2194713a58d7bb38fb",
+          "bound": true,
+          "values": -0.0135240089148283,
+          "imag": -0.0135240089148283
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "complex64",
+          "shape": [],
+          "digest": "488633a695327fdfa52f19f026331333b42423a8e4baef2194713a58d7bb38fb",
+          "bound": true,
+          "values": -0.0135240089148283,
+          "imag": -0.0135240089148283
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "complex64",
+          "shape": [],
+          "digest": "488633a695327fdfa52f19f026331333b42423a8e4baef2194713a58d7bb38fb",
+          "bound": true,
+          "values": -0.0135240089148283,
+          "imag": -0.0135240089148283
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 39,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "complex64",
+        "shape": [],
+        "values": -0.5,
+        "imag": 39.317474365234375
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 4,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=3. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "complex64",
+            "shape": [],
+            "values": -0.5,
+            "imag": 39.317474365234375
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "complex64",
+          "shape": [],
+          "digest": "ed0284ac64d15eb214bc10a91e2f6321fac9ce4f77e567e3e570984d4e290ca9",
+          "bound": true,
+          "values": -0.5,
+          "imag": 39.317474365234375
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "complex64",
+          "shape": [],
+          "digest": "ed0284ac64d15eb214bc10a91e2f6321fac9ce4f77e567e3e570984d4e290ca9",
+          "bound": true,
+          "values": -0.5,
+          "imag": 39.317474365234375
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "complex64",
+          "shape": [],
+          "digest": "ed0284ac64d15eb214bc10a91e2f6321fac9ce4f77e567e3e570984d4e290ca9",
+          "bound": true,
+          "values": -0.5,
+          "imag": 39.317474365234375
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 40,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [],
+        "values": -7.810022267779524e-14
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 5,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": -7.810022267779524e-14
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 33,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": -7.810022267779524e-14
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "a0818610e99ae7c43ebe9d9906dff6bab7caffc1c9af4169a00feceed3804c16",
+          "bound": true,
+          "values": -7.810022267779524e-14
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "a0818610e99ae7c43ebe9d9906dff6bab7caffc1c9af4169a00feceed3804c16",
+          "bound": true,
+          "values": -7.810022267779524e-14
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "a0818610e99ae7c43ebe9d9906dff6bab7caffc1c9af4169a00feceed3804c16",
+          "bound": true,
+          "values": -7.810022267779524e-14
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 41,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "bfloat16",
+        "shape": [],
+        "values": -0.0262451171875
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 6,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "bfloat16",
+            "shape": [],
+            "values": -0.0262451171875
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 23,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "bfloat16",
+            "shape": [],
+            "values": -0.0262451171875
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "bfloat16",
+          "shape": [],
+          "digest": "c231054b2e63d0a5f2cb03ed600f74b6207a838834224cd161f094ff5e0bcc8e",
+          "bound": true,
+          "values": -0.0262451171875
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "bfloat16",
+          "shape": [],
+          "digest": "c231054b2e63d0a5f2cb03ed600f74b6207a838834224cd161f094ff5e0bcc8e",
+          "bound": true,
+          "values": -0.0262451171875
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "bfloat16",
+          "shape": [],
+          "digest": "c231054b2e63d0a5f2cb03ed600f74b6207a838834224cd161f094ff5e0bcc8e",
+          "bound": true,
+          "values": -0.0262451171875
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 42,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "bfloat16",
+        "shape": [
+          5,
+          2
+        ],
+        "values": [
+          [
+            -1.0,
+            -38.25
+          ],
+          [
+            -0.0262451171875,
+            -29.0
+          ],
+          [
+            1.8984375,
+            0.0262451171875
+          ],
+          [
+            -1.8984375,
+            1.1015625
+          ],
+          [
+            -1.8984375,
+            -1.1015625
+          ]
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 7,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "bfloat16",
+            "shape": [
+              5,
+              2
+            ],
+            "values": [
+              [
+                -1.0,
+                -38.25
+              ],
+              [
+                -0.0262451171875,
+                -29.0
+              ],
+              [
+                1.8984375,
+                0.0262451171875
+              ],
+              [
+                -1.8984375,
+                1.1015625
+              ],
+              [
+                -1.8984375,
+                -1.1015625
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 10,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "bfloat16",
+          "shape": [],
+          "digest": "1c3ca660ed4d63b858501289a1df4f78b2a28e7bbc1dd105d07a9bd973ad440e",
+          "bound": true,
+          "values": -6.34375
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "bfloat16",
+          "shape": [],
+          "digest": "1c3ca660ed4d63b858501289a1df4f78b2a28e7bbc1dd105d07a9bd973ad440e",
+          "bound": true,
+          "values": -6.34375
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "bfloat16",
+          "shape": [],
+          "digest": "1c3ca660ed4d63b858501289a1df4f78b2a28e7bbc1dd105d07a9bd973ad440e",
+          "bound": true,
+          "values": -6.34375
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 43,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "complex128",
+        "shape": [
+          1
+        ],
+        "values": [
+          -7.810022267779524e-14
+        ],
+        "imag": [
+          -7.810022267779524e-14
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 8,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "complex128",
+            "shape": [
+              1
+            ],
+            "values": [
+              -7.810022267779524e-14
+            ],
+            "imag": [
+              -7.810022267779524e-14
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "complex128",
+          "shape": [],
+          "digest": "0327a0b1f3067306b618162f5929a88f977f8bcae6d6bd6e0deecb432504a525",
+          "bound": true,
+          "values": -7.810022267779524e-14,
+          "imag": -7.810022267779524e-14
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "complex128",
+          "shape": [],
+          "digest": "0327a0b1f3067306b618162f5929a88f977f8bcae6d6bd6e0deecb432504a525",
+          "bound": true,
+          "values": -7.810022267779524e-14,
+          "imag": -7.810022267779524e-14
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "complex128",
+          "shape": [],
+          "digest": "0327a0b1f3067306b618162f5929a88f977f8bcae6d6bd6e0deecb432504a525",
+          "bound": true,
+          "values": -7.810022267779524e-14,
+          "imag": -7.810022267779524e-14
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 44,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "complex128",
+        "shape": [
+          3
+        ],
+        "values": [
+          10000000.0,
+          2.00001,
+          2850457186972.7817
+        ],
+        "imag": [
+          5.960464477539063e-08,
+          -3786810504312.013,
+          1.5
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 9,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=3. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "complex128",
+            "shape": [
+              3
+            ],
+            "values": [
+              10000000.0,
+              2.00001,
+              2850457186972.7817
+            ],
+            "imag": [
+              5.960464477539063e-08,
+              -3786810504312.013,
+              1.5
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 3,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "complex128",
+          "shape": [],
+          "digest": "b5e88be225b860bdf8da0fc3a34fd3d813ecf9e0f215d7446a87229b7791f21a",
+          "bound": true,
+          "values": 1.1445496730279213e+20,
+          "imag": -1.0794141217720201e+32
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "complex128",
+          "shape": [],
+          "digest": "b5e88be225b860bdf8da0fc3a34fd3d813ecf9e0f215d7446a87229b7791f21a",
+          "bound": true,
+          "values": 1.1445496730279213e+20,
+          "imag": -1.0794141217720201e+32
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "complex128",
+          "shape": [],
+          "digest": "b5e88be225b860bdf8da0fc3a34fd3d813ecf9e0f215d7446a87229b7791f21a",
+          "bound": true,
+          "values": 1.1445496730279213e+20,
+          "imag": -1.0794141217720201e+32
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 45,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [],
+        "values": -0.0135240089148283
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 10,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [],
+            "values": -0.0135240089148283
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "f5423c93e306b017ae8d672c9b26b45d2568bda6b962fcdbedd2b31010a368d8",
+          "bound": true,
+          "values": -0.0135240089148283
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "f5423c93e306b017ae8d672c9b26b45d2568bda6b962fcdbedd2b31010a368d8",
+          "bound": true,
+          "values": -0.0135240089148283
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "f5423c93e306b017ae8d672c9b26b45d2568bda6b962fcdbedd2b31010a368d8",
+          "bound": true,
+          "values": -0.0135240089148283
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 46,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "uint8",
+        "shape": [],
+        "values": 1
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 11,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=2. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint8",
+            "shape": [],
+            "values": 1
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 25,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint8",
+            "shape": [],
+            "values": 1
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 26,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=3. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint8",
+            "shape": [],
+            "values": 1
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "uint8",
+          "shape": [],
+          "digest": "c9fd32746ff9e1744ac87f06c889cb504b0a4c1c2bcb73ad920881aae2c3482f",
+          "bound": true,
+          "values": 1
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint8",
+          "shape": [],
+          "digest": "c9fd32746ff9e1744ac87f06c889cb504b0a4c1c2bcb73ad920881aae2c3482f",
+          "bound": true,
+          "values": 1
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint8",
+          "shape": [],
+          "digest": "c9fd32746ff9e1744ac87f06c889cb504b0a4c1c2bcb73ad920881aae2c3482f",
+          "bound": true,
+          "values": 1
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 47,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "uint8",
+        "shape": [],
+        "values": 0
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 12,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=2. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint8",
+            "shape": [],
+            "values": 0
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 13,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=2. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint8",
+            "shape": [],
+            "values": 0
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 14,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint8",
+            "shape": [],
+            "values": 0
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 17,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint8",
+            "shape": [],
+            "values": 0
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "uint8",
+          "shape": [],
+          "digest": "e31b6b3d964a60ff5e4b67c2e8e6ddd1cf1401b4c94c1fefd707b91b4885d012",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint8",
+          "shape": [],
+          "digest": "e31b6b3d964a60ff5e4b67c2e8e6ddd1cf1401b4c94c1fefd707b91b4885d012",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint8",
+          "shape": [],
+          "digest": "e31b6b3d964a60ff5e4b67c2e8e6ddd1cf1401b4c94c1fefd707b91b4885d012",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 48,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [],
+        "values": 0.0135240089148283
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 15,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [],
+            "values": 0.0135240089148283
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "5133722caf230242d85db198585d3a321affbe3394196a1aa2e897a62771973e",
+          "bound": true,
+          "values": 0.0135240089148283
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "5133722caf230242d85db198585d3a321affbe3394196a1aa2e897a62771973e",
+          "bound": true,
+          "values": 0.0135240089148283
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "5133722caf230242d85db198585d3a321affbe3394196a1aa2e897a62771973e",
+          "bound": true,
+          "values": 0.0135240089148283
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 49,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "int8",
+        "shape": [],
+        "values": 0
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 16,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "int8",
+            "shape": [],
+            "values": 0
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 28,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=3. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "int8",
+            "shape": [],
+            "values": 0
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 29,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=3. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "int8",
+            "shape": [],
+            "values": 0
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 30,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "int8",
+            "shape": [],
+            "values": 0
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "int8",
+          "shape": [],
+          "digest": "adaad49280cd799ffcdd08bee3d5a979450c2b85179b127941b21b0184ad2e61",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "int8",
+          "shape": [],
+          "digest": "adaad49280cd799ffcdd08bee3d5a979450c2b85179b127941b21b0184ad2e61",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "int8",
+          "shape": [],
+          "digest": "adaad49280cd799ffcdd08bee3d5a979450c2b85179b127941b21b0184ad2e61",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 50,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "int16",
+        "shape": [],
+        "values": 0
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 18,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "int16",
+            "shape": [],
+            "values": 0
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "int16",
+          "shape": [],
+          "digest": "d8d4e346c51571637d116a1d95a501f30cc42a74da1f2c1ad835a10c27d68614",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "int16",
+          "shape": [],
+          "digest": "d8d4e346c51571637d116a1d95a501f30cc42a74da1f2c1ad835a10c27d68614",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "int16",
+          "shape": [],
+          "digest": "d8d4e346c51571637d116a1d95a501f30cc42a74da1f2c1ad835a10c27d68614",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 51,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "int16",
+        "shape": [
+          7
+        ],
+        "values": [
+          1,
+          -1,
+          0,
+          -1,
+          0,
+          0,
+          0
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 19,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=3. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "int16",
+            "shape": [
+              7
+            ],
+            "values": [
+              1,
+              -1,
+              0,
+              -1,
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 7,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "int16",
+          "shape": [],
+          "digest": "d8d4e346c51571637d116a1d95a501f30cc42a74da1f2c1ad835a10c27d68614",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "int16",
+          "shape": [],
+          "digest": "d8d4e346c51571637d116a1d95a501f30cc42a74da1f2c1ad835a10c27d68614",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "int16",
+          "shape": [],
+          "digest": "d8d4e346c51571637d116a1d95a501f30cc42a74da1f2c1ad835a10c27d68614",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 52,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "uint64",
+        "shape": [],
+        "values": 0
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 20,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint64",
+            "shape": [],
+            "values": 0
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 35,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint64",
+            "shape": [],
+            "values": 0
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 41,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=4. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint64",
+            "shape": [],
+            "values": 0
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "08bb2995ba68b4e1310bd151677393e92eb5de488304b5b9b1a00d7eb8fc82e0",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "08bb2995ba68b4e1310bd151677393e92eb5de488304b5b9b1a00d7eb8fc82e0",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "08bb2995ba68b4e1310bd151677393e92eb5de488304b5b9b1a00d7eb8fc82e0",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 53,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "uint64",
+        "shape": [
+          7,
+          1
+        ],
+        "values": [
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            5
+          ],
+          [
+            5
+          ],
+          [
+            2
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 21,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint64",
+            "shape": [
+              7,
+              1
+            ],
+            "values": [
+              [
+                2
+              ],
+              [
+                2
+              ],
+              [
+                5
+              ],
+              [
+                5
+              ],
+              [
+                2
+              ],
+              [
+                0
+              ],
+              [
+                0
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 7,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "08bb2995ba68b4e1310bd151677393e92eb5de488304b5b9b1a00d7eb8fc82e0",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "08bb2995ba68b4e1310bd151677393e92eb5de488304b5b9b1a00d7eb8fc82e0",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "08bb2995ba68b4e1310bd151677393e92eb5de488304b5b9b1a00d7eb8fc82e0",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 54,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "int64",
+        "shape": [],
+        "values": 0
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 22,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "int64",
+            "shape": [],
+            "values": 0
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 32,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "int64",
+            "shape": [],
+            "values": 0
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "int64",
+          "shape": [],
+          "digest": "3e2a673ae9594b60e56b7004349ef5706cb53e6686a2b494e5accfce12f684e6",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "int64",
+          "shape": [],
+          "digest": "3e2a673ae9594b60e56b7004349ef5706cb53e6686a2b494e5accfce12f684e6",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "int64",
+          "shape": [],
+          "digest": "3e2a673ae9594b60e56b7004349ef5706cb53e6686a2b494e5accfce12f684e6",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 55,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "bfloat16",
+        "shape": [],
+        "values": 0.5
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 24,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=4. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "bfloat16",
+            "shape": [],
+            "values": 0.5
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "bfloat16",
+          "shape": [],
+          "digest": "7468a737f6e54c5deb681bf1b9cfa417c2f528f610d23464dd18bafaa2225a70",
+          "bound": true,
+          "values": 0.5
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "bfloat16",
+          "shape": [],
+          "digest": "7468a737f6e54c5deb681bf1b9cfa417c2f528f610d23464dd18bafaa2225a70",
+          "bound": true,
+          "values": 0.5
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "bfloat16",
+          "shape": [],
+          "digest": "7468a737f6e54c5deb681bf1b9cfa417c2f528f610d23464dd18bafaa2225a70",
+          "bound": true,
+          "values": 0.5
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 56,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "int8",
+        "shape": [],
+        "values": 1
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 27,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=3. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "int8",
+            "shape": [],
+            "values": 1
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "int8",
+          "shape": [],
+          "digest": "daa590970904ff6a4e57e139f0680844a85c6b2c8ec44ada4f122ecc669702e0",
+          "bound": true,
+          "values": 1
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "int8",
+          "shape": [],
+          "digest": "daa590970904ff6a4e57e139f0680844a85c6b2c8ec44ada4f122ecc669702e0",
+          "bound": true,
+          "values": 1
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "int8",
+          "shape": [],
+          "digest": "daa590970904ff6a4e57e139f0680844a85c6b2c8ec44ada4f122ecc669702e0",
+          "bound": true,
+          "values": 1
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 57,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "int8",
+        "shape": [
+          1,
+          1,
+          6,
+          3
+        ],
+        "values": [
+          [
+            [
+              [
+                0,
+                1,
+                -1
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                -1
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                -1,
+                -1
+              ]
+            ]
+          ]
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 31,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=3. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "int8",
+            "shape": [
+              1,
+              1,
+              6,
+              3
+            ],
+            "values": [
+              [
+                [
+                  [
+                    0,
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    0,
+                    -1
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    -1,
+                    -1
+                  ]
+                ]
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 18,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": false
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "int8",
+          "shape": [],
+          "digest": "adaad49280cd799ffcdd08bee3d5a979450c2b85179b127941b21b0184ad2e61",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "int8",
+          "shape": [],
+          "digest": "adaad49280cd799ffcdd08bee3d5a979450c2b85179b127941b21b0184ad2e61",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "int8",
+          "shape": [],
+          "digest": "adaad49280cd799ffcdd08bee3d5a979450c2b85179b127941b21b0184ad2e61",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 58,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [
+          1
+        ],
+        "values": [
+          1057873947112.6128
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 34,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=4. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              1
+            ],
+            "values": [
+              1057873947112.6128
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "cfc3cc4034bd9c6c9a657790644dcd29358a59aab5cd0eca3b97f516a384dc71",
+          "bound": true,
+          "values": 1057873947112.6128
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "cfc3cc4034bd9c6c9a657790644dcd29358a59aab5cd0eca3b97f516a384dc71",
+          "bound": true,
+          "values": 1057873947112.6128
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "cfc3cc4034bd9c6c9a657790644dcd29358a59aab5cd0eca3b97f516a384dc71",
+          "bound": true,
+          "values": 1057873947112.6128
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 59,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "uint64",
+        "shape": [
+          5
+        ],
+        "values": [
+          6,
+          6,
+          1,
+          1,
+          4
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 36,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint64",
+            "shape": [
+              5
+            ],
+            "values": [
+              6,
+              6,
+              1,
+              1,
+              4
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 5,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "119a7d2040886f5762306d9ea18febd4dd5c5acd629503932db1b9f07214bb60",
+          "bound": true,
+          "values": 144
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "119a7d2040886f5762306d9ea18febd4dd5c5acd629503932db1b9f07214bb60",
+          "bound": true,
+          "values": 144
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "119a7d2040886f5762306d9ea18febd4dd5c5acd629503932db1b9f07214bb60",
+          "bound": true,
+          "values": 144
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 60,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "uint64",
+        "shape": [
+          1
+        ],
+        "values": [
+          0
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 37,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint64",
+            "shape": [
+              1
+            ],
+            "values": [
+              0
+            ]
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 40,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint64",
+            "shape": [
+              1
+            ],
+            "values": [
+              0
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "08bb2995ba68b4e1310bd151677393e92eb5de488304b5b9b1a00d7eb8fc82e0",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "08bb2995ba68b4e1310bd151677393e92eb5de488304b5b9b1a00d7eb8fc82e0",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "08bb2995ba68b4e1310bd151677393e92eb5de488304b5b9b1a00d7eb8fc82e0",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 61,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "uint64",
+        "shape": [],
+        "values": 2
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 38,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint64",
+            "shape": [],
+            "values": 2
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "411116c3b1ef08d07a13f4b331ccf25962e6fe3157312e528be70b44e85735aa",
+          "bound": true,
+          "values": 2
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "411116c3b1ef08d07a13f4b331ccf25962e6fe3157312e528be70b44e85735aa",
+          "bound": true,
+          "values": 2
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint64",
+          "shape": [],
+          "digest": "411116c3b1ef08d07a13f4b331ccf25962e6fe3157312e528be70b44e85735aa",
+          "bound": true,
+          "values": 2
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 62,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "uint32",
+        "shape": [],
+        "values": 0
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 39,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint32",
+            "shape": [],
+            "values": 0
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "uint32",
+          "shape": [],
+          "digest": "d11340b4fb8eab4ac92ffb111af630379ec6393ca6175f02c0ce40532cabc5e4",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint32",
+          "shape": [],
+          "digest": "d11340b4fb8eab4ac92ffb111af630379ec6393ca6175f02c0ce40532cabc5e4",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint32",
+          "shape": [],
+          "digest": "d11340b4fb8eab4ac92ffb111af630379ec6393ca6175f02c0ce40532cabc5e4",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 63,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "uint32",
+        "shape": [
+          1
+        ],
+        "values": [
+          0
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 42,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint32",
+            "shape": [
+              1
+            ],
+            "values": [
+              0
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "uint32",
+          "shape": [],
+          "digest": "d11340b4fb8eab4ac92ffb111af630379ec6393ca6175f02c0ce40532cabc5e4",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint32",
+          "shape": [],
+          "digest": "d11340b4fb8eab4ac92ffb111af630379ec6393ca6175f02c0ce40532cabc5e4",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint32",
+          "shape": [],
+          "digest": "d11340b4fb8eab4ac92ffb111af630379ec6393ca6175f02c0ce40532cabc5e4",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 64,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "uint32",
+        "shape": [
+          6
+        ],
+        "values": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 43,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=3. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint32",
+            "shape": [
+              6
+            ],
+            "values": [
+              1,
+              1,
+              1,
+              2,
+              1,
+              1
+            ]
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 44,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=3. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint32",
+            "shape": [
+              6
+            ],
+            "values": [
+              1,
+              1,
+              1,
+              2,
+              1,
+              1
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 6,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "uint32",
+          "shape": [],
+          "digest": "167d48b918f3ddd0128d680817fb3b033ed8ab1f8864ade8aa8239e805719197",
+          "bound": true,
+          "values": 2
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint32",
+          "shape": [],
+          "digest": "167d48b918f3ddd0128d680817fb3b033ed8ab1f8864ade8aa8239e805719197",
+          "bound": true,
+          "values": 2
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint32",
+          "shape": [],
+          "digest": "167d48b918f3ddd0128d680817fb3b033ed8ab1f8864ade8aa8239e805719197",
+          "bound": true,
+          "values": 2
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 65,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "uint32",
+        "shape": [
+          6
+        ],
+        "values": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          1
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 45,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=3. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint32",
+            "shape": [
+              6
+            ],
+            "values": [
+              0,
+              1,
+              1,
+              2,
+              1,
+              1
+            ]
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 46,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=3. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "uint32",
+            "shape": [
+              6
+            ],
+            "values": [
+              0,
+              1,
+              1,
+              2,
+              1,
+              1
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 6,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "uint32",
+          "shape": [],
+          "digest": "d11340b4fb8eab4ac92ffb111af630379ec6393ca6175f02c0ce40532cabc5e4",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint32",
+          "shape": [],
+          "digest": "d11340b4fb8eab4ac92ffb111af630379ec6393ca6175f02c0ce40532cabc5e4",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "uint32",
+          "shape": [],
+          "digest": "d11340b4fb8eab4ac92ffb111af630379ec6393ca6175f02c0ce40532cabc5e4",
+          "bound": true,
+          "values": 0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 66,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  },
+  {
+    "arguments": {
+      "input_tensor": {
+        "__ndarray__": true,
+        "dtype": "complex64",
+        "shape": [
+          1,
+          10
+        ],
+        "values": [
+          [
+            0.5,
+            0.9999899864196777,
+            1.5,
+            -12.489116668701172,
+            -1.899999976158142,
+            0.9999899864196777,
+            -33.960689544677734,
+            0.5,
+            0.0135240089148283,
+            -40.317474365234375
+          ]
+        ],
+        "imag": [
+          [
+            1.013524055480957,
+            0.0135240089148283,
+            1.013524055480957,
+            39.317474365234375,
+            -40.317474365234375,
+            -39.317474365234375,
+            -1.013524055480957,
+            1.100000023841858,
+            -40.317474365234375,
+            -2.0000100135803223
+          ]
+        ]
+      },
+      "axis": null,
+      "keepdims": false
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 47,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\H007",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "input_tensor": {
+            "__ndarray__": true,
+            "dtype": "complex64",
+            "shape": [
+              1,
+              10
+            ],
+            "values": [
+              [
+                0.5,
+                0.9999899864196777,
+                1.5,
+                -12.489116668701172,
+                -1.899999976158142,
+                0.9999899864196777,
+                -33.960689544677734,
+                0.5,
+                0.0135240089148283,
+                -40.317474365234375
+              ]
+            ],
+            "imag": [
+              [
+                1.013524055480957,
+                0.0135240089148283,
+                1.013524055480957,
+                39.317474365234375,
+                -40.317474365234375,
+                -39.317474365234375,
+                -1.013524055480957,
+                1.100000023841858,
+                -40.317474365234375,
+                -2.0000100135803223
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 10,
+      "floating-only": false,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "complex64",
+          "shape": [],
+          "digest": "7faeff49cbe291f93ea806a6b140a3401d5f002b0736626495699739ee60522d",
+          "bound": true,
+          "values": 8917629952.0,
+          "imag": 790917760.0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "complex64",
+          "shape": [],
+          "digest": "7faeff49cbe291f93ea806a6b140a3401d5f002b0736626495699739ee60522d",
+          "bound": true,
+          "values": 8917629952.0,
+          "imag": 790917760.0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "complex64",
+          "shape": [],
+          "digest": "7faeff49cbe291f93ea806a6b140a3401d5f002b0736626495699739ee60522d",
+          "bound": true,
+          "values": 8917629952.0,
+          "imag": 790917760.0
+        },
+        "target_observation": {
+          "error": "RuntimeError",
+          "message": "Please look up dimensions by name, got: name = None.",
+          "stage": "operation",
+          "bound": true
+        },
+        "source": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "target-error"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/H007.observations.json",
+      "ledger_index": 67,
+      "file_sha256": "3b8c2549f4f8e0cfe7a7118cc742b32043cef34630cce85c8d9913839a06e9d5"
+    }
+  }
+]

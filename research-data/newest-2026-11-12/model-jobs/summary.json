@@ -1,0 +1,29 @@
+{
+  "candidates": 110,
+  "inputs": 5188,
+  "logical_candidate_methods": 550,
+  "prepared_requests": 1428,
+  "requests_by_kind": {
+    "direct-llm": 260,
+    "trace-llm": 369,
+    "intenttester-source-tdl": 274,
+    "intenttester-target-api": 255,
+    "intenttester-target-tdl-extension": 270
+  },
+  "oversized_requests": 0,
+  "candidate_method_batches": 1428,
+  "prompt_characters": 30290332,
+  "heuristic_input_tokens": [
+    7572583,
+    15145166
+  ],
+  "configured_output_token_ceiling": 11698176,
+  "restored_trace_observations": 15564,
+  "new_model_calls": 0,
+  "budget_status": "estimate only; not a monetary quote or a provider-tokenizer count",
+  "coverage_checks_passed": true,
+  "model_results_or_labels_in_prompt_context": false,
+  "artifact_scope": "new controlled test context; historical method results not reused",
+  "all_requests_within_preparation_limit": true,
+  "single_input_character_limit": 40000
+}

@@ -1,0 +1,75 @@
+{
+  "job_id": "dccb4a8d9699fc1daa64c332e396156c9c00580da250d64d5dae9c462cc61b77",
+  "candidate_id": "D0035",
+  "kind": "trace-llm",
+  "input_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "prompt_sha256": "ea8fb3a61500194c957e189e0ca02081288731f7bbd3cb5f9e0e230792facfa3",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792490907.6393971,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace any {\"__shared_ref__\":\"sN\"} with shared.sN to recover the actual data.\n\nFirst, let's decode the shared references in the provided data.\n\nThe shared dictionary is provided under the key \"shared\". We'll use that to resolve references.\n\nWe are to assess the controlled adapter tests for the given input indices [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17].\n\nThe observations for each input index are provided. We must check for each input index whether the test passed (source and target outputs match as per the oracle) or not.\n\nHowever, note that the observations for some input indices are given as shared references. We must resolve them.\n\nLet's resolve the shared references in the observations:\n\nFor input_index 3: \n  \"groups\": {\"__shared_ref__\":\"s22\"} -> shared.s22\n  shared.s22 = [{\"__shared_ref__\":\"s23\"}]\n  shared.s23 = {\"observation\": {\"__shared_ref__\":\"s24\"}, \"repeats\":[0,1,2]}\n  shared.s24 = {\"source_error\":null, \"source_lines\":[2], \"source_output\":{\"__ndarray__\":true,\"dtype\":\"float64\",\"shape\":[],\"values\":1.0}, \"target_error\":null, \"target_lines\":[2], \"target_output\":{\"__ndarray__\":true,\"dtype\":\"float64\",\"shape\":[],\"values\":1.0}}\n\nSo for input_index 3, the observation is that both source and target outputs are 1.0 (float64 scalar) and there are no errors. Therefore, the test passed.\n\nSimilarly, we resolve others:\n\ninput_index 8: \n  \"groups\": {\"__shared_ref__\":\"s25\"} -> shared.s25 = [{\"__shared_ref__\":\"s26\"}]\n  shared.s26 = {\"observation\": {\"__shared_ref__\":\"s27\"}, \"repeats\":[0,1,2]}\n  shared.s27 = {\"source_error\":null, \"source_lines\":[2], \"source_output\":{\"__ndarray__\":true,\"dtype\":\"bfloat16\",\"shape\":[],\"values\":1.0}, \"target_error\":null, \"target_lines\":[2], \"target_output\":{\"__ndarray__\":true,\"dtype\":\"bfloat16\",\"shape\":[],\"values\":1.0}}\n  -> passed.\n\ninput_index 9:\n  \"groups\": {\"__shared_ref__\":\"s28\"} -> shared.s28 = [{\"__shared_ref__\":\"s29\"}]\n  shared.s29 = {\"observation\": {\"__shared_ref__\":\"s30\"}, \"repeats\":[0,1,2]}\n  shared.s30 = {\"source_error\":null, \"source_lines\":[2], \"source_output\":{\"__ndarray__\":true,\"dtype\":\"float32\",\"shape\":[1],\"values\":[1.0]}, \"target_error\":null, \"target_lines\":[2], \"target_output\":{\"__ndarray__\":true,\"dtype\":\"float32\",\"shape\":[1],\"values\":[1.0]}}\n  -> passed.\n\ninput_index 12 and 13:\n  \"groups\": {\"__shared_ref__\":\"s31\"} -> shared.s31 = [{\"__shared_ref__\":\"s32\"}]\n  shared.s32 = {\"observation\": {\"__shared_ref__\":\"s33\"}, \"repeats\":[0,1,2]}\n  shared.s33 = {\"source_error\":null, \"source_lines\":[2], \"source_output\":{\"__shared_ref__\":\"s16\"}, \"target_error\":null, \"target_lines\":[2], \"target_output\":{\"__shared_ref__\":\"s16\"}}\n  Now, shared.s16 = {\"__ndarray__\":true,\"dtype\":\"float32\",\"shape\":[2],\"values\":[0.22313016653060913,0.1495686173439026]}\n  So both source and target outputs are the same array -> passed.\n\ninput_index 14: same as input_index 9? \n  \"groups\": {\"__shared_ref__\":\"s28\"} -> same as input_index 9, which passed.\n\ninput_index 16: same as input_index 8 -> passed.\n\ninput_index 17: same as input_index 3 -> passed.\n\nNow, the non-shared observations:\n\ninput_index 0: \n  source_output: float16 scalar 1.0, target_output: same -> passed.\n\ninput_index 1: \n  float32 scalar 1.0 -> passed.\n\ninput_index 2: \n  float32 scalar inf -> passed.\n\ninput_index 4: \n  float64 array [1.0] -> passed.\n\ninput_index 5: \n  source_output: shared.s3 -> shared.s3 = {\"__ndarray__\":true,\"dtype\":\"float64\",\"shape\":[5,2],\"values\": ...}\n  target_output: an array with the same structure? The observation says:\n      \"target_output\": {\"__ndarray__\":true,\"dtype\":\"float64\",\"shape\":[5,2],\"values\":[[0.13533392989054707,0.0],[0.9999999999999998,7.389129989861094],[0.36787944117144233,1.0],[1.6487212707001282,0.0],[{\"__float__\":\"inf\"},{\"__float__\":\"inf\"}]]}\n  But note: the source_output is a reference to shared.s3, which we have in the shared dictionary as:\n      shared.s3 = {\"__ndarray__\":true,\"dtype\":\"float64\",\"shape\":[5,2],\"values\": shared.s4}\n      shared.s4 = [[0.13533392989054704,0.0],[0.9999999999999998,7.389129989861094],[0.3678794411714423,1.0],[1.6487212707001282,0.0],[{\"__float__\":\"inf\"},{\"__float__\":\"inf\"}]]\n  The target_output is exactly the same as shared.s4? \n  But note: the target_output in the observation is written with 0.13533392989054707 (ends with 7) and the source (shared.s4) has 0.13533392989054704 (ends with 4). However, the observation says the source_output is shared.s3, which is the same as shared.s4? Actually, the source_output is shared.s3 and the target_output is the array as given.\n\n  But wait: the observation for input_index 5 is:\n      \"groups\": [{\"observation\": { ... \"source_output\": {\"__shared_ref__\":\"s3\"}, \"target_output\": { ... } ... } ... }]\n\n  So the source_output is shared.s3, which is the array we just described. The target_output is a newly described array that is very similar but has a slight difference in the first element? \n\n  However, note that the test uses a tolerance. The oracle_settings for this input is shared.s0, which has atol=1e-06 and rtol=null, and the tolerance_dict is null. The helper code uses TOLERANCE_DICT for float64: 1e-05.\n\n  The difference in the first element: \n      source: 0.13533392989054704\n      target: 0.13533392989054707\n  The absolute difference is about 3e-17, which is less than 1e-05? Actually, 1e-05 is 0.00001. The relative difference might be large because the numbers are small? But 0.1353 is about 0.1, so absolute difference 3e-17 is way below 1e-05. So it should pass.\n\n  However, the observation does not report an error. The target_error is null. So the test passed.\n\ninput_index 6: \n  passed (float16 array [1.0])\n\ninput_index 7: \n  source_output: shared.s5 -> shared.s5 = {\"__ndarray__\":true,\"dtype\":\"float16\",\"shape\":[3],\"values\":[4.48046875, inf, 1.6484375]}\n  target_output: same shared.s5 -> passed.\n\ninput_index 10:\n  source_output: shared.s10 -> shared.s10 = {\"__ndarray__\":true,\"dtype\":\"float32\",\"shape\":[8],\"values\": shared.s11}\n  shared.s11 = [0.22313016653060913,0.1495686173439026,0.0,1.0,1.0,0.1495686173439026,0.0,inf]\n  target_output: same shared.s10 -> passed.\n\ninput_index 11:\n  similarly, passed.\n\ninput_index 15:\n  source_output: shared.s17 -> shared.s17 = {\"__ndarray__\":true,\"dtype\":\"float32\",\"shape\":[9,4,1],\"values\": shared.s18}\n  shared.s18 = ... (a complex array with some shared references and inf, zeros, etc.)\n  target_output: an array that is described without shared references? \n      It is: {\"__ndarray__\":true,\"dtype\":\"float32\",\"shape\":[9,4,1],\"values\": ... }\n  But note: the target_output has some shared references (s19, s20) and also some values that are different? \n\n  Specifically, the source_output (shared.s18) has:\n      [[[0.0],[0.7165312767028809],[0.0],[inf]],\n       [[1.0],[0.0],[inf],[2.718254566192627]],\n       [[0.0],[0.0],[7.389130115509033],[0.0]],\n       shared.s19,   # which is [[0.33287107944488525],[0.7165312767028809],[0.3678831160068512],[inf]]\n       [[inf],[0.0],[0.3678794503211975],[inf]],\n       shared.s20,   # which is [[0.9999899864196777],[inf],[inf],[0.9999998807907104]]\n       [[0.33287107944488525],[0.0],[inf],[1.0]],\n       shared.s21,   # which is [[inf],[6.685894012451172],[4.481688976287842],[inf]]\n       [[0.0],[0.0],[0.0],[0.0]]]\n\n  The target_output in the observation is:\n      [[[0.0],[0.7165312767028809],[0.0],[inf]],\n       [[1.0],[0.0],[inf],[2.718254566192627]],\n       [[0.0],[0.0],[7.389130115509033],[0.0]],\n       shared.s19,   # same as above? But note: the target_output description does not use shared refs? It has the same value? \n       [[inf],[0.0],[0.3678794503211975],[inf]],\n       shared.s20,   # same?\n       ...]\n\n  Actually, the target_output is written as:\n      [[[0.0],[0.7165312767028809],[0.0],[{\"__float__\":\"inf\"}]],\n       [[1.0],[0.0],[{\"__float__\":\"inf\"}],[2.718254566192627]],\n       [[0.0],[0.0],[7.389130115509033],[0.0]],\n       {\"__shared_ref__\":\"s19\"},   # so it is the same shared.s19\n       [[{\"__float__\":\"inf\"}],[0.0],[0.3678794503211975],[{\"__float__\":\"inf\"}]],\n       {\"__shared_ref__\":\"s20\"},\n       [[0.33287107944488525],[0.0],[{\"__float__\":\"inf\"}],[1.0]],\n       [[{\"__float__\":\"inf\"}],[6.68589448928833],[4.481688976287842],[{\"__float__\":\"inf\"}]],\n       [[0.0],[0.0],[0.0],[0.0]]]\n\n  But note: the 7th element (index 6) in the target_output is written without a shared ref: [[0.33287107944488525],[0.0],[{\"__float__\":\"inf\"}],[1.0]] \n  while in the source_output it was a shared ref to s21? Actually, in the source_output the 7th element was shared.s21? \n\n  Wait, the source_output (shared.s18) has:\n      ...,\n      [[0.33287107944488525],[0.0],[inf],[1.0]],   # this is the 6th element? (index 6) but in the source_output it is without a shared ref? \n      shared.s21,   # which is the 7th element? (index 7)\n\n  Actually, the structure of shared.s18 is:\n      element0: [[0.0], ...]\n      element1: ...\n      element3: shared.s19   -> index3\n      element4: ... \n      element5: shared.s20   -> index5\n      element6: [[0.33287107944488525],[0.0],[inf],[1.0]]   -> without a shared ref? \n      element7: shared.s21   -> index7\n      element8: ...\n\n  But in the target_output, the 6th element is written explicitly and the 7th element is written as [[inf],[6.68589448928833],[4.481688976287842],[inf]] (without a shared ref) and the 8th is zeros.\n\n  However, the observation says the target_output is:\n      ...,\n      [[0.33287107944488525],[0.0],[inf],[1.0]],   # index6\n      [[inf],[6.68589448928833],[4.481688976287842],[inf]],   # index7\n      ...\n\n  And the source_output has for index7: shared.s21 = [[inf],[6.685894012451172],[4.481688976287842],[inf]]\n\n  So the target_output at index7 has [6.68589448928833, ...] while the source has [6.685894012451172, ...]. \n\n  But note: the tolerance? The oracle_settings is shared.s0: atol=1e-06, rtol=null, and for float32 the TOLERANCE_DICT is 1e-05.\n\n  The absolute difference in the second element of that inner array: \n      6.68589448928833 - 6.685894012451172 = 0.000000476837158\n  which is about 4.77e-7, which is less than 1e-5? So it should pass.\n\n  And the observation does not report an error. So the test passed.\n\nTherefore, all 18 input indices passed.\n\nBut note: the verdicts:\n\nWe are to return:\n  verdict: \"preserved\" if the adapter-test preservation claim holds (i.e., the tests pass as they did in the source), else \"violated\", etc.\n\nSince all tests passed, the verdict should be \"preserved\".\n\nAlso, behavior_verdict and intent_verdict: \n  The problem says: \"behavior_verdict\" and \"intent_verdict\" are distinct. \n\nWe are told: \"a failing target test alone does not imply its intent was lost\". But here, all tests passed. So both behavior and intent are preserved.\n\nTherefore:\n  verdict: \"preserved\"\n  behavior_verdict: \"preserved\"\n  intent_verdict: \"preserved\"\n\nReason: \"All 18 test cases passed, matching the source outputs within the specified tolerances.\"\n\ninput_indices: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]\n\nBut note: the problem says \"Return concise JSON only\", so we output the JSON.\n\nHowever, let's double-check if there is any issue.\n\nOne thing: the test for input_index 5: the source_output and target_output are slightly different? But within tolerance. And the test passed (no error reported). So we consider it passed.\n\nSimilarly, input_index 15: the numbers are slightly different but within tolerance -> passed.\n\nSo the final answer:\n</think>\n{\n  \"verdict\": \"preserved\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"preserved\",\n  \"reason\": \"All 18 test cases passed with matching outputs between source and target within specified tolerances. No errors reported in observations. Outputs include exact matches and values within numerical tolerance (e.g., float differences < 1e-5). Sparse mode, gradients, and special values (inf) were consistently handled. The adapter correctly preserved test semantics across frameworks.\",\n  \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 7858,
+      "completion_tokens": 3719,
+      "total_tokens": 11577
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "preserved",
+    "behavior_verdict": "preserved",
+    "intent_verdict": "preserved",
+    "reason": "All 18 test cases passed with matching outputs between source and target within specified tolerances. No errors reported in observations. Outputs include exact matches and values within numerical tolerance (e.g., float differences < 1e-5). Sparse mode, gradients, and special values (inf) were consistently handled. The adapter correctly preserved test semantics across frameworks.",
+    "input_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ]
+  },
+  "seconds": 440.932
+}

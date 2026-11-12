@@ -1,0 +1,45 @@
+{
+  "raw_response_verified": 781,
+  "sources": {
+    "main": 778,
+    "recovery-round1": 3
+  },
+  "null_batches": [],
+  "results": [
+    {
+      "method": "intenttester-source-tdl",
+      "batches": 268,
+      "batch_values": {
+        "True": 268
+      },
+      "candidate_values": {
+        "True": 109
+      }
+    },
+    {
+      "method": "intenttester-target-api",
+      "batches": 249,
+      "batch_values": {
+        "False": 134,
+        "True": 115
+      },
+      "candidate_values": {
+        "False": 83,
+        "True": 26
+      }
+    },
+    {
+      "method": "intenttester-target-tdl-extension",
+      "batches": 264,
+      "batch_values": {
+        "True": 262,
+        "False": 2
+      },
+      "candidate_values": {
+        "True": 107,
+        "False": 2
+      }
+    }
+  ],
+  "aggregate_matches_saved": true
+}

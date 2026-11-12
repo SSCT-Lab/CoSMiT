@@ -1,0 +1,801 @@
+{
+  "total": 109,
+  "preserved": 41,
+  "violated": 68,
+  "groups": [
+    {
+      "reason": "数值范围或边界覆盖收窄",
+      "count": 21,
+      "candidate_ids": [
+        "D0001",
+        "D0002",
+        "D0003",
+        "D0004",
+        "D0006",
+        "D0008",
+        "D0013",
+        "D0015",
+        "D0020",
+        "D0021",
+        "D0048",
+        "E002",
+        "E004",
+        "E006",
+        "E008",
+        "E017",
+        "E026",
+        "H004",
+        "H005",
+        "H006",
+        "H009"
+      ],
+      "basis": "D0002等排除靠近±1的合法区域；D0015、H009遗漏极小非零数；E017、E026排除源允许的生成区间端点。"
+    },
+    {
+      "reason": "dtype类别覆盖遗漏",
+      "count": 18,
+      "candidate_ids": [
+        "D0009",
+        "D0011",
+        "D0016",
+        "D0017",
+        "D0021",
+        "D0029",
+        "D0034",
+        "D0037",
+        "D0043",
+        "D0052",
+        "D0055",
+        "D0059",
+        "D0062",
+        "D0065",
+        "D0069",
+        "E026",
+        "H003",
+        "H004"
+      ],
+      "basis": "显式将numeric、valid或float_and_complex等收窄为float，或明确过滤源类型；不把底层框架支持集合差异单独算作遗漏。"
+    },
+    {
+      "reason": "混合dtype组合遗漏",
+      "count": 2,
+      "candidate_ids": [
+        "E025",
+        "E027"
+      ],
+      "basis": "源允许不同浮点dtype组合；目标显式shared_dtype=True，只生成同类型数组。"
+    },
+    {
+      "reason": "形状、维数或数组数量覆盖收窄",
+      "count": 9,
+      "candidate_ids": [
+        "D0021",
+        "E012",
+        "E022",
+        "E025",
+        "E026",
+        "H003",
+        "H004",
+        "H007",
+        "H009"
+      ],
+      "basis": "E012/E022/H007遗漏零维输入；E025遗漏不同拼接轴长度；E026遗漏单数组及五维等场景；H003/H004/H009收窄矩阵或批量形状。"
+    },
+    {
+      "reason": "精度要求放宽",
+      "count": 10,
+      "candidate_ids": [
+        "D0001",
+        "D0018",
+        "D0020",
+        "D0024",
+        "D0056",
+        "D0066",
+        "E002",
+        "E006",
+        "E008",
+        "H005"
+      ],
+      "basis": "D0018的float32/64目标rtol=atol=1e-3，相对/绝对容差分别放宽100/1000倍；E008将atol从1e-6放宽到1。按dtype分别判断。"
+    },
+    {
+      "reason": "完整表达式或参数转换检查缺失",
+      "count": 2,
+      "candidate_ids": [
+        "D0012",
+        "E019"
+      ],
+      "basis": "D0012目标组件测试只检查exp，未覆盖exp(x)-1的减一；E019目标transpose测试未执行负轴归一化和交换轴排列构造。"
+    },
+    {
+      "reason": "默认参数或条件分支检查遗漏",
+      "count": 4,
+      "candidate_ids": [
+        "E021",
+        "E022",
+        "E026",
+        "H007"
+      ],
+      "basis": "E021目标公开测试未检查非单例轴恒等分支；E022遗漏axis=None；E026遗漏负轴；H007以单轴归约替代源默认全量归约。"
+    },
+    {
+      "reason": "设备参数化能力未保留",
+      "count": 19,
+      "candidate_ids": [
+        "D0051",
+        "D0061",
+        "E001",
+        "E003",
+        "E005",
+        "E007",
+        "E009",
+        "E011",
+        "E013",
+        "E015",
+        "E020",
+        "E029",
+        "E030",
+        "H001",
+        "H002",
+        "H004",
+        "H008",
+        "H011",
+        "H012"
+      ],
+      "basis": "源传递on_device，目标测试或受控适配未接收、转交该配置，或经CPU/NumPy中转；依据代码能力缺失，而非仅因本次在CPU运行。"
+    },
+    {
+      "reason": "梯度校验遗漏",
+      "count": 2,
+      "candidate_ids": [
+        "D0053",
+        "D0063"
+      ],
+      "basis": "源sign测试比较解析梯度与数值梯度；所选目标公开测试没有对应校验。"
+    },
+    {
+      "reason": "稀疏结构检查遗漏",
+      "count": 2,
+      "candidate_ids": [
+        "D0053",
+        "D0063"
+      ],
+      "basis": "源检查稀疏类型、indices、dense_shape及values；所选目标公开测试缺少对应结构断言。"
+    }
+  ],
+  "evidence": {
+    "D0001": {
+      "label": "不保持（数值精度及输入范围）",
+      "categories": [
+        "数值范围或边界覆盖收窄",
+        "精度要求放宽"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试核心目的：检查 Ivy torch.abs（或抽中的 torch.absolute）结果与原生 PyTorch 参考实现的一致性。\n- 目标对应检查：检查 Ivy tensorflow.math.abs 与原生 TensorFlow 参考实现的一致性。\n- 共同检查依据：H/function_testing.py:784 的默认 test_values=True、test_dtypes=True；:1163 调用 value_test；H/assertions.py:106 中调用 shape/dtype 检查并进行数值比较。\n- 意图标签：**不保持（数值精度及输入范围）**。\n\n|obligation_id|范围与义务|结论|证据与解释|\n|---|---|---|---|\n|D0001-I01|两端可对应场景下，输出 shape 与各自参考一致|保持|两端均启用公共检查器；H/assertions.py 的 assert_same_type_and_shape 显式比较 shape。|\n|D0001-I02|两端可对应场景下，输出 dtype 与各自参考一致|保持|两端均默认 test_dtypes=True，公共断言显式比较 dtype；不代表两端生成的 dtype 集合相同。|\n|D0001-I03|float32/float64 的源数值精度要求|不保持|源使用 H/assertions.py:4 的默认 rtol=1e-5；目标摘录显式 rtol=1e-2；两端 atol=1e-6。目标会接受部分源会拒绝的偏差。参考值 1、假设错误输出 1.005 可说明该差异，但这不是实际运行反例。|\n|D0001-I04|float32 数值生成范围|不保持|源大小数 safety factor=2.5，目标=25，均为 log。H/hypothesis_helpers/general_helpers.py:53 的 apply_safety_factor 收缩绝对值上限并提高非零绝对值下限。按标准 float32 边界代入，源约覆盖绝对值 4.4e-16～2.6e15，目标约 0.0156～34.8；1000 与 0.001 位于源允许范围而在目标范围外。这是生成策略分析，不代表实际抽样记录。|\n|D0001-I05|shape 生成配置|保持|H/hypothesis_helpers/array_helpers.py:291：两端使用相同默认值，0～5 维，各维长度 1～10；不代表实际抽样相同。|\n|D0001-I06|测试声明的类型覆盖|保持|两端均选择 numeric；目标不再采用源端的显式排除，没有主动收窄类型类别。底层支持集合差异单列。|\n|D0001-I07|公开源测试的额外别名入口覆盖|不保持（包装函数范围外）|源 aliases 包含 torch.absolute；H/testing_helpers.py:585 从主入口和别名中抽样。目标只固定 tensorflow.math.abs，未提供对应额外别名抽样。未确认某次实际运行抽到别名；也不是直接断言两个别名互相等价。|\n|D0001-I08|有效的 out 写入/对象复用检查|证据不足；包装函数范围内不适用|源默认允许 with_out，目标显式关闭。但 H/function_testing.py:961 的分支直接 out=ret 再作身份断言，未构成独立输出容器写入检查。本组调用不提供 out，包装函数也不暴露该参数，不能仅凭开关差异判定有效义务丢失。|\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0001\\review.md",
+      "sha256": "fd12c295bfda0c27b6574322ad4339ff4c4032641bbf6cc6d917f34361b39314"
+    },
+    "D0002": {
+      "label": "不保持（输入覆盖收窄）",
+      "categories": [
+        "数值范围或边界覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查反余弦计算的输出数值、shape、dtype 与原生 PyTorch 参考实现一致。\n- 目标对应检查：检查输出与原生 TensorFlow 参考实现一致，采用相同公共检查器和默认精度要求。\n- 意图标签：**不保持（输入覆盖收窄）**。\n\n|obligation_id|测试义务|结论|依据|\n|---|---|---|---|\n|D0002-I01|输出数值与参考结果一致的检查|保持|两端均调用 H/function_testing.py:784 的 test_frontend_function，并通过 :1163 的 value_test 比较输出。|\n|D0002-I02|输出 shape、dtype 检查|保持|两端默认 test_dtypes=True；H/assertions.py:106 的 value_test 调用 assert_same_type_and_shape。|\n|D0002-I03|浮点精度要求|保持|两端未覆盖默认容差；H/assertions.py:4 中 float32/float64 的 rtol 均为 1e-5，公共函数默认 atol=1e-6。|\n|D0002-I04|合法域 [-1,1] 内的数值输入覆盖|不保持|目标指定 [-1,1]，H/hypothesis_helpers/array_helpers.py:291 的默认 large_abs_safety_factor=1.1、scale=linear 继续传入生成器；H/hypothesis_helpers/general_helpers.py:53 的 apply_safety_factor 将上下限除以 1.1，实际边界约为 [-0.9091,0.9091]。例如源允许生成的 float32 输入 0.99 被目标排除，靠近 ±1 的合法区域覆盖未保留。|\n|D0002-I05|shape 生成配置|保持|两端沿用相同默认值：0～5 维，各维长度 1～10。|\n|D0002-I06|测试声明的类型覆盖|保持|源选择 float，目标选择 float；源类型类别要求保留或扩大。底层支持配置的差异单列，不作为意图缺失。|\n\n补充说明：源策略还允许合法域外的浮点输入，但公共断言在比较前调用 np.nan_to_num，不能直接将其视为严格的 NaN 结果检查。源别名 torch.arccos 和 out 标志属于额外测试配置，不纳入本组固定入口、仅 input 参数的主结论。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0002\\review.md",
+      "sha256": "5bdc7adccc05a2a8ea7a58565cc31775b3a00bbcc01d46b8c61a3d0bb917e23f"
+    },
+    "D0003": {
+      "label": "不保持（输入覆盖收窄）",
+      "categories": [
+        "数值范围或边界覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查反余弦计算的输出数值、shape、dtype 与原生 PyTorch 参考实现一致。\n- 目标对应检查：检查输出与原生 TensorFlow 参考实现一致，采用相同公共检查器和默认精度要求。\n- 意图标签：**不保持（输入覆盖收窄）**。\n\n|obligation_id|测试义务|结论|依据|\n|---|---|---|---|\n|D0003-I01|输出数值与参考结果一致的检查|保持|两端均调用 H/function_testing.py:784 的 test_frontend_function，并通过 :1163 的 value_test 比较输出。|\n|D0003-I02|输出 shape、dtype 检查|保持|两端默认 test_dtypes=True；H/assertions.py:106 的 value_test 调用 assert_same_type_and_shape。|\n|D0003-I03|浮点精度要求|保持|两端未覆盖默认容差；H/assertions.py:4 中 float32/float64 的 rtol 均为 1e-5，公共函数默认 atol=1e-6。|\n|D0003-I04|合法域 [-1,1] 内的数值输入覆盖|不保持|目标指定 [-1,1]，H/hypothesis_helpers/array_helpers.py:291 的默认 large_abs_safety_factor=1.1、scale=linear 继续传入生成器；H/hypothesis_helpers/general_helpers.py:53 的 apply_safety_factor 将上下限除以 1.1，实际边界约为 [-0.9091,0.9091]。源端同样除以 1.1，但起始边界为 dtype 的数值上下限，缩放后仍允许 float32 输入 0.99；该输入被目标排除，靠近 ±1 的合法区域覆盖未保留。|\n|D0003-I05|shape 生成配置|保持|两端沿用相同默认值：0～5 维，各维长度 1～10。|\n|D0003-I06|测试声明的类型覆盖|保持|源选择 float，目标选择 float；源类型类别要求保留或扩大。底层支持配置的差异单列，不作为意图缺失。|\n\n补充说明：源策略还允许合法域外的浮点输入，但公共断言在比较前调用 np.nan_to_num，不能直接将其视为严格的 NaN 结果检查。源测试中的 torch.arccos 别名配置用于确认本组测试入口对应关系，不作为意图丢失的依据；out 标志不纳入本组仅 input 参数的主结论。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0003\\review.md",
+      "sha256": "770f8c2235ec3cfeebc484ef7e259304aad12779a29cadc5f371501f07a83c10"
+    },
+    "D0004": {
+      "label": "不保持（输入覆盖收窄）",
+      "categories": [
+        "数值范围或边界覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查反三角函数输出的数值、shape、dtype 与原生 PyTorch 参考一致。\n- 目标对应检查：与原生 TensorFlow 参考比较，使用同一公共检查器和默认容差。\n- 意图标签：**不保持（输入覆盖收窄）**。\n\n|obligation_id|测试义务|结论|依据|\n|---|---|---|---|\n|D0004-I01|数值一致性检查|保持|两端调用 H/function_testing.py:784 的 test_frontend_function，经 :1163 调用 value_test。|\n|D0004-I02|shape、dtype 检查|保持|两端默认 test_dtypes=True；H/assertions.py:106 调用 assert_same_type_and_shape。|\n|D0004-I03|数值精度要求|保持|两端均沿用默认容差；float32/float64 的 rtol=1e-5，atol=1e-6，见 H/assertions.py:4 和 H/function_testing.py:784。|\n|D0004-I04|数值输入覆盖|不保持|两端均采用默认 1.1 线性缩放。源使用 dtype 数值边界；目标先指定 [-1,1]，再除以 1.1，实际边界约 [-0.9091,0.9091]，遗漏 0.99 等靠近 ±1 的合法输入。见两端测试参数、H/hypothesis_helpers/array_helpers.py:291 和 general_helpers.py:53。|\n|D0004-I05|shape 生成配置|保持|两端均默认 0～5 维、各维长度 1～10。|\n|D0004-I06|测试声明的类型覆盖|保持|源选择 float，目标选择 float；源类型类别要求保留或扩大。底层支持配置的差异单列，不作为意图缺失。|\n\n- 别名和 out：固定入口、仅 input 参数的包装函数不涉及额外别名覆盖或输出容器复用，不将这些配置差异计入主结论。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0004\\review.md",
+      "sha256": "f5436634dfb5b16a3b64837ec00a3ff8420b6dd6242f28757a6e4624b5286b49"
+    },
+    "D0006": {
+      "label": "不保持（输入覆盖收窄）",
+      "categories": [
+        "数值范围或边界覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查反三角函数输出的数值、shape、dtype 与原生 PyTorch 参考一致。\n- 目标对应检查：与原生 TensorFlow 参考比较，使用同一公共检查器和默认容差。\n- 意图标签：**不保持（输入覆盖收窄）**。\n\n|obligation_id|测试义务|结论|依据|\n|---|---|---|---|\n|D0006-I01|数值一致性检查|保持|两端调用 H/function_testing.py:784 的 test_frontend_function，经 :1163 调用 value_test。|\n|D0006-I02|shape、dtype 检查|保持|两端默认 test_dtypes=True；H/assertions.py:106 调用 assert_same_type_and_shape。|\n|D0006-I03|数值精度要求|保持|两端均沿用默认容差；float32/float64 的 rtol=1e-5，atol=1e-6，见 H/assertions.py:4 和 H/function_testing.py:784。|\n|D0006-I04|数值输入覆盖|不保持|两端均采用默认 1.1 线性缩放。源使用 dtype 数值边界；目标先指定 [-1,1]，再除以 1.1，实际边界约 [-0.9091,0.9091]，遗漏 0.99 等靠近 ±1 的合法输入。见两端测试参数、H/hypothesis_helpers/array_helpers.py:291 和 general_helpers.py:53。|\n|D0006-I05|shape 生成配置|保持|两端均默认 0～5 维、各维长度 1～10。|\n|D0006-I06|测试声明的类型覆盖|保持|源选择 float，目标选择 float；源类型类别要求保留或扩大。底层支持配置的差异单列，不作为意图缺失。|\n\n- 别名和 out：固定入口、仅 input 参数的包装函数不涉及额外别名覆盖或输出容器复用，不将这些配置差异计入主结论。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0006\\review.md",
+      "sha256": "e5458bcf109c513f1f1c9844d4b96e9b499219c295d73fda92d094bc78f45377"
+    },
+    "D0008": {
+      "label": "不保持（输入覆盖收窄）",
+      "categories": [
+        "数值范围或边界覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查向正无穷取整输出的数值、shape、dtype 与原生 PyTorch 参考一致。\n- 目标对应检查：与原生 TensorFlow 参考比较，使用同一公共检查器和默认容差。\n- 意图标签：**不保持（输入覆盖收窄）**。\n\n|obligation_id|测试义务|结论|依据|\n|---|---|---|---|\n|D0008-I01|数值一致性检查|保持|两端调用 H/function_testing.py:784 的 test_frontend_function，经 :1163 调用 value_test。|\n|D0008-I02|shape、dtype 检查|保持|两端默认 test_dtypes=True；H/assertions.py:106 调用 assert_same_type_and_shape。|\n|D0008-I03|数值精度要求|保持|两端均沿用默认容差；float32/float64 的 rtol=1e-5，atol=1e-6，见 H/assertions.py:4 和 H/function_testing.py:784。|\n|D0008-I04|数值输入覆盖|不保持|两端均采用默认 1.1 线性缩放。源使用 dtype 数值边界；目标先指定 [-20,20]，再除以 1.1，实际边界约 [-18.18,18.18]，遗漏源策略允许的 float32 输入 100.5 等较大数值。目标边界仍覆盖本组登记区间 [-8,8]；此项不保持针对公开源测试的更广输入覆盖。见两端测试参数、H/hypothesis_helpers/array_helpers.py:291 和 general_helpers.py:53。|\n|D0008-I05|shape 生成配置|保持|两端均默认 0～5 维、各维长度 1～10。|\n|D0008-I06|测试声明的类型覆盖|保持|源选择 float，目标选择 float；源类型类别要求保留或扩大。底层支持配置的差异单列，不作为意图缺失。|\n\n- 别名和 out：固定入口、仅 input 参数的包装函数不涉及额外别名覆盖或输出容器复用，不将这些配置差异计入主结论。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0008\\review.md",
+      "sha256": "3c49bd8e04da096cde9c4d31fa46cb688f49b3b6d95f3750387bcfde4360491c"
+    },
+    "D0009": {
+      "label": "不保持（显式类型类别收窄）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目的：检查余弦结果的数值、shape、dtype 与原生 PyTorch 参考一致。\n- 目标对应检查：与原生 TensorFlow 参考比较，使用同一公共检查器和默认精度要求。\n- 意图标签：**不保持（显式类型类别收窄）**。\n\n|obligation_id|测试义务|结论|依据|\n|---|---|---|---|\n|D0009-I01|共同浮点场景的数值、shape、dtype 检查|保持|两端调用 H/function_testing.py:784 的 test_frontend_function，经 :1163 调用 value_test；H/assertions.py:106 检查 shape、dtype 并比较数值。|\n|D0009-I02|数值精度要求|保持|两端均使用默认容差；float32/float64 的 rtol=1e-5、atol=1e-6。|\n|D0009-I03|共同 dtype、同一后端下的数值及 shape 生成配置|保持|两端都不指定数值上下限，采用默认 1.1 线性缩放；shape 默认 0～5 维、各维长度 1～10。|\n|D0009-I04|测试声明的类型覆盖|不保持|源选择 numeric，目标明确改为 float，删除整数及复数类别。|\n\n- 别名及 out 不纳入本组固定入口、仅 input 参数的主结论。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0009\\review.md",
+      "sha256": "20736c7567010588c20ff24ad5bc08ea4cf346fae33fb13f35e979b7081a2096"
+    },
+    "D0011": {
+      "label": "不保持（显式类型类别收窄）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（显式类型类别收窄）**。\n- 主要依据：源选择 valid，目标明确改为 float，删除非浮点类别。共同浮点场景的生成配置、检查与容差一致。\n- D0011-I01（输出检查）：两端调用 H/function_testing.py:784 的 test_frontend_function，经 :1163 调用 value_test，H/assertions.py:106 检查 shape、dtype 并比较数值。\n- D0011-I02（精度配置）：两端均沿用默认容差；float32/float64 的 rtol=1e-5、atol=1e-6。相同容差不单独证明检查目标相同。\n- D0011-I03（生成范围与类型）：依据两端摘录、H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53、dtype_helpers.py:106，结论见主要依据。\n- D0011-I04（shape 生成配置）：保持，两端均默认 0～5 维、各维长度 1～10。\n- out 或 out=None 不作为本组独立输出容器复用义务。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0011\\review.md",
+      "sha256": "5432a289ac8b7d70f8209d458a5164858ceaf14792e9933d88824fe5f657d990"
+    },
+    "D0012": {
+      "label": "不保持（完整表达式检查缺失）",
+      "categories": [
+        "完整表达式或参数转换检查缺失"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（完整表达式检查缺失）**。\n- 主要依据：源测试检查 expm1，即 exp(x)-1；目标公开测试仅检查 tensorflow.math.exp，没有执行完整目标表达式中的减一操作。即使包装函数遗漏减一，该组件测试也不能检出，未保留完整输出值检查。两端生成器均选择 float，使用相同默认参数和容差，但检查目标不同。\n- D0012-I01（输出检查）：两端调用 H/function_testing.py:784 的 test_frontend_function，经 :1163 调用 value_test，H/assertions.py:106 检查 shape、dtype 并比较数值。\n- D0012-I02（精度配置）：两端均沿用默认容差；float32/float64 的 rtol=1e-5、atol=1e-6。相同容差不单独证明检查目标相同。\n- D0012-I03（生成范围与类型）：依据两端摘录、H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53、dtype_helpers.py:106，结论见主要依据。\n- D0012-I04（shape 生成配置）：保持，两端均默认 0～5 维、各维长度 1～10。\n- out 或 out=None 不作为本组独立输出容器复用义务。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0012\\review.md",
+      "sha256": "b5ec45377acc1d72a51b4cb2c51f65447640d4cefb1e41349251e6c7841be453"
+    },
+    "D0013": {
+      "label": "不保持（输入覆盖收窄）",
+      "categories": [
+        "数值范围或边界覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（输入覆盖收窄）**。\n- 主要依据：两端均选择 float，使用相同检查器和容差。两端均经过 1.1 线性缩放；源从 dtype 边界出发，目标从 [-20,20] 出发，边界约 [-18.18,18.18]，遗漏源允许的 100.5 等较大数值。该目标边界仍覆盖登记区间 [-8,8]。\n- D0013-I01（输出检查）：两端调用 H/function_testing.py:784 的 test_frontend_function，经 :1163 调用 value_test，H/assertions.py:106 检查 shape、dtype 并比较数值。\n- D0013-I02（精度配置）：两端均沿用默认容差；float32/float64 的 rtol=1e-5、atol=1e-6。相同容差不单独证明检查目标相同。\n- D0013-I03（生成范围与类型）：依据两端摘录、H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53、dtype_helpers.py:106，结论见主要依据。\n- D0013-I04（shape 生成配置）：保持，两端均默认 0～5 维、各维长度 1～10。\n- out 或 out=None 不作为本组独立输出容器复用义务。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0013\\review.md",
+      "sha256": "aa55c817bdf13e182e79e99ea8cf241ccf90d0c6821e0f113f81e044a298ed70"
+    },
+    "D0015": {
+      "label": "不保持（极小数覆盖改变）",
+      "categories": [
+        "数值范围或边界覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源目标：检查 log1p 输出数值、shape、dtype 与原生参考一致；目标测试检查对应的 TensorFlow 函数。\n- 意图标签：**不保持（极小数覆盖改变）**。\n- 主要依据：源指定 [-10000,10000]，采用默认 1.1 线性缩放；目标使用 dtype 数值边界及 1.1 对数缩放。目标扩大大数范围，但提高非零最小绝对值。标准 float32 下，源下限约 1.29e-38，目标约 3.1e-35，源允许的 1e-36 被目标排除，极小数覆盖未保留。\n\n|obligation_id|义务|结论及依据|\n|---|---|---|\n|D0015-I01|数值、shape、dtype 检查|保持；H/function_testing.py:784、:1163 调用公共 value_test，H/assertions.py:106 比较形状、类型和数值。|\n|D0015-I02|精度要求|保持；两端均沿用默认容差，float32/float64 的 rtol=1e-5、atol=1e-6。|\n|D0015-I03|数值生成范围|不保持（极小数覆盖）；见两端测试参数、H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53，具体理由见上文。|\n|D0015-I04|shape 生成配置|保持；两端默认 0～5 维、各维长度 1～10。|\n|D0015-I05|测试声明的类型覆盖|保持；源选择 float，目标选择 float；源类型类别要求保留或扩大。底层支持配置的差异单列，不作为意图缺失。|\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0015\\review.md",
+      "sha256": "ea9adf3365068d814d84ca34bd6aadbcbae63b6ed7657fee961c5dae9ecdc6ac"
+    },
+    "D0016": {
+      "label": "不保持（显式类型类别收窄）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源目标：检查取相反数输出与原生 PyTorch 参考一致；目标与原生 TensorFlow 参考比较。\n- 意图标签：**不保持（显式类型类别收窄）**。\n\n|obligation_id|义务|结论与依据|\n|---|---|---|\n|D0016-I01|共同类型场景的数值、shape、dtype 检查|保持；两端经 H/function_testing.py:784、:1163 调用 H/assertions.py:106 的 value_test。|\n|D0016-I02|精度要求|保持；两端使用相同默认容差，float32/float64 的 rtol=1e-5、atol=1e-6。|\n|D0016-I03|共同 dtype、同一后端下的数值/shape 生成配置|两端均采用默认边界及 1.1 线性缩放，shape 为 0～5 维、各维长度 1～10。源 num_arrays=2，但仅传入 x[0]，没有检查两数组关系；不能据此判断目标少检查一个输入。|\n|D0016-I04|测试声明的类型覆盖|不保持；源选择 numeric，目标仅选择 signed_integer 或 float，明确删除复数类别。|\n\n- out 标志不纳入本组仅 input 参数的主结论。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0016\\review.md",
+      "sha256": "c96fd8800abf24b16f274ed6de2f146c32dbf9709399c3be31f2ce7933e90224"
+    },
+    "D0017": {
+      "label": "不保持（显式类型类别收窄）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源目标：检查取相反数输出与原生 PyTorch 参考一致；目标与原生 TensorFlow 参考比较。\n- 意图标签：**不保持（显式类型类别收窄）**。\n\n|obligation_id|义务|结论与依据|\n|---|---|---|\n|D0017-I01|共同类型场景的数值、shape、dtype 检查|保持；两端经 H/function_testing.py:784、:1163 调用 H/assertions.py:106 的 value_test。|\n|D0017-I02|精度要求|保持；两端使用相同默认容差，float32/float64 的 rtol=1e-5、atol=1e-6。|\n|D0017-I03|共同 dtype、同一后端下的数值/shape 生成配置|两端均采用默认边界及 1.1 线性缩放，shape 为 0～5 维、各维长度 1～10。源 num_arrays=2，但仅传入 x[0]，没有检查两数组关系；不能据此判断目标少检查一个输入。|\n|D0017-I04|测试声明的类型覆盖|不保持；源选择 numeric，目标仅选择 signed_integer 或 float，明确删除复数类别。|\n\n- out 标志不纳入本组仅 input 参数的主结论。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0017\\review.md",
+      "sha256": "c2c26cf90cb682f512d25a91a74ee9b65e9f02daeb3719622929ad46f400a11e"
+    },
+    "D0018": {
+      "label": "不保持（精度要求放宽）",
+      "categories": [
+        "精度要求放宽"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源目标：检查 reciprocal 输出数值、shape、dtype 与原生 PyTorch 参考一致；目标使用对应 TensorFlow 参考。\n- 意图标签：**不保持（精度要求放宽）**。\n- 判断依据：源 float32/float64 的默认 rtol=1e-5、atol=1e-6；目标显式 rtol=atol=1e-3。目标分别放宽相对容差 100 倍、绝对容差 1000 倍，未保留源精度要求。\n- 输入配置：源选择 float 且 min_value=1，经默认 1.1 线性缩放后下限约 0.9091；目标选择 numeric，不指定数值边界。实际类型集合见环境覆盖记录。\n\n|obligation_id|义务|结论及依据|\n|---|---|---|\n|D0018-I01|对应场景的数值比较机制及 shape、dtype 检查|保留；两端通过 H/function_testing.py:784、:1163 调用 H/assertions.py:106 的 value_test。精度要求另列。|\n|D0018-I02|源数值精度要求|不保持；具体默认值见 H/assertions.py:4、H/function_testing.py:784，目标覆盖值见测试摘录。|\n|D0018-I03|数值输入覆盖|保持（共同类型）；目标数值范围扩大，测试声明的类型类别由 float 扩为 numeric，不构成源输入约束遗漏。见两端测试参数、H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53。|\n|D0018-I04|shape 生成配置|保持；两端默认 0～5 维、各维长度 1～10。|\n|D0018-I05|测试声明的类型覆盖|保持；源选择 float，目标选择 numeric；源类型类别要求保留或扩大。底层支持配置的差异单列，不作为意图缺失。|\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0018\\review.md",
+      "sha256": "60b36a471113d856005a8cfb41087f8d898d21eb03b5caa01d2bdf7bf20af85c"
+    },
+    "D0020": {
+      "label": "不保持（精度及输入覆盖）",
+      "categories": [
+        "数值范围或边界覆盖收窄",
+        "精度要求放宽"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源目标：检查 sigmoid 输出数值、shape、dtype 与原生 PyTorch 参考一致；目标使用对应 TensorFlow 参考。\n- 意图标签：**不保持（精度及输入覆盖）**。\n- 判断依据：源 float32/float64 的默认 rtol=1e-5、atol=1e-6；目标显式 rtol=atol=1e-2，精度要求放宽。目标输入边界也收窄，源的大数覆盖未保留。\n- 输入配置：源选择 float，未指定数值边界；目标选择 float_and_complex，并指定 [-20,20]。两端默认 1.1 线性缩放，目标边界约 [-18.18,18.18]，遗漏源允许的 float32 输入 100 等较大绝对值输入。目标增加复数类别不抵消上述差异。\n\n|obligation_id|义务|结论及依据|\n|---|---|---|\n|D0020-I01|对应场景的数值比较机制及 shape、dtype 检查|保留；两端通过 H/function_testing.py:784、:1163 调用 H/assertions.py:106 的 value_test。精度要求另列。|\n|D0020-I02|源数值精度要求|不保持；具体默认值见 H/assertions.py:4、H/function_testing.py:784，目标覆盖值见测试摘录。|\n|D0020-I03|数值输入覆盖|不保持（公开源测试的大数输入覆盖减少）；目标边界仍覆盖登记区间 [-8,8]。见两端测试参数、H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53。|\n|D0020-I04|shape 生成配置|保持；两端默认 0～5 维、各维长度 1～10。|\n|D0020-I05|测试声明的类型覆盖|保持；源选择 float，目标选择 float_and_complex；源类型类别要求保留或扩大。底层支持配置的差异单列，不作为意图缺失。|\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0020\\review.md",
+      "sha256": "1cce48b8c5e30d65dd4d41ba7b15592820fca515cf5a339a7e17a55ea0c11253"
+    },
+    "D0021": {
+      "label": "不保持（选定测试的输入及类型覆盖减少）",
+      "categories": [
+        "数值范围或边界覆盖收窄",
+        "dtype类别覆盖遗漏",
+        "形状、维数或数组数量覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源目标：检查不同生成输入下 sign 输出数值、shape、dtype 与原生 PyTorch 一致。\n- 目标对应检查：testFloatBasic 用固定 float32 数组与 NumPy sign 比较，并增加 CPU 梯度、GPU 路径及稀疏检查。\n- 意图标签：**不保持（选定测试的输入及类型覆盖减少）**。\n\n|obligation_id|义务|结论及依据|\n|---|---|---|\n|D0021-I01|取符号数值检查|保留核心计算目标；源调用 Ivy 公共检查器，目标完整文件 :215 调用 _compareBoth(y, np.sign, math_ops.sign)，助手位于 :74、:136、:153。|\n|D0021-I02|源数值及 shape 输入覆盖|不保持；目标稠密输入固定为 float32 的 [-2.5,-1.5,-0.5,0.5,1.5,2.5]、shape=(1,3,2)，源按默认生成器选择不同数值和 0～5 维形状。|\n|D0021-I03|测试声明的类型覆盖|不保持；源选择 numeric 生成多种类型，选定目标 testFloatBasic 明确固定为 float32；此结论只针对选定函数。|\n|D0021-I04|目标新增检查|目标 _compareCpu 还检查梯度，_compareBoth 涉及 CPU/GPU 路径，:239 调用稀疏检查；这些新增检查不替代源输入覆盖。|\n\n- 目标六个稠密输入不含零，但未以此断言源零值检查丢失；源生成器是否产生零需要另外核对。\n- 不将所有助手容差自动视为相同：目标 _default_tolerance 主要用于梯度比较，前向比较应看 _compareCpu/_compareGpu 的实际调用。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0021\\review.md",
+      "sha256": "1a6b4d582f062de57991497fca15572e2b9df77526ea416dd2df08dd03f7d2d1"
+    },
+    "D0024": {
+      "label": "不保持（bfloat16 精度要求放宽）",
+      "categories": [
+        "精度要求放宽"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源目标：检查 sqrt 输出数值、shape、dtype 与原生 PyTorch 一致；目标检查对应 TensorFlow 结果。\n- 意图标签：**不保持（bfloat16 精度要求放宽）**。\n\n|obligation_id|义务|结论及依据|\n|---|---|---|\n|D0024-I01|数值比较机制及 shape、dtype 检查|保留；H/function_testing.py:784、:1163 调用 H/assertions.py:106 的 value_test，精度要求另列。|\n|D0024-I02|float32/float64 精度要求|保持且加强；源显式 rtol=atol=1e-3，目标默认 rtol=1e-5、atol=1e-6。|\n|D0024-I03|bfloat16 精度要求|不保持；目标默认 rtol=1e-2、atol=1e-6。虽然绝对容差收紧，相对容差放宽，仍会接受部分源会拒绝的误差。参考值 1、假设错误输出 1.0078125：源阈值约 0.002，目标约 0.010001，因此源拒绝、目标接受。该例说明检查能力差异，不是既有运行反例。|\n|D0024-I04|数值及 shape 输入生成配置|保持；两端均选择 float，采用相同默认 dtype 边界、1.1 线性缩放；shape 为 0～5 维、各维长度 1～10。|\n|D0024-I05|测试声明的类型覆盖|保持；源选择 float，目标选择 float；源类型类别要求保留或扩大。底层支持配置的差异单列，不作为意图缺失。|\n\n- 容差依据：源与目标测试摘录、H/assertions.py:4 的 TOLERANCE_DICT、H/function_testing.py:784 的默认 atol。\n- out 标志不纳入本组仅 input 参数的独立输出容器义务。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0024\\review.md",
+      "sha256": "072c595f2e11e6964c04ad1919d269cf83773b40c3b71c7e6156b2027f989fcd"
+    },
+    "D0029": {
+      "label": "不保持（显式过滤源类型）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源目标：检查 abs 输出数值、shape、dtype 与原生 TensorFlow 参考一致；目标与原生 PyTorch 参考比较。\n- 意图标签：**不保持（显式过滤源类型）**。\n\n|obligation_id|义务|结论及依据|\n|---|---|---|\n|D0029-I01|共同类型的数值、shape、dtype 检查|保持；H/function_testing.py:784、:1163 调用 H/assertions.py:106 的公共 value_test。|\n|D0029-I02|共同类型的数值输入范围及精度|保持或加强；源使用 log safety factor=25，目标=2.5；共同类型的目标数值范围扩大。源 rtol=1e-2，目标 float32/64 默认 rtol=1e-5，两端 atol=1e-6，精度加强。依据为两端摘录、H/assertions.py:4、H/hypothesis_helpers/general_helpers.py:53。|\n|D0029-I03|shape 生成配置|保持；两端默认 0～5 维，各维长度 1～10。|\n|D0029-I04|测试声明的类型覆盖|不保持；源选择 numeric，目标在同一类别上新增显式 filter，排除 float16、bfloat16、uint8、int8、uint16、int16。float16 是已查询确认的源可用类型，目标主动删除该场景；不以其他类型是否实际可用扩大结论。|\n\n- 反向迁移重新判断源到目标的覆盖关系，不能沿用正向范围收窄的理由。\n- 额外别名和 out 不作为本组固定入口、仅 x 参数的主结论。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0029\\review.md",
+      "sha256": "769675912fc41e085a02129137d3d2a534efc8456691bf0f9c8cce272ce13459"
+    },
+    "D0034": {
+      "label": "不保持（显式删除复数类别）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查 cosh 输出的数值、shape、dtype 与原生 TensorFlow 参考一致；目标与原生 PyTorch 参考比较。\n- 意图标签：**不保持（显式删除复数类别）**。\n\n|obligation_id|检查|结论及依据|\n|---|---|---|\n|D0034-I01|共同类型的数值、shape、dtype 检查|保持；两端使用 H/function_testing.py:784、:1163 和 H/assertions.py:106 的公共检查器。|\n|D0034-I02|共同类型的输入范围及精度|保持；两端均使用默认数值生成、安全缩放和容差，无额外容差覆盖。见测试摘录、H/assertions.py:4、H/hypothesis_helpers/general_helpers.py:53。|\n|D0034-I03|shape 生成范围|保持；两端默认 0～5 维、各维长度 1～10。|\n|D0034-I04|测试声明的类型覆盖|不保持；源明确选择 float_and_complex，目标改为 float，删除复数类别。|\n\n- 可选 out 检查不计入本组只传入 x 的固定操作入口。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0034\\review.md",
+      "sha256": "2b39bd29c40a910c8df1117c43206d80d2b323ad76e6a06fa3820463e6d526f9"
+    },
+    "D0037": {
+      "label": "不保持（显式过滤源类型）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源目标：检查 abs 输出数值、shape、dtype 与原生 TensorFlow 参考一致；目标与原生 PyTorch 参考比较。\n- 意图标签：**不保持（显式过滤源类型）**。\n\n|obligation_id|义务|结论及依据|\n|---|---|---|\n|D0037-I01|共同类型的数值、shape、dtype 检查|保持；H/function_testing.py:784、:1163 调用 H/assertions.py:106 的公共 value_test。|\n|D0037-I02|共同类型的数值输入范围及精度|保持或加强；源使用 log safety factor=25，目标=2.5；共同类型的目标数值范围扩大。源 rtol=1e-2，目标 float32/64 默认 rtol=1e-5，两端 atol=1e-6，精度加强。依据为两端摘录、H/assertions.py:4、H/hypothesis_helpers/general_helpers.py:53。|\n|D0037-I03|shape 生成配置|保持；两端默认 0～5 维，各维长度 1～10。|\n|D0037-I04|测试声明的类型覆盖|不保持；源选择 numeric，目标新增显式 filter 排除 float16 等类型；float16 是已查询确认的源可用类型，属于目标测试主动删除的场景。|\n\n- 反向迁移重新判断源到目标的覆盖关系，不能沿用正向范围收窄的理由。\n- 额外别名和 out 不作为本组固定入口、仅 x 参数的主结论。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0037\\review.md",
+      "sha256": "145895245787ed2961e1d1f1234669e000b83c1185bd8dcf3ae3c9f14e05fafd"
+    },
+    "D0043": {
+      "label": "不保持（显式删除复数类别）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查 cosh 输出的数值、shape、dtype 与原生 TensorFlow 参考一致；目标与原生 PyTorch 参考比较。\n- 意图标签：**不保持（显式删除复数类别）**。\n\n|obligation_id|检查|结论及依据|\n|---|---|---|\n|D0043-I01|共同类型的数值、shape、dtype 检查|保持；两端使用 H/function_testing.py:784、:1163 和 H/assertions.py:106 的公共检查器。|\n|D0043-I02|共同类型的输入范围及精度|保持；两端均使用默认数值生成、安全缩放和容差，无额外容差覆盖。见测试摘录、H/assertions.py:4、H/hypothesis_helpers/general_helpers.py:53。|\n|D0043-I03|shape 生成范围|保持；两端默认 0～5 维、各维长度 1～10。|\n|D0043-I04|测试声明的类型覆盖|不保持；源明确选择 float_and_complex，目标改为 float，删除复数类别。|\n\n- 可选 out 检查不计入本组只传入 x 的固定操作入口。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0043\\review.md",
+      "sha256": "9d1df490ca8515fdc4e2c98026ed15ded51acbe778ec0c151d493086f85263ea"
+    },
+    "D0048": {
+      "label": "不保持（大数输入覆盖收窄）",
+      "categories": [
+        "数值范围或边界覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源目标：检查 log1p 输出数值、shape、dtype 与原生 TensorFlow 参考一致；目标与原生 PyTorch 参考比较。\n- 意图标签：**不保持（大数输入覆盖收窄）**。\n\n|obligation_id|检查|结论及依据|\n|---|---|---|\n|D0048-I01|数值、shape、输出 dtype 检查|保持；两端调用 H/function_testing.py:784、:1163 及 H/assertions.py:106 的公共检查器。|\n|D0048-I02|数值精度要求|保持；两端未覆盖默认容差，见 H/assertions.py:4 和 H/function_testing.py:784。|\n|D0048-I03|共同类型的数值输入范围|不保持；源使用 dtype 默认边界和 log 安全缩放；目标显式设置 [-10000,10000]，经默认 1.1 线性缩放后约 [-9090.91,9090.91]。float32 输入 100000 属于源允许范围和 log1p 合法域，却被目标排除。依据为两端摘录、H/hypothesis_helpers/array_helpers.py:291 和 general_helpers.py:53。|\n|D0048-I04|shape 生成配置|保持；两端默认 0～5 维、各维长度 1～10。|\n|D0048-I05|测试声明的类型覆盖|保持；两端均选择 float，没有显式删除源类型类别。底层支持集合差异单列。|\n|D0048-I06|设备配置传递|源传入 on_device，目标未接收或传入该参数，H/function_testing.py:789 默认 cpu。目标未保留随设备配置变化的调用方式；未据此声称已有 GPU 运行失败。主标签以 I03 的输入范围收窄为依据。|\n\n- 可选 out 或 out=None 不作为本组只传入 x 的独立输出容器复用义务。\n- 100000 是生成策略的区分示例，不是本组既有运行反例。目标允许更小的非零数，不抵消大数输入范围的遗漏。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0048\\review.md",
+      "sha256": "5e6752bb29b9c3124285a1e5198cdd709cf1201dc6db1a0b7a7bff926fa50e2e"
+    },
+    "D0051": {
+      "label": "不保持（设备配置传递未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备配置传递未保留）**。\n- D0051-I01，保留的检查：默认整数舍入检查保持；目标 decimals=0～5 包含源默认场景，额外小数位场景不替代源检查。两端选择 float，默认数值和 shape 生成及容差一致。\n- D0051-I02，遗漏的义务：源传入 on_device，目标未接收或传入该参数，H/function_testing.py:789 默认 cpu；源随设备配置变化的调用方式未保留。这是显式配置传递差异，不是底层 dtype 支持集合差异，也不代表已观察到 GPU 失败。\n- 依据：两端测试摘录；H/function_testing.py:784、:1163，H/assertions.py:4、:106，H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53。\n- 固定入口只传入 x，可选 out 配置不作为独立输出容器复用义务。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0051\\review.md",
+      "sha256": "7ee96ab153f948ebe2e6f1ce2357f3ac9ee6afe74fbabccefb81362deb702c1a"
+    },
+    "D0052": {
+      "label": "不保持（显式删除复数类别）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（显式删除复数类别）**。\n- D0052-I01，保留的检查：共同浮点场景的数值、shape、dtype 检查保持；目标默认范围扩大，源范围经缩放约 [-18.18,18.18]。源 rtol=atol=1e-2，目标采用默认容差，float32/64 精度加强。\n- D0052-I02，遗漏的义务：源明确选择 float_and_complex，目标改为 float，删除复数输入类别；浮点范围扩大及精度加强不替代复数检查。\n- 依据：两端测试摘录；H/function_testing.py:784、:1163，H/assertions.py:4、:106，H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53。\n- 固定入口只传入 x，可选 out 配置不作为独立输出容器复用义务。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0052\\review.md",
+      "sha256": "3175262cfc417484349051924259b0a72979a69f4bec57e2c87102a7f5bd3f8a"
+    },
+    "D0053": {
+      "label": "不保持（梯度及稀疏结构检查遗漏）",
+      "categories": [
+        "梯度校验遗漏",
+        "稀疏结构检查遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（梯度及稀疏结构检查遗漏）**。\n- D0053-I01，保留的检查：源选定 testFloatBasic 的 sign 场景以 float32 数组 [-2.5,-1.5,-0.5,0.5,1.5,2.5]、shape=(1,3,2) 与 NumPy sign 比较；目标为 numeric 默认生成输入并与原生 PyTorch 参考比较，普通前向计算目标保留。\n- D0053-I02，遗漏的义务：源完整文件 _compareCpu:109–113 对 float32 比较解析梯度与数值梯度；_compareBothSparse:158–160 经 _check:120–128 检查稀疏类型、indices、dense_shape 和 values。目标 test_frontend_function 没有对应梯度校验与稀疏结构断言，遗漏这些明确的检查义务。\n- 依据：两端测试摘录；H/function_testing.py:784、:1163，H/assertions.py:4、:106，H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53。\n- 固定入口只传入 x，可选 out 配置不作为独立输出容器复用义务。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0053\\review.md",
+      "sha256": "c1ce08b239584379373d76e26f640cf47e0207bea712fe8504a4b0d833709efe"
+    },
+    "D0055": {
+      "label": "不保持（显式删除复数类别）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查 sinh 输出的数值、shape、dtype 与原生 TensorFlow 参考一致；目标与原生 PyTorch 参考比较。\n- 意图标签：**不保持（显式删除复数类别）**。\n\n|obligation_id|检查|结论及依据|\n|---|---|---|\n|D0055-I01|共同类型的数值、shape、dtype 检查|保持；两端使用 H/function_testing.py:784、:1163 和 H/assertions.py:106 的公共检查器。|\n|D0055-I02|共同类型的输入范围及精度|保持；两端均使用默认数值生成、安全缩放和容差，无额外容差覆盖。见测试摘录、H/assertions.py:4、H/hypothesis_helpers/general_helpers.py:53。|\n|D0055-I03|shape 生成范围|保持；两端默认 0～5 维、各维长度 1～10。|\n|D0055-I04|测试声明的类型覆盖|不保持；源明确选择 float_and_complex，目标改为 float，删除复数类别。|\n\n- 可选 out 检查不计入本组只传入 x 的固定操作入口。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0055\\review.md",
+      "sha256": "c5f88809051794715f1527231ee994065a2590f6f8ae33b101fa939a2e5ea250"
+    },
+    "D0056": {
+      "label": "不保持（float32/64 精度要求放宽）",
+      "categories": [
+        "精度要求放宽"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查 sqrt 输出的数值、shape、dtype 与原生 TensorFlow 参考一致；目标与原生 PyTorch 参考比较。\n- 意图标签：**不保持（float32/64 精度要求放宽）**。\n\n|obligation_id|检查|结论及依据|\n|---|---|---|\n|D0056-I01|计算目标与数值、shape、dtype 检查|保持；两端公开测试均直接检查 sqrt 运算。两端使用 H/function_testing.py:784、:1163 和 H/assertions.py:106 的公共检查器。|\n|D0056-I02|共同类型的输入范围及精度|输入生成保持；float32/64 精度要求不保持：源默认 rtol=1e-5、atol=1e-6，目标显式 rtol=atol=1e-3。参考值 1、假设错误输出 1.001，源拒绝而目标接受；这是容差区分示例，不是运行反例。见 H/assertions.py:4、H/function_testing.py:784 和目标摘录。|\n|D0056-I03|shape 生成范围|保持；两端默认 0～5 维、各维长度 1～10。|\n|D0056-I04|测试声明的类型覆盖|保持；两端均选择 float，类型类别一致。底层支持配置差异单列。|\n\n- 可选 out 检查不计入本组只传入 x 的固定操作入口。\n\n- bfloat16 单列：源默认 rtol=1e-2、atol=1e-6；目标 rtol=atol=1e-3，相对容差收紧而绝对容差放宽，不能概括为所有类型精度均放宽。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0056\\review.md",
+      "sha256": "e5e04e71d61fec6e720c635299d5ad0d83ab00304720ee7a284df4a854e6c7ce"
+    },
+    "D0059": {
+      "label": "不保持（显式缩小类型类别，遗漏复数）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查 tanh 输出的数值、shape、dtype 与原生 TensorFlow 参考一致；目标与原生 PyTorch 参考比较。\n- 意图标签：**不保持（显式缩小类型类别，遗漏复数）**。\n\n|obligation_id|检查|结论及依据|\n|---|---|---|\n|D0059-I01|共同类型的数值、shape、dtype 检查|保持；两端使用 H/function_testing.py:784、:1163 和 H/assertions.py:106 的公共检查器。|\n|D0059-I02|共同类型的输入范围及精度|保持；两端均使用默认数值生成、安全缩放和容差，无额外容差覆盖。见测试摘录、H/assertions.py:4、H/hypothesis_helpers/general_helpers.py:53。|\n|D0059-I03|shape 生成范围|保持；两端默认 0～5 维、各维长度 1～10。|\n|D0059-I04|测试声明的类型覆盖|不保持；源明确选择 valid，目标改为 float，删除复数类别。|\n\n- 可选 out 检查不计入本组只传入 x 的固定操作入口。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0059\\review.md",
+      "sha256": "112b782779b962a219d0bb1608403f37e24fc4685a0ee53e8c865a04c80f342d"
+    },
+    "D0061": {
+      "label": "不保持（设备参数化运行能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化运行能力未保留）**。\n- D0061-I01，保留的检查：默认整数舍入检查保持；目标 decimals=0～5 包含源默认场景，额外小数位场景不替代源检查。两端选择 float，默认数值和 shape 生成及容差一致。\n- D0061-I02，遗漏的义务：源传入 on_device，目标未接收或传入该参数，H/function_testing.py:789 默认 cpu；源随设备配置变化的调用方式未保留。这是显式配置传递差异，不是底层 dtype 支持集合差异，也不代表已观察到 GPU 失败。\n- 依据：两端测试摘录；H/function_testing.py:784、:1163，H/assertions.py:4、:106，H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53。\n- 固定入口只传入 x，可选 out 配置不作为独立输出容器复用义务。\n\n- 经标注者核查确认：源通过 on_device 支持按设备配置运行测试，目标未传递该参数而使用默认 CPU，未保留这项能力。默认整数舍入的核心检查仍保持；此判断不以实际 GPU 失败为前提。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0061\\review.md",
+      "sha256": "67a34cbbfae086ebb94ac461444032085cb3a7884361bee186e84c8e4f51e6e8"
+    },
+    "D0062": {
+      "label": "不保持（显式删除复数类别）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（显式删除复数类别）**。\n- D0062-I01，保留的检查：共同浮点场景的数值、shape、dtype 检查保持；目标默认范围扩大，源范围经缩放约 [-18.18,18.18]。源 rtol=atol=1e-2，目标采用默认容差，float32/64 精度加强。\n- D0062-I02，遗漏的义务：源明确选择 float_and_complex，目标改为 float，删除复数输入类别；浮点范围扩大及精度加强不替代复数检查。\n- 依据：两端测试摘录；H/function_testing.py:784、:1163，H/assertions.py:4、:106，H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53。\n- 固定入口只传入 x，可选 out 配置不作为独立输出容器复用义务。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0062\\review.md",
+      "sha256": "66e281f56b6e5dea293af132117089fccf92483ba266a75be941b9673bb7bb35"
+    },
+    "D0063": {
+      "label": "不保持（梯度及稀疏结构检查遗漏）",
+      "categories": [
+        "梯度校验遗漏",
+        "稀疏结构检查遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（梯度及稀疏结构检查遗漏）**。\n- D0063-I01，保留的检查：源选定 testFloatBasic 的 sign 场景以 float32 数组 [-2.5,-1.5,-0.5,0.5,1.5,2.5]、shape=(1,3,2) 与 NumPy sign 比较；目标为 numeric 默认生成输入并与原生 PyTorch 参考比较，普通前向计算目标保留。\n- D0063-I02，遗漏的义务：源完整文件 _compareCpu:109–113 对 float32 比较解析梯度与数值梯度；_compareBothSparse:158–160 经 _check:120–128 检查稀疏类型、indices、dense_shape 和 values。目标 test_frontend_function 没有对应梯度校验与稀疏结构断言，遗漏这些明确的检查义务。\n- 依据：两端测试摘录；H/function_testing.py:784、:1163，H/assertions.py:4、:106，H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53。\n- 固定入口只传入 x，可选 out 配置不作为独立输出容器复用义务。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0063\\review.md",
+      "sha256": "819fe65e3998f136808745d25aace76ee8e3c2cf06728827acda155bebbe246b"
+    },
+    "D0065": {
+      "label": "不保持（显式删除复数类别）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查 sinh 输出的数值、shape、dtype 与原生 TensorFlow 参考一致；目标与原生 PyTorch 参考比较。\n- 意图标签：**不保持（显式删除复数类别）**。\n\n|obligation_id|检查|结论及依据|\n|---|---|---|\n|D0065-I01|共同类型的数值、shape、dtype 检查|保持；两端使用 H/function_testing.py:784、:1163 和 H/assertions.py:106 的公共检查器。|\n|D0065-I02|共同类型的输入范围及精度|保持；两端均使用默认数值生成、安全缩放和容差，无额外容差覆盖。见测试摘录、H/assertions.py:4、H/hypothesis_helpers/general_helpers.py:53。|\n|D0065-I03|shape 生成范围|保持；两端默认 0～5 维、各维长度 1～10。|\n|D0065-I04|测试声明的类型覆盖|不保持；源明确选择 float_and_complex，目标改为 float，删除复数类别。|\n\n- 可选 out 检查不计入本组只传入 x 的固定操作入口。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0065\\review.md",
+      "sha256": "65327a80a5eec30f76f5d032534f36fc563c35499dd9a4fe61a7582f213e6613"
+    },
+    "D0066": {
+      "label": "不保持（float32/64 精度要求放宽）",
+      "categories": [
+        "精度要求放宽"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查 sqrt 输出的数值、shape、dtype 与原生 TensorFlow 参考一致；目标与原生 PyTorch 参考比较。\n- 意图标签：**不保持（float32/64 精度要求放宽）**。\n\n|obligation_id|检查|结论及依据|\n|---|---|---|\n|D0066-I01|计算目标与数值、shape、dtype 检查|保持；两端公开测试均直接检查 sqrt 运算。两端使用 H/function_testing.py:784、:1163 和 H/assertions.py:106 的公共检查器。|\n|D0066-I02|共同类型的输入范围及精度|输入生成保持；float32/64 精度要求不保持：源默认 rtol=1e-5、atol=1e-6，目标显式 rtol=atol=1e-3。参考值 1、假设错误输出 1.001，源拒绝而目标接受；这是容差区分示例，不是运行反例。见 H/assertions.py:4、H/function_testing.py:784 和目标摘录。|\n|D0066-I03|shape 生成范围|保持；两端默认 0～5 维、各维长度 1～10。|\n|D0066-I04|测试声明的类型覆盖|保持；两端均选择 float，类型类别一致。底层支持配置差异单列。|\n\n- 可选 out 检查不计入本组只传入 x 的固定操作入口。\n\n- bfloat16 单列：源默认 rtol=1e-2、atol=1e-6；目标 rtol=atol=1e-3，相对容差收紧而绝对容差放宽，不能概括为所有类型精度均放宽。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0066\\review.md",
+      "sha256": "5a447eb7b9b78c30c1810465c276b88be0fa21b0cbf8b8771f5f4d1de44c81ec"
+    },
+    "D0069": {
+      "label": "不保持（显式缩小类型类别，遗漏复数）",
+      "categories": [
+        "dtype类别覆盖遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 源测试目标：检查 tanh 输出的数值、shape、dtype 与原生 TensorFlow 参考一致；目标与原生 PyTorch 参考比较。\n- 意图标签：**不保持（显式缩小类型类别，遗漏复数）**。\n\n|obligation_id|检查|结论及依据|\n|---|---|---|\n|D0069-I01|共同类型的数值、shape、dtype 检查|保持；两端使用 H/function_testing.py:784、:1163 和 H/assertions.py:106 的公共检查器。|\n|D0069-I02|共同类型的输入范围及精度|保持；两端均使用默认数值生成、安全缩放和容差，无额外容差覆盖。见测试摘录、H/assertions.py:4、H/hypothesis_helpers/general_helpers.py:53。|\n|D0069-I03|shape 生成范围|保持；两端默认 0～5 维、各维长度 1～10。|\n|D0069-I04|测试声明的类型覆盖|不保持；源明确选择 valid，目标改为 float，删除复数类别。|\n\n- 可选 out 检查不计入本组只传入 x 的固定操作入口。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\D0069\\review.md",
+      "sha256": "c68bc7e79c5a919b704fcdccf4cc1e5854c985717bb7396ec47ceec7111843f0"
+    },
+    "E001": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- E001-I01，核心输出：完整适配执行整个目标函数，比较最终数值、shape、dtype；行为失败不直接作为意图丢失理由。\n- E001-I02，精度：适配复用源检查设置 {'rtol': 0.001, 'atol': 1e-06, 'test_dtypes': True}，未因使用固定样本放宽输出检查。\n- E001-I03，输入范围与来源：随机生成或固定样本属于输入获得方式，不单独作为意图。固定样本未出现某场景，仅记录执行覆盖；不据此推断源类型、数值、形状或参数范围被删除。源输入范围仍作为检查义务；当前未发现仅由采用固定样本即可成立的显式范围删除证据。\n- E001-I04，设备参数化：不保持；源公开测试向检查器传递 on_device，完整适配的 convert 函数经 detach().cpu().numpy() 或 NumPy 转换重建张量，未接收并转交源设备配置。这是代码中的参数传递能力缺失，而非仅因一次运行在CPU上。\n- 固定包装入口以外的额外参数、别名及 out 场景单列，不用输入来源变化扩大主标签。\n- 本组意图主标签仅依据设备参数化能力缺失；输入范围若有明确限制，应另按对应配置判断。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E001\\review.md",
+      "sha256": "ee61da85518c3fc4df339939cb2e9ff74e68dd90b57199b2a0bdac670e6e7467"
+    },
+    "E002": {
+      "label": "不保持（精度及数值输入覆盖）",
+      "categories": [
+        "数值范围或边界覆盖收窄",
+        "精度要求放宽"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（float32/64 精度要求及数值输入覆盖未保留）**。\n\n|obligation_id|义务|结论与依据|\n|---|---|---|\n|E002-I01|普通加法输出数值、shape、dtype 检查|核心机制保持；两端通过 H/function_testing.py:784、:1163 和 H/assertions.py:106 比较输出。目标 alpha=1 对应源操作。|\n|E002-I02|float32/64 精度要求|不保持；源默认 rtol=1e-5，目标显式 rtol=1e-3；两端 atol=1e-6。目标可接受源拒绝的误差。见 H/assertions.py:4 及两端摘录。|\n|E002-I03|数值输入覆盖|不保持；源按 dtype 边界默认线性缩放1.1；目标使用 log 安全缩放2.5。float32 输入 1e20 为源允许而目标排除，目标绝对值上限约2.6e15，非零小数下限也提高。见 H/hypothesis_helpers/array_helpers.py:291、general_helpers.py:53。|\n|E002-I04|类型类别、shape 与设备参数|两端 numeric、两数组、默认shape配置及 on_device 传递保留。源 shared_dtype=True，目标允许独立选类型；扩展类型组合不替代丢失的数值覆盖。|\n|E002-I05|附加参数|目标 alpha=1～5 包含普通加法场景；其余 alpha 与可选 out 不作为本组固定两参数入口的必要义务。|\n\n- bfloat16 等类型的精度变化应与 float32/64 分开；本组不把相对容差变化概括为所有类型均放宽。\n- 仅由底层支持配置导致的类型集合差异不作为意图主标签依据。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E002\\review.md",
+      "sha256": "15bac0cb7f27d4075838fdc3ae2fa4bc12a60c4a2bc163b9b9ee3d5571511ddb"
+    },
+    "E003": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- E003-I01，核心输出：完整适配执行整个目标函数，比较最终数值、shape、dtype；行为失败不直接作为意图丢失理由。\n- E003-I02，精度：适配复用源检查设置 {'rtol': None, 'atol': 1e-06, 'test_dtypes': True}，未因使用固定样本放宽输出检查。\n- E003-I03，输入范围与来源：随机生成或固定样本属于输入获得方式，不单独作为意图。固定样本未出现某场景，仅记录执行覆盖；不据此推断源类型、数值、形状或参数范围被删除。源输入范围仍作为检查义务；当前未发现仅由采用固定样本即可成立的显式范围删除证据。\n- E003-I04，设备参数化：不保持；源公开测试向检查器传递 on_device，完整适配的 convert 函数经 detach().cpu().numpy() 或 NumPy 转换重建张量，未接收并转交源设备配置。这是代码中的参数传递能力缺失，而非仅因一次运行在CPU上。\n- 固定包装入口以外的额外参数、别名及 out 场景单列，不用输入来源变化扩大主标签。\n- 本组意图主标签仅依据设备参数化能力缺失；输入范围若有明确限制，应另按对应配置判断。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E003\\review.md",
+      "sha256": "25bb267b162154d6a5b6e70f8248f3e497b9e874c12ca071b1d150d959199cf7"
+    },
+    "E004": {
+      "label": "不保持（数值输入范围收窄）",
+      "categories": [
+        "数值范围或边界覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（数值输入范围收窄）**。\n- E004-I01，输出检查：两端普通二元运算的数值、shape、dtype比较机制保留；精度与生成范围另列。\n- E004-I02，具体遗漏：两端默认容差一致；源默认线性缩放1.1，目标 log 缩放2.5，遗漏大数及极小非零数。float32 的1e20为源允许、目标排除的生成示例。\n- E004-I03，设备：两端均传递 on_device，设备参数化能力保留。类型类别未收窄：两端均为numeric。\n- alpha 或 rounding_mode 的额外场景不纳入固定两参数入口的必要义务；相应默认场景为 alpha=1、rounding_mode=None。可选 out 和额外别名单列，不据此扩大主标签。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E004\\review.md",
+      "sha256": "0b5036f71d94a56a2c781ed30a29a6d618542e7ef0dd60f60c0a8ca4e877c907"
+    },
+    "E005": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- E005-I01，核心输出：完整适配执行整个目标函数，比较最终数值、shape、dtype；行为失败不直接作为意图丢失理由。\n- E005-I02，精度：适配复用源检查设置 {'rtol': 0.001, 'atol': 1e-06, 'test_dtypes': True}，未因使用固定样本放宽输出检查。\n- E005-I03，输入范围与来源：随机生成或固定样本属于输入获得方式，不单独作为意图。固定样本未出现某场景，仅记录执行覆盖；不据此推断源类型、数值、形状或参数范围被删除。源输入范围仍作为检查义务；当前未发现仅由采用固定样本即可成立的显式范围删除证据。\n- E005-I04，设备参数化：不保持；源公开测试向检查器传递 on_device，完整适配的 convert 函数经 detach().cpu().numpy() 或 NumPy 转换重建张量，未接收并转交源设备配置。这是代码中的参数传递能力缺失，而非仅因一次运行在CPU上。\n- 固定包装入口以外的额外参数、别名及 out 场景单列，不用输入来源变化扩大主标签。\n- 本组意图主标签仅依据设备参数化能力缺失；输入范围若有明确限制，应另按对应配置判断。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E005\\review.md",
+      "sha256": "eb7167aa1a024db88562e0b0baa0adee1d8580746417b5907526ff16952f7ffa"
+    },
+    "E006": {
+      "label": "不保持（精度及数值输入覆盖未保留）",
+      "categories": [
+        "数值范围或边界覆盖收窄",
+        "精度要求放宽"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（精度及数值输入覆盖未保留）**。\n- E006-I01，输出检查：两端普通二元运算的数值、shape、dtype比较机制保留；精度与生成范围另列。\n- E006-I02，具体遗漏：目标限制 [-10000,10000]，线性缩放后约 [-9090.91,9090.91]，比源默认浮点范围小；float32/64 的 rtol 从1e-5放宽到1e-3，atol仍为1e-6。\n- E006-I03，设备：两端均传递 on_device，设备参数化能力保留。类型类别未收窄：源float，目标numeric。\n- alpha 或 rounding_mode 的额外场景不纳入固定两参数入口的必要义务；相应默认场景为 alpha=1、rounding_mode=None。可选 out 和额外别名单列，不据此扩大主标签。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E006\\review.md",
+      "sha256": "b8d251f475ec3963b8e11ab29364bfbff3e34cbaf61216f9ad7c87fdee560e05"
+    },
+    "E007": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- E007-I01，核心输出：完整适配执行整个目标函数，比较最终数值、shape、dtype；行为失败不直接作为意图丢失理由。\n- E007-I02，精度：适配复用源检查设置 {'rtol': None, 'atol': 1, 'test_dtypes': True}，未因使用固定样本放宽输出检查。\n- E007-I03，输入范围与来源：随机生成或固定样本属于输入获得方式，不单独作为意图。固定样本未出现某场景，仅记录执行覆盖；不据此推断源类型、数值、形状或参数范围被删除。源输入范围仍作为检查义务；当前未发现仅由采用固定样本即可成立的显式范围删除证据。\n- E007-I04，设备参数化：不保持；源公开测试向检查器传递 on_device，完整适配的 convert 函数经 detach().cpu().numpy() 或 NumPy 转换重建张量，未接收并转交源设备配置。这是代码中的参数传递能力缺失，而非仅因一次运行在CPU上。\n- 固定包装入口以外的额外参数、别名及 out 场景单列，不用输入来源变化扩大主标签。\n- 本组意图主标签仅依据设备参数化能力缺失；输入范围若有明确限制，应另按对应配置判断。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E007\\review.md",
+      "sha256": "007c51d994eabfca3b3c229e5f0ed380153c1f8fb425bddb6049d5e9f0e871b9"
+    },
+    "E008": {
+      "label": "不保持（精度及输入覆盖未保留）",
+      "categories": [
+        "数值范围或边界覆盖收窄",
+        "精度要求放宽"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（精度及输入覆盖未保留）**。\n- E008-I01，输出检查：两端普通二元运算的数值、shape、dtype比较机制保留；精度与生成范围另列。\n- E008-I02，具体遗漏：目标 atol 从默认1e-6放宽到1；log缩放2.5收窄数值范围，并新增 assume 排除 np.isclose(other,0) 的分母，遗漏源允许的1e-9等接近零输入。\n- E008-I03，设备：两端均传递 on_device，设备参数化能力保留。类型类别未收窄：源float，目标numeric。\n- alpha 或 rounding_mode 的额外场景不纳入固定两参数入口的必要义务；相应默认场景为 alpha=1、rounding_mode=None。可选 out 和额外别名单列，不据此扩大主标签。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E008\\review.md",
+      "sha256": "1dc73944aef2c1b28e71894f4d21a5ee4541f7522668c5eabd19cc452088118f"
+    },
+    "E009": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- E009-I01，核心输出：完整适配执行整个目标函数，比较最终数值、shape、dtype；行为失败不直接作为意图丢失理由。\n- E009-I02，精度：适配复用源检查设置 {'rtol': None, 'atol': 1e-06, 'test_dtypes': True}，未因使用固定样本放宽输出检查。\n- E009-I03，输入范围与来源：随机生成或固定样本属于输入获得方式，不单独作为意图。固定样本未出现某场景，仅记录执行覆盖；不据此推断源类型、数值、形状或参数范围被删除。源输入范围仍作为检查义务；当前未发现仅由采用固定样本即可成立的显式范围删除证据。\n- E009-I04，设备参数化：不保持；源公开测试向检查器传递 on_device，完整适配的 convert 函数经 detach().cpu().numpy() 或 NumPy 转换重建张量，未接收并转交源设备配置。这是代码中的参数传递能力缺失，而非仅因一次运行在CPU上。\n- 固定包装入口以外的额外参数、别名及 out 场景单列，不用输入来源变化扩大主标签。\n- 本组意图主标签仅依据设备参数化能力缺失；输入范围若有明确限制，应另按对应配置判断。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E009\\review.md",
+      "sha256": "8584316c3a105b7ccccd62100f7cb057af5ad2bf95836bbf18e724e7907b37ca"
+    },
+    "E011": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- E011-I01，核心输出：完整适配执行整个目标函数，比较最终数值、shape、dtype；行为失败不直接作为意图丢失理由。\n- E011-I02，精度：适配复用源检查设置 {'rtol': None, 'atol': 1e-06, 'test_dtypes': True}，未因使用固定样本放宽输出检查。\n- E011-I03，输入范围与来源：随机生成或固定样本属于输入获得方式，不单独作为意图。固定样本未出现某场景，仅记录执行覆盖；不据此推断源类型、数值、形状或参数范围被删除。源输入范围仍作为检查义务；当前未发现仅由采用固定样本即可成立的显式范围删除证据。\n- E011-I04，设备参数化：不保持；源公开测试向检查器传递 on_device，完整适配的 convert 函数经 detach().cpu().numpy() 或 NumPy 转换重建张量，未接收并转交源设备配置。这是代码中的参数传递能力缺失，而非仅因一次运行在CPU上。\n- 固定包装入口以外的额外参数、别名及 out 场景单列，不用输入来源变化扩大主标签。\n- 本组意图主标签仅依据设备参数化能力缺失；输入范围若有明确限制，应另按对应配置判断。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E011\\review.md",
+      "sha256": "50572b292a3b1aeacf0f963f91f2b31d6379c371f434556a27f53694b782eaac"
+    },
+    "E012": {
+      "label": "不保持（零维输入覆盖遗漏）",
+      "categories": [
+        "形状、维数或数组数量覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（零维输入覆盖遗漏）**。\n- E012-I01，核心输出：目标两个数组分支保留核心逐元素数值、shape、dtype检查及默认容差，但 min_num_dims=1 排除源测试可生成的零维输入；单数组归约是附加场景。\n- E012-I02，源输入：numeric 类型、两个数组、[-20,20]、shared_dtype=True，默认形状允许零维；传递 on_device。\n- E012-I03，目标输入：dtype_values_axis 选择 numeric、min_num_dims=1、1或2个数组；两个数组时 kwargs={} 对应逐元素 min，一个数组时测试按 dim 归约；传递 on_device。\n- E012-I04，设备与容差：公开测试均传递 on_device；未显式覆盖的精度参数使用共用检查器默认值。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E012\\review.md",
+      "sha256": "faf2f290c7f5f487349711744a7c2ac1dc5e0a2eed9dc3498c5c8c85f8672ac9"
+    },
+    "E013": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- E013-I01，核心输出：完整适配执行整个目标函数，比较最终数值、shape、dtype；行为失败不直接作为意图丢失理由。\n- E013-I02，精度：适配复用源检查设置 {'rtol': None, 'atol': 1e-06, 'test_dtypes': True}，未因使用固定样本放宽输出检查。\n- E013-I03，输入范围与来源：随机生成或固定样本属于输入获得方式，不单独作为意图。固定样本未出现某场景，仅记录执行覆盖；不据此推断源类型、数值、形状或参数范围被删除。源 valid 与目标 pow 组件列举五种dtype的差异仅描述组件测试；完整适配未复用该组件生成限制，不据此判定完整适配删除源类型范围。\n- E013-I04，设备参数化：不保持；源公开测试向检查器传递 on_device，完整适配的 convert 函数经 detach().cpu().numpy() 或 NumPy 转换重建张量，未接收并转交源设备配置。这是代码中的参数传递能力缺失，而非仅因一次运行在CPU上。\n- 固定包装入口以外的额外参数、别名及 out 场景单列，不用输入来源变化扩大主标签。\n- 本组意图主标签仅依据设备参数化能力缺失；输入范围若有明确限制，应另按对应配置判断。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E013\\review.md",
+      "sha256": "90f9db8c6f4479a4644bc9fd8d5571bf0205fde4aa3455eb34e4bd8b98bb52b9"
+    },
+    "E015": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- E015-I01，核心输出：完整适配执行整个目标函数，比较最终数值、shape、dtype；行为失败不直接作为意图丢失理由。\n- E015-I02，精度：适配复用源检查设置 {'rtol': None, 'atol': 1e-06, 'test_dtypes': True}，未因使用固定样本放宽输出检查。\n- E015-I03，输入范围与来源：随机生成或固定样本属于输入获得方式，不单独作为意图。固定样本未出现某场景，仅记录执行覆盖；不据此推断源类型、数值、形状或参数范围被删除。目标 atan2 组件的 shared_dtype=True 和近零过滤是真实的组件测试范围差异；完整适配没有沿用这些过滤，并已包含混合dtype样本，因此不将组件限制直接作为完整适配的意图遗漏。\n- E015-I04，设备参数化：不保持；源公开测试向检查器传递 on_device，完整适配的 convert 函数经 detach().cpu().numpy() 或 NumPy 转换重建张量，未接收并转交源设备配置。这是代码中的参数传递能力缺失，而非仅因一次运行在CPU上。\n- 固定包装入口以外的额外参数、别名及 out 场景单列，不用输入来源变化扩大主标签。\n- 本组意图主标签仅依据设备参数化能力缺失；输入范围若有明确限制，应另按对应配置判断。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E015\\review.md",
+      "sha256": "876d720619b97b1f5602f9ca232701722dd9618e998a6387bba2420755fc497d"
+    },
+    "E017": {
+      "label": "不保持（数值边界覆盖遗漏）",
+      "categories": [
+        "数值范围或边界覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（数值边界覆盖遗漏）**。\n- E017-I01，输出检查：保留重排后的数值、shape、dtype检查。\n- E017-I02，输入覆盖：源通过 dtype_and_values 传入 exclude_min=False、exclude_max=False；目标直接使用 array_values 默认 True，排除源允许的生成区间端点。\n- E017-I03，设备与精度：设备配置传递、默认容差保持。\n- 共享存储未作为源测试检查义务，亦未由目标输出比较证明；不据此判意图丢失。\n- 公开 reshape_shapes 仅生成非负维度，未表达 -1 推断维度检查；登记行为中的相关样本另按 observations.json 记录。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E017\\review.md",
+      "sha256": "8a955b4abab0906c0056a28af42f22b4bf0d2c9f2adfa5d67932bacdc383f80e"
+    },
+    "E019": {
+      "label": "不保持（轴参数转换的完整检查缺失）",
+      "categories": [
+        "完整表达式或参数转换检查缺失"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（轴参数转换的完整检查缺失）**。\n- E019-I01，输出及参数转换：源公开测试生成两个轴，包含负轴，并检查交换两轴后的输出。目标公开测试直接向 tf.transpose 提供排列，不执行负轴归一化和交换轴构造。早期构造测试中的 (-2,-1) 作为辅助证据；主标签依据选定目标公开测试未执行完整轴转换，不依据固定输入的来源或数量。\n- E019-I02，精度和设备：公开测试使用公共检查器默认容差并传递 on_device；完整适配的设备传递另按执行器核对。\n- 后端支持集合差异不单独用于意图主标签。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E019\\review.md",
+      "sha256": "db9ac97bab36a344bdbc99fb9355a23f259992c8746687579dfb4ada07140f11"
+    },
+    "E020": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- E020-I01，核心输出：完整适配执行整个目标函数，比较最终数值、shape、dtype；行为失败不直接作为意图丢失理由。\n- E020-I02，精度：适配复用源检查设置 {'rtol': None, 'atol': 1e-06, 'test_dtypes': True}，未因使用固定样本放宽输出检查。\n- E020-I03，输入范围与来源：随机生成或固定样本属于输入获得方式，不单独作为意图。固定样本未出现某场景，仅记录执行覆盖；不据此推断源类型、数值、形状或参数范围被删除。12条适配样本均使用 perm=[1,0]，只记录本次执行范围；不据此判定其他排列意图已删除。源公开测试本身也不生成 perm=None；该参数的行为反例另列。目标 permute 组件的1–4维限制仅作为组件差异记录。\n- E020-I04，设备参数化：不保持；源公开测试向检查器传递 on_device，完整适配的 convert 函数经 detach().cpu().numpy() 或 NumPy 转换重建张量，未接收并转交源设备配置。这是代码中的参数传递能力缺失，而非仅因一次运行在CPU上。\n- 固定包装入口以外的额外参数、别名及 out 场景单列，不用输入来源变化扩大主标签。\n- 本组意图主标签仅依据设备参数化能力缺失；输入范围若有明确限制，应另按对应配置判断。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E020\\review.md",
+      "sha256": "69412e79a3770c6681b42e13017ed1425288b45722e2ef5fb97978743540122d"
+    },
+    "E021": {
+      "label": "不保持（非单例轴分支检查缺失）",
+      "categories": [
+        "默认参数或条件分支检查遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（非单例轴分支检查缺失）**。\n- E021-I01，输出与输入覆盖：源公开测试生成有效整数轴，允许指定长度不为1的维度；此时源返回形状不变的输出。目标包装函数以条件判断实现该场景，但目标公开测试直接调用 tf.squeeze，_squeeze_helper 仅选长度为1的轴或 None，未检查包装函数 return input 分支。\n- E021-I02，设备与精度：两端均向公共检查器传递 on_device，默认容差对应。\n- 非登记设备、梯度、共享存储性质不由这些行为记录推出；后端dtype支持差异不单独作为意图主标签。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E021\\review.md",
+      "sha256": "bf648f56dd9f0ef65d15e6bfb30b598910824e0947629df57b05685117922196"
+    },
+    "E022": {
+      "label": "不保持（默认轴及零维输入覆盖遗漏）",
+      "categories": [
+        "形状、维数或数组数量覆盖收窄",
+        "默认参数或条件分支检查遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（默认轴及零维输入覆盖遗漏）**。\n- E022-I01，输出与输入覆盖：源 _squeeze_helper 可生成 axis=None，表达一次删除全部单例维度的检查；目标方法测试 force_int_axis=True，仅检查指定整数轴，遗漏默认分支。源默认形状允许零维，目标 min_num_dims=1，另遗漏零维输入。\n- E022-I02，设备与精度：两端均向公共检查器传递 on_device，默认容差对应。\n- 非登记设备、梯度、共享存储性质不由这些行为记录推出；后端dtype支持差异不单独作为意图主标签。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E022\\review.md",
+      "sha256": "de52bd85b43e2d1a85b58d4e94edecf1180683df2dfbf45e395a47e6929886a9"
+    },
+    "E025": {
+      "label": "不保持（拼接轴长度差异及混合dtype覆盖遗漏）",
+      "categories": [
+        "混合dtype组合遗漏",
+        "形状、维数或数组数量覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（拼接轴长度差异及混合dtype覆盖遗漏）**。\n- E025-I01，核心输出：保留沿指定轴按列表顺序拼接的数值、shape、dtype检查。\n- E025-I02，拼接形状：不保持；源 _arrays_idx_n_dtypes 为每个数组独立生成拼接轴长度2或3，非拼接轴共用形状。目标 dtype_values_axis 通过 dtype_and_values 为所有数组生成相同形状，遗漏不同拼接长度。例如 (2,2) 与 (3,2) 沿第0轴拼接属于源覆盖、目标未覆盖的场景。\n- E025-I03，类型组合：不保持；源 array_dtypes 选择 float，默认 shared_dtype=False，允许混合浮点类型；目标 numeric、shared_dtype=True，扩大类型类别但删除混合类型组合。\n- E025-I04，其他输入：目标将数组数2–4扩为1–4，维数1–4扩为1–5，每维长度2–3扩为1–10，并增加负轴及数值生成端点；这些扩大不抵消上述遗漏。\n- E025-I05，精度与设备：默认容差对应，两端均传递 on_device。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E025\\review.md",
+      "sha256": "bacf0ca4421e966dd6256ec79f3dfe948c31a1c01e941f95c94e6c638f434c54"
+    },
+    "E026": {
+      "label": "不保持（类型、形状、数组数量及轴覆盖收窄）",
+      "categories": [
+        "数值范围或边界覆盖收窄",
+        "dtype类别覆盖遗漏",
+        "形状、维数或数组数量覆盖收窄",
+        "默认参数或条件分支检查遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（类型、形状、数组数量及轴覆盖收窄）**。\n- E026-I01，核心输出：保留沿指定轴按列表顺序拼接的数值、shape、dtype检查。\n- E026-I02，类型类别：不保持；源显式选择 numeric，目标显式选择 float，删除整数等非浮点类别。这是测试配置差异，不以底层支持集合差异作为理由。\n- E026-I03，数量与形状：不保持；源允许1–4个数组、1–5维、每维长度1–10；目标仅2–4个数组、1–4维、每维长度2–3，遗漏单数组拼接、五维输入及其他维度长度。\n- E026-I04，轴：不保持；源 dtype_values_axis 默认 allow_neg_axes=True，目标 unique_idx 仅从0到num_dims-1生成，遗漏负轴。\n- E026-I05，数值边界：不保持；源 dtype_values_axis 默认 exclude_min/max=False，目标直接调用 array_values，默认两项为True，排除源允许的生成区间端点。\n- E026-I06，增加的场景：目标允许拼接轴长度不同及混合浮点类型；这些新增覆盖不抵消上述遗漏。\n- E026-I07，精度与设备：默认容差对应，两端均传递 on_device。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E026\\review.md",
+      "sha256": "48e5b631b201c7a82179c6b1e54d352c2fc7c27b9d037549072a92eaa727e639"
+    },
+    "E027": {
+      "label": "不保持（混合浮点dtype覆盖遗漏）",
+      "categories": [
+        "混合dtype组合遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（混合浮点dtype覆盖遗漏）**。\n- E027-I01，核心输出：保留新增堆叠轴、按列表顺序对应各输入切片的数值、shape、dtype检查。\n- E027-I02，类型组合：源 dtype_and_values 默认 shared_dtype=False，允许混合浮点类型；目标显式 shared_dtype=True，只生成同类型数组，遗漏源类型组合。\n- E027-I03，形状、数量及轴：两端生成配置对应；TensorFlow 的 dtype_values_axis 内部调用 dtype_and_values 和 get_axis，PyTorch 用 get_axis 后过滤整数轴，均保留负轴。\n- E027-I04，精度与设备：默认容差及 on_device 传递保持。\n- PyTorch 公开测试轮换使用 axis、dim 参数名，作为附加参数入口记录；固定包装函数已经完成参数映射，不据此改变主标签。\n- 后端实际dtype支持集合差异与代码表达的类型组合约束分别记录。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E027\\review.md",
+      "sha256": "b7f29c939a430a429070d6ee93f4b568663ec658cc40ec3511e60020a4026bb4"
+    },
+    "E029": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- E029-I01，核心输出：完整适配执行整个目标函数，比较最终数值、shape、dtype；行为失败不直接作为意图丢失理由。\n- E029-I02，精度：适配复用源检查设置 {'rtol': None, 'atol': 1e-06, 'test_dtypes': True}，未因使用固定样本放宽输出检查。\n- E029-I03，输入范围与来源：随机生成或固定样本属于输入获得方式，不单独作为意图。固定样本未出现某场景，仅记录执行覆盖；不据此推断源类型、数值、形状或参数范围被删除。源测试允许单边裁剪，33条适配样本都是双边界，记为本次执行未覆盖单边裁剪；没有依据证明适配测试主动过滤该场景，不再据此判意图不保持。原登记中的None转换失败仍为行为反例。\n- E029-I04，设备参数化：不保持；源公开测试向检查器传递 on_device，完整适配的 convert 函数经 detach().cpu().numpy() 或 NumPy 转换重建张量，未接收并转交源设备配置。这是代码中的参数传递能力缺失，而非仅因一次运行在CPU上。\n- 固定包装入口以外的额外参数、别名及 out 场景单列，不用输入来源变化扩大主标签。\n- 本组意图主标签仅依据设备参数化能力缺失；输入范围若有明确限制，应另按对应配置判断。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E029\\review.md",
+      "sha256": "6ece6deb456bf7bb22f138f116c5ee5c1c7f59e98582dc3379f9402f69a21deb"
+    },
+    "E030": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- E030-I01，核心输出：完整适配执行整个目标函数，比较最终数值、shape、dtype；行为失败不直接作为意图丢失理由。\n- E030-I02，精度：适配复用源检查设置 {'rtol': None, 'atol': 1e-06, 'test_dtypes': True}，未因使用固定样本放宽输出检查。\n- E030-I03，输入范围与来源：随机生成或固定样本属于输入获得方式，不单独作为意图。固定样本未出现某场景，仅记录执行覆盖；不据此推断源类型、数值、形状或参数范围被删除。源公开生成器至少一维，适配的零维形状反例属于补充行为证据；不能直接算作该源公开测试义务遗漏。\n- E030-I04，设备参数化：不保持；源公开测试向检查器传递 on_device，完整适配的 convert 函数经 detach().cpu().numpy() 或 NumPy 转换重建张量，未接收并转交源设备配置。这是代码中的参数传递能力缺失，而非仅因一次运行在CPU上。\n- 固定包装入口以外的额外参数、别名及 out 场景单列，不用输入来源变化扩大主标签。\n- 本组意图主标签仅依据设备参数化能力缺失；输入范围若有明确限制，应另按对应配置判断。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\E030\\review.md",
+      "sha256": "bdcf7392c6b39ac6eb4b26679144a8f7a77a9d68dd480a37e92108444b8b1314"
+    },
+    "H001": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- H001-I01，输出与范围：完整适配覆盖 dim、keepdim 两种值及标量 identity 分支；核心数值、shape、dtype检查保留。20条样本全为整数只记录执行范围，不据此判浮点范围意图删除。源额外 dtype 参数不在固定包装入口中，单列。\n- H001-I02，精度：适配复用源设置 {'rtol': None, 'atol': 1e-06, 'test_dtypes': True}。\n- H001-I03，输入来源：随机或固定属于获得输入的方式，不单独作为意图。有限样本未出现某场景不等于代码主动删除该输入范围。\n- H001-I04，设备：源公开测试传递 on_device；完整适配 convert 经 CPU/NumPy 中转重建张量，未接收并转交源设备配置。这项代码能力缺失独立于本次执行设备。\n- 原组件材料中“组合测试缺”的旧说明不否定已补充的完整适配；组件测试的限制不自动用于完整适配主标签。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\H001\\review.md",
+      "sha256": "4f98030e9ddd5d4dac8dfe43f65f679a9dbc41d31cf380685f7592a4fe44e9a2"
+    },
+    "H002": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- H002-I01，输出与范围：目标为一维输入扩维后未还原输出形状。完整适配的shape检查检出该错误，核心输出检查仍保留。源公开测试生成两个三维批量矩阵，固定样本未出现该组合只记录执行覆盖，不据此判意图删除。源选定测试不生成一维向量，向量反例作为补充行为证据。\n- H002-I02，精度：适配复用源设置 {'rtol': 0.01, 'atol': 1e-06, 'test_dtypes': True}。\n- H002-I03，输入来源：随机或固定属于获得输入的方式，不单独作为意图。有限样本未出现某场景不等于代码主动删除该输入范围。\n- H002-I04，设备：源公开测试传递 on_device；完整适配 convert 经 CPU/NumPy 中转重建张量，未接收并转交源设备配置。这项代码能力缺失独立于本次执行设备。\n- 原组件材料中“组合测试缺”的旧说明不否定已补充的完整适配；组件测试的限制不自动用于完整适配主标签。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\H002\\review.md",
+      "sha256": "d6d5e3976a38a89d556920b4dd24b8c043e822f16635d7d3e07ce9e249952117"
+    },
+    "H003": {
+      "label": "不保持（矩阵大小及类型类别收窄）",
+      "categories": [
+        "dtype类别覆盖遗漏",
+        "形状、维数或数组数量覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（矩阵大小及类型类别收窄）**。\n- H003-I01，核心输出：两端均通过公共检查器比较数值、shape、dtype。\n- H003-I02，范围、精度及参数：源 _get_dtype_and_matrix(square=True,batch=True) 允许方阵边长1–5，选择valid；目标仅边长1–4、float。两端支持批量形状，默认容差与 on_device 传递对应。源批量维度长度上限3、目标5，属于目标扩大，不能抵消方阵大小和类型类别收窄。\n- 输入来源不单独作为意图；上述范围差异依据明确代码配置，未以有限样本未出现某场景作为遗漏理由。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\H003\\review.md",
+      "sha256": "9df62c7809b092499f6066d7ea338a4c21393709de028292943f836385d38184"
+    },
+    "H004": {
+      "label": "不保持（形状、类型、数值范围及设备参数遗漏）",
+      "categories": [
+        "数值范围或边界覆盖收窄",
+        "dtype类别覆盖遗漏",
+        "形状、维数或数组数量覆盖收窄",
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（形状、类型、数值范围及设备参数遗漏）**。\n- H004-I01，核心输出：两端均通过公共检查器比较数值、shape、dtype。\n- H004-I02，范围、精度及参数：源为numeric二维矩阵，每维长度1–10、默认数值范围，允许矩形矩阵。目标选择float，只生成边长1–4方阵及其批量形式，并显式设值域[-10,10]。目标遗漏如(2,3)矩形矩阵、较大方阵、非浮点类别和源的大数输入；目标测试未接收或传递源 on_device。默认容差及核心输出比较保留。\n- 输入来源不单独作为意图；上述范围差异依据明确代码配置，未以有限样本未出现某场景作为遗漏理由。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\H004\\review.md",
+      "sha256": "5e04cae33be0d96ac3c575ee5d165fb6607f0787c963876067abcbac9d44546f"
+    },
+    "H005": {
+      "label": "不保持（数值范围收窄及精度放宽）",
+      "categories": [
+        "数值范围或边界覆盖收窄",
+        "精度要求放宽"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（数值范围收窄及精度放宽）**。\n- H005-I01，核心输出：两端均通过公共检查器比较数值、shape、dtype。\n- H005-I02，范围、精度及参数：两端numeric、至少一维并传递on_device；源显式值域[-100,100]，目标[-5,5]，均经默认1.1线性缩放，目标数值范围收窄。源float32/64默认rtol=1e-5、atol=1e-6；目标rtol=atol=1e-2，精度放宽。目标增加负轴及exclusive/reverse参数，但包含普通累加场景，不抵消范围和精度遗漏。源额外dtype参数不在固定包装入口内，单列。\n- 输入来源不单独作为意图；上述范围差异依据明确代码配置，未以有限样本未出现某场景作为遗漏理由。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\H005\\review.md",
+      "sha256": "3c42bac7ce43d18b5abb3fdf98cc80f72a3b21cff5d60f3d816b3eaf67146c35"
+    },
+    "H006": {
+      "label": "不保持（数值输入范围收窄）",
+      "categories": [
+        "数值范围或边界覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（数值输入范围收窄）**。\n- H006-I01，范围与参数：源、目标均为numeric、至少一维，均传递on_device。源值域[-10,10]、目标[-5,5]，经默认1.1线性缩放后仍收窄，例如浮点输入8为源允许而目标排除。源rtol=atol=1e-2，目标默认容差对float32/64更严格，不记精度放宽。目标增加负轴、exclusive、reverse，包含普通累乘场景；不能抵消数值范围遗漏。源额外dtype参数不在固定包装入口，单列。\n- H006-I02，核心输出：两端公共检查器均比较数值、shape、dtype；具体参数场景的遗漏另列。\n- 输入范围和调用参数依据代码判断，输入的随机或固定来源不作为意图遗漏理由。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\H006\\review.md",
+      "sha256": "9857c0a264e71289706ee63b4f2d7ed08b6652bdfddca14f2f99e3a21411721d"
+    },
+    "H007": {
+      "label": "不保持（全量归约及零维输入检查遗漏）",
+      "categories": [
+        "形状、维数或数组数量覆盖收窄",
+        "默认参数或条件分支检查遗漏"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（全量归约及零维输入检查遗漏）**。\n- H007-I01，范围与参数：源公开测试不传axis，检查axis=None、keepdims=False的全量归约；目标始终传整数dim，检查单轴归约，遗漏源的默认全量归约。源默认形状允许零维，目标min_num_dims=1，另遗漏零维输入。两端numeric、默认输出容差及on_device传递对应。\n- H007-I02，核心输出：两端公共检查器均比较数值、shape、dtype；具体参数场景的遗漏另列。\n- 输入范围和调用参数依据代码判断，输入的随机或固定来源不作为意图遗漏理由。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\H007\\review.md",
+      "sha256": "153601f30ba2df32133bcb395907df5cea06cfef71d1080df480350fbb53d94c"
+    },
+    "H008": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- H008-I01，核心输出及范围：完整适配检查整个参数处理及乘法组合，沿用源rtol=None、atol=1e-6、test_dtypes=True；未采用单独matmul组件的较宽容差。源传递on_device，适配CPU/NumPy中转重建张量未转交源设备配置，因此设备能力遗漏独立成立。未执行的adjoint_b、稀疏等分支仅记录执行范围，固定样本来源不作为意图遗漏。\n- H008-I02，判定口径：输入范围依据明确代码限制；随机改为固定、有限样本未出现某场景不单独作为意图遗漏。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\H008\\review.md",
+      "sha256": "b771ef98ec52127cf23b071bf210396166e753ddc239a3f9a33dafa3947521b9"
+    },
+    "H009": {
+      "label": "不保持（批量维度及极小数范围收窄）",
+      "categories": [
+        "数值范围或边界覆盖收窄",
+        "形状、维数或数组数量覆盖收窄"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（批量维度及极小数范围收窄）**。\n- H009-I01，核心输出及范围：源批量维度长度允许1–5，目标仅1–3，遗漏如(4,2,2)输入；目标显式abs_smallest_val=1e-4，排除源默认允许的更小非零数。方阵边长由1–4扩大为1–5、float改为valid，不抵消上述遗漏。两端核心输出检查、默认容差和on_device传递对应。\n- H009-I02，判定口径：输入范围依据明确代码限制；随机改为固定、有限样本未出现某场景不单独作为意图遗漏。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\H009\\review.md",
+      "sha256": "de972275fc448197097f5cae9e051ab9c422b34f2bddf8b1d345cfae2b3bd2f9"
+    },
+    "H011": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- H011-I01，输出与精度：完整适配执行整个组合并检查最终数值、shape、dtype，复用源容差；行为失败不直接作为意图遗漏。\n- H011-I02，输入：随机或固定属于输入来源，有限样本未出现某种组合仅记录执行覆盖，不据此判范围删除。组件测试的范围和容差不直接替代完整适配配置。\n- H011-I03，设备：源公开测试传递on_device；完整适配经CPU/NumPy中转重建张量，未接收并转交源设备配置，设备参数化能力未保留。目标操作内部使用x.device不等于测试执行器转交了源设备配置。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\H011\\review.md",
+      "sha256": "70a9de2adadc307de85f29718a67e68ebebc500344d6254f1606d9b49a26da22"
+    },
+    "H012": {
+      "label": "不保持（设备参数化能力未保留）",
+      "categories": [
+        "设备参数化能力未保留"
+      ],
+      "intent_section": "测试意图是否保持\n\n- 意图标签：**不保持（设备参数化能力未保留）**。\n- H012-I01，输出与精度：完整适配执行整个组合并检查最终数值、shape、dtype，复用源容差；行为失败不直接作为意图遗漏。\n- H012-I02，输入：随机或固定属于输入来源，有限样本未出现某种组合仅记录执行覆盖，不据此判范围删除。组件测试的范围和容差不直接替代完整适配配置。\n- H012-I03，设备：源公开测试传递on_device；完整适配经CPU/NumPy中转重建张量，未接收并转交源设备配置，设备参数化能力未保留。目标操作内部使用x.device不等于测试执行器转交了源设备配置。\n\n",
+      "path": "C:\\Users\\33137\\Desktop\\completed-annotation-package-2026-11-6\\annotation-package-2026-10-30\\candidates\\H012\\review.md",
+      "sha256": "d35ab9e624a1dadfb1c8ce8add2059b31f2f7bf3228a671e0d0f3ef705197d70"
+    }
+  }
+}

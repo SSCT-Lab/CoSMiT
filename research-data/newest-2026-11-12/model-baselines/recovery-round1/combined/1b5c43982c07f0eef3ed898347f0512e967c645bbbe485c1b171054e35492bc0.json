@@ -1,0 +1,54 @@
+{
+  "job_id": "1b5c43982c07f0eef3ed898347f0512e967c645bbbe485c1b171054e35492bc0",
+  "candidate_id": "D0045",
+  "kind": "trace-llm",
+  "input_indices": [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "prompt_sha256": "31f0e04cf432d55504c35583a2e706674c598e09edfc2681533b0a2d0bb02148",
+  "attempt": 1,
+  "status": "failed",
+  "started_unix": 1792479767.8520775,
+  "error_type": "RejectedResponse",
+  "http_status": null,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": null,
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace any {\"__shared_ref__\":\"sN\"} with the corresponding shared.sN value.\n The shared dictionary is provided under the \"shared\" key.\n\n Steps:\n 1. Replace all shared references in the entire input with the actual values from the shared dictionary.\n 2. Then, we are to assess the adapter tests for the given input indices [20,21,...,43] (24 inputs in total) based on the observations.\n\n The observations for each input index are provided in the \"observations\" list. Each observation has:\n   - For some, a direct \"groups\" array (or sometimes a shared ref to it) containing the observation for source and target.\n\n We are to check for each input index whether the test passed (both source and target ran without error and produced the same output as the oracle) or not.\n\n However, note that the verdicts we return are about the preservation of the adapter-test. We have:\n   - verdict: overall verdict for the batch (preserved, violated, invalid-test, invalid-assumption, undetermined)\n   - behavior_verdict: preserved, violated, undetermined (for the behavior of the target function)\n   - intent_verdict: preserved, violated, undetermined (for the intent of the test)\n\n Important: The test may fail for reasons that do not imply the intent was lost (e.g., a numerical tolerance issue might be a behavior violation but the intent might be preserved).\n\n The observations structure:\n   For each input index, there is an object in the observations array with:\n        \"input_index\": N,\n        \"groups\": [ ... ]   OR a shared ref to such an object.\n\n Each group has:\n        \"observation\": {\n            \"source_error\": ... (null if no error, else an error string),\n            \"source_output\": ... (the output from the source run, which should match the oracle?),\n            \"target_error\": ...,\n            \"target_output\": ...\n        },\n        \"repeats\": [0,1,2]   (we can ignore repeats for now, as they are the same)\n\n But note: the source_output and target_output are compared to the oracle? Actually, the test in the adapter code uses:\n        value_test(...) which compares the actual (target) output to the expected (source_reference, which is the oracle).\n\n However, the observations record what actually happened in the test run.\n\n We are told: \"The fixture includes recorded source outputs as test expectations; they are not human labels.\"\n\n How to interpret the observations:\n\n   For the test to pass for a given input:\n        - Both source and target must run without error (source_error and target_error are null).\n        - The target_output must match the source_output (or the oracle?).\n\n But note: the test in the adapter code (invoke_test) does:\n        actual = fn(**kwargs)   [target run]\n        expected = decode(item['source_reference'])   [the oracle from the original test capture]\n\n        Then it calls value_test with [array(actual)] and [expected].\n\n        Also, if there is a gradient test, it does that too.\n\n However, the observations we have are from the test runs and they record:\n        source_output: the output from the source framework (which should be the same as the oracle? because the source_reference is the source output from the original capture)\n        target_output: the output from the target framework.\n\n But note: the test in the adapter runs the source? Actually, no. The adapter code for the target test only runs the target function and compares to the oracle (which is the source_reference).\n\n How is the source_output in the observations obtained? It seems the observations are from the test run of the source adapter and the target adapter separately.\n\n The problem: we are given a batch of observations that have been run. We are to check for each input index whether the test passed.\n\n However, note the structure of the observations:\n\n   For input_index 20:\n        \"groups\": [ { \"observation\": { \"source_error\": null, \"source_output\": s0, \"target_error\": null, \"target_output\": s0 } ... } ]\n\n   This suggests that for input 20, both source and target ran without error and produced the same output (s0).\n\n   But wait: the source_output and target_output are both s0? That means they are the same.\n\n   However, the oracle for input 20 is also s0 (from the inputs: \"source_reference\": s0).\n\n   So it passed.\n\n   Similarly, for input 27 and 28, we have a shared ref to an observation that has:\n        source_output: -0.6321205496788025 (float32 scalar) and target_output: the same.\n\n   But the oracle for input 27 and 28 is -0.6321205496788025? Actually, for input 27:\n        \"source_reference\": {\"__ndarray__\":true,\"dtype\":\"float32\",\"shape\":[],\"values\":-0.6321205496788025}\n\n   So it passed.\n\n   However, note input 38:\n        The source_reference is s16, which is a shared ref to an array of 8 float64 values.\n        The observation for input 38: \n            source_output: s16 (which is the oracle)\n            target_output: an array of 8 float64 values: [-6.10332936427458e-05, ... , 0.3956124250860895]\n\n        But the oracle (s16) is also an array of 8 float64 values? Actually, s16 is a shared ref to s17, which is:\n            [-6.1033293642745797e-05, -1.401298464324817e-45, 1.0000050000166668e-05, inf, 1.1920929670542765e-07, 1.1754943508222875e-38, inf, 0.3956124250860895]\n\n        So the target_output is exactly the same as the oracle? Then it passed.\n\n   But wait: the target_output in the observation is given as:\n        {\"__ndarray__\":true,\"dtype\":\"float64\",\"shape\":[8],\"values\":[-6.10332936427458e-05,-1.401298464324817e-45,1.0000050000166668e-05,{\"__float__\":\"inf\"},1.1920929670542765e-07,1.1754943508222875e-38,{\"__float__\":\"inf\"},0.3956124250860895]}\n\n        This is the same as s17? Actually, the numbers are the same, but note the representation: \n            s17: [ ... , 1.0000050000166668e-05, ...] and the target_output has 1.0000050000166668e-05? \n            But the oracle (source_reference) for input38 is s16, which points to s17.\n\n        So the target_output is exactly the oracle? Then it passed.\n\n   However, note that the test in the adapter code for input38 might have run and passed? But we are not running the tests now, we are only looking at the recorded observations.\n\n   Therefore, we can determine the outcome for each input by checking:\n\n        If source_error is not null -> source failed? But note: the source is the reference, so if source fails, that might be a problem? \n        However, the test is about the target. The source is the ground truth and should have passed in the original capture.\n\n        Actually, in the observations, for all the provided inputs, source_error is null.\n\n        So we only care about target_error and the match between target_output and source_output (which is the oracle).\n\n   But note: the test in the adapter code does not compare target_output to source_output (which is the output of the source framework run at test time) but to the oracle (source_reference). \n\n   However, the observation records both. And in the provided data, the source_output is always the same as the oracle? \n\n   How was the observation generated? It seems that the source_output in the observation is the oracle (source_reference) and the target_output is the actual output from the target.\n\n   Therefore, for the test to pass:\n        target_error must be null and target_output must equal the source_output (which is the oracle).\n\n   But note: the value_test function uses tolerances. The observation might record the raw outputs, but the test might have passed within tolerance even if the raw outputs are not exactly equal.\n\n   However, the observations we have are the raw outputs? And we are not told to re-run the tolerance check. We are to use the recorded observations.\n\n   How were the observations generated? They are from the test run. The test run either passed or failed.\n\n   The observation records the error and the outputs. We can see:\n\n        If target_error is not null -> the test failed (with an exception).\n\n        If target_error is null, then we must check if the target_output matches the source_output (the oracle) within the test's tolerance? \n\n   But note: the test might have passed because the value_test passed. We are not re-running the test, so we rely on the recorded observation.\n\n   However, the observation does not tell us the result of the value_test. It only tells us the outputs and errors.\n\n   But note: the test in the adapter code does:\n\n        value_test(...)   -> this may raise an assertion error if the arrays are not close.\n\n        Then there are additional checks for shape and for sparse tensors.\n\n   Therefore, if target_error is null, it means that the entire test (including value_test and the additional checks) passed.\n\n   So we can use:\n\n        For a given input index, if the observation for the target_error is null, then the test passed? \n\n        But note: the observation might be for multiple repeats? But they are all the same.\n\n   However, looking at the structure:\n\n        For input_index 20: \n            \"groups\": [ { \"observation\": { ... , \"target_error\": null } ... } ]\n\n        So we can check the first group (or any, since repeats are the same).\n\n   But note: some observations are given as a shared ref to a group. For example, input_index 24 has:\n        \"groups\": {\"__shared_ref__\":\"s21\"}\n\n        And s21 is [ { ... } ] (a list with"
+        }
+      }
+    ],
+    "usage": null,
+    "transport": "openai-compatible-sse"
+  },
+  "reason": "non-stop-termination",
+  "seconds": 292.825
+}

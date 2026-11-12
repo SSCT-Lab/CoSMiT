@@ -1,0 +1,41 @@
+{
+  "job_id": "dd88aaa0f4429db5bc5b3433cd291b52b8df1c5c170d2698f7c2093923f21d4d",
+  "candidate_id": "D0063",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    0,
+    1
+  ],
+  "prompt_sha256": "5ecf3705770b4913256d55cdc2a18e329e452b06e0b48011da5b76cc5938dd37",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793180547.3309233,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL (Test Description Language) and Test Code.\n The TDL describes the test's assertions, goal, input fixtures, and scope.\n The Test Code is the implementation of the test.\n\n Steps:\n 1. Understand TDL: It has assertions for explicit_shape, gradient, sparse_structure, and value. Each has applicable input indices and an obligation.\n    - explicit_shape: For input indices [0,1], require actual.shape == expected.shape in the official_sign branch.\n    - gradient: For input index [0], compare gradient against source_gradient with rtol=atol=0.001.\n    - sparse_structure: For input index [1], require sparse output and identical sparse indices and dense shape.\n    - value: For input indices [0,1], compare actual values with frozen source values using the listed tolerances.\n\n    The goal is to preserve the supplied source test output obligations on the listed input subset (indices [0,1]).\n    The input fixtures are at indices [0,1] and are located in the testCode.inputs.\n\n 2. Understand the Test Code:\n    The test code is an adapter that runs tests for two input indices (0 and 1). It does the following:\n    - For each input index, it decodes the input and source_reference.\n    - It sets up the framework (either torch or tensorflow) based on the role (source or target? but in this test, it's running the target framework?).\n    - It defines a function `invoke_test` that:\n        a. Reads the test case and input.\n        b. Converts the input to the appropriate framework tensor.\n        c. For sparse mode (input index 1), it creates a sparse tensor from the input.\n        d. Calls the function (either pytorch_call or tensorflow_call) with the arguments.\n        e. Compares the result with the expected (source_reference) using `value_test` (which uses the oracle_helper_code).\n        f. Additional checks:\n            - If `official_sign` is true (which it is, according to the test code's \"official_sign\":true), it checks the shape of the actual output against the expected shape.\n            - For sparse mode (input index 1), it checks that the output is sparse and that the indices and shape match the source_reference.\n            - If the input has 'source_gradient' (input index 0 has it, input index 1 does not), it computes the gradient and compares it with source_gradient.\n\n 3. Compare TDL obligations with Test Code:\n\n    a. explicit_shape: The TDL says it applies to input indices [0,1]. In the test code, we see:\n        if meta['official_sign']:  # which is true\n            assert array(actual).shape == expected.shape\n        This is done for both inputs (0 and 1). So it matches.\n\n    b. gradient: Applies to input index [0]. In the test code, we see:\n        if 'source_gradient' in item:  # only input index 0 has this\n            ... compute gradient and compare with decode(item['source_gradient']) with rtol=atol=0.001.\n        This matches.\n\n    c. sparse_structure: Applies to input index [1]. In the test code, for input index 1 (mode='sparse'):\n        if item['mode'] == 'sparse':  # input index 1 is sparse\n            ... checks that the output is a sparse tensor (either tf or torch) and then checks indices and shape against the source_reference.\n        This matches.\n\n    d. value: Applies to input indices [0,1]. In the test code, for every input (both 0 and 1) we call:\n        value_test(...)   # which compares the actual and expected values with the given tolerances.\n        This matches.\n\n 4. The goal of the TDL is to preserve the source test output obligations on the input subset [0,1]. The test code does exactly that by using the source_reference (which is the frozen source output) and the additional checks.\n\n 5. The TDL also specifies the input_fixture_indices [0,1] and the test code runs for these two indices.\n\n Therefore, the TDL correctly expresses the intent of the Test Code.\n\n However, note the TDL's scope: \"controlled native-output adapter tests; not full original frontend modes\". The test code is exactly for this adapter and the two inputs.\n\n We are only to assess the controlled adapter tests and the listed inputs (0 and 1). The original public tests are accepted as valid and we are not to re-investigate.\n\n Thus, we return valid: true.\n\n Reason: The TDL assertions (explicit_shape, gradient, sparse_structure, value) and their applicable input indices are correctly implemented in the test code.\n\n Input indices: [0,1] (both are assessed).\n\n Output format: {\"valid\":true|false|null, \"reason\":\"...\", \"input_indices\":[0,1]}\n</think>\n{\"valid\": true, \"reason\": \"TDL assertions align with test code implementation: explicit_shape check enforced via official_sign branch (inputs 0,1), gradient comparison matches rtol/atol=0.001 (input 0), sparse_structure validates indices/shape (input 1), and value comparison uses specified tolerances (inputs 0,1). All obligations are correctly scoped to the adapter's input subset.\", \"input_indices\": [0, 1]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 4856,
+      "completion_tokens": 1171,
+      "total_tokens": 6027
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions align with test code implementation: explicit_shape check enforced via official_sign branch (inputs 0,1), gradient comparison matches rtol/atol=0.001 (input 0), sparse_structure validates indices/shape (input 1), and value comparison uses specified tolerances (inputs 0,1). All obligations are correctly scoped to the adapter's input subset.",
+    "input_indices": [
+      0,
+      1
+    ]
+  },
+  "seconds": 123.846
+}

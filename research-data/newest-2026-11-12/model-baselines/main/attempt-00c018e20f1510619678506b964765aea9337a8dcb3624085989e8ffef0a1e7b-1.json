@@ -1,0 +1,39 @@
+{
+  "job_id": "00c018e20f1510619678506b964765aea9337a8dcb3624085989e8ffef0a1e7b",
+  "candidate_id": "D0034",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    46
+  ],
+  "prompt_sha256": "9b8358ec021dfc76e17378d5661d997ec89d339c344b35de59ca14f1fa9561c8",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793089157.691044,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and a Test Code. The TDL describes the test's assertions and obligations for a specific input index (46). The Test Code is the implementation of the test for the same input index.\n\nTDL:\n- Assertions:\n  - dtype: Requires identical dtype via value_test(test_dtypes=True). Applicable to input index 46.\n  - helper_shape: Requires identical shape via assert_same_type_and_shape (invoked by value_test(test_dtypes=True)). Applicable to input index 46.\n  - value: Compares actual values with frozen source values using tolerances. Applicable to input index 46.\n- Goal: Preserve the source test output obligations on the listed input subset (index 46).\n- Input fixture indices: [46]\n- Scope: Controlled native-output adapter tests.\n\nTest Code:\n- This is the adapter runtime code that runs the test for input index 46.\n- It decodes the input and the expected output (source_reference) from a fixture.\n- It converts the input to the target framework (PyTorch or TensorFlow) and runs the target operation (torch.cosh in this case).\n- Then it calls `value_test` with the actual and expected outputs, passing the tolerances and `test_dtypes=True` from the oracle settings.\n\nThe key part of the Test Code is the call to `value_test`:\n```python\nvalue_test(\n    ret_np_flat=[array(actual)],\n    ret_np_from_gt_flat=[expected],\n    rtol=setting['rtol'],\n    atol=setting['atol'],\n    specific_tolerance_dict=setting['tolerance_dict'],\n    test_dtypes=setting['test_dtypes'],\n    backend=fw,\n    ground_truth_backend=meta['source_framework']\n)\n```\n\nThe `value_test` function (provided in the oracle_helper_code) does the following:\n1. If `test_dtypes` is True, it calls `assert_same_type_and_shape` which checks the dtype and shape of the outputs.\n2. Then it checks the values with the given tolerances.\n\nThe TDL assertions map to the `value_test` behavior:\n- The \"dtype\" assertion is covered by `test_dtypes=True` in the `value_test` call, which triggers the dtype check in `assert_same_type_and_shape`.\n- The \"helper_shape\" assertion is also covered by the same `test_dtypes=True` because `assert_same_type_and_shape` checks the shape as well.\n- The \"value\" assertion is covered by the value comparison in `value_test` (via `assert_all_close`).\n\nTherefore, the TDL correctly expresses the intent of the Test Code for input index 46.\n\nNote: The TDL is specific to input index 46, and the Test Code is run for that index. The Test Code uses the oracle settings from the input fixture, which for index 46 has `test_dtypes=true` and `test_values=true` (as seen in the input fixture for index 46: `\"oracle_settings\":{\"atol\":1e-06,\"rtol\":null,\"test_dtypes\":true,\"test_values\":true,\"tolerance_dict\":null}`). This matches the TDL obligations.\n\nThus, the TDL is valid for the given Test Code.\n\nOutput:\n{\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value are implemented by value_test with test_dtypes=True and value comparisons, matching the obligations for input index 46.\", \"input_indices\": [46]}\n</think>\n{\"valid\": true, \"reason\": \"TDL assertions align with test code implementation: dtype/shape checks via value_test(test_dtypes=True) and value comparisons using source_reference with tolerances are correctly implemented for input index 46. The adapter handles complex128 encoding and sparse modes as described.\", \"input_indices\": [46]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 12056,
+      "completion_tokens": 816,
+      "total_tokens": 12872
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions align with test code implementation: dtype/shape checks via value_test(test_dtypes=True) and value comparisons using source_reference with tolerances are correctly implemented for input index 46. The adapter handles complex128 encoding and sparse modes as described.",
+    "input_indices": [
+      46
+    ]
+  },
+  "seconds": 150.203
+}

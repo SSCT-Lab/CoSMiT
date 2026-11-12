@@ -1,0 +1,71 @@
+{
+  "job_id": "636778ddbf51cf7a60fb60fb4b7b48fbcb866993c882f2ec7f2919541e2ec78a",
+  "candidate_id": "E009",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "0cb7fed8ee707ba744e3e4e5733f188ca654d7491474f7ed6294276855525183",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792932033.6594942,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and a Test Code. We must decide if the TDL correctly expresses the intent of the Test Code.\n\nTDL (Test Description Language) has:\n- assertions: a dictionary of assertions that are to be applied on specific input indices.\n- goal: the overall goal of the test.\n- input_fixture_indices: the list of input indices that the test applies to (31 to 47).\n- input_fixture_location: where the inputs are stored.\n- scope: the scope of the tests.\n\nThe TDL assertions are:\n1. dtype: Requires identical dtype via value_test(test_dtypes=True). Applicable to all input indices (31-47).\n2. helper_shape: Requires identical shape through assert_same_type_and_shape (invoked by value_test(test_dtypes=True)). Applicable to all input indices.\n3. value: Compare actual values with frozen source values using the listed tolerances. Applicable to all.\n\nThe Test Code is a JSON object that includes:\n- adapter_runtime: The code for the adapter that runs the test.\n- batch_input_indices: [31,32,...,47] (same as TDL).\n- candidate_id: E009.\n- framework_versions.\n- inputs: a list of inputs for each index (31 to 47). Each input has:\n    - arguments: the input data (which may be shared references or ndarrays)\n    - input_index\n    - mode: dense (for all)\n    - oracle_settings: a shared reference (s0 for all) which we must decode.\n    - source_reference: the expected output (may be shared ref or ndarray)\n- official_sign: false.\n- oracle_helper_code: the helper functions for the test (value_test, assert_all_close, assert_same_type_and_shape).\n- scope: same as TDL.\n- source_api: torch.maximum.\n- source_framework: torch.\n- target_adapter: the test function that calls invoke_test.\n- target_calls: tf.cast, tf.maximum.\n- target_framework: tensorflow.\n- target_operation: the function that implements the operation (tensorflow_call).\n- unadapted_modes: modes not implemented.\n\nAdditionally, we have a shared dictionary that we must use to decode shared references.\n\nWe are also told that the encoding is \"lossless-subtree-sharing-v1\", so we must replace any {\"__shared_ref__\":\"sN\"} with shared.sN.\n\nSteps:\n\n1. Decode the shared references in the Test Code inputs and shared section.\n\nBut note: The TDL does not contain the shared references. We are to use the Test Code and the shared section to understand the test.\n\nHowever, our task is to see if the TDL correctly captures the intent of the Test Code.\n\nHow the Test Code works:\n\nThe test code (adapter_runtime) defines:\n- decode: a function to decode the input and expected output from the provided JSON structure (which may have __ndarray__, __sparse__, or shared refs? Actually, the shared refs are in the inputs and source_reference, and the decode function doesn't handle __shared_ref__. So we must first replace the shared refs in the entire structure before passing to decode? Actually, the shared refs are in the inputs and source_reference, and the decode function is called on the item, which has already been read from inputs.json. But note: the inputs in the Test Code are already provided with shared refs. However, the shared section is provided separately.\n\nLooking at the Test Code, the inputs are given as a list. For example, input_index 31 has:\n  \"arguments\": { ... }  # which may contain __shared_ref__\n  \"source_reference\": ... # which may contain __shared_ref__\n\nWe are also given a shared dictionary. We must replace every {\"__shared_ref__\": \"sN\"} with the value from shared.sN.\n\nBut note: the shared section has:\n  \"s0\": { ... }   # the oracle_settings for all? because in the inputs, oracle_settings is {\"__shared_ref__\":\"s0\"}\n  \"s1\": ... etc.\n\nSo let's decode the inputs and source_reference for each input index by replacing shared refs.\n\nBut note: the TDL does not mention the shared refs. It only describes the assertions.\n\nNow, the Test Code (adapter_runtime) does the following:\n\n- Reads the inputs and source_reference (which are already decoded by the shared ref replacement? Actually, the shared refs are in the provided inputs, so we must replace them first).\n\nHowever, in the provided Test Code, the inputs are already given with shared refs. We are to use the shared section to decode.\n\nBut note: the TDL is independent of the shared refs. It only describes the assertions that are run.\n\nThe Test Code for the test:\n\n- It calls `invoke_test` for each input index.\n- Inside `invoke_test`:\n  - It decodes the item (which is the input for the index) using `decode(item['arguments'])` and `decode(item['source_reference'])`.\n  - But note: the `decode` function does not handle `__shared_ref__`. So we must have replaced the shared refs in the entire structure before.\n\nActually, the shared refs are in the JSON that is read. The shared refs are replaced by the test harness? But in the provided Test Code, the inputs are given as they are. The shared section is provided separately.\n\nHowever, the problem states: \"recursively replace each {\"__shared_ref__\":\"sN\"} with shared.sN to recover data\". So we must do that for the entire Test Code input.\n\nBut note: the TDL does not have the shared refs. It is a description of the test.\n\nSo let's focus on the Test Code's behavior.\n\nThe Test Code (adapter_runtime) does:\n\n1. It reads the inputs and source_reference (which are in the provided JSON, and we must replace shared refs with the shared dictionary).\n\n   For example, for input_index 31:\n      oracle_settings: {\"__shared_ref__\":\"s0\"} -> becomes shared.s0 = {\"atol\":1e-06,\"rtol\":null,\"test_dtypes\":true,\"test_values\":true,\"tolerance_dict\":null}\n      source_reference: ... (which is an ndarray) -> no shared ref? Actually, for 31, it's an ndarray.\n\n   But for input_index 42:\n      arguments: {\"__shared_ref__\":\"s3\"} -> and s3 is: {\"input\": {\"__shared_ref__\":\"s4\"}, \"other\": {\"__shared_ref__\":\"s5\"}}\n      Then s4 and s5 are ndarrays.\n\n   So we must replace recursively.\n\n2. Then, it sets up the function to test (tensorflow_call) and runs it.\n\n3. Then, it calls `value_test` with:\n      ret_np_flat=[array(actual)]\n      ret_np_from_gt_flat=[expected]   # which is the decoded source_reference\n      rtol=setting['rtol']   # from oracle_settings (which is s0: so rtol=null, atol=1e-06, test_dtypes=true, etc.)\n      atol=setting['atol']\n      specific_tolerance_dict=setting['tolerance_dict']   # null\n      test_dtypes=setting['test_dtypes']   # true\n      backend=fw (which is 'tensorflow')\n      ground_truth_backend=meta['source_framework'] (which is 'torch')\n\n4. The `value_test` function (from oracle_helper_code) does:\n   - If test_dtypes is True, it calls `assert_same_type_and_shape` on [ret_np_flat, ret_np_from_gt_flat]. This function checks:\n        - For each array in the two lists (which are supposed to be of the same length), it checks:\n            - If it's an ndarray, then it checks that the shape and dtype (with some string replacements) are the same.\n   - Then, it checks the values with `assert_all_close` using the tolerances.\n\nAdditionally, for some modes (like sparse) there are extra checks, but all our inputs are mode='dense'.\n\nAlso, there is a check for 'official_sign' (which is false, so the shape check in the next line is skipped: `if meta['official_sign']: ...`).\n\nAnd there is a check for gradients if 'source_gradient' is present, but it's not present in any of the provided inputs.\n\nSo the main checks are in `value_test`.\n\nNow, the TDL assertions:\n\n1. dtype: \"Require identical dtype via value_test(test_dtypes=True).\"\n   - This is done by `value_test` when test_dtypes=True, which calls `assert_same_type_and_shape` that checks dtype.\n\n2. helper_shape: \"Require identical shape through assert_same_type_and_shape invoked by value_test(test_dtypes=True).\"\n   - This is the same function, which also checks shape.\n\n3. value: \"Compare actual values with frozen source values using the listed tolerances.\"\n   - This is done by the `value_test` function (via `assert_all_close`).\n\nTherefore, the TDL assertions exactly match the checks performed by the Test Code.\n\nBut note: the TDL says the value assertion uses \"the listed tolerances\". In the Test Code, the tolerances come from the oracle_settings (which is s0: atol=1e-06, rtol=null, and then in `value_test` if rtol is null it uses a default from TOLERANCE_DICT). So the TDL is correct in saying \"using the listed tolerances\", because the tolerances are provided (even if one is null, it is listed and then handled).\n\nAlso, the TDL assertions are applicable to all input indices (31-47), and the Test Code runs the same `value_test` for all these indices.\n\nTherefore, the TDL correctly captures the intent of the Test Code.\n\nBut note: the TDL does not mention the extra checks for sparse or gradients, but in our inputs, there are no sparse mode tests (all are dense) and no source_gradient. So for this batch, the TDL is sufficient.\n\nAlso, the TDL does not mention the official_sign check, but that is skipped because official_sign is false.\n\nThus, we can say the TDL is valid for this batch.\n\nOutput:\n\n{\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value match the test code's value_test with test_dtypes=True and tolerance handling, covering all input indices 31-47.\", \"input_indices\": [31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]}\n\nNote: The reason must be at most 200 words. This is within limit.\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions correctly describe the test code's intent: 'dtype' and 'helper_shape' map to value_test(test_dtypes=True) invoking assert_same_type_and_shape for dtype/shape checks, while 'value' corresponds to the value comparison with tolerances. All apply uniformly to input indices 31-47 as verified in the test code.\",\n  \"input_indices\": [31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 5717,
+      "completion_tokens": 2455,
+      "total_tokens": 8172
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions correctly describe the test code's intent: 'dtype' and 'helper_shape' map to value_test(test_dtypes=True) invoking assert_same_type_and_shape for dtype/shape checks, while 'value' corresponds to the value comparison with tolerances. All apply uniformly to input indices 31-47 as verified in the test code.",
+    "input_indices": [
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 294.036
+}

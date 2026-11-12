@@ -1,0 +1,65 @@
+{
+  "job_id": "31ade45cb9a83b0e655c8aa6558ce201cddcaa7101829e06c81648de63188dea",
+  "candidate_id": "D0060",
+  "kind": "intenttester-target-api",
+  "input_indices": [
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "78c9d31d256eaf58d14461f671aea4f185d9a01c0ac27ad0c39c4349c0ce9d80",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793159560.1490014,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a test code block and a set of inputs. We are to check for syntax errors and incorrect API usages in the test code.\n\n The test code is provided as a string in the \"adapter_runtime\" field. We also have a \"target_operation\" field which defines the function that the test will call.\n\n Steps:\n 1. We note that the test code is written in Python and uses several libraries (numpy, torch, tensorflow, ml_dtypes, etc.).\n 2. We are to look for any syntax errors (like missing colons, incorrect indentation, etc.) and API usage errors (like calling a function that doesn't exist, or with wrong arguments).\n\n However, note that we are not to run the code, but to review it statically.\n\n Let's break down the provided test code (adapter_runtime):\n\n The code defines two functions:\n   - `decode(v)`: This function recursively decodes a dictionary that may contain special keys (like '__sparse__', '__ndarray__') into numpy arrays or sparse arrays.\n   - `invoke_test(folder, role, index)`: This function sets up the test environment, loads the test case, and runs the test.\n\n In `invoke_test`:\n   - It imports torch and tensorflow.\n   - It reads the test case metadata and input data.\n   - It defines a helper function `convert` to convert numpy arrays to the framework's tensor (either torch or tensorflow).\n   - It defines a helper function `array` to convert framework tensors (including sparse) back to numpy arrays.\n   - It then executes the operation code (either 'pytorch_call' or 'tensorflow_call') from a file in the given folder.\n   - It then runs the function with the provided arguments and compares the result with the expected value.\n\n We are also provided with a set of inputs (batch_input_indices: [34,35,...,47]) and the test code for the target operation (target_operation) which is a simple function that calls `torch.negative`.\n\n Potential issues:\n\n 1. Syntax errors: We must check for any obvious syntax mistakes.\n\n    - The code seems well-structured. However, note that in the `invoke_test` function, there is an `exec` call that compiles and runs a file. The content of that file is not provided, but we are only concerned with the provided code.\n\n    - The code for the target operation is provided in the \"target_operation\" field and is simple: \n        `def pytorch_call(x): return torch.negative(x)`\n      This is correct.\n\n 2. API usage:\n\n    a. In the `decode` function:\n        - For sparse arrays: it uses `np.zeros` and then assigns values. This is acceptable.\n        - For ndarrays: it handles complex numbers by checking for 'imag'. This is acceptable.\n\n    b. In `invoke_test`:\n\n        - The function `value_test` is imported from `ivy_tests.test_ivy.helpers.assertions`. We don't have the code for that, but note that the test also provides an \"oracle_helper_code\" which defines a `value_test` function. However, in the test code, the `value_test` is imported from the ivy_tests module, not from the helper code provided. This might be a problem because the test environment might not have the ivy_tests module? But note the test code adds a path: `sys.path.insert(0, str(root / '.codex-experiments/ivy-real-test'))`. We don't know if that path exists, but the problem states we are to treat the test as provided.\n\n        However, note the instructions: \"Original public tests are accepted as valid; do not re-investigate their authenticity.\" So we assume that the ivy_tests module is available in the context of the original test.\n\n        - In the sparse mode handling, we have:\n\n            ```python\n            if item['mode'] == 'sparse':\n                x = decode(item['arguments'])['x'].copy()\n                x[x < 0.5] = 0\n                idx = np.stack(np.nonzero(x), axis=1)\n                vals = x[tuple(idx.T)]\n                kwargs = {'x': tf.SparseTensor(idx, vals, x.shape) if fw == 'tensorflow' else torch.sparse_coo_tensor(torch.tensor(idx.T), torch.tensor(vals), x.shape).coalesce()}\n            ```\n\n          This code is creating a sparse tensor from a dense array by thresholding at 0.5. However, note that the input data for the tests in the batch are all dense (mode: \"dense\") and of various dtypes (including integers and bfloat16). Therefore, in the provided batch (indices 34-47) the condition `item['mode'] == 'sparse'` will be false, so this block won't run. So for this batch, it's safe.\n\n        - The test then calls `fn(**kwargs)` and then decodes the expected value.\n\n        - Then it calls `value_test` with several arguments. The `value_test` function from the ivy_tests module is expected to be called.\n\n        - After that, there are additional checks for the shape (if official_sign is True, which is false in this case) and for sparse mode (which again won't run for this batch). There is also a gradient check if 'source_gradient' is in the item. None of the inputs in the batch have 'source_gradient', so that block won't run.\n\n    c. The \"oracle_helper_code\" is provided but not used in the test code? Actually, the test code imports `value_test` from `ivy_tests.test_ivy.helpers.assertions`, so it doesn't use the helper code provided in the input. The helper code might be for reference? The problem says: \"The fixture includes recorded source outputs as test expectations; they are not human labels.\" So we don't need to worry about the helper code.\n\n 3. Potential issues in the provided batch:\n\n    - The test code uses `ml_dtypes` for converting bfloat16 torch tensors to numpy. We see that in the `array` function:\n\n        ```python\n            if v.dtype == torch.bfloat16:\n                return v.detach().float().numpy().astype(ml_dtypes.bfloat16)\n        ```\n\n      This is correct because `ml_dtypes` provides the bfloat16 type.\n\n    - However, note that the input index 42 has a bfloat16 value. So the code will use this conversion.\n\n    - The test code also uses `torch.bfloat16` and `tf.constant` appropriately.\n\n 4. One potential issue: the `convert` function for torch does:\n\n        ```python\n        if fw == 'torch':\n            if str(v.dtype) == 'bfloat16':\n                return torch.tensor(v.astype(np.float32), dtype=torch.bfloat16)\n            return torch.tensor(v.copy())\n        ```\n\n      This is a safe way to handle bfloat16 because numpy doesn't have native bfloat16, so we convert to float32 and then to torch.bfloat16.\n\n 5. Another issue: in the sparse tensor creation for torch, it uses `.coalesce()` immediately after creation. This is acceptable because the tensor might not be coalesced, and the test expects a coalesced tensor? But note that the test for sparse mode (which we don't run in this batch) then checks the indices and shape. So it's safe.\n\n 6. However, note that the test code for the target operation is:\n\n        def pytorch_call(x):\n            return torch.negative(x)\n\n      This is correct.\n\n 7. But wait: the test code in `invoke_test` uses the function `pytorch_call` when the framework is torch. This is set by:\n\n        fn = namespace['pytorch_call' if fw == 'torch' else 'tensorflow_call']\n\n      And in the provided inputs, the role is \"target\", and the target_framework is \"torch\", so it will use 'pytorch_call'. The target_operation code defines that function. So it's correct.\n\n 8. One more note: the test code uses `exec` to run the operation code. The operation code is read from a file. But in the provided context, we are not given the content of that file? Actually, we are: the \"target_operation\" field is the content of the file. However, in the test code, the file is read from:\n\n        path = folder / f'{role}-operation.py'\n\n      and then executed. We are told that the test is for the target adapter, so the role is \"target\", and the file would be \"target-operation.py\". The content of that file is provided in the \"target_operation\" field. But note that the test code we are reviewing is the adapter_runtime, and it doesn't have the content of the operation file. However, the test setup (the pytest part) is in the \"target_adapter\" field, which we are not reviewing? The instructions say: \"Assess only the controlled adapter tests and listed inputs.\" and the adapter test is the code in adapter_runtime.\n\n      The operation code is provided separately and is correct.\n\n 9. There is one potential issue in the `array` function for tensorflow:\n\n        return np.asarray(v.numpy()) if isinstance(v, tf.Tensor) else np.asarray(v)\n\n      This is safe.\n\n 10. However, note that the test code uses `tf.Variable` and `tf.GradientTape` in the gradient check. But again, the gradient check is not run for the provided inputs.\n\n 11. Let's look at the input index 34: \n        \"x\": a scalar float64 with a very small negative value (near zero). The expected is the positive of that.\n\n      The operation is negative, so negative of a negative is positive. This is correct.\n\n 12. The test code for the batch does not have any syntax errors and the API usage seems correct.\n\n Therefore, we conclude that the test code is valid for the provided batch.\n\n However, note that the problem says: \"Do not infer whole-domain correctness from samples.\" We are only to check the provided code and the provided inputs.\n\n Since we found no issues in the code for the provided inputs and the code structure, we return valid.\n\n But note: the test code uses `torch.sparse_coo_tensor` and then `.coalesce()`. The `.coalesce()` method returns a coalesced sparse tensor. This is correct because the test in sparse mode then checks the indices and shape of the coalesced tensor.\n\n However, in the provided batch, we don't have any sparse mode tests, so we don't need to worry.\n\n One more thing: the test code uses `np.asarray` on the result of `v.numpy()` for a tf.Tensor. This is redundant but harmless.\n\n Therefore, we return:\n\n {\"valid\": true, \"reason\": \"No syntax errors or incorrect API usages found in the test code for the provided batch.\", \"input_indices\": [34,35,36,37,38,39,40,41,42,43,44,45,46,47]}\n\n However, note the instruction: \"Return concise JSON only, with a nonempty reason of at most 200 words.\" and \"input_indices must list all assessed batch indices.\"\n\n We list all the input indices provided: [34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n\n But note: the problem says \"input_indices must list all assessed batch indices\", and we are assessing the entire batch.\n\n However, we must be cautious: the test code might have an issue that only appears for some inputs? But we are to check the code statically. We have checked the code and found no issues that would cause a problem for the provided inputs.\n\n Therefore, we return true.\n</think>\n{\"valid\": true, \"reason\": \"No syntax errors or incorrect API usages detected. The adapter correctly handles dense mode inputs, bfloat16 conversion via ml_dtypes, and framework-specific tensor operations. Sparse mode logic is present but unused in this batch, aligning with provided inputs. Value_test assertions and gradient checks are conditionally bypassed per input specifications.\", \"input_indices\": [34,35,36,37,38,39,40,41,42,43,44,45,46,47]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 4551,
+      "completion_tokens": 2671,
+      "total_tokens": 7222
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "No syntax errors or incorrect API usages detected. The adapter correctly handles dense mode inputs, bfloat16 conversion via ml_dtypes, and framework-specific tensor operations. Sparse mode logic is present but unused in this batch, aligning with provided inputs. Value_test assertions and gradient checks are conditionally bypassed per input specifications.",
+    "input_indices": [
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 282.031
+}

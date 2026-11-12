@@ -1,0 +1,77 @@
+{
+  "job_id": "833fee4053e42f7383aea13b2169b3574e65b78ba32b743dc4da6a31f3874614",
+  "candidate_id": "D0031",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "46b7c9d33c0950d1498a43116234d6ed7a1e9e39133cb6bb2884ea3d4cda357c",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793077223.1601913,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL (Test Description Language) and Test Code. We must decide if the TDL correctly expresses the intent of the Test Code.\n\nTDL Summary:\n- It has three assertions: \"dtype\", \"helper_shape\", and \"value\".\n- Each assertion applies to input indices [28,29,...,47] (20 inputs).\n- The \"dtype\" assertion requires identical dtypes via `value_test(test_dtypes=True)`.\n- The \"helper_shape\" assertion requires identical shape via `assert_same_type_and_shape` (invoked by `value_test(test_dtypes=True)`).\n- The \"value\" assertion compares actual values with frozen source values using tolerances.\n- The goal is to preserve the source test output obligations on the listed input subset.\n\nTest Code Summary:\n- The test code is an adapter that runs tests for a specific operation (tf.asin) in a controlled environment.\n- It uses a function `invoke_test` that:\n  1. Reads test metadata and input data for a given index.\n  2. Converts the input data to the target framework (either TensorFlow or PyTorch).\n  3. Executes the operation (either `tensorflow_call` or `pytorch_call`).\n  4. Compares the result with the expected source reference using `value_test`.\n- The `value_test` function (from the oracle_helper_code) does:\n  - If `test_dtypes` is True, it checks dtypes and shapes (via `assert_same_type_and_shape`).\n  - Then, it compares the values with given tolerances (rtol, atol, or from a tolerance dict).\n- Additionally, the test code has extra checks for:\n  - If `official_sign` is True, it checks the shape (but in this case, `official_sign` is false).\n  - For sparse mode (none of the provided inputs are sparse, all are dense).\n  - For gradient checks (only if 'source_gradient' is in the item, which none of the provided inputs have).\n\nNow, let's map the TDL assertions to the Test Code:\n\n1. TDL \"dtype\": \n   - Obligation: Require identical dtype via `value_test(test_dtypes=True)`.\n   - In the Test Code, the `value_test` is called with `test_dtypes=setting['test_dtypes']`. For all inputs, the setting is `s5` which decodes to `{\"atol\":1e-06, \"rtol\":null, \"test_dtypes\":true, ...}`. So `test_dtypes` is True, and the `value_test` will check dtypes.\n\n2. TDL \"helper_shape\":\n   - Obligation: Require identical shape through `assert_same_type_and_shape` invoked by `value_test(test_dtypes=True)`.\n   - The `value_test` function, when `test_dtypes` is True, calls `assert_same_type_and_shape` which checks both the dtype and the shape. So this covers the shape check.\n\n3. TDL \"value\":\n   - Obligation: Compare actual values with frozen source values using the listed tolerances.\n   - The `value_test` function does exactly that: it compares the values with the given tolerances (rtol, atol, or from the tolerance dict).\n\nTherefore, the TDL assertions are all covered by the Test Code.\n\nHowever, note that the TDL only lists the input indices [28,29,...,47]. The Test Code also runs for these indices (as per the `input_fixture_indices` in TDL and the `batch_input_indices` in Test Code). \n\nBut note: the Test Code also includes extra checks (like the gradient check and sparse mode check) that are not mentioned in the TDL. However, the TDL states that the scope is \"controlled native-output adapter tests; not full original frontend modes\". The TDL is only capturing the core value, dtype, and shape checks. The extra checks (gradient, sparse) are not applicable to the provided inputs because:\n- All inputs are in \"dense\" mode (so sparse checks are skipped).\n- None of the inputs have 'source_gradient' (so gradient checks are skipped).\n\nTherefore, for the provided input indices, the TDL assertions are the only ones that are being enforced by the Test Code.\n\nThus, the TDL correctly expresses the intent of the Test Code for the given input indices.\n\nOutput:\n{\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value are implemented by the test code via value_test with test_dtypes=True and value comparisons, matching the obligations for the specified inputs.\", \"input_indices\": [28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]}\n</think>\n{\"valid\": true, \"reason\": \"TDL assertions align with test code implementation: dtype/shape checks via value_test(test_dtypes=True) enforce identical types, while value comparisons use frozen source outputs with specified tolerances. Extra gradient/sparse checks in code are inactive for these dense inputs without gradient data.\", \"input_indices\": [28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 5756,
+      "completion_tokens": 1135,
+      "total_tokens": 6891
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions align with test code implementation: dtype/shape checks via value_test(test_dtypes=True) enforce identical types, while value comparisons use frozen source outputs with specified tolerances. Extra gradient/sparse checks in code are inactive for these dense inputs without gradient data.",
+    "input_indices": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 157.371
+}

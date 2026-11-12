@@ -1,0 +1,61 @@
+{
+  "job_id": "34a90f2082bc78168d4170561d6c647778a2cabaee91bf9a5ae59ca0f836c2bb",
+  "candidate_id": "D0008",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "ef3c728885867919bfd2110e59c85fdcc87021362ac4341b866746e29afd74d4",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793077591.5855708,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and a Test Code. The TDL describes the obligations for the test in terms of assertions (dtype, helper_shape, value) and their applicable input indices. The Test Code is the implementation of the test.\n\nTDL:\n- assertions:\n    - dtype: Requires identical dtype via `value_test(test_dtypes=True)`. Applies to input indices [36,37,...,47].\n    - helper_shape: Requires identical shape via `assert_same_type_and_shape` (invoked by `value_test(test_dtypes=True)`). Applies to the same indices.\n    - value: Compares actual values with frozen source values using tolerances. Same indices.\n- goal: Preserve the source test output obligations on the listed input subset.\n- input_fixture_indices: [36,37,...,47]\n- scope: controlled native-output adapter tests.\n\nTest Code:\nThe test code is an adapter that runs tests for a specific operation (torch.ceil) in the target framework (tensorflow). It uses a function `invoke_test` that:\n1. Loads the test case (inputs and expected outputs) for a given index.\n2. Converts the inputs to the target framework (tensorflow or torch) as needed.\n3. Executes the operation (pytorch_call or tensorflow_call) on the inputs.\n4. Compares the result with the expected output using `value_test`.\n\nThe `value_test` function (from the oracle_helper_code) is defined to:\n- Check dtypes and shapes if `test_dtypes` is True (via `assert_same_type_and_shape`).\n- Compare values with given tolerances.\n\nIn the Test Code, the call to `value_test` is:\n```python\nvalue_test(ret_np_flat=[array(actual)], ret_np_from_gt_flat=[expected], rtol=setting['rtol'], atol=setting['atol'], specific_tolerance_dict=setting['tolerance_dict'], test_dtypes=setting['test_dtypes'], backend=fw, ground_truth_backend=meta['source_framework'])\n```\n\nThe `setting` comes from the input fixture (item['oracle_settings']). For all inputs in the batch (indices 36-47), the setting is shared as `s0` (after decoding the shared references). The shared `s0` is:\n```json\n\"s0\": {\n  \"atol\": 1e-06,\n  \"rtol\": null,\n  \"test_dtypes\": true,\n  \"test_values\": true,\n  \"tolerance_dict\": null\n}\n```\n\nSo, for every input in the batch, the `value_test` is called with `test_dtypes=True`.\n\nTherefore, the Test Code is indeed:\n1. Testing dtypes (because `test_dtypes=True` is passed, which triggers `assert_same_type_and_shape` inside `value_test` for dtype and shape).\n2. Testing shapes (via the same `assert_same_type_and_shape`).\n3. Testing values (because `test_values` is true and the value comparison is done).\n\nThe TDL assertions exactly match:\n- dtype: covered by `test_dtypes=True`.\n- helper_shape: covered by the same `test_dtypes=True` (which calls `assert_same_type_and_shape` that checks shape and dtype).\n- value: covered by the value comparison in `value_test`.\n\nMoreover, the TDL is limited to the input indices [36,37,...,47] and the Test Code also runs on exactly these indices (as per the batch_input_indices and the input fixtures).\n\nThus, the TDL correctly expresses the intent of the Test Code.\n\nNote: The TDL's \"helper_shape\" obligation is described as \"Require identical shape through assert_same_type_and_shape invoked by value_test(test_dtypes=True)\". This is exactly what the Test Code does.\n\nTherefore, we return valid: true.\n\nThe input_indices are the same as the batch: [36,37,38,39,40,41,42,43,44,45,46,47].\n\nOutput:\n{\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value are implemented by the test code via value_test with test_dtypes=True and value comparisons, matching the obligations for the given input indices.\", \"input_indices\": [36,37,38,39,40,41,42,43,44,45,46,47]}\n</think>\n{\"valid\": true, \"reason\": \"TDL assertions match test code implementation: dtype/shape checks via value_test(test_dtypes=True) and value comparisons with source references are enforced across all input indices. The adapter correctly applies frozen tolerances and shared reference decoding.\", \"input_indices\": [36,37,38,39,40,41,42,43,44,45,46,47]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 5252,
+      "completion_tokens": 1019,
+      "total_tokens": 6271
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions match test code implementation: dtype/shape checks via value_test(test_dtypes=True) and value comparisons with source references are enforced across all input indices. The adapter correctly applies frozen tolerances and shared reference decoding.",
+    "input_indices": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 132.269
+}

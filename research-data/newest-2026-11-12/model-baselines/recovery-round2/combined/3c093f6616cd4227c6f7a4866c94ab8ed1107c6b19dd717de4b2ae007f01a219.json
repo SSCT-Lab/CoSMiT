@@ -1,0 +1,83 @@
+{
+  "job_id": "3c093f6616cd4227c6f7a4866c94ab8ed1107c6b19dd717de4b2ae007f01a219",
+  "candidate_id": "E026",
+  "kind": "intenttester-target-api",
+  "input_indices": [
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "bb7d59bd0f3f8ff665c35e823ee18329856b47e0c8c5e20ba6ebb0821d6cb369",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792488325.0497036,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a test code block and a set of inputs. We must check for syntax errors and incorrect API usages in the test code.\n\n The test code is provided as a string in the \"adapter_runtime\" field. We also have a list of input indices (batch_input_indices) and the inputs themselves.\n\n Steps:\n 1. We note that the test code is written in Python and includes functions `decode` and `invoke_test`.\n 2. We must look for any syntax errors (e.g., missing colons, incorrect indentation, invalid operators, etc.).\n 3. We must look for API usage issues (e.g., using a function that doesn't exist, passing arguments of the wrong type, etc.).\n\n Important: The test code is part of an adapter that runs tests by comparing outputs from a source (TensorFlow) and a target (PyTorch) framework.\n\n Let's break down the test code:\n\n - The `decode` function: This function is designed to decode a JSON-like structure that may contain special keys (like '__sparse__', '__ndarray__') into NumPy arrays or other Python objects.\n\n - The `invoke_test` function: This function sets up the test environment, loads the test case, and executes the target operation (either PyTorch or TensorFlow) and compares the result.\n\n We must check for:\n   - Syntax errors in the code.\n   - Correct usage of the frameworks (TensorFlow and PyTorch) and other libraries (numpy, ml_dtypes).\n\n Potential issues:\n\n 1. In the `invoke_test` function, note the following:\n\n    a. The line: `sys.path.insert(0, str(root / '.codex-experiments/ivy-real-test'))`\n       - This uses a path that might not exist? But we are not running the code, so we cannot check the filesystem. However, we are only concerned with syntax and API usage.\n\n    b. The function `value_test` is imported from `ivy_tests.test_ivy.helpers.assertions`. We must assume that this module is available in the context? But note: the task is to check the syntax and API of the provided code, not the availability of external modules (unless they are standard or explicitly included). However, the code uses `exec` to run the operation file.\n\n    c. The code uses `exec` to run the operation file (either 'target-operation.py' or 'source-operation.py'). This is a potential security risk but not a syntax error.\n\n    d. The function `convert` is defined to convert numpy arrays to either torch tensors or tf tensors. It handles bfloat16 for torch.\n\n    e. The function `array` is defined to convert framework tensors (tf or torch) to numpy arrays. It handles sparse tensors and bfloat16.\n\n    f. The test has a special handling for 'sparse' mode.\n\n    g. It then calls `value_test` to compare the results.\n\n 2. Let's look for specific issues:\n\n    a. In the `decode` function, when handling `__sparse__`, we have:\n        `a[tuple(np.asarray(v['indices']).T)] = decode(v['values'])`\n        This might be problematic if the indices are not in a form that can be transposed? But note: the indices are expected to be a list of indices, and we are transposing to get the right shape for indexing. This is a common pattern for sparse matrices.\n\n    b. In the `invoke_test` function, when handling sparse mode, we have:\n        `kwargs = {'x': tf.SparseTensor(idx, vals, x.shape) if fw == 'tensorflow' else torch.sparse_coo_tensor(torch.tensor(idx.T), torch.tensor(vals), x.shape).coalesce()}`\n        Note: for PyTorch, we are using `torch.sparse_coo_tensor` and then calling `.coalesce()`. This is acceptable.\n\n    c. In the gradient check part (if 'source_gradient' in item), we have:\n        For TensorFlow:\n            `v = tf.Variable(x)`\n            `with tf.GradientTape() as tape:`\n            `    total = tf.reduce_sum(fn(x=v))`\n            `gradient = tape.gradient(total, v)`\n        For PyTorch:\n            `v = torch.tensor(x, requires_grad=True)`\n            `gradient, = torch.autograd.grad(fn(x=v).sum(), v)`\n        This seems correct.\n\n 3. However, note the following:\n\n    a. The `value_test` function is called with:\n        `value_test(ret_np_flat=[array(actual)], ret_np_from_gt_flat=[expected], ...)`\n        But note: the `value_test` function expects the inputs to be flat lists? However, in the provided `oracle_helper_code`, the `value_test` function is defined to handle lists of arrays. It also checks the length and then iterates.\n\n    b. The `oracle_helper_code` is provided separately and is not part of the test code we are reviewing? Actually, the test code we are reviewing (adapter_runtime) does not include the `value_test` function. It is imported from `ivy_tests.test_ivy.helpers.assertions`. So we must assume that the function exists and has the same signature as the one provided in `oracle_helper_code`? But note: the task is to check the code we are given, and we are told that the original public tests are accepted as valid. Therefore, we should not worry about the implementation of `value_test` as it is imported from a trusted source (the test infrastructure).\n\n 4. Now, let's look for syntax errors:\n\n    The code appears to be well-structured. However, one potential issue is the use of `ml_dtypes` for bfloat16. We see:\n        `import ml_dtypes`\n        and then in the `array` function for torch bfloat16:\n            `return v.detach().float().numpy().astype(ml_dtypes.bfloat16)`\n\n    We must check if `ml_dtypes.bfloat16` is a valid dtype. The `ml_dtypes` library does have a `bfloat16` type. So this is correct.\n\n 5. Another point: the code uses `np.asarray(v.numpy())` for TensorFlow tensors. This is redundant because `v.numpy()` already returns a numpy array. But it is not an error.\n\n 6. In the sparse mode, for the gradient check, we have:\n        `x = decode(item['arguments'])['x'].copy()`\n        Then we do: `x[x < 0.5] = 0`\n        This might be problematic if `x` is not a numpy array? But `decode` returns a numpy array for the array representation. So it should be fine.\n\n 7. One more thing: the code uses `torch.tensor(v.copy())` for converting a numpy array to a torch tensor. This is acceptable because it copies the data. However, note that for bfloat16, there is a special handling.\n\n 8. Now, let's look at the inputs. We are given a list of inputs, and we must note that the test code must handle all of them without error. However, we are not running the code, so we must look for potential issues by inspection.\n\n    For example, input_index 35 has:\n        \"arguments\": {\"__shared_ref__\":\"s4\"}\n        and s4 is: {\"axis\":0,\"values\":{\"__shared_ref__\":\"s5\"}} and s5 is [{\"__shared_ref__\":\"s6\"}]\n        and s6 is a complex64 array.\n\n    The `decode` function should handle the shared references? But note: the instructions say that when the JSON payload has encoding=lossless-subtree-sharing-v1, we must replace each {\"__shared_ref__\":\"sN\"} with shared.sN. However, the `decode` function does not handle `__shared_ref__`! \n\n    This is a critical issue.\n\n    The `decode` function only handles:\n        - dictionaries with `__sparse__`\n        - dictionaries with `__ndarray__`\n        - other dictionaries (recursively)\n        - lists (recursively)\n\n    It does not handle the `__shared_ref__` key. Therefore, when the input contains a shared reference, the `decode` function will treat it as a normal dictionary and try to recurse, but the value of `__shared_ref__` is a string, not a dictionary. This will cause an error because the `decode` function expects the value to be a structure that it can decode.\n\n    Example: \n        If we have: `decode({\"__shared_ref__\": \"s4\"})`\n        This will be handled by the `isinstance(v, dict)` branch and it will try to do:\n            `{k: decode(x) for k, x in v.items()}`\n        For the key `__shared_ref__` and value `\"s4\"`, it will call `decode(\"s4\")` which returns `\"s4\"`. So the result would be `{\"__shared_ref__\": \"s4\"}`.\n\n    But that is not what we want. We want to replace it with the shared value. Therefore, the `decode` function must be extended to handle `__shared_ref__`.\n\n    However, note the instructions: \"When a JSON payload has encoding=lossless-subtree-sharing-v1, recursively replace each {\"__shared_ref__\":\"sN\"} with shared.sN to recover data\". This replacement should be done BEFORE passing the data to the `decode` function? \n\n    But in the provided code, the `invoke_test` function does:\n\n        item = json.loads((folder / 'inputs.json').read_text(encoding='utf-8'))[index]\n\n    This `item` is the raw JSON. Then it does:\n\n        kwargs = convert(decode(item['arguments']))\n\n    So the `decode` function is applied to the raw JSON without expanding the shared references.\n\n    Therefore, we must conclude that the `decode` function is not equipped to handle the shared references, and the test code does not perform the required replacement.\n\n    This is a critical flaw because the inputs (like input_index 35) contain shared references.\n\n    How should it be fixed?\n\n    The instructions say: \"recursively replace each {\"__shared_ref__\":\"sN\"} with shared.sN\". We have a `shared` dictionary provided in the input context. So the test code should have a step that does this replacement on the entire `item` structure (and similarly for the `source_reference` and other parts) before decoding.\n\n    Since this step is missing, the test code will not work correctly for inputs that use shared references.\n\n 9. Therefore, we have found an issue: the test code does not handle the shared references in the input data.\n\n Conclusion:\n\n    The test code has an API usage issue: it fails to resolve shared references in the input data, which are present in the provided inputs (e.g., input_index 35, 36, etc.). This will cause the `decode` function to return a dictionary with the key `__shared_ref__` instead of the actual shared value, leading to errors in the test.\n\n    We must return false and provide a reason.\n\n However, note: the task says \"Assess only the controlled adapter tests and listed inputs\". We see that the inputs include shared references, so the adapter must handle them.\n\n Therefore, the output should be:\n\n    {\"valid\": false, \"reason\": \"The test code does not resolve shared references (__shared_ref__) in the input data, which are present in the provided inputs (e.g., indices 35, 36, etc.).\", \"input_indices\": [25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]}\n\n But note: the input_indices must list all assessed batch indices. We are given batch_input_indices as [25,26,...,47]. We can use that list.\n\n However, the issue affects any input that has a shared reference. We see that input indices 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47 have shared references? Actually, let's check:\n\n    - input_index 35: arguments has __shared_ref__:s4 -> shared.s4 is a structure with axis and values (which is a shared ref to s5, which is a list with a shared ref to s6). So it's nested.\n    - input_index 36: arguments has a shared ref to s4? Actually, it's: {\"axis\":0,\"values\":[{\"__shared_ref__\":\"s7\"}]} -> so the value of 'values' is a list containing a dict with __shared_ref__. So the entire structure must be traversed to replace.\n\n    The issue is that without the replacement, the `decode` function will not get the actual data.\n\n    Therefore, the test code is flawed for any input that uses shared references, which are several in the batch.\n\n    We note that the batch_input_indices are [25,26,...,47] (23 indices). We must list them all in the output.\n\n    However, the problem is not with every input. For example, input_index 25 does not have a shared reference? It has:\n        \"arguments\": { ... }  without a __shared_ref__ at the top.\n\n    But note: the arguments for input_index 25 has a nested structure that includes arrays. It does not have a shared reference. So the issue only occurs for inputs that have shared references.\n\n    But the test code must work for all inputs. Therefore, the entire batch is affected because the test code is missing the shared reference resolution step.\n\n    We return false and list all the input indices because the test code is flawed and will fail for some of them (the ones with shared references) and might run for others (without shared references) but we are to assess the entire batch.\n\n    However, note: the task says \"Return concise JSON only, with a nonempty reason of at most 200 words\". We must be brief.\n\n    Alternatively, we could note that the test code is missing the shared reference resolution and therefore is not equipped to handle the provided inputs that use shared references. This makes the test code invalid for the entire batch because the batch includes such inputs.\n\n    Therefore, we return:\n\n        valid: false\n        reason: \"The test code does not resolve shared references (__shared_ref__) in the input data, which are present in multiple inputs (e.g., 35, 36, ...). The decode function is applied without first expanding shared references, leading to incorrect data structures.\"\n        input_indices: [25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n\n 10. There might be other issues, but this one is critical and sufficient to invalidate the test.\n\n Let's write the output accordingly.\n</think>\n{\"valid\": false, \"reason\": \"The test code lacks shared reference resolution for '__shared_ref__' keys in input data, violating the required preprocessing step. The decode() function does not handle these references, causing unexpanded structures (e.g., {'__shared_ref__': 'sN'}) to propagate into test execution. This affects inputs with shared references (e.g., indices 35-47), leading to incorrect data decoding and comparison failures.\", \"input_indices\": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 8008,
+      "completion_tokens": 3430,
+      "total_tokens": 11438
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": false,
+    "reason": "The test code lacks shared reference resolution for '__shared_ref__' keys in input data, violating the required preprocessing step. The decode() function does not handle these references, causing unexpanded structures (e.g., {'__shared_ref__': 'sN'}) to propagate into test execution. This affects inputs with shared references (e.g., indices 35-47), leading to incorrect data decoding and comparison failures.",
+    "input_indices": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 429.202
+}

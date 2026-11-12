@@ -1,0 +1,85 @@
+{
+  "job_id": "368dd439ae59b074c26dc53b1027be22d97eb8a26271031b24d5bc33687db61d",
+  "candidate_id": "E010",
+  "kind": "trace-llm",
+  "input_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22
+  ],
+  "prompt_sha256": "23e919b26594d64452b5e391945b7e5b0fce73b98201551643a2036699d0aa37",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793177463.7836382,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace each {\"__shared_ref__\":\"sN\"} with shared.sN to recover the data.\n\nFirst, let's decode the shared references in the provided data.\n\nThe shared dictionary is:\n\"shared\": {\n  \"s0\": {\"__ndarray__\":true,\"dtype\":\"float32\",\"shape\":[],\"values\":-1.2930438139304855e-38},\n  \"s1\": {\"atol\":1e-06,\"rtol\":null,\"test_dtypes\":true,\"test_values\":true,\"tolerance_dict\":null},\n  \"s10\": {\"x\":{\"__ndarray__\":true,\"dtype\":\"uint32\",\"shape\":[],\"values\":114},\"y\":{\"__ndarray__\":true,\"dtype\":\"uint32\",\"shape\":[],\"values\":1911}},\n  \"s11\": {\"x\":{\"__ndarray__\":true,\"dtype\":\"uint32\",\"shape\":[],\"values\":1911},\"y\":{\"__ndarray__\":true,\"dtype\":\"uint32\",\"shape\":[],\"values\":1911}},\n  \"s12\": {\"__ndarray__\":true,\"dtype\":\"uint8\",\"shape\":[7,2],\"values\":[[216,157],[180,213],[215,168],[185,188],[180,210],[103,207],[94,202]]},\n  \"s13\": {\"__ndarray__\":true,\"dtype\":\"bfloat16\",\"shape\":[1],\"values\":[-1.294880495827676e-38]},\n  \"s14\": [{\"__shared_ref__\":\"s15\"}],\n  \"s15\": {\"observation\":{\"__shared_ref__\":\"s16\"},\"repeats\":[0,1,2]},\n  \"s16\": {\"source_error\":null,\"source_lines\":[2],\"source_output\":{\"__ndarray__\":true,\"dtype\":\"uint32\",\"shape\":[],\"values\":0},\"target_error\":{\"__shared_ref__\":\"s17\"},\"target_lines\":[2]},\n  \"s17\": {\"message\":\"\\\"maximum_cpu\\\" not implemented for 'UInt32'\",\"type\":\"NotImplementedError\"},\n  \"s18\": [{\"__shared_ref__\":\"s19\"}],\n  \"s19\": {\"observation\":{\"__shared_ref__\":\"s20\"},\"repeats\":[0,1,2]},\n  \"s2\": {\"__ndarray__\":true,\"dtype\":\"float64\",\"shape\":[],\"values\":-2.4475812443579217e-308},\n  \"s20\": {\"source_error\":null,\"source_lines\":[2],\"source_output\":{\"__shared_ref__\":\"s6\"},\"target_error\":null,\"target_lines\":[2],\"target_output\":{\"__shared_ref__\":\"s6\"}},\n  \"s21\": [{\"__shared_ref__\":\"s22\"}],\n  \"s22\": {\"observation\":{\"__shared_ref__\":\"s23\"},\"repeats\":[0,1,2]},\n  \"s23\": {\"source_error\":null,\"source_lines\":[2],\"source_output\":{\"__ndarray__\":true,\"dtype\":\"uint32\",\"shape\":[],\"values\":1911},\"target_error\":{\"__shared_ref__\":\"s17\"},\"target_lines\":[2]},\n  \"s3\": {\"__ndarray__\":true,\"dtype\":\"int64\",\"shape\":[2,1],\"values\":[[7481237234696277386],[1425589246382527131]]},\n  \"s4\": {\"x\":{\"__ndarray__\":true,\"dtype\":\"uint32\",\"shape\":[],\"values\":0},\"y\":{\"__ndarray__\":true,\"dtype\":\"uint32\",\"shape\":[],\"values\":0}},\n  \"s5\": {\"x\":{\"__shared_ref__\":\"s6\"},\"y\":{\"__shared_ref__\":\"s6\"}},\n  \"s6\": {\"__ndarray__\":true,\"dtype\":\"bfloat16\",\"shape\":[],\"values\":-1.294880495827676e-38},\n  \"s7\": {\"__ndarray__\":true,\"dtype\":\"bfloat16\",\"shape\":[7],\"values\":{\"__shared_ref__\":\"s8\"}},\n  \"s8\": [3.083808950221005e+38,-6.103515625e-05,3.083808950221005e+38,8760908650119168.0,9007199254740992.0,2.0,5.37617205517353e+16],\n  \"s9\": {\"__ndarray__\":true,\"dtype\":\"int32\",\"shape\":[4],\"values\":[174,1952257859,58326,37716]}\n}\n\nWe are to assess the controlled adapter tests and listed inputs. The batch_input_indices are [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22].\n\nWe have observations for each input index. For some indices, the observation is given directly, and for others, it is a shared reference.\n\nWe note that the test is for the operation `tf.maximum` (source) and `torch.maximum` (target). The test runs in a controlled environment.\n\nWe are to check for each input index whether the test passed (both source and target ran without error and produced the expected output) and whether the behavior and intent are preserved.\n\nHowever, note that the verdicts are:\n- verdict: for the entire batch claim (preserved if all tests pass, violated if at least one fails, etc.)\n- behavior_verdict: whether the behavior (output) is preserved for all tests that ran without error in both.\n- intent_verdict: whether the intent (as per the test) is preserved.\n\nBut note: \"a failing target test alone does not imply its intent was lost\".\n\nWe are to return a JSON with:\n  verdict: preserved|violated|invalid-test|invalid-assumption|undetermined\n  behavior_verdict: preserved|violated|undetermined\n  intent_verdict: preserved|violated|undetermined\n  reason: a string of at most 200 words\n  input_indices: list of all assessed batch indices (which is [0,1,...,22])\n\nWe must look at the observations:\n\nFor each input index, we have a \"groups\" field that contains the observation. Some are shared references.\n\nWe need to resolve the shared references in the observations.\n\nLet's resolve the observations for each input index:\n\nInput index 0: \n  groups: [{\"observation\": ...}] -> source and target both succeeded and outputs are s0 (which is a float32 scalar).\n\nInput index 1: similar, with s2 (float64 scalar).\n\nInput index 2: direct ndarray (float64 scalar) -> passed.\n\nInput index 3: direct ndarray (int64 scalar) -> passed.\n\nInput index 4: passed with s3.\n\nInput index 5: groups: shared_ref s14 -> which is [{\"__shared_ref__\":\"s15\"}]\n  s15: {\"observation\": {\"__shared_ref__\":\"s16\"}, \"repeats\":[0,1,2]}\n  s16: \n      source_error: null -> source passed\n      source_output: uint32 scalar 0\n      target_error: {\"__shared_ref__\":\"s17\"} -> s17 is a NotImplementedError for UInt32.\n\n  So for input index 5, the source passed but the target failed.\n\nInput index 6: groups: shared_ref s18 -> [{\"__shared_ref__\":\"s19\"}]\n  s19: {\"observation\": {\"__shared_ref__\":\"s20\"}, ...}\n  s20: \n      source_error: null, source_output: s6 (bfloat16 scalar)\n      target_error: null, target_output: s6 -> passed.\n\nInput index 7: passed with s7.\n\nInput index 8: passed (int32 scalar 0).\n\nInput index 9: passed with s9.\n\nInput index 10: same as 5? groups: s14 -> same as input5: source passed, target failed.\n\nInput index 11: groups: s21 -> [{\"__shared_ref__\":\"s22\"}]\n  s22: {\"observation\": {\"__shared_ref__\":\"s23\"}, ...}\n  s23: \n      source_output: uint32 scalar 1911\n      target_error: s17 (NotImplementedError) -> target failed.\n\nInput index 12: same as 11? groups: s21 -> same as 11: target failed.\n\nInput index 13: groups: s21 -> same as 11: target failed.\n\nInput index 14: groups: s21 -> same as 11: target failed.\n\nInput index 15: passed with s12.\n\nInput index 16: passed (int8 scalar 0).\n\nInput index 17: groups: s18 -> same as 6: passed.\n\nInput index 18: groups: s14 -> same as 5: target failed.\n\nInput index 19: \n  groups: [{\"observation\": ...}]\n      source_output: uint32 scalar 9778\n      target_error: s17 (NotImplementedError) -> target failed.\n\nInput index 20: passed (uint8 scalar 0).\n\nInput index 21: passed (uint8 scalar 147).\n\nInput index 22: passed with s13.\n\nNow, let's summarize:\n\nPassed (both source and target succeeded): \n  indices: 0,1,2,3,4,6,7,8,9,15,16,17,20,21,22 -> 15 indices.\n\nFailed (target failed, source passed) for:\n  indices: 5,10,11,12,13,14,18,19 -> 8 indices.\n\nNote: There are no cases where source failed and target passed? All the failures are target failures.\n\nNow, the verdicts:\n\nverdict: for the entire batch claim (preserved if all tests pass). But we have failures -> violated.\n\nbehavior_verdict: We must check the behavior (output) for the tests that passed. In the passed tests, did the target produce the same output as the source? \n  According to the observations, for the passed tests, the target_output and source_output are the same (they are the same shared reference or same value). \n  However, note that the test for index 19 failed (target error) so we don't have an output to compare. But for the ones that passed, the outputs match.\n\n  But note: the test for index 19 is a failure, so we don't consider its output. For the passing tests, the behavior is preserved.\n\n  However, the behavior_verdict is about the behavior being preserved in the tests that ran without error. So we can say \"preserved\".\n\nintent_verdict: The intent of the test is to check the maximum function. The tests that failed (target) are due to a NotImplementedError for UInt32. This indicates that the target (torch) does not support UInt32 for maximum. The source (tensorflow) does. So the intent of the test (to check the function for UInt32) is not fulfilled by the target. Therefore, the intent is violated for those tests.\n\nBut note: the specification says \"a failing target test alone does not imply its intent was lost\". However, in this case, the failure is because the operation is not implemented for that dtype. This means the target does not support the same set of dtypes as the source. Therefore, the intent (which includes supporting the same dtypes) is violated.\n\nHowever, the problem states: \"The original frontend modes not implemented by this adapter are outside this batch claim\". But note the adapter is for the operation, and the test includes UInt32. The adapter does not handle UInt32 because torch does not support it. So the adapter is not at fault? But the test is part of the batch.\n\nWe are to assess the controlled adapter tests. The adapter test for UInt32 fails because the target framework does not support it. The adapter is just calling torch.maximum. So the adapter cannot make torch support UInt32. Therefore, the intent of the test (to check the operation for UInt32) is not preserved because the target framework does not support it.\n\nBut note: the test is a replay of the original test. The original test included UInt32. The adapter test is expected to run the same test on the target. However, the target fails. So the adapter test is correctly reporting the failure? But the preservation claim is that the adapter should preserve the behavior and intent. The behavior for UInt32 is not preserved because the target doesn't implement it.\n\nTherefore, we have:\n  verdict: violated (because some tests failed)\n  behavior_verdict: preserved (for the tests that ran, the output was correct)\n  intent_verdict: violated (because the target does not support the same dtypes as the source, so the intent of the test for UInt32 is not met)\n\nBut note: the specification says \"intent_verdict\" is distinct. The intent of the test is to verify the maximum function. For the dtypes that are supported, the intent is preserved? But the test suite includes UInt32 and the target fails. The overall intent of the test suite is to cover the same behavior. Since UInt32 is not supported, the intent is not fully preserved.\n\nWe must also consider: are the UInt32 tests invalid for the target? The adapter is not required to implement what the target doesn't support. But the test is part of the batch. The specification says: \"The fixture includes recorded source outputs as test expectations; they are not human labels.\" So the test is valid.\n\nTherefore, we have:\n\nverdict: violated (because the batch of tests includes failures)\nbehavior_verdict: preserved (for the tests that passed, the behavior matches)\nintent_verdict: violated (because the target does not support all the dtypes that the source does, so the intent of the test suite is not fully preserved)\n\nReason: \n  \"The target framework (torch) does not support the UInt32 dtype for the maximum operation, causing 8 test cases to fail. For the 15 passing tests, the output matches the source. The adapter correctly exposes the target's limitation, but the intent of the test suite (to cover the same set of dtypes) is violated.\"\n\nInput indices: all 23? Actually, the batch_input_indices are [0,1,...,22] (23 indices). But note: the list has 23 elements (0 to 22 inclusive).\n\nBut wait: the batch_input_indices in the data is [0,1,2,...,22] (23 indices). We have 23 input indices.\n\nNow, we must return:\n\n{\n  \"verdict\": \"violated\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"violated\",\n  \"reason\": \"The target framework (torch) does not support the UInt32 dtype for the maximum operation, causing 8 test cases to fail. For the 15 passing tests, the output matches the source. The adapter correctly exposes the target's limitation, but the intent of the test suite (to cover the same set of dtypes) is violated.\",\n  \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]\n}\n\nBut note: the reason must be at most 200 words. The above is about 60 words.\n\nHowever, let's check if there are any other issues.\n\nWe note that the test for index 19 is a uint32 scalar (values 81 and 9778) and the target fails. Similarly, indices 5,10,11,12,13,14,18 are also uint32 and fail.\n\nBut index 19 is explicitly in the inputs as:\n  \"x\": 81 (uint32), \"y\": 9778 (uint32)\n\nAnd the source_reference is 9778 (the maximum). The target fails with NotImplementedError.\n\nSo the reason is accurate.\n\nTherefore, we return the above.\n</think>\n{\n  \"verdict\": \"violated\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"violated\",\n  \"reason\": \"8 of 23 tests failed due to torch's lack of UInt32 support for maximum (input indices 5,10,11,12,13,14,18,19). The target framework throws NotImplementedError for these cases, violating the test intent of dtype coverage. For the 15 passing tests (e.g., indices 0-4,6-9,15-17,20-22), outputs match source expectations, preserving behavior. The adapter correctly exposes torch's dtype limitation but fails to preserve full test-suite intent.\",\n  \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 7530,
+      "completion_tokens": 3681,
+      "total_tokens": 11211
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "violated",
+    "behavior_verdict": "preserved",
+    "intent_verdict": "violated",
+    "reason": "8 of 23 tests failed due to torch's lack of UInt32 support for maximum (input indices 5,10,11,12,13,14,18,19). The target framework throws NotImplementedError for these cases, violating the test intent of dtype coverage. For the 15 passing tests (e.g., indices 0-4,6-9,15-17,20-22), outputs match source expectations, preserving behavior. The adapter correctly exposes torch's dtype limitation but fails to preserve full test-suite intent.",
+    "input_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+    ]
+  },
+  "seconds": 379.702
+}

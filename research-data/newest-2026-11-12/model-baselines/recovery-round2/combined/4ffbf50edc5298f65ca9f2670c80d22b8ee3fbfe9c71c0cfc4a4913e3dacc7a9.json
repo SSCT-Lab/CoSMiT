@@ -1,0 +1,75 @@
+{
+  "job_id": "4ffbf50edc5298f65ca9f2670c80d22b8ee3fbfe9c71c0cfc4a4913e3dacc7a9",
+  "candidate_id": "E021",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "cbfce194a949fb14a0632293e5dbe7584279ffc2c45d773af6b7376d08d51820",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792932210.5167823,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL (Test Description Language) and a Test Code. We must decide if the TDL correctly expresses the intent of the Test Code.\n\nTDL:\nIt has three assertions: \"dtype\", \"helper_shape\", and \"value\". Each has an obligation and applicable input indices (which are the same for all: [29,30,...,47]).\n\nTest Code:\nThis is a complex test that runs a function (either from PyTorch or TensorFlow) and compares the output to a frozen source value.\n\nKey points from the Test Code:\n\n1. The test function `invoke_test` is called for each input index.\n2. It uses `value_test` from `ivy_tests.test_ivy.helpers.assertions` to compare the actual and expected values.\n3. The `value_test` function does the following:\n   - If `test_dtypes` is True, it calls `assert_same_type_and_shape` (which checks dtype and shape).\n   - Then, it compares the values with given tolerances.\n\nThe TDL assertions:\n\n- \"dtype\": obligation is to require identical dtype via `value_test(test_dtypes=True)`. This matches because when `test_dtypes` is True, `value_test` does check dtypes (via `assert_same_type_and_shape`).\n- \"helper_shape\": obligation is to require identical shape through `assert_same_type_and_shape` (invoked by `value_test(test_dtypes=True)`). This is also covered by the same call in `value_test`.\n- \"value\": obligation is to compare actual values with frozen source values using the listed tolerances. This is done by `value_test` when it does the `assert_all_close` (or similar) in the value comparison part.\n\nIn the Test Code, note that `value_test` is called with `test_dtypes=setting['test_dtypes']`. Looking at the inputs, for every input in the batch (indices 29 to 47), the `oracle_settings` (which is shared reference \"s9\") has `\"test_dtypes\": true`. Therefore, for every input in this batch, `test_dtypes` is True.\n\nThus, the TDL assertions are all covered by the Test Code for the given input indices.\n\nHowever, note that the TDL's \"helper_shape\" assertion is described as being done by `assert_same_type_and_shape` which is called by `value_test(test_dtypes=True)`. This is exactly what happens.\n\nAdditionally, the Test Code has some extra checks (like for sparse mode and gradients) but the TDL does not claim to cover those. The TDL is only about the three assertions on the given input indices.\n\nTherefore, the TDL correctly expresses the intent of the Test Code for the given input indices.\n\nWe return:\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions for dtype, shape, and value are implemented by the test code via value_test with test_dtypes=True, which covers the specified input indices.\",\n  \"input_indices\": [29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n}\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions align with test code implementation: dtype/shape checks via value_test(test_dtypes=True) enforce identical types and shapes, while value comparisons use frozen references with configurable tolerances. All batch indices [29-47] invoke these checks consistently.\",\n  \"input_indices\": [29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 6306,
+      "completion_tokens": 787,
+      "total_tokens": 7093
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions align with test code implementation: dtype/shape checks via value_test(test_dtypes=True) enforce identical types and shapes, while value comparisons use frozen references with configurable tolerances. All batch indices [29-47] invoke these checks consistently.",
+    "input_indices": [
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 95.9
+}

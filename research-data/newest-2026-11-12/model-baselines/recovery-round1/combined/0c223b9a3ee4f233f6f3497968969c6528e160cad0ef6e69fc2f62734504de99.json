@@ -1,0 +1,61 @@
+{
+  "job_id": "0c223b9a3ee4f233f6f3497968969c6528e160cad0ef6e69fc2f62734504de99",
+  "candidate_id": "E025",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+  ],
+  "prompt_sha256": "1d8bcd5d308ec51c8e68ad1f1f1fa48d529dcb6d9ef471ad2cd733954afda542",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792555529.0024192,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL (Test Description Language) and a Test Code.\n The TDL has three assertions: dtype, helper_shape, and value, each with applicable input indices and obligations.\n The Test Code is a JSON object containing the code for the adapter, the inputs, and shared references.\n\n Steps:\n 1. The TDL's goal is to \"Preserve the supplied source test output obligations on the listed input subset\".\n 2. The input_fixture_indices in TDL are [28,29,30,31,32,33,34,35,36,37,38,39].\n 3. The Test Code has a \"data\" field that includes:\n      - adapter_runtime: the code for the adapter that runs the test\n      - batch_input_indices: [28,29,30,31,32,33,34,35,36,37,38,39] (same as TDL)\n      - inputs: a list of input objects for each index\n      - oracle_helper_code: the helper functions for testing (like value_test, assert_same_type_and_shape, etc.)\n      - and other metadata.\n\n We are to check if the TDL correctly expresses the intent of the Test Code.\n\n The TDL assertions:\n   a. dtype: obligation is \"Require identical dtype via value_test(test_dtypes=True).\"\n      Applicable to all input indices in the batch.\n\n   b. helper_shape: obligation is \"Require identical shape through assert_same_type_and_shape invoked by value_test(test_dtypes=True).\"\n      Applicable to all input indices.\n\n   c. value: obligation is \"Compare actual values with frozen source values using the listed tolerances.\"\n      Applicable to all input indices.\n\n Now, let's look at the Test Code:\n\n The key function in the adapter_runtime is `invoke_test`. It:\n   - Loads the test case and inputs.\n   - Converts the inputs to the target framework (TensorFlow or PyTorch).\n   - Executes the function (either pytorch_call or tensorflow_call) with the given arguments.\n   - Then, it calls:\n        value_test(ret_np_flat=[array(actual)], ret_np_from_gt_flat=[expected], rtol=setting['rtol'], atol=setting['atol'], specific_tolerance_dict=setting['tolerance_dict'], test_dtypes=setting['test_dtypes'], backend=fw, ground_truth_backend=meta['source_framework'])\n\n The `value_test` function is defined in the oracle_helper_code. Let's break it down:\n\n   - If test_dtypes is True, it calls `assert_same_type_and_shape` on the two lists of arrays (ret_np_flat and ret_np_from_gt_flat). This function checks that the shapes and dtypes of corresponding arrays are the same.\n   - Then, it checks the values with a tolerance. It uses either a specific tolerance per dtype, or a default tolerance.\n\n The TDL's \"dtype\" assertion is covered by the `test_dtypes=True` in the call to `value_test` (which triggers the dtype check in `assert_same_type_and_shape`).\n\n The TDL's \"helper_shape\" is also covered by the same `test_dtypes=True` because `assert_same_type_and_shape` checks both the shape and the dtype.\n\n The TDL's \"value\" assertion is covered by the value comparison in `value_test` (using the tolerances).\n\n However, note that the TDL separates the dtype and shape obligations, but in the code, they are both triggered by the same flag `test_dtypes=True`. The TDL's \"helper_shape\" obligation specifically mentions \"identical shape through assert_same_type_and_shape\", which is exactly what the code does.\n\n Therefore, the TDL assertions are correctly implemented by the Test Code.\n\n But note: the TDL says the obligations apply to all input indices [28..39]. The Test Code runs the same `value_test` for every input in the batch, and the setting for each input is provided in the input's 'oracle_settings'. For all inputs in the batch, the 'oracle_settings' is set to a shared reference \"s0\", which decodes to:\n      {\"atol\":1e-06, \"rtol\":null, \"test_dtypes\":true, \"test_values\":true, \"tolerance_dict\":null}\n\n This means that for every input, `test_dtypes` is True, so the dtype and shape checks are performed. Also, the value comparison is performed because `test_values` is true (though note that in the code, the value comparison is always done, but the `test_dtypes` flag controls the dtype and shape check).\n\n However, the TDL does not mention the 'test_values' flag, but the obligation for value is to compare the values. The code does that.\n\n One more thing: the TDL's \"helper_shape\" obligation says it is invoked by value_test(test_dtypes=True). This is consistent.\n\n Therefore, the TDL correctly captures the intent of the Test Code.\n\n But note: the Test Code has additional checks beyond the value_test call for some modes (like sparse and gradient). However, the TDL does not claim to cover those. The TDL is only about the three assertions (dtype, helper_shape, value) and only on the provided input indices.\n\n Also, the TDL's scope is \"controlled native-output adapter tests\", and the Test Code is in the same scope.\n\n Therefore, we return valid: true.\n\n However, we must note that the TDL does not explicitly mention the gradient check or the sparse check. But the TDL only has the three assertions, and the Test Code does perform those three. The additional checks are not part of the TDL obligations.\n\n Input indices: the TDL's input_fixture_indices are [28,29,30,31,32,33,34,35,36,37,38,39]. We must list these in the output.\n\n Conclusion: The TDL is valid.\n\n Output format:\n   {\"valid\": true, \"reason\": \"The TDL assertions for dtype, shape, and value are correctly implemented by the test code via the value_test function with test_dtypes=True and the value comparison.\", \"input_indices\": [28,29,30,31,32,33,34,35,36,37,38,39]}\n\n But note: the reason must be at most 200 words. This is concise.\n\n However, let's check if there is any discrepancy:\n\n   - The TDL's helper_shape obligation says \"Require identical shape through assert_same_type_and_shape invoked by value_test(test_dtypes=True)\". In the code, when test_dtypes is True, the value_test function does call assert_same_type_and_shape, which checks both type and shape. So the shape is indeed checked.\n\n   - The TDL's dtype obligation is also covered by the same call.\n\n   - The value obligation is covered by the value_test function's value comparison.\n\n Therefore, we are confident.\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"The TDL assertions align with the test code implementation. The 'dtype' obligation is enforced via value_test(test_dtypes=True), which triggers dtype checks in assert_same_type_and_shape. The 'helper_shape' obligation is satisfied by the same function, which validates shape equality. The 'value' obligation is met through tolerance-based comparisons in value_test. All obligations apply uniformly to input indices 28-39 as specified, with test_dtypes=True consistently set in oracle_settings.\",\n  \"input_indices\": [28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 6310,
+      "completion_tokens": 1634,
+      "total_tokens": 7944
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "The TDL assertions align with the test code implementation. The 'dtype' obligation is enforced via value_test(test_dtypes=True), which triggers dtype checks in assert_same_type_and_shape. The 'helper_shape' obligation is satisfied by the same function, which validates shape equality. The 'value' obligation is met through tolerance-based comparisons in value_test. All obligations apply uniformly to input indices 28-39 as specified, with test_dtypes=True consistently set in oracle_settings.",
+    "input_indices": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+    ]
+  },
+  "seconds": 193.427
+}

@@ -1,0 +1,49 @@
+{
+  "job_id": "d1db99b39761a004cbe9b5606dc8aae084e99440e6ad024a3645534ed5c7a0e2",
+  "candidate_id": "E002",
+  "kind": "trace-llm",
+  "input_indices": [
+    28,
+    29,
+    30,
+    31,
+    32
+  ],
+  "prompt_sha256": "6571cd1a14671b647491b0f847f906c8b798233bb05a3a82067eedad3c9c6ab3",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792928809.6596532,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace each {\"__shared_ref__\":\"sN\"} with shared.sN to recover the data.\n\n The task is to assess the controlled adapter tests for the given input indices [28,29,30,31,32] and return a verdict.\n\n The verdicts we can return are:\n   \"preserved\", \"violated\", \"invalid-test\", \"invalid-assumption\", \"undetermined\"\n\n We are to look at the observations for each input index and decide:\n\n The observations for each input index are:\n\n input_index: 28\n   groups: {\"__shared_ref__\":\"s41\"} -> which decodes to shared.s41 -> which is:\n        shared.s41 = [{\"__shared_ref__\":\"s42\"}]\n        shared.s42 = {\"observation\": {\"__shared_ref__\":\"s43\"}, \"repeats\":[0,1,2]}\n        shared.s43 = {\"source_error\":null, \"source_lines\":[2], \"source_output\":{\"__shared_ref__\":\"s21\"}, \"target_error\":null, \"target_lines\":[2], \"target_output\":{\"__shared_ref__\":\"s21\"}}\n\n   This means that for input 28, the source and target both produced the same output (s21) and no error.\n\n input_index: 29\n   groups: same as 28 (shared.s41) -> so same structure.\n\n input_index: 30\n   groups: [{\"observation\": {\"source_error\":null, \"source_lines\":[2], \"source_output\":{\"__shared_ref__\":\"s33\"}, \"target_error\":null, \"target_lines\":[2], \"target_output\":{\"__shared_ref__\":\"s33\"}, \"repeats\":[0,1,2]}]\n   So again, same output (s33) and no error.\n\n input_index: 31\n   groups: [{\"observation\": {\"source_error\":null, \"source_lines\":[2], \"source_output\":{\"__shared_ref__\":\"s34\"}, \"target_error\":null, \"target_lines\":[2], \"target_output\":{\"__shared_ref__\":\"s34\"}, \"repeats\":[0,1,2]}]\n   Same output (s34) and no error.\n\n input_index: 32\n   groups: [{\"observation\": {\"source_error\":null, \"source_lines\":[2], \"source_output\":0 (as an int64 scalar), \"target_error\":null, \"target_lines\":[2], \"target_output\":0 (as an int64 scalar), \"repeats\":[0,1,2]}]\n   Same output (0) and no error.\n\n In all cases, the source and target produced the same output and no error.\n\n However, note that the test for the adapter might have additional checks (like gradient checks, sparse checks) that are not captured in the observation's output? But the observations are the recorded outcomes of the test runs.\n\n The adapter code (adapter_runtime) includes:\n\n   - A value_test function that checks the output against the expected (source_reference) with tolerances.\n\n   - Additional checks for sparse mode and gradients.\n\n But the observations we have are the actual recorded outcomes of the test runs for the source and target.\n\n Since for every input in the batch [28,29,30,31,32] the test passed (both source and target produced the same output and no error), we can say that the adapter test passed for these inputs.\n\n Therefore, the bounded adapter-test preservation claim is preserved.\n\n However, note the instruction: \"a failing target test alone does not imply its intent was lost\". But here, the tests passed.\n\n We are to return:\n   verdict: \"preserved\" (because the adapter test passed for all the given inputs)\n   behavior_verdict: \"preserved\" (because the behavior of the target matched the source for these inputs)\n   intent_verdict: \"preserved\" (because the intent of the test was to check the operation and it passed)\n\n But note: the verdicts for behavior and intent are distinct. However, in this case, since the test passed, we can infer that both behavior and intent are preserved.\n\n However, the problem says: \"Do not infer whole-domain correctness from samples\". We are only assessing the given inputs.\n\n For the given inputs, the tests passed. Therefore, the adapter test preservation claim is preserved.\n\n Also note: the test might have additional checks (like the gradient check for input 28? But input 28 does not have a 'source_gradient' in the item, so that part is skipped). We are only concerned with the recorded observations.\n\n Therefore, we return:\n\n   verdict: \"preserved\"\n   behavior_verdict: \"preserved\"\n   intent_verdict: \"preserved\"\n   reason: \"All five inputs (28,29,30,31,32) passed the adapter tests: source and target outputs matched exactly or within tolerance, and no errors occurred.\"\n   input_indices: [28,29,30,31,32]\n\n However, note that the test for input 28 and 29 might have been run multiple times (repeats [0,1,2]) but the observation is the same for each repeat. So we are confident.\n\n But wait: the observation for input 28 and 29 is shared (s41) and it only has one group? Actually, shared.s41 is a list with one element (which is shared.s42) and that element has one observation and repeats [0,1,2]. This means the same observation was recorded for all three repeats. So it's consistent.\n\n Therefore, we can proceed.\n\n However, note that the test might have failed in the value_test? But the observation records no error and the same output. So the test passed.\n\n One caveat: the observation records the output as a shared reference (s21 for input 28 and 29) and the same for target. So they are the same. But what if the value_test had a tolerance and passed? That is consistent.\n\n Therefore, the verdict is preserved.\n\n Let's write the JSON accordingly.\n</think>\n{\n  \"verdict\": \"preserved\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"preserved\",\n  \"reason\": \"All assessed inputs (28-32) show identical source/target outputs with no errors in observations. Outputs match recorded references (s21, s33, s34, scalar 0) across dense/complex/int64 modes. Gradient checks (absent in inputs) and sparse validations (untriggered) don't contradict. Framework conversions (TF→Torch) preserved values within test tolerances per oracle_settings.\",\n  \"input_indices\": [28, 29, 30, 31, 32]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 9228,
+      "completion_tokens": 1419,
+      "total_tokens": 10647
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "preserved",
+    "behavior_verdict": "preserved",
+    "intent_verdict": "preserved",
+    "reason": "All assessed inputs (28-32) show identical source/target outputs with no errors in observations. Outputs match recorded references (s21, s33, s34, scalar 0) across dense/complex/int64 modes. Gradient checks (absent in inputs) and sparse validations (untriggered) don't contradict. Framework conversions (TF→Torch) preserved values within test tolerances per oracle_settings.",
+    "input_indices": [
+      28,
+      29,
+      30,
+      31,
+      32
+    ]
+  },
+  "seconds": 167.592
+}

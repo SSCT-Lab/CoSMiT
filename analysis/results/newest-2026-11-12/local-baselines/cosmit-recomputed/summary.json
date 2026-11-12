@@ -1,0 +1,81 @@
+{
+  "candidate_count": 110,
+  "input_records": 5188,
+  "variants": [
+    "full",
+    "without-value",
+    "without-dtype",
+    "without-independent-shape",
+    "without-all-shape",
+    "without-binding",
+    "first-repeat-only",
+    "without-target-error",
+    "without-gradient",
+    "without-sparse-structure"
+  ],
+  "counts": {
+    "full": {
+      "supported-on-tested-inputs": 80,
+      "refuted-on-tested-inputs": 28,
+      "undetermined": 2
+    },
+    "without-value": {
+      "supported-on-tested-inputs": 80,
+      "refuted-on-tested-inputs": 28,
+      "undetermined": 2
+    },
+    "without-dtype": {
+      "supported-on-tested-inputs": 82,
+      "refuted-on-tested-inputs": 26,
+      "undetermined": 2
+    },
+    "without-independent-shape": {
+      "supported-on-tested-inputs": 80,
+      "refuted-on-tested-inputs": 28,
+      "undetermined": 2
+    },
+    "without-all-shape": {
+      "supported-on-tested-inputs": 81,
+      "refuted-on-tested-inputs": 27,
+      "undetermined": 2
+    },
+    "without-binding": {
+      "supported-on-tested-inputs": 82,
+      "refuted-on-tested-inputs": 28
+    },
+    "first-repeat-only": {
+      "supported-on-tested-inputs": 80,
+      "refuted-on-tested-inputs": 28,
+      "undetermined": 2
+    },
+    "without-target-error": {
+      "supported-on-tested-inputs": 80,
+      "undetermined": 17,
+      "refuted-on-tested-inputs": 13
+    },
+    "without-gradient": {
+      "supported-on-tested-inputs": 80,
+      "refuted-on-tested-inputs": 28,
+      "undetermined": 2
+    },
+    "without-sparse-structure": {
+      "supported-on-tested-inputs": 80,
+      "refuted-on-tested-inputs": 28,
+      "undetermined": 2
+    }
+  },
+  "old_results_reused": false,
+  "certification_layer_complete": true,
+  "full_experiment_complete": false,
+  "remaining": [
+    "trace-backed assertion dependency gate",
+    "same-budget search comparison",
+    "counterexample minimization",
+    "condition holdout validation",
+    "independent behavior/intent reference labels"
+  ],
+  "execution_sha256": "9e05fd05d4a8eaae5b038dcab12f407ba02eb5874f628ac2300dd645a95103d4",
+  "core_sha256": "77f8a3b3e8b4e7a7acbd96fbc28dc3031e629f26edd4d6a1395f5569072c686f",
+  "oracle_policy": "Public test tolerances and nan_to_num preprocessing; dtype/shape only when declared. Complex-magnitude tolerance implemented in certification core.",
+  "binding_limit": "Executed call-expression lines, not complete argument-to-assertion dependency proof"
+}

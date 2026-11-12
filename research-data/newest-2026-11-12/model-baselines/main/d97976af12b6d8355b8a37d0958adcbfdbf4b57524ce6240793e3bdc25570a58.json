@@ -1,0 +1,39 @@
+{
+  "job_id": "d97976af12b6d8355b8a37d0958adcbfdbf4b57524ce6240793e3bdc25570a58",
+  "candidate_id": "D0034",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    45
+  ],
+  "prompt_sha256": "3be666b75ead184331a9cbc3f8e93a0bb6731fd5a362e38f47556f2ad370d34b",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793088992.0297666,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and a Test Code. We must decide if the TDL correctly expresses the intent of the Test Code.\n\nTDL (Test Description Language) summary:\n- It has assertions for \"dtype\", \"helper_shape\", and \"value\".\n- Each assertion is applicable to input index 45.\n- The obligations are:\n    - dtype: Require identical dtype via value_test(test_dtypes=True).\n    - helper_shape: Require identical shape through assert_same_type_and_shape invoked by value_test(test_dtypes=True).\n    - value: Compare actual values with frozen source values using the listed tolerances.\n- Goal: Preserve the supplied source test output obligations on the listed input subset.\n- Input fixture indices: [45]\n- Scope: controlled native-output adapter tests.\n\nTest Code summary:\n- It is an adapter test that runs a specific test case (index 45) from a fixture.\n- The test code:\n    - Decodes input and source reference from JSON files.\n    - Converts the input to the appropriate framework (torch or tensorflow) based on the role (source or target?).\n    - Executes the function (either pytorch_call or tensorflow_call) from an operation file.\n    - For sparse mode, it handles sparse tensors differently.\n    - Then it calls `value_test` with the actual and expected values, and the tolerance settings from the oracle.\n    - Additionally, it checks the shape if the test is official (but in this case, `official_sign` is false, so that check is skipped).\n    - For sparse mode, it checks the indices and shape of the sparse tensor.\n    - If there's a source_gradient, it computes the gradient and checks it.\n\nThe key part of the test code that relates to the TDL assertions is the call to `value_test` and the subsequent checks.\n\nLooking at the `value_test` function in the provided oracle_helper_code (which is part of the test environment):\n\nThe `value_test` function:\n- If `test_dtypes` is True, it calls `assert_same_type_and_shape` (which checks both dtype and shape).\n- Then, it checks the values with the given tolerances.\n\nTherefore, the TDL assertions break down the obligations of the `value_test` call:\n\n1. \"dtype\": This is checked by `value_test` when `test_dtypes=True` via `assert_same_type_and_shape` (which includes dtype).\n2. \"helper_shape\": This is also checked by `assert_same_type_and_shape` (which includes shape).\n3. \"value\": This is checked by the value comparisons in `value_test` (with tolerances).\n\nThe TDL states that these obligations are for input index 45, which matches the test code that runs only index 45.\n\nAdditionally, the TDL's goal and scope align with the test code: it is an adapter test that uses a frozen source output.\n\nHowever, note that the test code also includes extra checks for sparse mode and gradients. But the TDL only covers the value, dtype, and shape checks that are part of the `value_test` call. Since the input index 45 is in \"dense\" mode (as per the input fixture), the sparse checks are not run. Also, the input does not have a 'source_gradient' (we can see in the input fixture that there is no 'source_gradient' key in the item for index 45). Therefore, the gradient check is also skipped.\n\nThus, the TDL captures the core assertions that are actually run for this input.\n\nConclusion: The TDL correctly expresses the intent of the Test Code for the given input index 45.\n\nOutput:\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions for dtype, shape, and value align with the value_test call in the test code for dense input 45, which runs the specified checks and skips unused modes.\",\n  \"input_indices\": [45]\n}\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions match test code implementation: dtype/shape checks via value_test(test_dtypes=True) and value comparisons with tolerances are executed for input 45. Sparse/gradient paths are inactive for this dense input.\",\n  \"input_indices\": [45]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 12255,
+      "completion_tokens": 893,
+      "total_tokens": 13148
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions match test code implementation: dtype/shape checks via value_test(test_dtypes=True) and value comparisons with tolerances are executed for input 45. Sparse/gradient paths are inactive for this dense input.",
+    "input_indices": [
+      45
+    ]
+  },
+  "seconds": 165.381
+}

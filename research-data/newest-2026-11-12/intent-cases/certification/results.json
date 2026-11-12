@@ -1,0 +1,607 @@
+{
+  "results": {
+    "c19-original": {
+      "property_id": "c19-original",
+      "candidate_id": "c19",
+      "origin": "provided-Luna-test; manually registered Java adapter",
+      "candidate_code_sha256": "0e687e1494a8e147434af5b21cf949680906fb0bceb85a50de326497f427316e",
+      "evidence_state": "supported-on-tested-inputs",
+      "executions": 1,
+      "budget": 16,
+      "confirmation_count": 2,
+      "witness": null,
+      "failed_clause": null,
+      "root_cause": "undetermined",
+      "target_binding": "registered-target-operation",
+      "scope": "recorded inputs only; no domain-wide certificate",
+      "seconds": 0.883784799836576,
+      "traces": [
+        {
+          "input": {
+            "fixture": "original_fixture"
+          },
+          "clause_id": "matching-count",
+          "source": {
+            "value": 1,
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "target": {
+            "value": 1,
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "outcome": "pass",
+          "seconds": 0.883784799836576,
+          "phase": "search"
+        }
+      ]
+    },
+    "c19-provided-probes": {
+      "property_id": "c19-provided-probes",
+      "candidate_id": "c19",
+      "origin": "provided-Luna-test; manually registered Java adapter",
+      "candidate_code_sha256": "0e687e1494a8e147434af5b21cf949680906fb0bceb85a50de326497f427316e",
+      "evidence_state": "refuted",
+      "executions": 4,
+      "budget": 16,
+      "confirmation_count": 2,
+      "witness": {
+        "fixture": "NEW_single_text_substring"
+      },
+      "failed_clause": "matching-count",
+      "root_cause": "undetermined",
+      "target_binding": "registered-target-operation",
+      "scope": "recorded inputs only; no domain-wide certificate",
+      "seconds": 3.6179210997652262,
+      "traces": [
+        {
+          "input": {
+            "fixture": "original_fixture"
+          },
+          "clause_id": "matching-count",
+          "source": {
+            "value": 1,
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "target": {
+            "value": 1,
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "outcome": "pass",
+          "seconds": 0.9761353000067174,
+          "phase": "search"
+        },
+        {
+          "input": {
+            "fixture": "NEW_single_text_substring"
+          },
+          "clause_id": "matching-count",
+          "source": {
+            "value": 1,
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "target": {
+            "value": 0,
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "outcome": "violation",
+          "seconds": 0.8573667998425663,
+          "phase": "search"
+        },
+        {
+          "input": {
+            "fixture": "NEW_single_text_substring"
+          },
+          "clause_id": "matching-count",
+          "source": {
+            "value": 1,
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "target": {
+            "value": 0,
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "outcome": "violation",
+          "seconds": 0.9185202999506146,
+          "phase": "confirm"
+        },
+        {
+          "input": {
+            "fixture": "NEW_single_text_substring"
+          },
+          "clause_id": "matching-count",
+          "source": {
+            "value": 1,
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "target": {
+            "value": 0,
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "outcome": "violation",
+          "seconds": 0.865898699965328,
+          "phase": "confirm"
+        }
+      ]
+    },
+    "c14-text": {
+      "property_id": "c14-text",
+      "candidate_id": "c14",
+      "origin": "provided-Luna-test; manually registered Java adapter",
+      "candidate_code_sha256": "e143d501fbb79973d84475d5dc96b6fcdbe4fdb59995d55330804cfd0d40aafc",
+      "evidence_state": "supported-on-tested-inputs",
+      "executions": 1,
+      "budget": 16,
+      "confirmation_count": 2,
+      "witness": null,
+      "failed_clause": null,
+      "root_cause": "undetermined",
+      "target_binding": "registered-target-operation",
+      "scope": "recorded inputs only; no domain-wide certificate",
+      "seconds": 0.2384526999667287,
+      "traces": [
+        {
+          "input": {
+            "fixture": "original"
+          },
+          "clause_id": "text-only",
+          "source": {
+            "value": "Replaced",
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "target": {
+            "value": "Replaced",
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "outcome": "pass",
+          "seconds": 0.2384526999667287,
+          "phase": "search"
+        }
+      ]
+    },
+    "c14-structure": {
+      "property_id": "c14-structure",
+      "candidate_id": "c14",
+      "origin": "provided-Luna-test; manually registered Java adapter",
+      "candidate_code_sha256": "e143d501fbb79973d84475d5dc96b6fcdbe4fdb59995d55330804cfd0d40aafc",
+      "evidence_state": "refuted",
+      "executions": 3,
+      "budget": 16,
+      "confirmation_count": 2,
+      "witness": {
+        "fixture": "original"
+      },
+      "failed_clause": "body-structure-manually-registered",
+      "root_cause": "undetermined",
+      "target_binding": "registered-target-operation",
+      "scope": "recorded inputs only; no domain-wide certificate",
+      "seconds": 0.71608110005036,
+      "traces": [
+        {
+          "input": {
+            "fixture": "original"
+          },
+          "clause_id": "body-structure-manually-registered",
+          "source": {
+            "value": "<body>Replaced</body>",
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "target": {
+            "value": "<body><p>Replaced</p></body>",
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "outcome": "violation",
+          "seconds": 0.23943560011684895,
+          "phase": "search"
+        },
+        {
+          "input": {
+            "fixture": "original"
+          },
+          "clause_id": "body-structure-manually-registered",
+          "source": {
+            "value": "<body>Replaced</body>",
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "target": {
+            "value": "<body><p>Replaced</p></body>",
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "outcome": "violation",
+          "seconds": 0.23792159999720752,
+          "phase": "confirm"
+        },
+        {
+          "input": {
+            "fixture": "original"
+          },
+          "clause_id": "body-structure-manually-registered",
+          "source": {
+            "value": "<body>Replaced</body>",
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "target": {
+            "value": "<body><p>Replaced</p></body>",
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "outcome": "violation",
+          "seconds": 0.2387238999363035,
+          "phase": "confirm"
+        }
+      ]
+    },
+    "c03-binding": {
+      "property_id": "c03-binding",
+      "candidate_id": "c03",
+      "origin": "provided-Luna-test; manually registered Java adapter",
+      "candidate_code_sha256": "9a31aaea8c86628888722a3918ed0fd7ccfd0e8b20f956b258db212f771ae817",
+      "evidence_state": "undetermined",
+      "executions": 1,
+      "budget": 16,
+      "confirmation_count": 2,
+      "witness": null,
+      "failed_clause": null,
+      "root_cause": "undetermined",
+      "target_binding": "unverified",
+      "scope": "recorded inputs only; no domain-wide certificate",
+      "seconds": 0.3972974999342114,
+      "traces": [
+        {
+          "input": {
+            "fixture": "original"
+          },
+          "clause_id": "target-binding",
+          "source": {
+            "value": null,
+            "dtype": null,
+            "shape": null,
+            "error": "source-adapter-unavailable",
+            "infrastructure_error": true
+          },
+          "target": {
+            "value": "JUnit passed without Jsoup",
+            "dtype": null,
+            "shape": null,
+            "error": null,
+            "infrastructure_error": false
+          },
+          "unresolved_obligation": "target-operation-binding",
+          "outcome": "undetermined",
+          "seconds": 0.3972974999342114,
+          "phase": "search"
+        }
+      ]
+    }
+  },
+  "calls": [
+    {
+      "args": [
+        "javac",
+        "-encoding",
+        "UTF-8",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "-d",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification\\C14Observation.java"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "org.junit.platform.console.ConsoleLauncher",
+        "execute",
+        "--select-class",
+        "ch.digitalfondue.jfiveparse.C19OwnTextDiagnostics",
+        "--disable-ansi-colors"
+      ],
+      "exit": 0,
+      "stdout": "\nThanks for using JUnit! Support its development at https://junit.org/sponsoring\n\nCASE=NEW_two_direct_text_children; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=O|ne; source_own_text=One\nCASE=original_fixture; source_count=1; luna_count=1; source_first_id=1; luna_first_id=1; direct_text_children=One; source_own_text=One\nSOURCE_JSOUP_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/deps/jsoup.jar\nTARGET_JFIVEPARSE_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/classes/\nCASE=NEW_single_text_substring; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=One extra; source_own_text=One extra\n?\n���� JUnit Jupiter ?\n���� JUnit Vintage ?\n��  ���� C19OwnTextDiagnostics ?\n��     ���� addedSplitOwnTextWitness ?\n��     ���� originalFixtureCannotDistinguishContainsFromEquality ?\n��     ���� showRuntimeOrigins ?\n��     ���� addedSingleTextSubstringWitness ?\n���� JUnit Platform Suite ?\n\nTest run finished after 77 ms\n[         4 containers found      ]\n[         0 containers skipped    ]\n[         4 containers started    ]\n[         0 containers aborted    ]\n[         4 containers successful ]\n[         0 containers failed     ]\n[         4 tests found           ]\n[         0 tests skipped         ]\n[         4 tests started         ]\n[         0 tests aborted         ]\n[         4 tests successful      ]\n[         0 tests failed          ]\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "org.junit.platform.console.ConsoleLauncher",
+        "execute",
+        "--select-class",
+        "ch.digitalfondue.jfiveparse.C19OwnTextDiagnostics",
+        "--disable-ansi-colors"
+      ],
+      "exit": 0,
+      "stdout": "\nThanks for using JUnit! Support its development at https://junit.org/sponsoring\n\nCASE=NEW_two_direct_text_children; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=O|ne; source_own_text=One\nCASE=original_fixture; source_count=1; luna_count=1; source_first_id=1; luna_first_id=1; direct_text_children=One; source_own_text=One\nSOURCE_JSOUP_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/deps/jsoup.jar\nTARGET_JFIVEPARSE_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/classes/\nCASE=NEW_single_text_substring; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=One extra; source_own_text=One extra\n?\n���� JUnit Jupiter ?\n���� JUnit Vintage ?\n��  ���� C19OwnTextDiagnostics ?\n��     ���� addedSplitOwnTextWitness ?\n��     ���� originalFixtureCannotDistinguishContainsFromEquality ?\n��     ���� showRuntimeOrigins ?\n��     ���� addedSingleTextSubstringWitness ?\n���� JUnit Platform Suite ?\n\nTest run finished after 84 ms\n[         4 containers found      ]\n[         0 containers skipped    ]\n[         4 containers started    ]\n[         0 containers aborted    ]\n[         4 containers successful ]\n[         0 containers failed     ]\n[         4 tests found           ]\n[         0 tests skipped         ]\n[         4 tests started         ]\n[         0 tests aborted         ]\n[         4 tests successful      ]\n[         0 tests failed          ]\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "org.junit.platform.console.ConsoleLauncher",
+        "execute",
+        "--select-class",
+        "ch.digitalfondue.jfiveparse.C19OwnTextDiagnostics",
+        "--disable-ansi-colors"
+      ],
+      "exit": 0,
+      "stdout": "\nThanks for using JUnit! Support its development at https://junit.org/sponsoring\n\nCASE=NEW_two_direct_text_children; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=O|ne; source_own_text=One\nCASE=original_fixture; source_count=1; luna_count=1; source_first_id=1; luna_first_id=1; direct_text_children=One; source_own_text=One\nSOURCE_JSOUP_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/deps/jsoup.jar\nTARGET_JFIVEPARSE_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/classes/\nCASE=NEW_single_text_substring; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=One extra; source_own_text=One extra\n?\n���� JUnit Jupiter ?\n���� JUnit Vintage ?\n��  ���� C19OwnTextDiagnostics ?\n��     ���� addedSplitOwnTextWitness ?\n��     ���� originalFixtureCannotDistinguishContainsFromEquality ?\n��     ���� showRuntimeOrigins ?\n��     ���� addedSingleTextSubstringWitness ?\n���� JUnit Platform Suite ?\n\nTest run finished after 84 ms\n[         4 containers found      ]\n[         0 containers skipped    ]\n[         4 containers started    ]\n[         0 containers aborted    ]\n[         4 containers successful ]\n[         0 containers failed     ]\n[         4 tests found           ]\n[         0 tests skipped         ]\n[         4 tests started         ]\n[         0 tests aborted         ]\n[         4 tests successful      ]\n[         0 tests failed          ]\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "org.junit.platform.console.ConsoleLauncher",
+        "execute",
+        "--select-class",
+        "ch.digitalfondue.jfiveparse.C19OwnTextDiagnostics",
+        "--disable-ansi-colors"
+      ],
+      "exit": 0,
+      "stdout": "\nThanks for using JUnit! Support its development at https://junit.org/sponsoring\n\nCASE=NEW_two_direct_text_children; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=O|ne; source_own_text=One\nCASE=original_fixture; source_count=1; luna_count=1; source_first_id=1; luna_first_id=1; direct_text_children=One; source_own_text=One\nSOURCE_JSOUP_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/deps/jsoup.jar\nTARGET_JFIVEPARSE_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/classes/\nCASE=NEW_single_text_substring; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=One extra; source_own_text=One extra\n?\n���� JUnit Jupiter ?\n���� JUnit Vintage ?\n��  ���� C19OwnTextDiagnostics ?\n��     ���� addedSplitOwnTextWitness ?\n��     ���� originalFixtureCannotDistinguishContainsFromEquality ?\n��     ���� showRuntimeOrigins ?\n��     ���� addedSingleTextSubstringWitness ?\n���� JUnit Platform Suite ?\n\nTest run finished after 86 ms\n[         4 containers found      ]\n[         0 containers skipped    ]\n[         4 containers started    ]\n[         0 containers aborted    ]\n[         4 containers successful ]\n[         0 containers failed     ]\n[         4 tests found           ]\n[         0 tests skipped         ]\n[         4 tests started         ]\n[         0 tests aborted         ]\n[         4 tests successful      ]\n[         0 tests failed          ]\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "org.junit.platform.console.ConsoleLauncher",
+        "execute",
+        "--select-class",
+        "ch.digitalfondue.jfiveparse.C19OwnTextDiagnostics",
+        "--disable-ansi-colors"
+      ],
+      "exit": 0,
+      "stdout": "\nThanks for using JUnit! Support its development at https://junit.org/sponsoring\n\nCASE=NEW_two_direct_text_children; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=O|ne; source_own_text=One\nCASE=original_fixture; source_count=1; luna_count=1; source_first_id=1; luna_first_id=1; direct_text_children=One; source_own_text=One\nSOURCE_JSOUP_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/deps/jsoup.jar\nTARGET_JFIVEPARSE_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/classes/\nCASE=NEW_single_text_substring; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=One extra; source_own_text=One extra\n?\n���� JUnit Jupiter ?\n���� JUnit Vintage ?\n��  ���� C19OwnTextDiagnostics ?\n��     ���� addedSplitOwnTextWitness ?\n��     ���� originalFixtureCannotDistinguishContainsFromEquality ?\n��     ���� showRuntimeOrigins ?\n��     ���� addedSingleTextSubstringWitness ?\n���� JUnit Platform Suite ?\n\nTest run finished after 77 ms\n[         4 containers found      ]\n[         0 containers skipped    ]\n[         4 containers started    ]\n[         0 containers aborted    ]\n[         4 containers successful ]\n[         0 containers failed     ]\n[         4 tests found           ]\n[         0 tests skipped         ]\n[         4 tests started         ]\n[         0 tests aborted         ]\n[         4 tests successful      ]\n[         0 tests failed          ]\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "org.junit.platform.console.ConsoleLauncher",
+        "execute",
+        "--select-class",
+        "ch.digitalfondue.jfiveparse.C19OwnTextDiagnostics",
+        "--disable-ansi-colors"
+      ],
+      "exit": 0,
+      "stdout": "\nThanks for using JUnit! Support its development at https://junit.org/sponsoring\n\nCASE=NEW_two_direct_text_children; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=O|ne; source_own_text=One\nCASE=original_fixture; source_count=1; luna_count=1; source_first_id=1; luna_first_id=1; direct_text_children=One; source_own_text=One\nSOURCE_JSOUP_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/deps/jsoup.jar\nTARGET_JFIVEPARSE_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/classes/\nCASE=NEW_single_text_substring; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=One extra; source_own_text=One extra\n?\n���� JUnit Jupiter ?\n���� JUnit Vintage ?\n��  ���� C19OwnTextDiagnostics ?\n��     ���� addedSplitOwnTextWitness ?\n��     ���� originalFixtureCannotDistinguishContainsFromEquality ?\n��     ���� showRuntimeOrigins ?\n��     ���� addedSingleTextSubstringWitness ?\n���� JUnit Platform Suite ?\n\nTest run finished after 78 ms\n[         4 containers found      ]\n[         0 containers skipped    ]\n[         4 containers started    ]\n[         0 containers aborted    ]\n[         4 containers successful ]\n[         0 containers failed     ]\n[         4 tests found           ]\n[         0 tests skipped         ]\n[         4 tests started         ]\n[         0 tests aborted         ]\n[         4 tests successful      ]\n[         0 tests failed          ]\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "org.junit.platform.console.ConsoleLauncher",
+        "execute",
+        "--select-class",
+        "ch.digitalfondue.jfiveparse.C19OwnTextDiagnostics",
+        "--disable-ansi-colors"
+      ],
+      "exit": 0,
+      "stdout": "\nThanks for using JUnit! Support its development at https://junit.org/sponsoring\n\nCASE=NEW_two_direct_text_children; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=O|ne; source_own_text=One\nCASE=original_fixture; source_count=1; luna_count=1; source_first_id=1; luna_first_id=1; direct_text_children=One; source_own_text=One\nSOURCE_JSOUP_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/deps/jsoup.jar\nTARGET_JFIVEPARSE_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/classes/\nCASE=NEW_single_text_substring; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=One extra; source_own_text=One extra\n?\n���� JUnit Jupiter ?\n���� JUnit Vintage ?\n��  ���� C19OwnTextDiagnostics ?\n��     ���� addedSplitOwnTextWitness ?\n��     ���� originalFixtureCannotDistinguishContainsFromEquality ?\n��     ���� showRuntimeOrigins ?\n��     ���� addedSingleTextSubstringWitness ?\n���� JUnit Platform Suite ?\n\nTest run finished after 84 ms\n[         4 containers found      ]\n[         0 containers skipped    ]\n[         4 containers started    ]\n[         0 containers aborted    ]\n[         4 containers successful ]\n[         0 containers failed     ]\n[         4 tests found           ]\n[         0 tests skipped         ]\n[         4 tests started         ]\n[         0 tests aborted         ]\n[         4 tests successful      ]\n[         0 tests failed          ]\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "org.junit.platform.console.ConsoleLauncher",
+        "execute",
+        "--select-class",
+        "ch.digitalfondue.jfiveparse.C19OwnTextDiagnostics",
+        "--disable-ansi-colors"
+      ],
+      "exit": 0,
+      "stdout": "\nThanks for using JUnit! Support its development at https://junit.org/sponsoring\n\nCASE=NEW_two_direct_text_children; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=O|ne; source_own_text=One\nCASE=original_fixture; source_count=1; luna_count=1; source_first_id=1; luna_first_id=1; direct_text_children=One; source_own_text=One\nSOURCE_JSOUP_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/deps/jsoup.jar\nTARGET_JFIVEPARSE_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/classes/\nCASE=NEW_single_text_substring; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=One extra; source_own_text=One extra\n?\n���� JUnit Jupiter ?\n���� JUnit Vintage ?\n��  ���� C19OwnTextDiagnostics ?\n��     ���� addedSplitOwnTextWitness ?\n��     ���� originalFixtureCannotDistinguishContainsFromEquality ?\n��     ���� showRuntimeOrigins ?\n��     ���� addedSingleTextSubstringWitness ?\n���� JUnit Platform Suite ?\n\nTest run finished after 82 ms\n[         4 containers found      ]\n[         0 containers skipped    ]\n[         4 containers started    ]\n[         0 containers aborted    ]\n[         4 containers successful ]\n[         0 containers failed     ]\n[         4 tests found           ]\n[         0 tests skipped         ]\n[         4 tests started         ]\n[         0 tests aborted         ]\n[         4 tests successful      ]\n[         0 tests failed          ]\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "org.junit.platform.console.ConsoleLauncher",
+        "execute",
+        "--select-class",
+        "ch.digitalfondue.jfiveparse.C19OwnTextDiagnostics",
+        "--disable-ansi-colors"
+      ],
+      "exit": 0,
+      "stdout": "\nThanks for using JUnit! Support its development at https://junit.org/sponsoring\n\nCASE=NEW_two_direct_text_children; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=O|ne; source_own_text=One\nCASE=original_fixture; source_count=1; luna_count=1; source_first_id=1; luna_first_id=1; direct_text_children=One; source_own_text=One\nSOURCE_JSOUP_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/deps/jsoup.jar\nTARGET_JFIVEPARSE_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/classes/\nCASE=NEW_single_text_substring; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=One extra; source_own_text=One extra\n?\n���� JUnit Jupiter ?\n���� JUnit Vintage ?\n��  ���� C19OwnTextDiagnostics ?\n��     ���� addedSplitOwnTextWitness ?\n��     ���� originalFixtureCannotDistinguishContainsFromEquality ?\n��     ���� showRuntimeOrigins ?\n��     ���� addedSingleTextSubstringWitness ?\n���� JUnit Platform Suite ?\n\nTest run finished after 80 ms\n[         4 containers found      ]\n[         0 containers skipped    ]\n[         4 containers started    ]\n[         0 containers aborted    ]\n[         4 containers successful ]\n[         0 containers failed     ]\n[         4 tests found           ]\n[         0 tests skipped         ]\n[         4 tests started         ]\n[         0 tests aborted         ]\n[         4 tests successful      ]\n[         0 tests failed          ]\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "org.junit.platform.console.ConsoleLauncher",
+        "execute",
+        "--select-class",
+        "ch.digitalfondue.jfiveparse.C19OwnTextDiagnostics",
+        "--disable-ansi-colors"
+      ],
+      "exit": 0,
+      "stdout": "\nThanks for using JUnit! Support its development at https://junit.org/sponsoring\n\nCASE=NEW_two_direct_text_children; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=O|ne; source_own_text=One\nCASE=original_fixture; source_count=1; luna_count=1; source_first_id=1; luna_first_id=1; direct_text_children=One; source_own_text=One\nSOURCE_JSOUP_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/deps/jsoup.jar\nTARGET_JFIVEPARSE_ORIGIN=file:/F:/codes/python/CoSMiT/research-data/2026-10-30/intent-material-audit/classes/\nCASE=NEW_single_text_substring; source_count=1; luna_count=0; source_first_id=1; luna_first_id=NONE; direct_text_children=One extra; source_own_text=One extra\n?\n���� JUnit Jupiter ?\n���� JUnit Vintage ?\n��  ���� C19OwnTextDiagnostics ?\n��     ���� addedSplitOwnTextWitness ?\n��     ���� originalFixtureCannotDistinguishContainsFromEquality ?\n��     ���� showRuntimeOrigins ?\n��     ���� addedSingleTextSubstringWitness ?\n���� JUnit Platform Suite ?\n\nTest run finished after 76 ms\n[         4 containers found      ]\n[         0 containers skipped    ]\n[         4 containers started    ]\n[         0 containers aborted    ]\n[         4 containers successful ]\n[         0 containers failed     ]\n[         4 tests found           ]\n[         0 tests skipped         ]\n[         4 tests started         ]\n[         0 tests aborted         ]\n[         4 tests successful      ]\n[         0 tests failed          ]\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "C14Observation"
+      ],
+      "exit": 0,
+      "stdout": "NEW DIAGNOSTIC, not original generated test\nfixture=<p>Hello</p>; replacement=Replaced\nsource.documentText=Replaced\ngenerated.documentText=Replaced\nsource.body=<body>Replaced</body>\ngenerated.body=<body><p>Replaced</p></body>\nsource.bodyFirstChild=#text\ngenerated.bodyFirstChild=p\nsource.originalParagraphDetached=false\ngenerated.originalParagraphStillChild=true\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "C14Observation"
+      ],
+      "exit": 0,
+      "stdout": "NEW DIAGNOSTIC, not original generated test\nfixture=<p>Hello</p>; replacement=Replaced\nsource.documentText=Replaced\ngenerated.documentText=Replaced\nsource.body=<body>Replaced</body>\ngenerated.body=<body><p>Replaced</p></body>\nsource.bodyFirstChild=#text\ngenerated.bodyFirstChild=p\nsource.originalParagraphDetached=false\ngenerated.originalParagraphStillChild=true\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "C14Observation"
+      ],
+      "exit": 0,
+      "stdout": "NEW DIAGNOSTIC, not original generated test\nfixture=<p>Hello</p>; replacement=Replaced\nsource.documentText=Replaced\ngenerated.documentText=Replaced\nsource.body=<body>Replaced</body>\ngenerated.body=<body><p>Replaced</p></body>\nsource.bodyFirstChild=#text\ngenerated.bodyFirstChild=p\nsource.originalParagraphDetached=false\ngenerated.originalParagraphStillChild=true\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "C14Observation"
+      ],
+      "exit": 0,
+      "stdout": "NEW DIAGNOSTIC, not original generated test\nfixture=<p>Hello</p>; replacement=Replaced\nsource.documentText=Replaced\ngenerated.documentText=Replaced\nsource.body=<body>Replaced</body>\ngenerated.body=<body><p>Replaced</p></body>\nsource.bodyFirstChild=#text\ngenerated.bodyFirstChild=p\nsource.originalParagraphDetached=false\ngenerated.originalParagraphStillChild=true\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "C14Observation"
+      ],
+      "exit": 0,
+      "stdout": "NEW DIAGNOSTIC, not original generated test\nfixture=<p>Hello</p>; replacement=Replaced\nsource.documentText=Replaced\ngenerated.documentText=Replaced\nsource.body=<body>Replaced</body>\ngenerated.body=<body><p>Replaced</p></body>\nsource.bodyFirstChild=#text\ngenerated.bodyFirstChild=p\nsource.originalParagraphDetached=false\ngenerated.originalParagraphStillChild=true\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "C14Observation"
+      ],
+      "exit": 0,
+      "stdout": "NEW DIAGNOSTIC, not original generated test\nfixture=<p>Hello</p>; replacement=Replaced\nsource.documentText=Replaced\ngenerated.documentText=Replaced\nsource.body=<body>Replaced</body>\ngenerated.body=<body><p>Replaced</p></body>\nsource.bodyFirstChild=#text\ngenerated.bodyFirstChild=p\nsource.originalParagraphDetached=false\ngenerated.originalParagraphStillChild=true\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "C14Observation"
+      ],
+      "exit": 0,
+      "stdout": "NEW DIAGNOSTIC, not original generated test\nfixture=<p>Hello</p>; replacement=Replaced\nsource.documentText=Replaced\ngenerated.documentText=Replaced\nsource.body=<body>Replaced</body>\ngenerated.body=<body><p>Replaced</p></body>\nsource.bodyFirstChild=#text\ngenerated.bodyFirstChild=p\nsource.originalParagraphDetached=false\ngenerated.originalParagraphStillChild=true\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-cosmit-certification;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\jsoup.jar;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "C14Observation"
+      ],
+      "exit": 0,
+      "stdout": "NEW DIAGNOSTIC, not original generated test\nfixture=<p>Hello</p>; replacement=Replaced\nsource.documentText=Replaced\ngenerated.documentText=Replaced\nsource.body=<body>Replaced</body>\ngenerated.body=<body><p>Replaced</p></body>\nsource.bodyFirstChild=#text\ngenerated.bodyFirstChild=p\nsource.originalParagraphDetached=false\ngenerated.originalParagraphStillChild=true\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "java",
+        "-cp",
+        "F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\classes;F:\\codes\\python\\CoSMiT\\research-data\\2026-10-30\\intent-material-audit\\deps\\junit-console.jar",
+        "org.junit.platform.console.ConsoleLauncher",
+        "execute",
+        "--select-class",
+        "RandomKeyAssignmentTest",
+        "--disable-ansi-colors"
+      ],
+      "exit": 0,
+      "stdout": "\nThanks for using JUnit! Support its development at https://junit.org/sponsoring\n\n?\n���� JUnit Jupiter ?\n��  ���� RandomKeyAssignmentTest ?\n��     ���� test_random_key_assignment() ?\n���� JUnit Vintage ?\n���� JUnit Platform Suite ?\n\nTest run finished after 44 ms\n[         4 containers found      ]\n[         0 containers skipped    ]\n[         4 containers started    ]\n[         0 containers aborted    ]\n[         4 containers successful ]\n[         0 containers failed     ]\n[         1 tests found           ]\n[         0 tests skipped         ]\n[         1 tests started         ]\n[         0 tests aborted         ]\n[         1 tests successful      ]\n[         0 tests failed          ]\n\n",
+      "stderr": ""
+    }
+  ],
+  "engine_sha256": "77f8a3b3e8b4e7a7acbd96fbc28dc3031e629f26edd4d6a1395f5569072c686f",
+  "limitations": [
+    "Java adapters and obligations manually registered after reading cases",
+    "c19 probes supplied by material, not automatically generated",
+    "c14 body serialization compared on this fixed fixture only",
+    "c03 source not executed; binding unverified; no fabricated gold label",
+    "No core engine modifications or model calls"
+  ]
+}
