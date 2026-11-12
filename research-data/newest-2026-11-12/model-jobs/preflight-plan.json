@@ -1,0 +1,80 @@
+{
+  "scope": "first five jobs of full run; no additional requests",
+  "jobs": [
+    {
+      "job_id": "a54e1b829d3a3fd10b1f03a2096773975de82760e8775850210b65c8c262a087",
+      "candidate_id": "D0055",
+      "kind": "direct-llm",
+      "batch": 2,
+      "input_indices": [
+        44
+      ],
+      "prompt_sha256": "6150decedb7ced3d4da6f7818ed924e215765770e5b5f62b726079c9325ba8b9",
+      "protocol_sha256": "cfa6cdd0e19416815b6b54961dc5de0715c6a7c59f98b099638d927cbd8707d7",
+      "characters": 29923,
+      "status": "prepared",
+      "model_calls": 0,
+      "path": "candidates\\D0055\\002-direct-llm.json"
+    },
+    {
+      "job_id": "79857a3488d7e23edd42b5fa31e8431c68653ca8bb801d1c1160cb167ef7ff82",
+      "candidate_id": "D0050",
+      "kind": "trace-llm",
+      "batch": 3,
+      "input_indices": [
+        44
+      ],
+      "prompt_sha256": "12567b7e72eedca720efa26c874b7773d5405a1d0f9366f0380e21d43f22e67b",
+      "protocol_sha256": "cfa6cdd0e19416815b6b54961dc5de0715c6a7c59f98b099638d927cbd8707d7",
+      "characters": 38893,
+      "status": "prepared",
+      "model_calls": 0,
+      "path": "candidates\\D0050\\003-trace-llm.json"
+    },
+    {
+      "job_id": "364efa5d5e3e7accb079b8e45a97098241270327d8b7a708dec7fb78f185203c",
+      "candidate_id": "D0055",
+      "kind": "intenttester-source-tdl",
+      "batch": 2,
+      "input_indices": [
+        44
+      ],
+      "prompt_sha256": "3e4ee87a4f44bc7a26b9735a4ded98cfd16ad8f09234504d8b3b905d348da099",
+      "protocol_sha256": "cfa6cdd0e19416815b6b54961dc5de0715c6a7c59f98b099638d927cbd8707d7",
+      "characters": 31190,
+      "status": "prepared",
+      "model_calls": 0,
+      "path": "candidates\\D0055\\002-intenttester-source-tdl.json"
+    },
+    {
+      "job_id": "d84cbee2562017565a7c63020ae11fe163878a52f122a491288cf57bf9e6c385",
+      "candidate_id": "D0055",
+      "kind": "intenttester-target-api",
+      "batch": 2,
+      "input_indices": [
+        44
+      ],
+      "prompt_sha256": "df49fe99af69a0b822329646348836356996f9844236daf89c381636a09b9672",
+      "protocol_sha256": "cfa6cdd0e19416815b6b54961dc5de0715c6a7c59f98b099638d927cbd8707d7",
+      "characters": 29742,
+      "status": "prepared",
+      "model_calls": 0,
+      "path": "candidates\\D0055\\002-intenttester-target-api.json"
+    },
+    {
+      "job_id": "98f8c34d6d63f7af522157ad5e4565dd30dbadf700b906c2880f9c93e1a30b0d",
+      "candidate_id": "D0055",
+      "kind": "intenttester-target-tdl-extension",
+      "batch": 2,
+      "input_indices": [
+        44
+      ],
+      "prompt_sha256": "b394bdfcc6015b85a49102d26fe3d79aa2cbe74dbe3af4882e31f30d57688fb3",
+      "protocol_sha256": "cfa6cdd0e19416815b6b54961dc5de0715c6a7c59f98b099638d927cbd8707d7",
+      "characters": 30541,
+      "status": "prepared",
+      "model_calls": 0,
+      "path": "candidates\\D0055\\002-intenttester-target-tdl-extension.json"
+    }
+  ]
+}

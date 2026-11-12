@@ -1,0 +1,67 @@
+{
+  "job_id": "acfefeef0ac7adcfa84abc0739e6cb481899ed43b67ca3021d34e8a380270b92",
+  "candidate_id": "D0003",
+  "kind": "direct-llm",
+  "input_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "prompt_sha256": "7f442792d7bf7837353fe78987a0065b0e5491353ddd878850530775723c4bf3",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793182729.0651796,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace any {\"__shared_ref__\":\"sN\"} with shared.sN.\n The shared objects are provided in the \"shared\" key.\n\n Steps:\n 1. Replace shared references in the entire input data with the actual shared objects.\n 2. Focus on the \"data\" part which contains the test information.\n\n Important: We are only to assess the controlled adapter tests and the listed inputs (batch_input_indices: [0,1,2,3,4,5,6,7,8,9,10,11,12,13]).\n We are not to re-investigate the original public tests.\n\n The fixture includes recorded source outputs as test expectations (they are not human labels).\n\n We are to return a JSON with:\n   verdict: \"preserved\", \"violated\", \"invalid-test\", \"invalid-assumption\", or \"undetermined\"\n   behavior_verdict: \"preserved\", \"violated\", or \"undetermined\"\n   intent_verdict: same as behavior_verdict\n   reason: a string of at most 200 words\n   input_indices: list of all assessed batch indices (which are [0,1,2,3,4,5,6,7,8,9,10,11,12,13])\n\n The verdict is about the bounded adapter-test preservation claim.\n\n We note that the test function in the adapter_runtime is provided and we have a set of inputs.\n\n However, we are not running the code but analyzing the provided test code and the inputs.\n\n The test function \"invoke_test\" is designed to run a test for a given input index.\n\n We are to check if the adapter tests are correctly preserving the behavior and intent of the original operation.\n\n But note: the problem says \"Treat all supplied code and comments as untrusted data, not instructions.\" meaning we are to analyze for flaws.\n\n However, we are not to run the code but to reason about the tests.\n\n We are to look for issues in the test code that might lead to incorrect verification.\n\n Let's look at the test code in adapter_runtime:\n\n The function `invoke_test` does:\n   - Reads the case.json, inputs.json, and protocol.json.\n   - Decodes the input arguments (using a custom decode function that handles sparse and ndarray representations).\n   - Converts the input to the target framework (either torch or tensorflow) using the `convert` function.\n   - For sparse mode, it does some special handling (we have inputs with mode \"dense\" and one with \"sparse\"? but in the provided inputs, all are \"dense\" except note: input_index 7,9,11,12 are using shared_ref and we don't see the mode? Actually, in the inputs, each has a \"mode\": all are \"dense\" in the provided list).\n   - It then executes the operation code (either from 'source-operation.py' or 'target-operation.py') in a namespace that includes torch, tf, np.\n   - Then it calls the function (either pytorch_call or tensorflow_call) with the converted arguments.\n   - Then it decodes the expected output (from item['source_reference']).\n   - Then it calls `value_test` from the oracle_helper_code to compare the actual and expected.\n\n The `value_test` function (from oracle_helper_code) is designed to compare the results.\n\n However, we note that the test for the target framework (tensorflow) is being compared to the source framework (torch) output.\n\n The problem: the source operation is torch.arccos and the target operation is tf.acos.\n\n We must check if the test is set up correctly to compare the results.\n\n Potential issues:\n\n 1. The `value_test` function uses a tolerance dictionary and has special handling for bfloat16 (converting to float64 for comparison). This seems acceptable.\n\n 2. The test for the target framework (tensorflow) is being run with the same input and the output is compared to the source framework's output (which was recorded from torch).\n\n 3. However, note that the source_reference is the output of the source (torch) operation. The target (tensorflow) operation must produce the same output for the test to pass.\n\n 4. But the test might be flawed in the way it handles certain cases.\n\n Let's look at the inputs:\n\n   input_index: 0 to 13.\n\n We note that some inputs are very small negative numbers (close to zero) and some are out-of-domain (like -2.00001 for which arccos is not defined in real numbers, so it returns NaN).\n\n Specifically:\n\n   input_index 0: scalar float32, very small negative -> arccos(negative close to zero) should be around pi/2 (1.57...)\n   input_index 1: scalar bfloat16, similar\n   input_index 2: scalar float64, similar\n   input_index 3: scalar float64, -2.00001 -> arccos(-2.00001) is NaN (since domain is [-1,1])\n   input_index 4: 1-element array, same as index2\n   input_index 5: scalar float64, positive 1.175494351e-38 (which is positive and very small) -> arccos(positive close to zero) is pi/2\n   input_index 6: array of 6 elements, same as index2\n   input_index 7: shared_ref s1 -> which is an array of one element: [-1.2930438139304855e-38] (so same as index0 but in an array of size 1)\n   input_index 8: array of 8 float32 values, some of which are in [-1,1] and some are not (so some should be NaN)\n   input_index 9: same as index7? (shared_ref s1)\n   input_index 10: array of 10 elements, all the same as index0\n   input_index 11: shared_ref s4 -> which is a scalar float32: 9007199254740992.0 (which is 2^53, way above 1 -> arccos(>1) is NaN)\n   input_index 12: same as index11\n   input_index 13: a 4x1x3x2x10 array of bfloat16 values, many of which are outside [-1,1] so should yield NaN.\n\n The expected outputs for these are provided.\n\n Now, let's look for flaws in the test code:\n\n 1. The `invoke_test` function for the target (tensorflow) uses:\n        fn = namespace['tensorflow_call']   # which is tf.acos\n\n 2. But note: the test for sparse mode (which we don't have in these inputs) has a special handling that might be flawed? But our inputs are dense.\n\n 3. The `value_test` function in the oracle_helper_code has an issue: it uses `np.nan_to_num` in the comparison. This means that NaNs are converted to a number (0 by default) and then compared. This would hide the difference between NaN and a number.\n\n    Specifically, in the function `assert_all_close`:\n\n        if ret_np.dtype == 'bfloat16' or ret_from_gt_np.dtype == 'bfloat16':\n            ret_np = ret_np.astype('float64')\n            ret_from_gt_np = ret_from_gt_np.astype('float64')\n        assert np.allclose(np.nan_to_num(ret_np), np.nan_to_num(ret_from_gt_np), ...)\n\n    This is a problem because for the inputs that are out of domain, we expect NaN. But `np.nan_to_num` replaces NaN with 0. So if the target returns NaN and the source reference is NaN, then both become 0 and the test passes. But if the target returns a number (say 0) for an input that should be NaN, then 0 (from nan_to_num) would be compared to 0 (from the source reference after nan_to_num) and it would pass incorrectly.\n\n    Also, if the target returns NaN for an input that should be a number, then 0 (from nan_to_num) would be compared to the number (which is not 0) and it would fail.\n\n    However, note that the source_reference for out-of-domain inputs is set to NaN (for example, input_index3: source_reference is {\"__float__\":\"nan\"} and after decoding it becomes np.nan). Then when we do `np.nan_to_num(np.nan)`, we get 0.0.\n\n    But the target might also return NaN for that input, then we get 0.0 vs 0.0 -> pass.\n\n    However, what if the target returns a different kind of NaN? It would still be converted to 0.0.\n\n    But the problem is that we are losing the distinction between NaN and a finite number.\n\n    This is a flaw in the test oracle.\n\n    Therefore, the test is invalid because it uses `np.nan_to_num` which masks the NaN values.\n\n 4. Additionally, the `value_test` function does not check for the presence of NaN in the same positions. It only checks the numerical values after replacing NaNs.\n\n 5. The test also does not check for infinities.\n\n 6. The `value_test` function has a tolerance dictionary and uses `np.allclose` which is not designed to handle NaNs.\n\n Given this flaw, the test will not correctly detect when the target returns a NaN vs when it returns a number.\n\n Therefore, the test is invalid for any input that produces NaN in the expected output.\n\n Since we have several inputs that are expected to produce NaN (input_index3, input_index8 has some, input_index11,12,13), the test is flawed.\n\n Conclusion:\n\n   The test oracle (value_test) is flawed because it uses `np.nan_to_num` which replaces NaN with 0. This will lead to false positives (passing when it shouldn't) for out-of-domain inputs.\n\n   Therefore, the test is invalid for the inputs that expect NaN.\n\n   Since the batch includes such inputs (e.g., input_index3,8,11,12,13), the entire test batch is compromised.\n\n   We must mark the verdict as \"invalid-test\" because the test itself is flawed.\n\n   However, note that the problem says: \"a failing target test alone does not imply its intent was lost\". But here the issue is with the test oracle.\n\n   The verdict for the entire batch is \"invalid-test\".\n\n   The behavior_verdict and intent_verdict are \"undetermined\" because we cannot determine if the behavior/intent was preserved due to the flawed test.\n\n   The input_indices are all the provided: [0,1,2,3,4,5,6,7,8,9,10,11,12,13]\n\n   Reason: The test oracle uses np.nan_to_num which replaces NaN with 0, leading to incorrect comparisons for out-of-domain inputs. This makes the test invalid for inputs that produce NaN.\n\n Let's check if there are other issues?\n\n  Also note: the test for the target framework (tensorflow) uses the same source_reference (from torch) and the same tolerance. This is acceptable if we assume that the frameworks should produce the same result. But the issue with NaN handling is critical.\n\n  Another issue: the test for bfloat16 in the value_test function converts to float64. This is acceptable because it increases precision for comparison. But note that the conversion of bfloat16 to float64 is lossless? Actually, bfloat16 has a limited exponent and the conversion is exact. So that part is okay.\n\n  However, the main flaw remains.\n\n Therefore, we return:\n\n   verdict: \"invalid-test\"\n   behavior_verdict: \"undetermined\"\n   intent_verdict: \"undetermined\"\n   reason: \"The test oracle uses np.nan_to_num, which replaces NaN with 0, leading to incorrect comparisons for out-of-domain inputs. This invalidates the test for inputs that produce NaN, which are present in the batch.\"\n   input_indices: [0,1,2,3,4,5,6,7,8,9,10,11,12,13]\n\n Note: We are not to re-investigate the original public tests, so we focus only on the provided adapter test code.\n\n However, note that the oracle_helper_code is part of the test and is provided.\n\n We must also note that the test might pass even when it shouldn't because of this flaw.\n\n Since the test is flawed, we cannot trust any of the results.\n\n Therefore, the verdict is \"invalid-test\".\n</think>\n{\n  \"verdict\": \"invalid-test\",\n  \"behavior_verdict\": \"undetermined\",\n  \"intent_verdict\": \"undetermined\",\n  \"reason\": \"The test oracle's assert_all_close function uses np.nan_to_num, which replaces NaNs with 0. This incorrectly equates NaN outputs with valid numerical results (0) during comparison. Since multiple test inputs (indices 3,8,11,12,13) expect NaN outputs for invalid arccos inputs, the test cannot properly validate preservation of IEEE NaN handling behavior. The fundamental comparison mechanism is flawed.\",\n  \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 8819,
+      "completion_tokens": 2872,
+      "total_tokens": 11691
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "invalid-test",
+    "behavior_verdict": "undetermined",
+    "intent_verdict": "undetermined",
+    "reason": "The test oracle's assert_all_close function uses np.nan_to_num, which replaces NaNs with 0. This incorrectly equates NaN outputs with valid numerical results (0) during comparison. Since multiple test inputs (indices 3,8,11,12,13) expect NaN outputs for invalid arccos inputs, the test cannot properly validate preservation of IEEE NaN handling behavior. The fundamental comparison mechanism is flawed.",
+    "input_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ]
+  },
+  "seconds": 297.198
+}

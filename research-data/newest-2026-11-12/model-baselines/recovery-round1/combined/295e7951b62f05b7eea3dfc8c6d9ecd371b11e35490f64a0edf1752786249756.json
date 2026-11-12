@@ -1,0 +1,99 @@
+{
+  "job_id": "295e7951b62f05b7eea3dfc8c6d9ecd371b11e35490f64a0edf1752786249756",
+  "candidate_id": "H009",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "prompt_sha256": "3ff67b46fdd32c6a6ac2c9b71cdb1348e42a25c50917ff7507c5855d1d0c2485",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792917299.3930333,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL (Test Description Language) and a Test Code.\n The TDL is provided in a JSON format with shared references. We must replace any \"__shared_ref__\":\"sN\" with the corresponding shared.sN value.\n\n Steps:\n 1. Decode the TDL and Test Code using the shared references as per the encoding \"lossless-subtree-sharing-v1\".\n 2. The TDL has:\n      - assertions: which describe the obligations (dtype, shape, value) and the input indices they apply to.\n      - goal: the overall goal of the test.\n      - input_fixture_indices: the indices of the inputs that are being tested (shared.s0, which is [0,1,...,30])\n      - other metadata.\n\n 3. The Test Code is an adapter that runs the test for a given input index. It:\n      - Loads the test case (inputs and metadata) for a given index.\n      - Converts the input to the appropriate framework (torch or tensorflow) based on the role (source or target?).\n      - Executes the function (either 'pytorch_call' or 'tensorflow_call') from the operation file.\n      - Compares the actual output with the expected output (source_reference) using the `value_test` function.\n\n 4. The `value_test` function (from oracle_helper_code) does:\n      - If test_dtypes is True, it checks that the dtype and shape of the actual and expected match (via assert_same_type_and_shape).\n      - Then it checks the values with a tolerance.\n\n 5. The TDL assertions:\n      - dtype: requires identical dtype via value_test(test_dtypes=True). This is covered by the `test_dtypes` flag in the value_test call.\n      - helper_shape: requires identical shape via the same mechanism (assert_same_type_and_shape in value_test when test_dtypes is True).\n      - value: compares actual values with frozen source values using the listed tolerances.\n\n 6. The Test Code indeed calls `value_test` with the setting from the input (oracle_settings) which includes:\n        rtol, atol, specific_tolerance_dict, test_dtypes.\n\n 7. The TDL's input_fixture_indices (shared.s0) is [0,1,...,30] and the Test Code's batch_input_indices is the same.\n\n 8. Additionally, the Test Code has some extra checks for sparse mode and gradients, but note:\n      - The TDL does not mention these. However, the TDL's scope is \"controlled native-output adapter tests\", and the goal is to \"Preserve the supplied source test output obligations\".\n      - The TDL assertions are only about dtype, shape, and value. The extra checks (sparse and gradient) are not in the TDL, but note that the TDL might not be exhaustive? However, the TDL says it has assertions for dtype, helper_shape, and value.\n\n 9. But note: the TDL's assertions are only defined for the input indices in shared.s0 (which is the entire set [0..30]). However, the TDL does not have assertions for the sparse structure or gradients. \n\n 10. However, the TDL's goal is to \"Preserve the supplied source test output obligations\". The source test (as per the original_source_test_excerpt) is for `tensorflow.linalg.det` and the test function `test_tensorflow_det` only checks the output of the determinant. The sparse and gradient checks are additional in the adapter? \n\n 11. But note: the Test Code runs different checks based on the mode (sparse) and if 'source_gradient' is present. However, looking at the inputs in the Test Code, we see that most inputs are in \"dense\" mode and only a few have \"source_gradient\". \n\n 12. The TDL does not account for these extra checks. Therefore, the TDL might be incomplete.\n\n 13. However, the TDL is only required to express the intent of the Test Code? The Test Code's main intent is to compare the output (dtype, shape, value) of the function. The extra checks (sparse and gradient) are additional and not covered by the TDL.\n\n 14. But note the TDL's scope: \"controlled native-output adapter tests; not full original frontend modes\". The TDL is only for the \"controlled\" part. The unadapted modes (like sparse and gradient?) are outside.\n\n 15. The Test Code's \"unadapted_modes\" are: [\"out buffer identity\",\"inplace/copy behavior\",\"frontend wrappers\",\"precision_mode\"]. So sparse and gradient might be considered as part of the adapted test? \n\n 16. However, the TDL does not have assertions for the sparse structure or gradient. Therefore, for the inputs that are in sparse mode or have gradient checks, the TDL does not capture the full intent.\n\n 17. But note: the TDL's assertions are applied to all input indices [0..30]. The TDL does not differentiate between dense and sparse. The value assertion says \"Compare actual values with frozen source values\", but for sparse tensors, the Test Code does two things:\n        - It checks the dense representation (via value_test) because in the sparse mode block it converts the sparse tensor to dense for the actual output? \n          Actually, in the sparse mode block, it sets `kwargs` to a sparse tensor, then after calling `fn(**kwargs)`, it gets `actual` and then decodes the expected (which is the dense representation). Then it calls `value_test` on `array(actual)` (which converts the sparse tensor to dense) and the expected (dense). So the value_test is on the dense form.\n        - Additionally, it checks the sparse indices and shape against the source_reference (which in the sparse case is a sparse representation?).\n\n 18. The source_reference for a sparse input is stored as a sparse representation? Actually, in the input for index 0, we see:\n        \"source_reference\": {\"__shared_ref__\":\"s2\"} -> which is a dense scalar.\n      But for a sparse test, the source_reference might have the sparse structure? For example, in the Test Code, for sparse mode, it does:\n          ref = item['source_reference']\n          ... and then checks indices and shape.\n\n 19. However, looking at the provided inputs, we don't see any input with mode=\"sparse\". All the inputs in the Test Code's inputs list have mode=\"dense\". So the sparse block in the Test Code is not triggered for these inputs.\n\n 20. Similarly, the gradient check is only triggered if 'source_gradient' is in the item. In the provided inputs, we don't see any item with 'source_gradient'. \n\n 21. Therefore, for the given batch of inputs (indices 0 to 30, all dense and without gradient), the Test Code only runs the `value_test` and the official_sign shape check (if official_sign is true, but it's false in the Test Code).\n\n 22. The TDL assertions (dtype, shape, value) are exactly what the Test Code does for these inputs.\n\n 23. The TDL's assertions for dtype and shape are covered by the `test_dtypes=True` in the value_test, and the value by the tolerance comparison.\n\n 24. The TDL also has an assertion \"helper_shape\" which is covered by the same `test_dtypes=True` (which triggers the shape check in `assert_same_type_and_shape`).\n\n 25. Therefore, for the given batch (indices 0 to 30) and the provided inputs (which are all dense and without gradient), the TDL correctly expresses the intent.\n\n 26. However, note that the TDL does not mention the official_sign check. But the Test Code does:\n        if meta['official_sign']:\n            assert array(actual).shape == expected.shape\n      But in the Test Code, `official_sign` is false, so this check is skipped.\n\n 27. Therefore, the TDL is valid for the given batch.\n\n 28. But note: the TDL's input_fixture_indices is [0..30] and the Test Code runs on the same set.\n\n Conclusion: The TDL is valid.\n\n However, we must note that the TDL does not account for the sparse and gradient checks, but since they are not present in the batch, it's okay.\n\n But the TDL is supposed to express the intent of the Test Code for the entire batch. The Test Code has the capability to run sparse and gradient checks, but for this batch, they are not used. The TDL only describes the common checks (dtype, shape, value) that are always run (for every input). The sparse and gradient checks are conditional and not part of the common obligations.\n\n Therefore, the TDL is valid.\n\n Output:\n   {\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value match the Test Code's value_test with test_dtypes=True and tolerance settings, which are applied to all inputs in the batch. The batch does not include sparse or gradient tests, so the TDL covers the executed obligations.\", \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]}\n\n However, note the instruction: \"Return concise JSON only, with a nonempty reason of at most 200 words.\" and \"input_indices must list all assessed batch indices.\"\n\n We are assessing the entire batch (indices 0 to 30).\n\n Let's write the reason concisely.\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions for dtype, shape, and value align with Test Code's value_test implementation. The test_dtypes=True flag enforces dtype and shape checks via assert_same_type_and_shape, while value comparisons use recorded tolerances. All 31 input indices (0-30) execute these core obligations without triggering unclaimed sparse/gradient checks.\",\n  \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 8157,
+      "completion_tokens": 2237,
+      "total_tokens": 10394
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions for dtype, shape, and value align with Test Code's value_test implementation. The test_dtypes=True flag enforces dtype and shape checks via assert_same_type_and_shape, while value comparisons use recorded tolerances. All 31 input indices (0-30) execute these core obligations without triggering unclaimed sparse/gradient checks.",
+    "input_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ]
+  },
+  "seconds": 265.955
+}

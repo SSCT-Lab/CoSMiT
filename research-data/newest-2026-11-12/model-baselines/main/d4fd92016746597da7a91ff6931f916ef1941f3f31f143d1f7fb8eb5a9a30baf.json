@@ -1,0 +1,61 @@
+{
+  "job_id": "d4fd92016746597da7a91ff6931f916ef1941f3f31f143d1f7fb8eb5a9a30baf",
+  "candidate_id": "E023",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "52f10449b039f374515fa444ea12ae016fcefcf6bc06b17bbe50b256ac86fe5c",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793000113.2705054,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and a Test Code. We must decide if the TDL correctly expresses the intent of the Test Code.\n\nTDL (Test Description Language) summary:\n- Assertions:\n  1. \"dtype\": Requires identical dtype via `value_test(test_dtypes=True)`. Applies to input indices [36,37,38,39,40,41,42,43,44,45,46,47].\n  2. \"helper_shape\": Requires identical shape via `assert_same_type_and_shape` (invoked by `value_test(test_dtypes=True)`). Same indices.\n  3. \"value\": Compares actual values with frozen source values using the listed tolerances. Same indices.\n- Goal: Preserve the supplied source test output obligations on the listed input subset.\n- Input fixture indices: [36,37,38,39,40,41,42,43,44,45,46,47]\n- Scope: Controlled native-output adapter tests.\n\nTest Code summary:\n- This is an adapter test that replays captured inputs and output oracles (from the source) for a specific set of inputs (indices 36-47).\n- The test code uses a function `invoke_test` that:\n   a. Decodes the input and source reference (expected output) from a JSON structure.\n   b. Converts the input to the target framework (TensorFlow or PyTorch) for the test.\n   c. Executes the function (either `pytorch_call` or `tensorflow_call` from the operation file) with the given arguments.\n   d. Compares the actual result with the expected result using `value_test` (from Ivy tests) with the provided tolerances and settings.\n   e. Additionally, for sparse mode, it checks the sparse structure (indices and shape) and for gradient mode, it checks the gradient.\n\nKey points from the Test Code:\n1. The test uses `value_test` from Ivy's `assertions` module. The `value_test` function does:\n   - If `test_dtypes` is True, it calls `assert_same_type_and_shape` (which checks both dtype and shape).\n   - Then, it compares the values with the given tolerances (rtol, atol, or from a tolerance dictionary).\n\nThe TDL assertions:\n- \"dtype\": This is covered by `value_test(test_dtypes=True)` because that leads to `assert_same_type_and_shape` which checks dtype.\n- \"helper_shape\": This is also covered by the same `assert_same_type_and_shape` (which checks shape and dtype).\n- \"value\": This is covered by the value comparison in `value_test` (using `assert_all_close`).\n\nTherefore, the TDL assertions exactly match what the Test Code does for the given inputs.\n\nAdditionally, the TDL states the goal and the input indices correctly.\n\nHowever, note that the Test Code also includes extra checks for sparse mode and gradient. But the TDL does not mention these because:\n- The provided input fixtures (for indices 36-47) are all in \"dense\" mode (as seen in the inputs list) except for input_index 44 to 47 which are using shared references. But note the input for index 44 and 45 is shared_ref s1, and for 46 and 47 is s6. We must decode the shared references.\n\nDecoding shared references (using the provided shared dictionary and the encoding rule: replace `{\"__shared_ref__\":\"sN\"}` with `shared.sN`):\n\nFor input_index 44 and 45:\n  arguments: {\"__shared_ref__\":\"s1\"} -> shared.s1 = {\"dim\":-1, \"input\": shared.s2}\n  shared.s2 = {\"__ndarray__\":true, \"dtype\":\"float64\", \"shape\":[4], \"values\": shared.s3}\n  shared.s3 = [1.6342664862384686e+308, -6.103515625e-05, 2666726871351504.0, 2666726871351504.0]\n\nSimilarly, the source_reference for 44 and 45 is shared.s4 -> which is a 4x1 array.\n\nFor input_index 46 and 47:\n  arguments: shared.s6 = {\"dim\":1, \"input\": shared.s7}\n  shared.s7 = {\"__ndarray__\":true, \"dtype\":\"float64\", \"shape\":[1,1], \"values\": [[2666726871351504.0]]}\n  source_reference: shared.s8 = a 1x1x1 array.\n\nAll these inputs are in \"dense\" mode (as per the 'mode' field in the inputs). Therefore, the sparse and gradient checks in the Test Code are not triggered for these inputs.\n\nThus, the TDL only needs to capture the dtype, shape, and value checks for dense arrays, which it does.\n\nConclusion: The TDL correctly expresses the intent of the Test Code for the given input indices.\n\nOutput:\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions (dtype, shape, value) align with the test code's use of value_test(test_dtypes=True) for the dense inputs in the batch.\",\n  \"input_indices\": [36,37,38,39,40,41,42,43,44,45,46,47]\n}\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions match test code behavior: dtype/shape checks via value_test(test_dtypes=True) and value comparisons with tolerances are implemented. Input indices 36-47 are covered by the adapter's dense-mode value_test calls without triggering unclaimed sparse/gradient paths.\",\n  \"input_indices\": [36,37,38,39,40,41,42,43,44,45,46,47]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 5172,
+      "completion_tokens": 1239,
+      "total_tokens": 6411
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions match test code behavior: dtype/shape checks via value_test(test_dtypes=True) and value comparisons with tolerances are implemented. Input indices 36-47 are covered by the adapter's dense-mode value_test calls without triggering unclaimed sparse/gradient paths.",
+    "input_indices": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 151.812
+}

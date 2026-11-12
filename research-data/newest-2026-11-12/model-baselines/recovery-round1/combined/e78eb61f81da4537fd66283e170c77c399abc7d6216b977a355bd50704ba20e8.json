@@ -1,0 +1,99 @@
+{
+  "job_id": "e78eb61f81da4537fd66283e170c77c399abc7d6216b977a355bd50704ba20e8",
+  "candidate_id": "D0069",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "prompt_sha256": "b71c2ce6e26fdcdd2e6de52a72a2f24ae3b526cb5c25cdeec20541e4d11ab961",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793071885.77476,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and Test Code. We must assess if the TDL correctly expresses the intent of the Test Code.\n\nFirst, we note the TDL is provided in a shared tree format. We must replace any `{\"__shared_ref__\":\"sN\"}` with `shared.sN` to recover the data.\n\nTDL (after replacing shared references):\n```json\n{\n  \"data\": {\n    \"assertions\": {\n      \"dtype\": {\n        \"applicable_input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],\n        \"obligation\": \"Require identical dtype via value_test(test_dtypes=True).\"\n      },\n      \"helper_shape\": {\n        \"applicable_input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],\n        \"obligation\": \"Require identical shape through assert_same_type_and_shape invoked by value_test(test_dtypes=True).\"\n      },\n      \"value\": {\n        \"applicable_input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],\n        \"obligation\": \"Compare actual values with frozen source values using the listed tolerances.\"\n      }\n    },\n    \"goal\": \"Preserve the supplied source test output obligations on the listed input subset\",\n    \"input_fixture_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],\n    \"input_fixture_location\": \"testCode.inputs; same input and source expectations, not a second copy\",\n    \"scope\": \"controlled native-output adapter tests; not full original frontend modes\"\n  },\n  \"encoding\": \"lossless-subtree-sharing-v1\"\n}\n```\n\nThe TDL describes three assertions that apply to all input indices (0-30):\n1. `dtype`: Requires identical dtype via `value_test(test_dtypes=True)`.\n2. `helper_shape`: Requires identical shape via `assert_same_type_and_shape` (which is invoked by `value_test(test_dtypes=True)`).\n3. `value`: Compares actual values with frozen source values using the listed tolerances.\n\nNow, let's look at the Test Code.\n\nThe Test Code is for an adapter that runs tests for the `tf.tanh` operation in TensorFlow, but using PyTorch as the target framework. The main function is `invoke_test`, which:\n- Loads the test case (inputs and expected outputs).\n- Converts the inputs to the target framework (either TensorFlow or PyTorch).\n- Executes the operation (either `tensorflow_call` or `pytorch_call`; here it's `tensorflow_call` for the source and `pytorch_call` for the target? Actually, the test is for the target framework, which is torch, so it uses `pytorch_call`? But note: the test code has `fn = namespace['pytorch_call' if fw == 'torch' else 'tensorflow_call']` and then calls `fn` with the converted arguments. Since the test is for the target framework (torch), it will use `pytorch_call`).\n\nHowever, note the test code also has a `source_operation` which is `tensorflow_call` (for the source) and the test is run for the target (torch). The test code in `invoke_test` does:\n1. Decode the input item (which is stored in a custom format) to get the arguments.\n2. Convert the arguments to the target framework (torch or tensorflow) based on the role (which for the target test is the target framework, i.e., torch).\n3. For sparse mode, it does some special handling.\n4. Then it runs the function (which for the target is the `pytorch_call` if the framework is torch) and gets the actual result.\n5. It then gets the expected result from the `source_reference` (which is the output from the source framework, TensorFlow).\n6. It then calls `value_test` with:\n   - `ret_np_flat=[array(actual)]`\n   - `ret_np_from_gt_flat=[expected]`\n   - `rtol`, `atol` from the oracle settings\n   - `specific_tolerance_dict` from the oracle settings\n   - `test_dtypes=setting['test_dtypes']`\n   - `backend=fw` (the target framework, which is torch)\n   - `ground_truth_backend=meta['source_framework']` (which is tensorflow)\n\nAdditionally, if `official_sign` is true, it checks the shape (but in this test, `official_sign` is false). For sparse mode, it does extra checks. And if there's a source gradient, it checks the gradient.\n\nNow, the `value_test` function (from the oracle helper code) does:\n- If `test_dtypes` is True, it calls `assert_same_type_and_shape` (which checks the dtype and shape of the returned arrays).\n- Then it compares the values with the given tolerances.\n\nThe TDL assertions:\n- `dtype` and `helper_shape` are both covered by `value_test(test_dtypes=True)`, because when `test_dtypes` is True, `value_test` will call `assert_same_type_and_shape` which checks both dtype and shape. And the `value` assertion is covered by the value comparison in `value_test`.\n\nIn the test code, the call to `value_test` uses `test_dtypes=setting['test_dtypes']`. We must check what `setting['test_dtypes']` is.\n\nLooking at the inputs, each input has an `oracle_settings` which is a shared reference `s2`. The shared `s2` is:\n```json\n\"s2\": {\n  \"atol\": 1e-06,\n  \"rtol\": null,\n  \"test_dtypes\": true,\n  \"test_values\": true,\n  \"tolerance_dict\": null\n}\n```\n\nSo for every input, `setting['test_dtypes']` is `true`. Therefore, the `value_test` will indeed check dtypes and shapes (via `assert_same_type_and_shape`) and then the values.\n\nThus, the TDL assertions (dtype, helper_shape, value) are all being performed by the test code for every input.\n\nAdditionally, the TDL states:\n- The goal: \"Preserve the supplied source test output obligations on the listed input subset\" — which matches because we are comparing against the frozen source outputs.\n- The input fixture indices are the same as the ones in the test code (0-30).\n- The scope is \"controlled native-output adapter tests\", which matches the test code's purpose.\n\nTherefore, the TDL correctly expresses the intent of the Test Code.\n\nWe return:\n```json\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions (dtype, shape, value) align with test code's value_test with test_dtypes=True for all inputs.\",\n  \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]\n}\n```\n\nNote: We are only assessing the controlled adapter tests and the listed inputs (0-30). We are not concerned with the original frontend modes that are not implemented by this adapter.\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions (dtype, shape, value) align with test code's value_test implementation using test_dtypes=True and tolerance checks. All input indices (0-30) enforce identical dtype/shape via helper_shape and value comparisons against frozen source outputs.\",\n  \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 8080,
+      "completion_tokens": 1913,
+      "total_tokens": 9993
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions (dtype, shape, value) align with test code's value_test implementation using test_dtypes=True and tolerance checks. All input indices (0-30) enforce identical dtype/shape via helper_shape and value comparisons against frozen source outputs.",
+    "input_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ]
+  },
+  "seconds": 240.302
+}

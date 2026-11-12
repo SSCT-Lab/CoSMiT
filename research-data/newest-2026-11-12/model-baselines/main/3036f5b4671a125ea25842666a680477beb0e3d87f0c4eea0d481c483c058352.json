@@ -1,0 +1,77 @@
+{
+  "job_id": "3036f5b4671a125ea25842666a680477beb0e3d87f0c4eea0d481c483c058352",
+  "candidate_id": "H003",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "60bc210effb68d0fd7a76826dae1a7705c0694e963a954d51de3998e9a6fecd3",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792985871.954291,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and a Test Code. We must decide if the TDL correctly expresses the intent of the Test Code.\n\nTDL (Test Description Language) has:\n- assertions: three assertions (dtype, helper_shape, value) that apply to input indices 28 to 47.\n- goal: to preserve the source test output obligations on the listed input subset.\n- input_fixture_indices: [28,29,...,47] (20 indices)\n- scope: controlled native-output adapter tests.\n\nTest Code is a JSON with:\n- data: contains the code for the adapter runtime, the inputs, and other metadata.\n- encoding: \"lossless-subtree-sharing-v1\", so we must replace shared references (like \"__shared_ref__\":\"sN\") with shared.sN.\n\nWe are to focus only on the controlled adapter tests for the input indices 28 to 47.\n\nSteps:\n\n1. Understand the Test Code:\n   - The test code is for an adapter that runs tests for the operation `torch.det` (source) and `tf.linalg.det` (target) on a set of inputs.\n   - The test function `invoke_test` is defined in the adapter runtime. It:\n        a) Reads the test case metadata and the specific input by index.\n        b) Converts the input to the target framework (TensorFlow or PyTorch) using the `convert` function.\n        c) For sparse mode, it creates a sparse tensor.\n        d) Executes the target operation (either `pytorch_call` or `tensorflow_call`).\n        e) Compares the actual result with the expected (source_reference) using `value_test`.\n   - The `value_test` function (from oracle_helper_code) does:\n        - If `test_dtypes` is True, it checks that the dtypes and shapes match (via `assert_same_type_and_shape`).\n        - Then, it checks the values with a tolerance.\n\n2. TDL Assertions:\n   - dtype: Requires identical dtype via `value_test(test_dtypes=True)`. This matches because `value_test` is called with `test_dtypes=setting['test_dtypes']` and in the inputs, the setting (from shared.s3) has `\"test_dtypes\":true`.\n   - helper_shape: Requires identical shape through `assert_same_type_and_shape` invoked by `value_test(test_dtypes=True)`. The `value_test` function does call `assert_same_type_and_shape` when `test_dtypes` is True, which checks both dtype and shape.\n   - value: Compares actual values with frozen source values using the listed tolerances. This is done by `value_test` which uses `assert_all_close` for value comparison.\n\n3. The TDL states that these assertions apply to input indices 28 to 47. The Test Code's `batch_input_indices` are [28,29,...,47] (20 indices) and the inputs are provided for these indices.\n\n4. The TDL's goal is to \"Preserve the supplied source test output obligations on the listed input subset\", which aligns with the test code that uses the frozen source_reference as the expected output.\n\n5. The TDL's scope is \"controlled native-output adapter tests\", which matches the Test Code's scope.\n\nTherefore, the TDL correctly captures the intent of the Test Code for the given input indices.\n\nHowever, note that the Test Code also includes additional checks beyond the three assertions in the TDL:\n   - If `official_sign` is true (which is false in the provided data), it checks the shape (but this is not in the TDL, but the TDL doesn't claim to cover that).\n   - For sparse mode (which none of the provided inputs in the batch are, because all are \"dense\"), it checks the sparse indices and shape. But again, the TDL is only for the listed inputs and they are dense.\n\nThe TDL assertions cover the core checks: dtype, shape (via helper_shape), and value. The additional checks in the Test Code (like for sparse) are not in the current input batch (all dense) and the TDL does not claim to cover them.\n\nThus, for the given input indices (28-47) and the provided test code, the TDL is valid.\n\nOutput:\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions for dtype, helper_shape, and value align with the test code's use of value_test with test_dtypes=true and tolerance settings for the given input indices.\",\n  \"input_indices\": [28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n}\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions match test code obligations: dtype/shape checks via value_test(test_dtypes=True) and value comparisons with source references using tolerances. All batch indices 28-47 are covered by the adapter's execution flow and assertion logic.\",\n  \"input_indices\": [28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 7491,
+      "completion_tokens": 1111,
+      "total_tokens": 8602
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions match test code obligations: dtype/shape checks via value_test(test_dtypes=True) and value comparisons with source references using tolerances. All batch indices 28-47 are covered by the adapter's execution flow and assertion logic.",
+    "input_indices": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 134.11
+}

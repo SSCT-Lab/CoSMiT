@@ -1,0 +1,47 @@
+{
+  "job_id": "809f327c6975a0506bce81adb0365a1466e2c225795d46c62b365d8d07af9266",
+  "candidate_id": "D0041",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "7ff06f735631a5576a737dda645097f773f668b54eb755794d1581d295576aac",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793246329.8128986,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and a Test Code. We must check if the TDL correctly expresses the intent of the Test Code.\n\nTDL (Test Description Language) has:\n- assertions: \n    - dtype: Requires identical dtype via value_test(test_dtypes=True) for inputs [43,44,45,46,47]\n    - helper_shape: Requires identical shape via assert_same_type_and_shape (invoked by value_test(test_dtypes=True)) for same inputs.\n    - value: Compares actual values with frozen source values using tolerances for same inputs.\n- goal: Preserve the supplied source test output obligations on the listed input subset.\n- input_fixture_indices: [43,44,45,46,47]\n- scope: controlled native-output adapter tests.\n\nTest Code:\n- It's a JSON with an encoding: \"lossless-subtree-sharing-v1\", so we must replace any \"__shared_ref__\" with the shared object.\n  We see that the \"oracle_settings\" in each input has a shared reference \"s0\". We replace that with:\n      shared.s0 = {\"atol\":1e-06, \"rtol\":null, \"test_dtypes\":true, \"test_values\":true, \"tolerance_dict\":null}\n\nThe test code (adapter_runtime) does the following:\n1. It decodes the input and source_reference using a custom `decode` function that handles sparse and dense arrays.\n2. It sets up the framework (torch or tensorflow) based on the role (here, target is torch, source is tensorflow).\n3. It converts the input to the appropriate framework tensor.\n4. For sparse mode, it does some special handling (but note: our inputs are in dense mode).\n5. It calls the function (pytorch_call, which is torch.ceil) with the input.\n6. It then runs `value_test` with:\n    ret_np_flat=[array(actual)], \n    ret_np_from_gt_flat=[expected],\n    rtol=setting['rtol'], \n    atol=setting['atol'],\n    specific_tolerance_dict=setting['tolerance_dict'],\n    test_dtypes=setting['test_dtypes'],\n    backend=fw (which is 'torch'),\n    ground_truth_backend=meta['source_framework'] (which is 'tensorflow')\n\nThe `value_test` function (from oracle_helper_code) does:\n- If test_dtypes is True, it calls `assert_same_type_and_shape` which checks:\n    - The shape and dtype of the returned arrays (for each element in the list of returns).\n- Then, it checks the values with `assert_all_close` using the provided tolerances.\n\nNow, let's map to TDL:\n\nTDL assertion \"dtype\": \n    obligation: \"Require identical dtype via value_test(test_dtypes=True)\"\n    This is covered because when test_dtypes=True (which it is, from shared.s0: test_dtypes=true) in the call to value_test, then `assert_same_type_and_shape` is called, which checks the dtype.\n\nTDL assertion \"helper_shape\":\n    obligation: \"Require identical shape through assert_same_type_and_shape invoked by value_test(test_dtypes=True)\"\n    This is the same call: when test_dtypes=True, the shape is also checked by `assert_same_type_and_shape`.\n\nTDL assertion \"value\":\n    obligation: \"Compare actual values with frozen source values using the listed tolerances.\"\n    This is done by the `value_test` function, which (after the dtype and shape check) runs `assert_all_close` to compare the values.\n\nTherefore, the TDL assertions are all implemented by the test code.\n\nAdditionally, the TDL specifies the input indices [43,44,45,46,47] and the test code is run for these indices (as per the inputs in the test code and the batch_input_indices).\n\nHowever, note that the TDL does not mention the gradient check or the sparse mode check. But the TDL's scope is only the value, dtype, and shape for the given inputs. The test code does run a gradient check if the item has 'source_gradient', but looking at the inputs, none of the inputs [43,44,45,46,47] have a 'source_gradient' key (each input has: arguments, input_index, mode, oracle_settings, source_reference). So the gradient check is not run for these inputs.\n\nSimilarly, the test code has a check for sparse mode, but all our inputs are in mode \"dense\", so that part is skipped.\n\nTherefore, the TDL correctly captures the intent for the given input subset.\n\nWe return:\n{\n    \"valid\": true,\n    \"reason\": \"TDL assertions for dtype, shape, and value are implemented by the test code via value_test with test_dtypes=True and the provided tolerances, for the specified input indices.\",\n    \"input_indices\": [43,44,45,46,47]\n}\n\nNote: The reason must be at most 200 words. This is within limit.\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"The TDL assertions for dtype, shape, and value align with the test code's implementation. The value_test function with test_dtypes=True enforces dtype and shape checks via assert_same_type_and_shape, while value comparisons use the specified tolerances. Input indices 43-47 are processed as dense mode tests without gradient or sparse checks, matching the TDL scope.\",\n  \"input_indices\": [43, 44, 45, 46, 47]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3937,
+      "completion_tokens": 1184,
+      "total_tokens": 5121
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "The TDL assertions for dtype, shape, and value align with the test code's implementation. The value_test function with test_dtypes=True enforces dtype and shape checks via assert_same_type_and_shape, while value comparisons use the specified tolerances. Input indices 43-47 are processed as dense mode tests without gradient or sparse checks, matching the TDL scope.",
+    "input_indices": [
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 123.193
+}

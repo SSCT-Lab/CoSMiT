@@ -1,0 +1,83 @@
+{
+  "job_id": "0bdba546f3a8dff6493f47daa72862d5cfcd168a9f72894f5d0415f82e70433d",
+  "candidate_id": "E028",
+  "kind": "intenttester-target-api",
+  "input_indices": [
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "801cb6d067e5d0662a0e7922ad96435dcd775098984a88beaf8332264d88e528",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793088465.5452754,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a test code block and a set of inputs. The task is to check for syntax errors and incorrect API usages in the test code.\n\nThe test code is provided as a string in the \"adapter_runtime\" field. We are to focus on the function `invoke_test` and the surrounding code.\n\nSteps:\n1. Check for syntax errors: We'll look for any obvious syntax issues (e.g., missing colons, unmatched brackets, invalid indentation, etc.).\n2. Check for API usage: We'll look for incorrect usage of libraries (numpy, tensorflow, torch) and any undefined variables or functions.\n\nLet's break down the provided code:\n\nThe code starts with:\n```python\n\"\"\"Explicit native-output adapter shared by the frozen source/target test pair.\n\nOriginal public test bodies are packaged separately. These tests replay their\ncaptured inputs and output oracle; they do not replay every frontend test flag.\n\"\"\"\nimport json\nimport sys\nfrom pathlib import Path\nimport numpy as np\nimport ml_dtypes\n\ndef decode(v):\n    ...  # function to decode a JSON-like structure into numpy arrays\n\ndef invoke_test(folder, role, index):\n    import torch\n    import tensorflow as tf\n    ...  # function that runs the test\n```\n\nWe are particularly interested in the `invoke_test` function because that is where the test logic is.\n\nPotential issues:\n\n1. **Syntax Errors**:\n   - The code seems well-structured. However, we must check for any missing colons, parentheses, or brackets.\n\n   Let's look at the `invoke_test` function:\n\n   - There is a line: `folder = Path(folder)`\n   - Then, it reads some JSON files.\n   - It appends to `sys.path` and imports `value_test` from `ivy_tests.test_ivy.helpers.assertions`.\n   - It defines two nested functions: `convert` and `array`.\n   - Then, it `exec`s a file (the operation file) and gets a function `fn`.\n   - It then runs `fn` and compares the result.\n\n   The code appears to be syntactically correct.\n\n2. **API Usage**:\n\n   - **TensorFlow and PyTorch imports**: They are imported inside the function. This is acceptable but note that the function may be called multiple times. However, that's acceptable.\n\n   - **`exec` usage**: The code uses `exec` to run the operation file. This is a potential security risk but not a syntax error. However, we are only concerned with correctness in the test.\n\n   - **Handling of sparse tensors**:\n     There is a block for sparse mode:\n     ```python\n     if item['mode'] == 'sparse':\n         x = decode(item['arguments'])['x'].copy()\n         x[x < 0.5] = 0\n         idx = np.stack(np.nonzero(x), axis=1)\n         vals = x[tuple(idx.T)]\n         kwargs = {'x': tf.SparseTensor(idx, vals, x.shape) if fw == 'tensorflow' else torch.sparse_coo_tensor(torch.tensor(idx.T), torch.tensor(vals), x.shape).coalesce()}\n     ```\n\n     For TensorFlow: `tf.SparseTensor` expects indices, values, and dense_shape. The indices are provided as `idx` (which is a 2D array of shape [n, ndims]), values as `vals`, and shape as `x.shape`. This is correct.\n\n     For PyTorch: `torch.sparse_coo_tensor` expects indices (in a different format: a tensor of shape [ndims, n]), values, and size. The code uses `torch.tensor(idx.T)` which transposes the indices to the required shape, and then uses `x.shape` for the size. Then it calls `.coalesce()`. This is also correct.\n\n   - **Gradient computation**:\n     There is a block for gradient checking:\n     ```python\n     if 'source_gradient' in item:\n         x = decode(item['arguments'])['x']\n         if fw == 'tensorflow':\n             v = tf.Variable(x)\n             with tf.GradientTape() as tape:\n                 total = tf.reduce_sum(fn(x=v))\n             gradient = tape.gradient(total, v)\n         else:\n             v = torch.tensor(x, requires_grad=True)\n             gradient, = torch.autograd.grad(fn(x=v).sum(), v)\n     ```\n\n     This seems correct.\n\n   - **Call to `value_test`**:\n     The function `value_test` is called with:\n     ```python\n     value_test(ret_np_flat=[array(actual)], ret_np_from_gt_flat=[expected], rtol=setting['rtol'], atol=setting['atol'], specific_tolerance_dict=setting['tolerance_dict'], test_dtypes=setting['test_dtypes'], backend=fw, ground_truth_backend=meta['source_framework'])\n     ```\n\n     The parameters match the expected parameters of the `value_test` function (as provided in the \"oracle_helper_code\").\n\n   - **Potential issue: `array` function for TensorFlow sparse tensors**:\n     In the `array` function, for a `tf.SparseTensor`, it does:\n     ```python\n        if isinstance(v, tf.SparseTensor):\n            return tf.sparse.to_dense(v).numpy()\n     ```\n     This is correct.\n\n   - **Potential issue: `array` function for PyTorch sparse tensors**:\n     For PyTorch, it does:\n     ```python\n        if isinstance(v, torch.Tensor):\n            if v.is_sparse:\n                v = v.to_dense()\n            if v.dtype == torch.bfloat16:\n                return v.detach().float().numpy().astype(ml_dtypes.bfloat16)\n            return v.detach().numpy()\n     ```\n     This is also correct.\n\n   - **Potential issue: `convert` function**:\n     The `convert` function is used to convert numpy arrays to the framework's tensor. For PyTorch, it does:\n     ```python\n        if fw == 'torch':\n            if str(v.dtype) == 'bfloat16':\n                return torch.tensor(v.astype(np.float32), dtype=torch.bfloat16)\n            return torch.tensor(v.copy())\n     ```\n     This is a bit suspicious because for bfloat16, it first casts to float32 and then to torch.bfloat16. This might lose precision? But note that the original array might be in a dtype that torch doesn't support? However, the test might be designed this way. Also, note that the `array` function handles bfloat16 by converting to float and then to ml_dtypes.bfloat16 (which is a numpy-compatible bfloat16). This might be acceptable.\n\n   However, note that the `convert` function for bfloat16 uses `v.astype(np.float32)`. This is because numpy does not have a built-in bfloat16, so we represent it as float32 and then convert to torch.bfloat16. This is a common practice.\n\n   - **Potential issue: `decode` function**:\n     The `decode` function handles several cases. It seems to handle `__sparse__` and `__ndarray__` and nested structures. This looks correct.\n\n   - **Potential issue: `exec` compilation**:\n     The code does:\n     ```python\n        exec(compile(path.read_text(encoding='utf-8'), str(path), 'exec'), namespace)\n     ```\n     This is correct.\n\n   - **Potential issue: `pytorch_call` vs `tensorflow_call`**:\n     The code gets the function by:\n     ```python\n        fn = namespace['pytorch_call' if fw == 'torch' else 'tensorflow_call']\n     ```\n     This is consistent with the provided `target_operation` which defines `pytorch_call` for the target (torch).\n\n   - **Potential issue: The `value_test` function**:\n     The `value_test` function is imported from `ivy_tests.test_ivy.helpers.assertions`. We are not given the code of that module, but we are provided with an \"oracle_helper_code\" that defines a `value_test` function. However, note that the test code uses an import from a specific path. We must assume that the environment is set up correctly. Since we are only checking the code, and the import is valid, we don't flag it.\n\n   - **Potential issue: Use of `ml_dtypes`**:\n     The code imports `ml_dtypes` and uses it for bfloat16. This is a valid library for numpy-compatible bfloat16.\n\n   - **Potential issue: The `array` function for non-TensorFlow and non-PyTorch tensors**:\n     The last line of `array` is:\n     ```python\n        return np.asarray(v.numpy()) if isinstance(v, tf.Tensor) else np.asarray(v)\n     ```\n     This might be problematic because if `v` is a TensorFlow tensor, we call `v.numpy()` and then convert to a numpy array. But note that `v.numpy()` already returns a numpy array, so `np.asarray` is redundant. Also, for non-TensorFlow and non-PyTorch tensors, it returns `np.asarray(v)`. This might be acceptable.\n\n     However, note that the condition for TensorFlow tensors is already handled above (by `isinstance(v, tf.Tensor)` and `isinstance(v, tf.SparseTensor)`). So the last line will only be reached for non-TensorFlow and non-PyTorch objects. But the function is called on `actual` which is either a TensorFlow tensor, a PyTorch tensor, or a numpy array? The code expects that the function `fn` returns a tensor. So the `array` function should handle all tensor types.\n\n     Actually, the condition for `tf.SparseTensor` and `torch.Tensor` (which includes sparse) are handled. Then, for a dense TensorFlow tensor, it would be caught by `isinstance(v, tf.Tensor)`? But note: the `tf.Tensor` check is only in the `else` branch of the sparse checks? Actually, the code does:\n\n     ```python\n        if isinstance(v, tf.SparseTensor):\n            ... \n        if isinstance(v, torch.Tensor):\n            ...\n        return np.asarray(v.numpy()) if isinstance(v, tf.Tensor) else np.asarray(v)\n     ```\n\n     This is incorrect because if `v` is a dense TensorFlow tensor, it will be caught by the last condition and then we do `v.numpy()`. But note that the `torch.Tensor` condition already handled PyTorch tensors. So the last condition is only for TensorFlow dense tensors? But wait, the `tf.SparseTensor` is handled first, so dense TensorFlow tensors would fall through to the last condition. However, the condition `isinstance(v, tf.Tensor)` is true for dense tensors? Actually, `tf.SparseTensor` is not a subclass of `tf.Tensor`, so dense tensors are `tf.Tensor` and sparse are `tf.SparseTensor`. So the last condition is for dense TensorFlow tensors? But note that the `tf.SparseTensor` is handled first, so we are safe.\n\n     However, the code for dense TensorFlow tensors is: `np.asarray(v.numpy())`. This is redundant because `v.numpy()` returns a numpy array, so `np.asarray` is unnecessary but harmless.\n\n     But wait, what about non-TensorFlow and non-PyTorch objects? They will be converted by `np.asarray(v)`. This is acceptable.\n\n   However, note that the `array` function is called on `actual` which is the result of `fn(**kwargs)`. The `fn` is either a PyTorch or TensorFlow function, so it should return a tensor. But what if it returns a numpy array? Then we do `np.asarray(v)`, which is acceptable.\n\n   Therefore, the code seems correct.\n\n   But note: the `array` function does not handle the case when `v` is a tuple or list of tensors. However, the `value_test` function expects a flat list of arrays. The `invoke_test` function passes `[array(actual)]` and `[expected]` to `value_test`. So `actual` must be a single tensor. The test cases are designed to return a single tensor? Looking at the inputs, the operation is `stack` which returns a single tensor.\n\n   Therefore, we don't see any API misuse.\n\n3. **Conclusion**:\n   The code appears to be syntactically correct and uses the APIs correctly.\n\n   However, note that the test code includes a batch of input indices: [25,26,...,47]. We are to return the list of input indices that we assessed. Since we are assessing the entire test code (which runs for all these indices) and found no issues, we return all of them.\n\n   But note: the problem says \"input_indices must list all assessed batch indices\". We are assessing the test code, not the individual inputs. The test code is the same for all inputs, so if it is valid, then it is valid for all.\n\n   Therefore, we return:\n   ```json\n   {\n     \"valid\": true,\n     \"reason\": \"No syntax errors or incorrect API usages found.\",\n     \"input_indices\": [25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n   }\n   ```\n\n   However, note that the problem says: \"Return concise JSON only, with a nonempty reason of at most 200 words.\" Our reason is concise.\n\n   But wait: the problem says \"null means insufficient evidence\". We have sufficient evidence to say it's valid.\n\n   However, let's double-check one more thing: the `value_test` function in the oracle helper code is defined, but the test code imports a different one? The test code does:\n   ```python\n        from ivy_tests.test_ivy.helpers.assertions import value_test\n   ```\n   But the provided context includes an \"oracle_helper_code\" that defines a `value_test` function. We are not sure if they are the same. However, the problem states: \"Original public tests are accepted as valid; do not re-investigate their authenticity.\" So we assume that the imported `value_test` is correct and available.\n\n   Therefore, we stick with our decision.\n\nFinal Output:\n</think>\n{\"valid\": true, \"reason\": \"No syntax errors or incorrect API usages detected in the test code. The decode function handles shared references and sparse/ndarray structures correctly. The invoke_test function properly integrates TensorFlow and PyTorch APIs, including sparse tensor handling, gradient computation, and value assertions. All framework-specific conversions and test executions align with the intended logic.\", \"input_indices\": [25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 8214,
+      "completion_tokens": 3285,
+      "total_tokens": 11499
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "No syntax errors or incorrect API usages detected in the test code. The decode function handles shared references and sparse/ndarray structures correctly. The invoke_test function properly integrates TensorFlow and PyTorch APIs, including sparse tensor handling, gradient computation, and value assertions. All framework-specific conversions and test executions align with the intended logic.",
+    "input_indices": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 624.137
+}

@@ -1,0 +1,77 @@
+{
+  "job_id": "39ab62b1dd461b64d7624703721ef0c4be4b9c391dd92130c6d9311f3ee38f8a",
+  "candidate_id": "D0039",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "a9aa916b5227e2c519408d5cab7485f02b17cc734cbb23970f875dc8f2c1600f",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793096518.7333515,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL (Test Description Language) and a Test Code. We must assess whether the TDL correctly expresses the intent of the Test Code.\n\nTDL:\n- It has three assertions: \"dtype\", \"helper_shape\", and \"value\".\n- Each assertion has \"applicable_input_indices\" (all from 28 to 47) and an \"obligation\" (a description of what is being tested).\n- The goal is to preserve the source test output obligations on the listed input subset (indices 28-47).\n- The input_fixture_indices are [28,29,...,47].\n\nTest Code:\n- This is a JSON object containing:\n  - \"data\": The actual test code and related information.\n  - \"batch_input_indices\": [28,29,...,47] (same as TDL's input_fixture_indices).\n  - \"inputs\": A list of input objects for each index in the batch.\n  - \"official_sign\": false.\n  - \"oracle_helper_code\": Code for the helper functions (assert_all_close, assert_same_type_and_shape, value_test).\n  - \"original_source_test_excerpt\": The original test function (for context, but we are only concerned with the adapter tests).\n  - And other metadata.\n\nThe Test Code's \"data\" field contains the adapter runtime code. The key function is `invoke_test`, which:\n1. Decodes the input using a custom `decode` function (handling sparse, ndarray, etc.).\n2. Converts the input to the appropriate framework (TensorFlow or PyTorch) using `convert`.\n3. Executes the function (either 'pytorch_call' or 'tensorflow_call') from the operation file.\n4. Compares the actual output with the expected (source_reference) using `value_test` (from the helper code) and other checks.\n\nThe `value_test` function (from the oracle_helper_code) does:\n- If `test_dtypes` is True, it calls `assert_same_type_and_shape` (which checks shape and dtype).\n- Then, it compares the values with the given tolerances.\n\nNow, let's map the TDL assertions to the Test Code:\n\n1. TDL \"dtype\" assertion:\n   - Obligation: \"Require identical dtype via value_test(test_dtypes=True).\"\n   - This is implemented in the `value_test` function when `test_dtypes=True` (which it is, because the oracle_settings for the inputs have `\"test_dtypes\": true`). The `value_test` function then calls `assert_same_type_and_shape` which checks the dtype and shape.\n\n2. TDL \"helper_shape\" assertion:\n   - Obligation: \"Require identical shape through assert_same_type_and_shape invoked by value_test(test_dtypes=True).\"\n   - This is the same as above: when `test_dtypes=True`, `value_test` calls `assert_same_type_and_shape` which checks the shape (and dtype). So this is covered.\n\n3. TDL \"value\" assertion:\n   - Obligation: \"Compare actual values with frozen source values using the listed tolerances.\"\n   - This is done by the `value_test` function, which (after the dtype and shape check) does the value comparison with the given tolerances (rtol, atol, and tolerance_dict).\n\nAdditionally, note that the Test Code has extra checks for sparse mode and gradient, but the TDL does not mention them. However, the TDL's scope is only the listed input indices (28-47). Looking at the inputs:\n\n- The input indices 28-47: \n  - All have \"mode\": \"dense\", except we note that input_index 33 has an argument that is a scalar (or array) and there is no sparse mode in these inputs. \n  - The input_index 44 and 45 have a source_reference that is a scalar float32, and so on.\n\nTherefore, the sparse mode checks (which are in the Test Code) are not triggered for these inputs because the mode is \"dense\". Similarly, the gradient check is only done if the input has a 'source_gradient' key, and none of these inputs have that (only the input_index 33 and others don't have it). So the TDL is only describing the dense value, dtype, and shape checks.\n\nThus, the TDL assertions cover the main checks performed by the Test Code for the given inputs.\n\nHowever, note that the TDL does not mention the following parts of the Test Code:\n- The check for `official_sign` (which is false, so the shape check after `value_test` is skipped: `if meta['official_sign']: ...` is false).\n- The sparse mode checks (but these are not in the input batch).\n\nTherefore, for the given input batch (28-47), the TDL assertions are sufficient and correctly describe the intent.\n\nBut wait: the TDL says the \"helper_shape\" obligation is to require identical shape through `assert_same_type_and_shape` invoked by `value_test(test_dtypes=True)`. This is exactly what the Test Code does.\n\nHowever, note that the Test Code also has an extra shape check in the sparse mode, but that is not triggered because the inputs are dense. So for this batch, it's not an issue.\n\nAlso, the TDL does not mention the gradient check, but the inputs in the batch do not have 'source_gradient', so that part of the Test Code is not executed.\n\nTherefore, the TDL correctly expresses the intent of the Test Code for the given input batch.\n\nBut note: the TDL has an assertion \"helper_shape\" that is described as being done by `value_test(test_dtypes=True)`. However, in the Test Code, the `value_test` function does call `assert_same_type_and_shape` when `test_dtypes` is True, which checks both dtype and shape. So the TDL is correct.\n\nOne more point: the TDL has three separate assertions, but in the Test Code, the `value_test` function does all three: dtype, shape, and value (if test_dtypes is True, then dtype and shape are checked; then the value is checked). So the TDL is breaking down the obligations, which is acceptable.\n\nConclusion: The TDL is valid for the given Test Code and the input batch.\n\nThus, we return:\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions for dtype, helper_shape, and value correctly describe the test code's use of value_test with test_dtypes=True, which checks dtype and shape via assert_same_type_and_shape and then the values with tolerances. The input batch (28-47) does not trigger additional checks (sparse or gradient) that are not covered by TDL.\",\n  \"input_indices\": [28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n}\n\nNote: The reason must be at most 200 words. The above reason is within the limit.\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions align with test code implementation: 'dtype' and 'helper_shape' obligations are enforced via value_test(test_dtypes=True) calling assert_same_type_and_shape, while 'value' assertion matches the value comparison with tolerances. Input batch indices 28-47 exclusively use dense mode without gradient checks, fitting TDL scope.\",\n  \"input_indices\": [28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 5758,
+      "completion_tokens": 1628,
+      "total_tokens": 7386
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions align with test code implementation: 'dtype' and 'helper_shape' obligations are enforced via value_test(test_dtypes=True) calling assert_same_type_and_shape, while 'value' assertion matches the value comparison with tolerances. Input batch indices 28-47 exclusively use dense mode without gradient checks, fitting TDL scope.",
+    "input_indices": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 264.867
+}

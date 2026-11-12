@@ -1,0 +1,39 @@
+{
+  "candidate_count": 110,
+  "inputs": 5188,
+  "paired_observations_reused": 15564,
+  "new_framework_executions": 0,
+  "new_model_calls": 0,
+  "counts": {
+    "cosmit": {
+      "supported-on-tested-inputs": 80,
+      "refuted-on-tested-inputs": 28,
+      "undetermined": 2
+    },
+    "dllens": {
+      "no-difference-on-tested-inputs": 85,
+      "undetermined": 15,
+      "difference-observed": 10
+    },
+    "dllens_source_tolerance": {
+      "no-difference-on-tested-inputs": 85,
+      "undetermined": 15,
+      "difference-observed": 10
+    },
+    "docter": {
+      "satisfied": 43,
+      "undetermined": 53,
+      "violated": 14
+    }
+  },
+  "schema_mapped_candidates": 98,
+  "scope": "controlled native output tests, not complete intent preservation",
+  "source_execution": "research-data\\2026-10-18\\ablation\\campaign-v1\\execution",
+  "execution_sha256": "9e05fd05d4a8eaae5b038dcab12f407ba02eb5874f628ac2300dd645a95103d4",
+  "package_manifest_sha256": "a6ba5e1d54fcf5c8db8bceb2016fb24b1f3865075b83c601ff41d841d0ef2bac",
+  "code_sha256": {
+    "recompute_local_baselines_110.py": "64cc882a6d0ab3c6620d862adabe5ced9ac5d837309fb113e6941b88ecdfeaf0",
+    "verification_ports.py": "088a2ced882e4777d819558a735c660ec6ce0c5fb17908044484e9f273944f49",
+    "unified_test_runtime.py": "d36f17f328691c76cf592933b4d4336ba9792122b471f5374d391dd6c12a3fd2"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "job_id": "edecf2c223243f27c84685dbb1c4ffff1bb170dae7242a77e3ba137efc2f1ae7",
+  "candidate_id": "D0046",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "5a409898fd79774f7a5bd913036c329898ecdfceb0f24cc89bae0098376ddc76",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792931610.6031806,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL (Test Description Language) and Test Code. The task is to determine if the TDL correctly expresses the intent of the Test Code.\n\nTDL Summary:\n- Assertions:\n  1. \"dtype\": Requires identical dtype via `value_test(test_dtypes=True)`. Applicable to input indices [41,42,43,44,45,46,47].\n  2. \"helper_shape\": Requires identical shape through `assert_same_type_and_shape` invoked by `value_test(test_dtypes=True)`. Same indices.\n  3. \"value\": Compares actual values with frozen source values using the listed tolerances. Same indices.\n- Goal: Preserve the supplied source test output obligations on the listed input subset.\n- Input fixture indices: [41,42,43,44,45,46,47]\n- Scope: Controlled native-output adapter tests.\n\nTest Code Summary:\n- The test code is an adapter that runs tests for the `tf.math.floor` operation in TensorFlow and compares with a reference (source) implementation in PyTorch? (Note: the target framework is torch, but the source is tensorflow).\n- The test function `invoke_test` is defined to run a test for a given input index. It:\n  - Loads the test case (inputs and expected output from the source).\n  - Converts the input to the appropriate framework (torch or tensorflow) based on the role (source or target?).\n  - Executes the operation (either `tensorflow_call` for source or `pytorch_call` for target?).\n  - Compares the result with the expected output using `value_test` from the helper code.\n- The `value_test` function (from the oracle_helper_code) does:\n  - If `test_dtypes` is True, it calls `assert_same_type_and_shape` which checks dtype and shape.\n  - Then it compares the values with the given tolerances.\n\nNow, let's map the TDL assertions to the Test Code:\n\n1. TDL \"dtype\" assertion: It says it requires identical dtype via `value_test(test_dtypes=True)`. \n   - In the test code, when `value_test` is called, it passes `test_dtypes=setting['test_dtypes']`. In the inputs, the setting is shared as `s0` which decodes to: `{\"atol\":1e-06,\"rtol\":null,\"test_dtypes\":true,\"test_values\":true,\"tolerance_dict\":null}`. So `test_dtypes` is True for all these inputs (since they all use `s0`).\n   - The `value_test` function, when `test_dtypes` is True, does call `assert_same_type_and_shape` which in turn checks the dtype and shape. So this matches.\n\n2. TDL \"helper_shape\" assertion: It says it requires identical shape through `assert_same_type_and_shape` invoked by `value_test(test_dtypes=True)`.\n   - As above, when `test_dtypes` is True, `value_test` calls `assert_same_type_and_shape` which checks the shape (and dtype). So this matches.\n\n3. TDL \"value\" assertion: It says it compares actual values with frozen source values using the listed tolerances.\n   - The `value_test` function does compare the values (with the tolerances provided). The tolerances come from the setting (which is `s0` and also from the `TOLERANCE_DICT` in the helper). The test code also uses the `atol` and `rtol` from the setting.\n\nAdditionally, note that the TDL's goal is to preserve the source test output obligations on the given input subset. The test code is indeed comparing against the frozen source values (from `item['source_reference']`).\n\nHowever, we must note that the test code also includes additional checks beyond the three assertions in the TDL:\n\n- If `official_sign` is true (which it is false in this case, so skipped) it checks the shape again? (But that condition is false so it doesn't run.)\n- For sparse mode: the inputs in this batch are all dense (mode: dense) so the sparse checks are not run.\n- Gradient check: only if 'source_gradient' is in the item. Looking at the inputs, none of them have 'source_gradient', so that part is not run.\n\nTherefore, for the given inputs [41-47], the test code only runs the `value_test` with `test_dtypes=True` and the value comparison. This exactly matches the three assertions in the TDL.\n\nBut note: the TDL does not mention the gradient check or the sparse mode check. However, the TDL is only applicable to the input indices [41-47] and for these inputs, the gradient and sparse checks are not triggered. So the TDL is still accurate for the given inputs.\n\nConclusion: The TDL correctly captures the intent of the test code for the given input indices.\n\nOutput:\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions for dtype, shape, and value are implemented by the test code via value_test with test_dtypes=true and value comparisons, matching the source obligations for the given inputs.\",\n  \"input_indices\": [41,42,43,44,45,46,47]\n}\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions align with test code implementation: dtype and shape checks via value_test(test_dtypes=True) invoke assert_same_type_and_shape, while value comparisons use frozen source outputs with specified tolerances. All batch inputs [41-47] trigger these exact mechanisms without extraneous checks.\",\n  \"input_indices\": [41,42,43,44,45,46,47]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 4400,
+      "completion_tokens": 1222,
+      "total_tokens": 5622
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions align with test code implementation: dtype and shape checks via value_test(test_dtypes=True) invoke assert_same_type_and_shape, while value comparisons use frozen source outputs with specified tolerances. All batch inputs [41-47] trigger these exact mechanisms without extraneous checks.",
+    "input_indices": [
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 145.022
+}

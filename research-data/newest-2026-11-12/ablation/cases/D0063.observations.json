@@ -1,0 +1,662 @@
+[
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [
+          1,
+          3,
+          2
+        ],
+        "values": [
+          [
+            [
+              -2.5,
+              -1.5
+            ],
+            [
+              -0.5,
+              0.5
+            ],
+            [
+              1.5,
+              2.5
+            ]
+          ]
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": true,
+    "oracle_settings": {
+      "rtol": 1e-06,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": false
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 0,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0063",
+        "changes": [],
+        "original_flags": null,
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              1,
+              3,
+              2
+            ],
+            "values": [
+              [
+                [
+                  -2.5,
+                  -1.5
+                ],
+                [
+                  -0.5,
+                  0.5
+                ],
+                [
+                  1.5,
+                  2.5
+                ]
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 6,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": false
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            1,
+            3,
+            2
+          ],
+          "digest": "5bb39ca8ba8e3eb16d1572303114feedd7df91df10623494006870df0d7c39eb",
+          "bound": true,
+          "values": [
+            [
+              [
+                -1.0,
+                -1.0
+              ],
+              [
+                -1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ]
+            ]
+          ],
+          "gradient_digest": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0"
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            1,
+            3,
+            2
+          ],
+          "digest": "5bb39ca8ba8e3eb16d1572303114feedd7df91df10623494006870df0d7c39eb",
+          "bound": true,
+          "values": [
+            [
+              [
+                -1.0,
+                -1.0
+              ],
+              [
+                -1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ]
+            ]
+          ],
+          "gradient_digest": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0"
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            1,
+            3,
+            2
+          ],
+          "digest": "5bb39ca8ba8e3eb16d1572303114feedd7df91df10623494006870df0d7c39eb",
+          "bound": true,
+          "values": [
+            [
+              [
+                -1.0,
+                -1.0
+              ],
+              [
+                -1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ]
+            ]
+          ],
+          "gradient_digest": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0"
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            1,
+            3,
+            2
+          ],
+          "digest": "5bb39ca8ba8e3eb16d1572303114feedd7df91df10623494006870df0d7c39eb",
+          "bound": true,
+          "values": [
+            [
+              [
+                -1.0,
+                -1.0
+              ],
+              [
+                -1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ]
+            ]
+          ],
+          "gradient_digest": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0"
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            1,
+            3,
+            2
+          ],
+          "digest": "5bb39ca8ba8e3eb16d1572303114feedd7df91df10623494006870df0d7c39eb",
+          "bound": true,
+          "values": [
+            [
+              [
+                -1.0,
+                -1.0
+              ],
+              [
+                -1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ]
+            ]
+          ],
+          "gradient_digest": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0"
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            1,
+            3,
+            2
+          ],
+          "digest": "5bb39ca8ba8e3eb16d1572303114feedd7df91df10623494006870df0d7c39eb",
+          "bound": true,
+          "values": [
+            [
+              [
+                -1.0,
+                -1.0
+              ],
+              [
+                -1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ]
+            ]
+          ],
+          "gradient_digest": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0"
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0063.observations.json",
+      "ledger_index": 31,
+      "file_sha256": "09571391558c69fcfb957ad8910d6b5cd008e5a867a9f5a8c0f721fe9e4553fe"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [
+          1,
+          3,
+          2
+        ],
+        "values": [
+          [
+            [
+              -2.5,
+              -1.5
+            ],
+            [
+              -0.5,
+              0.5
+            ],
+            [
+              1.5,
+              2.5
+            ]
+          ]
+        ]
+      }
+    },
+    "mode": "sparse",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": 1e-06,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": false
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 1,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0063",
+        "changes": [],
+        "original_flags": null,
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              1,
+              3,
+              2
+            ],
+            "values": [
+              [
+                [
+                  -2.5,
+                  -1.5
+                ],
+                [
+                  -0.5,
+                  0.5
+                ],
+                [
+                  1.5,
+                  2.5
+                ]
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 6,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": false
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            1,
+            3,
+            2
+          ],
+          "digest": "ef988069098d43f6e1b276aa16ce881e6101ae7455289048a79ff9fddbc6b2b6",
+          "bound": true,
+          "values": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ]
+            ]
+          ],
+          "sparse_indices": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            1,
+            3,
+            2
+          ],
+          "digest": "ef988069098d43f6e1b276aa16ce881e6101ae7455289048a79ff9fddbc6b2b6",
+          "bound": true,
+          "values": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ]
+            ]
+          ],
+          "sparse_indices": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            1,
+            3,
+            2
+          ],
+          "digest": "ef988069098d43f6e1b276aa16ce881e6101ae7455289048a79ff9fddbc6b2b6",
+          "bound": true,
+          "values": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ]
+            ]
+          ],
+          "sparse_indices": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            1,
+            3,
+            2
+          ],
+          "digest": "ef988069098d43f6e1b276aa16ce881e6101ae7455289048a79ff9fddbc6b2b6",
+          "bound": true,
+          "values": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ]
+            ]
+          ],
+          "sparse_indices": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            1,
+            3,
+            2
+          ],
+          "digest": "ef988069098d43f6e1b276aa16ce881e6101ae7455289048a79ff9fddbc6b2b6",
+          "bound": true,
+          "values": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ]
+            ]
+          ],
+          "sparse_indices": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            1,
+            3,
+            2
+          ],
+          "digest": "ef988069098d43f6e1b276aa16ce881e6101ae7455289048a79ff9fddbc6b2b6",
+          "bound": true,
+          "values": [
+            [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ]
+            ]
+          ],
+          "sparse_indices": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0063.observations.json",
+      "ledger_index": 32,
+      "file_sha256": "09571391558c69fcfb957ad8910d6b5cd008e5a867a9f5a8c0f721fe9e4553fe"
+    }
+  }
+]

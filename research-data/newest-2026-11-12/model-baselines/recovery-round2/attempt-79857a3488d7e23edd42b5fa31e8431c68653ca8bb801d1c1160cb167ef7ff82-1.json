@@ -1,0 +1,21 @@
+{
+  "job_id": "79857a3488d7e23edd42b5fa31e8431c68653ca8bb801d1c1160cb167ef7ff82",
+  "candidate_id": "D0050",
+  "kind": "trace-llm",
+  "input_indices": [
+    44
+  ],
+  "prompt_sha256": "12567b7e72eedca720efa26c874b7773d5405a1d0f9366f0380e21d43f22e67b",
+  "status": "failed",
+  "attempt": 1,
+  "started_unix": 1793287952.4400342,
+  "recovery_config": {
+    "max_tokens": 8192,
+    "socket_timeout_seconds": 600,
+    "wall_timeout_seconds": 2400
+  },
+  "error_type": "RuntimeError",
+  "http_status": 424,
+  "http_error_detail": "model endpoint returned HTTP 424: {\"error\":\"Failed to enqueue inferRequest. This model's maximum input ids length cannot be greater than 16384,the input ids length is 17024\",\"error_type\":\"Generation Error\"}",
+  "seconds": 0.532
+}

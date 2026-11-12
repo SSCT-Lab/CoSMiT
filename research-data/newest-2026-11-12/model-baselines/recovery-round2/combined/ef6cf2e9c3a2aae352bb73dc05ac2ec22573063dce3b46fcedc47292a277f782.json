@@ -1,0 +1,74 @@
+{
+  "job_id": "ef6cf2e9c3a2aae352bb73dc05ac2ec22573063dce3b46fcedc47292a277f782",
+  "candidate_id": "E002",
+  "kind": "trace-llm",
+  "input_indices": [
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "13bc24bc8699fb9d1550241dc0620ea35824f2ffc1c65c52d9edb073a72d058a",
+  "status": "completed",
+  "attempt": 1,
+  "started_unix": 1793275504.5130715,
+  "recovery_config": {
+    "max_tokens": 8192,
+    "socket_timeout_seconds": 600,
+    "wall_timeout_seconds": 2400
+  },
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace each {\"__shared_ref__\":\"sN\"} with shared.sN to recover the data.\n The shared dictionary is provided in the \"shared\" key.\n\n Steps:\n 1. Reconstruct the full data by replacing shared references.\n 2. Analyze the provided adapter tests and the observations for each input index in the batch [33,34,...,47].\n 3. The verdicts to assign are for the preservation claim of the adapter-test. We are to assess only the controlled adapter tests.\n\n Important:\n - The original public tests are accepted as valid. We are not to re-investigate their authenticity.\n - The fixture includes recorded source outputs as test expectations; they are not human labels.\n - We are not to infer whole-domain correctness from samples.\n\n The return must be a JSON object with:\n   verdict: \"preserved\", \"violated\", \"invalid-test\", \"invalid-assumption\", or \"undetermined\"\n   behavior_verdict: \"preserved\", \"violated\", or \"undetermined\"\n   intent_verdict: \"preserved\", \"violated\", or \"undetermined\"\n   reason: a string of at most 200 words\n   input_indices: list of all assessed batch indices (which are [33,34,...,47])\n\n How to assess:\n - The adapter-test preservation claim: we are to check if the target adapter, when run on the same inputs as the source adapter, produces outputs that match the recorded source outputs (which are the expectations) according to the test oracle (value_test function).\n\n However, note that the test oracle (value_test) is provided and uses the function `assert_all_close` and `assert_same_type_and_shape`.\n\n We are given observations for each input index. Each observation has:\n   - For most inputs: groups of observations (with repeats) that show the source and target outputs and errors.\n   - For input indices 45 and 46, we have a shared reference (s14 and s15) that points to an observation.\n\n But note: the observations are provided as part of the data. We are to use these observations to determine if the test passed or failed.\n\n However, the problem states: \"Return concise JSON only, with a nonempty reason of at most 200 words. input_indices must list all assessed batch indices.\"\n\n We are to look at the observations for each input index and see if the test passed (i.e., both source and target ran without error and the outputs matched) or if there was a discrepancy.\n\n Steps for each input index in the batch:\n   - Check the observation for that input index.\n   - If the observation shows that the target_output matches the source_output (and both without error), then that test passed.\n   - If there is a target_error or a mismatch, then the test failed.\n\n But note: the test might be invalid? Or the assumption might be invalid?\n\n The verdicts:\n   - \"preserved\": if all tests in the batch passed (i.e., the adapter preserved the behavior for these tests).\n   - \"violated\": if at least one test in the batch failed (i.e., the adapter did not preserve the behavior for at least one test).\n   - \"invalid-test\": if the test itself is invalid (e.g., the test oracle is flawed, or the test setup is incorrect) for the entire batch.\n   - \"invalid-assumption\": if the test relies on an assumption that does not hold (e.g., about the framework versions) for the entire batch.\n   - \"undetermined\": if we cannot determine due to missing information.\n\n However, note that the problem says: \"a failing target test alone does not imply its intent was lost.\" But we are to assign two additional verdicts: behavior_verdict and intent_verdict.\n\n But the problem states: \"verdict refers to the bounded adapter-test preservation claim; behavior and intent are distinct\".\n\n We are to return three verdicts.\n\n Interpretation:\n   - The overall verdict is about the test preservation: did the tests pass? If they all passed, then preserved. If any failed, then violated? But what if the test is invalid?\n\n However, note the instructions: \"Assess only the controlled adapter tests and listed inputs.\"\n\n We are to look at the provided observations.\n\n Let's reconstruct the observations for each input index:\n\n Input indices: 33 to 47.\n\n For each input index, we have an observation. For indices 33 to 44 and 47, we have a list of groups (with repeats) that show the source and target outputs and errors.\n\n For indices 45 and 46, we have a shared reference: s14 and then s15, which then points to s16.\n\n Let's expand the shared references for 45 and 46:\n\n   input_index 45: \n        \"groups\": {\"__shared_ref__\":\"s14\"} -> s14 is [{\"__shared_ref__\":\"s15\"}]\n        s15 is: {\"observation\": {\"__shared_ref__\":\"s16\"}, \"repeats\":[0,1,2]}\n        s16 is: {\"source_error\":null, \"source_lines\":[2], \"source_output\": {\"__ndarray__\":true,\"dtype\":\"bfloat16\",\"shape\":[],\"values\":-1.8984375}, \"target_error\":null, \"target_lines\":[2], \"target_output\": {\"__ndarray__\":true,\"dtype\":\"bfloat16\",\"shape\":[],\"values\":-1.8984375}}\n\n   So for input 45, the observation is the same as s16: both source and target output -1.8984375 without error.\n\n Similarly, input 46 is the same.\n\n Now, let's check each input:\n\n   input 33: source_output and target_output are both s1 (which is a float64 scalar: -4.895162488715843e-308) -> passed.\n   input 34: both are s3 (float64 array [1.6342664862384688e+308]) -> passed.\n   input 35: both are 0 (int32 scalar) -> passed.\n   input 36: both are 885946696 (int32 scalar) -> passed.\n   input 37: both are [0] (int32 array of one element) -> passed.\n   input 38: both are s4 (int32 array of two elements: [-1952302942, -1952273021]) -> passed.\n   input 39: both are [0] (int64 array of one element) -> passed.\n   input 40: both are s5 (int64 array of four elements: [-2358831722, -55423, 60092, -2867]) -> passed.\n   input 41: both are s7 (float64 array of one element: -4.895162488715843e-308) -> passed.\n   input 42: both are s9 (float64 array of three elements: [-3.8749256940942936e+16, 10000000.99999, 2.0]) -> passed.\n   input 43: both are s10 (float64 array of three elements: [-3.8749256940942936e+16, 3.8749256950942936e+16, 2.0]) -> passed.\n   input 44: both are s11 (bfloat16 scalar: -3.083808950221005e+38) -> passed.\n   input 45: both are -1.8984375 (bfloat16 scalar) -> passed.\n   input 46: both are -1.8984375 (bfloat16 scalar) -> passed.\n   input 47: both are -3.796875 (bfloat16 scalar) -> passed.\n\n Therefore, all tests passed.\n\n However, note that the test for input 47 is provided explicitly and also passed.\n\n Therefore, the adapter-test preservation claim is preserved for all inputs in the batch.\n\n But note: the problem says \"behavior_verdict\" and \"intent_verdict\". How are they distinct?\n\n The problem states: \"behavior_verdict\" and \"intent_verdict\" are distinct.\n\n We are not given explicit intent, but note:\n\n   - The test is about the operation `tf.add` (source) and `torch.add` (target). The intent of the test is to check that the target implementation of `add` matches the source.\n\n   Since the behavior (outputs) are preserved, we can say that the behavior is preserved.\n\n   The intent of the test is also preserved because the test passed and the target function is behaving as the source function for these inputs.\n\n However, the problem says: \"a failing target test alone does not imply its intent was lost\". But here, the tests passed.\n\n Therefore:\n   verdict: \"preserved\"\n   behavior_verdict: \"preserved\"\n   intent_verdict: \"preserved\"\n\n But note: the problem says \"Return concise JSON only\". We must also provide a reason.\n\n Reason: \"All 15 controlled adapter tests passed: the target outputs matched the source outputs for the given inputs.\"\n\n However, we must also consider if there are any issues with the test setup?\n\n The framework versions are provided:\n   numpy: 2.1.3\n   tensorflow: 2.20.0\n   torch: 2.9.1+cpu\n\n And the test oracle code is provided. We are not to re-investigate the original tests.\n\n Since the tests passed, we have no reason to invalidate the test.\n\n Therefore, the verdicts are all \"preserved\".\n\n But note: the problem says \"invalid-test\" or \"invalid-assumption\" if there is an issue. We don't see any.\n\n Input indices: [33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n\n Let's write the JSON.\n</think>\n{\n  \"verdict\": \"preserved\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"preserved\",\n  \"reason\": \"All 15 test cases (indices 33-47) passed: Target outputs exactly matched source reference outputs across dense mode operations, including edge cases (large floats, integers, bfloat16). No errors observed. Adapter correctly preserved tensor addition behavior between TensorFlow and PyTorch for provided inputs.\",\n  \"input_indices\": [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 6437,
+      "completion_tokens": 2242,
+      "total_tokens": 8679
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "preserved",
+    "behavior_verdict": "preserved",
+    "intent_verdict": "preserved",
+    "reason": "All 15 test cases (indices 33-47) passed: Target outputs exactly matched source reference outputs across dense mode operations, including edge cases (large floats, integers, bfloat16). No errors observed. Adapter correctly preserved tensor addition behavior between TensorFlow and PyTorch for provided inputs.",
+    "input_indices": [
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 231.79
+}

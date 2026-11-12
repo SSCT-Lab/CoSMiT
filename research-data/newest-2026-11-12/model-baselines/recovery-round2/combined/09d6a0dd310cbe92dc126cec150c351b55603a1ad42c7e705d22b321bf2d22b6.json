@@ -1,0 +1,67 @@
+{
+  "job_id": "09d6a0dd310cbe92dc126cec150c351b55603a1ad42c7e705d22b321bf2d22b6",
+  "candidate_id": "E014",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41
+  ],
+  "prompt_sha256": "baa43c3ae1538c33b20bcf22d68232db7c5f40be55ed2856733ce251dd730c2d",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793155926.3277838,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and Test Code. The TDL describes the test obligations for a set of input indices (27 to 41). The Test Code is an adapter that runs tests for these inputs.\n\nTDL assertions:\n- dtype: Requires identical dtype via value_test(test_dtypes=True). Applicable to inputs 27-41.\n- helper_shape: Requires identical shape via assert_same_type_and_shape (invoked by value_test(test_dtypes=True)). Applicable to inputs 27-41.\n- value: Compares actual values with frozen source values using tolerances. Applicable to inputs 27-41.\n\nThe Test Code (adapter_runtime) does the following for each input:\n1. Decodes the input and source_reference from a shared structure (using the shared_refs).\n2. Converts the input to the target framework (either torch or tensorflow) based on the role (which is 'source' for the source test? But note: the test is for the target framework? Actually, the test is for the source framework because it's the source test? But the code says \"target_framework\": \"torch\", but the test is run for the source? Let me clarify: The test code is for the adapter that runs the test for the source framework (TensorFlow) and then for the target framework (PyTorch). However, in this context, we are only concerned with the source test? Actually, the test code provided is for the source test? The function `invoke_test` is called with role=\"source\".\n\nLooking at the test code for the source adapter:\n- It sets `fw = meta[role + '_framework']` -> for role \"source\", it uses the source_framework (which is tensorflow).\n- Then it defines a function `convert` to convert numpy arrays to the framework (so for source, it converts to tensorflow).\n- Then it defines `array` to convert framework tensors back to numpy.\n- It then executes the operation code (from the file `source-operation.py` in the folder) which defines a function `tensorflow_call` (since the source_framework is tensorflow).\n- Then it calls the function with the converted arguments and gets the actual result.\n- Then it gets the expected result from `item['source_reference']`.\n- Then it calls `value_test` with the actual and expected, and the settings from `item['oracle_settings']`.\n\nThe `value_test` function is from the helper code (oracle_helper_code). The provided helper code defines:\n- `value_test`: which, if `test_dtypes` is True, calls `assert_same_type_and_shape` (which checks dtype and shape). Then it does value comparisons with tolerances.\n\nNow, the TDL says:\n- dtype: obligation is met by `value_test(test_dtypes=True)`\n- helper_shape: obligation is met by `assert_same_type_and_shape` (which is called by `value_test` when `test_dtypes=True`)\n- value: obligation is met by comparing actual and expected with tolerances.\n\nIn the Test Code, we see that `value_test` is called with `test_dtypes=setting['test_dtypes']`. The setting for all inputs (from the inputs list) is `s40` which is:\n  {\"atol\":1e-06,\"rtol\":null,\"test_dtypes\":true,\"test_values\":true,\"tolerance_dict\":null}\n\nSo for every input in the batch (27-41), `test_dtypes` is True. Therefore, the `value_test` function will check dtypes and shapes (via `assert_same_type_and_shape`) and then the values.\n\nThus, the TDL correctly captures that for these inputs, the test will:\n1. Check dtype (via the `test_dtypes=True` in `value_test` leading to `assert_same_type_and_shape` which checks dtype and shape).\n2. Check shape (via the same mechanism).\n3. Check values (with the given tolerances).\n\nTherefore, the TDL is valid for the given test code and the specified inputs.\n\nNote: The TDL's goal is to \"Preserve the supplied source test output obligations on the listed input subset\", and the test code does exactly that by using the source_reference and the value_test with the settings.\n\nHence, we return:\n{\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value are implemented by the test code via value_test with test_dtypes=True and value comparisons.\", \"input_indices\": [27,28,29,30,31,32,33,34,35,36,37,38,39,40,41]}\n\nBut note: the TDL also specifies that the input_fixture_indices are [27,28,...,41] and the Test Code's batch_input_indices are the same. So we are only assessing these.\n\nOne caveat: the TDL says the value_test uses \"frozen source values\". The test code uses `source_reference` which is frozen (recorded from the source). So that matches.\n\nTherefore, the TDL is valid.\n</think>\n{\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value align with test code implementation. The value_test function enforces dtype/shape checks via test_dtypes=True and value comparisons via tolerance settings, matching TDL obligations. Input decoding and shared reference handling are consistent with specifications.\", \"input_indices\": [27,28,29,30,31,32,33,34,35,36,37,38,39,40,41]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 8304,
+      "completion_tokens": 1173,
+      "total_tokens": 9477
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions for dtype, shape, and value align with test code implementation. The value_test function enforces dtype/shape checks via test_dtypes=True and value comparisons via tolerance settings, matching TDL obligations. Input decoding and shared reference handling are consistent with specifications.",
+    "input_indices": [
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ]
+  },
+  "seconds": 134.397
+}

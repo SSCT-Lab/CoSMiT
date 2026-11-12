@@ -1,0 +1,41 @@
+{
+  "job_id": "96e64e512326654f89dc654e5dcda80d3427ac2788f4324622307a0a3f277c06",
+  "candidate_id": "D0053",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    0,
+    1
+  ],
+  "prompt_sha256": "f921482fde521ddb38db85d93e145bf10820fe3caf4896a8addedf0d0f90c6ce",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792494140.7820678,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL (Test Description Language) and a Test Code. We must decide if the TDL correctly expresses the intent of the Test Code.\n\nTDL:\n{\n  \"assertions\": {\n    \"explicit_shape\": {\n      \"applicable_input_indices\": [0,1],\n      \"obligation\": \"Additionally require actual.shape == expected.shape in the official_sign branch.\"\n    },\n    \"gradient\": {\n      \"applicable_input_indices\": [0],\n      \"obligation\": \"Compare gradient against source_gradient with rtol=atol=0.001.\"\n    },\n    \"sparse_structure\": {\n      \"applicable_input_indices\": [1],\n      \"obligation\": \"Require sparse output and identical sparse indices and dense shape.\"\n    },\n    \"value\": {\n      \"applicable_input_indices\": [0,1],\n      \"obligation\": \"Compare actual values with frozen source values using the listed tolerances.\"\n    }\n  },\n  \"goal\": \"Preserve the supplied source test output obligations on the listed input subset\",\n  \"input_fixture_indices\": [0,1],\n  \"input_fixture_location\": \"testCode.inputs; same input and source expectations, not a second copy\",\n  \"scope\": \"controlled native-output adapter tests; not full original frontend modes\"\n}\n\nTest Code:\nWe have a test code that is an adapter for running tests. It has two input indices (0 and 1). The test code does the following for each input:\n\nFor input_index=0 (dense mode):\n  - It runs the function (tf.math.sign in the source, but adapted to run in torch) and gets the actual result.\n  - It compares the value of the actual result with the expected result (source_reference) using value_test with the provided tolerances.\n  - If official_sign is true (which it is for the whole batch), it asserts that the shape of the actual result equals the expected shape.\n  - It also checks the gradient (because the input has a 'source_gradient' field) by computing the gradient and comparing it with the provided source_gradient (with rtol=atol=0.001).\n\nFor input_index=1 (sparse mode):\n  - It sets up a sparse tensor for the input.\n  - It runs the function and gets the actual result.\n  - It compares the value (by converting the sparse tensor to dense) with the expected result (which is also sparse but provided as a dense array in the source_reference? Actually, the source_reference for index=1 is a sparse representation: __sparse__ with indices and values).\n  - It then checks the sparse structure: it verifies that the output is sparse and that the indices and shape match the source_reference.\n\nNow, let's map the TDL assertions to the test code:\n\n1. explicit_shape: applicable to indices [0,1]. The obligation is to require actual.shape == expected.shape in the official_sign branch.\n   - In the test code, for both inputs, we have:\n        if meta['official_sign']:  # which is True\n            assert array(actual).shape == expected.shape\n   - This matches.\n\n2. gradient: applicable to index [0] only. The obligation is to compare gradient against source_gradient with rtol=atol=0.001.\n   - In the test code, for input_index=0, we have:\n        if 'source_gradient' in item:  # which is present for index0\n            ... compute gradient and then:\n            np.testing.assert_allclose(array(gradient), decode(item['source_gradient']), rtol=0.001, atol=0.001)\n   - This matches.\n\n3. sparse_structure: applicable to index [1]. The obligation is to require sparse output and identical sparse indices and dense shape.\n   - In the test code, for input_index=1 (sparse mode):\n        if item['mode'] == 'sparse':\n            ... \n            # Check that the output is sparse (either tf.SparseTensor or torch sparse tensor)\n            # Then extract indices and shape and compare with the source_reference (which is the expected sparse structure)\n            assert indices == ref['indices'] and shape == ref['shape']\n   - This matches.\n\n4. value: applicable to indices [0,1]. The obligation is to compare actual values with frozen source values using the listed tolerances.\n   - In the test code, for both inputs, we call:\n        value_test(...)   # which uses the tolerances from the oracle_settings (rtol, atol) and the specific_tolerance_dict if provided.\n   - This matches.\n\nAdditionally, the TDL states the goal and the input fixtures, which are consistent.\n\nTherefore, the TDL correctly captures the intent of the test code.\n\nHowever, note that for the sparse input (index1), the value comparison in the test code is done by converting the sparse output to dense and then comparing with the expected dense array (which is the source_reference that was provided in a sparse form but then decoded to dense). But the TDL's value obligation says \"Compare actual values with frozen source values\", and the source_reference for index1 is provided as a sparse structure. However, in the test code, the value_test is called with:\n    ret_np_flat=[array(actual)]   # which for sparse input1, array(actual) converts the sparse tensor to dense\n    ret_np_from_gt_flat=[expected]  # expected is from decode(item['source_reference']) which for index1 is a dense array (because the sparse structure is decoded to a dense array by the decode function)\n\nSo the value_test is comparing dense arrays. The TDL does not specify whether the value comparison is done in sparse or dense form, but the obligation is about the values. The values are the same whether we compare in sparse form (by comparing the non-zero values) or in dense form. However, the test code uses the dense form. The TDL does not specify the form, so this is acceptable.\n\nMoreover, the TDL has a separate assertion for the sparse structure (sparse_structure) which checks the indices and shape. So the TDL is covering both the structure and the values (via the value assertion and the sparse_structure assertion).\n\nThus, the TDL is valid.\n\nWe return:\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions for explicit_shape, gradient, sparse_structure, and value correctly map to the test code's checks for both input indices.\",\n  \"input_indices\": [0,1]\n}\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions fully align with test code obligations: explicit_shape checks match official_sign branch for both inputs (0,1); gradient test for input 0 uses specified tolerances; sparse_structure validation for input 1 enforces indices/shape; value comparisons apply declared tolerances to both inputs via value_test.\",\n  \"input_indices\": [0, 1]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 4858,
+      "completion_tokens": 1486,
+      "total_tokens": 6344
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions fully align with test code obligations: explicit_shape checks match official_sign branch for both inputs (0,1); gradient test for input 0 uses specified tolerances; sparse_structure validation for input 1 enforces indices/shape; value comparisons apply declared tolerances to both inputs via value_test.",
+    "input_indices": [
+      0,
+      1
+    ]
+  },
+  "seconds": 178.134
+}

@@ -1,0 +1,93 @@
+{
+  "job_id": "66536e80e296de355fc62ed846716effb59d3b85fa1150d4695d07fd1f7d89cb",
+  "candidate_id": "D0038",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "prompt_sha256": "fa09235adf425c69a3163a37562f091db029e01924df5e212b3c6da88c122028",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792917551.6002095,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL (Test Description Language) and a Test Code.\n The TDL has three assertions: \"dtype\", \"helper_shape\", and \"value\", each applicable to all 28 input indices.\n The Test Code is a JSON object containing the code for the adapter, the inputs, and shared references.\n\n Steps:\n 1. The TDL assertions:\n    - \"dtype\": Requires identical dtype via value_test(test_dtypes=True).\n    - \"helper_shape\": Requires identical shape through assert_same_type_and_shape (invoked by value_test(test_dtypes=True)).\n    - \"value\": Compares actual values with frozen source values using the listed tolerances.\n\n 2. The Test Code:\n    - The test code is an adapter that runs the test for a given input index.\n    - It uses a function `invoke_test` that:\n        a. Reads the test case and input.\n        b. Decodes the input and source reference (using a custom `decode` function).\n        c. Converts the input to the appropriate framework (torch or tensorflow) using `convert`.\n        d. Executes the function (either 'pytorch_call' or 'tensorflow_call') with the converted arguments.\n        e. Compares the result with the expected value using `value_test`.\n\n 3. The `value_test` function (from the oracle_helper_code) does:\n    - If `test_dtypes` is True, it calls `assert_same_type_and_shape` which checks the dtype and shape.\n    - Then, it compares the values with the given tolerances.\n\n 4. The TDL assertions are aligned with the test code:\n    - The \"dtype\" and \"helper_shape\" assertions are both covered by the `value_test` call when `test_dtypes=True` (which is set in the oracle_settings, as seen in the inputs: each input has `\"oracle_settings\": {\"__shared_ref__\":\"s2\"}`, and s2 has `\"test_dtypes\":true`).\n    - The \"value\" assertion is covered by the value comparison in `value_test`.\n\n 5. However, note that the test code also includes additional checks:\n    - If `meta['official_sign']` is true, it checks the shape (but in our case, `official_sign` is false for the provided data).\n    - For sparse mode, it does additional checks (but the inputs in this batch are all dense, as per `\"mode\":\"dense\"`).\n    - For gradients (if present), it checks the gradient, but none of the inputs in this batch have 'source_gradient'.\n\n 6. Therefore, the core assertions in the test code for this batch are exactly the ones described in the TDL.\n\n 7. The TDL's goal is: \"Preserve the supplied source test output obligations on the listed input subset\", which matches.\n\n 8. The TDL's input_fixture_indices are [0,..,27] and the test code's batch_input_indices are the same.\n\n 9. The TDL assertions are applicable to all 28 inputs.\n\n 10. The TDL does not mention the gradient check or the sparse mode check, but since the inputs in this batch are dense and without gradients, these extra checks are not triggered. Therefore, for this batch, the TDL captures the intent.\n\n 11. However, note that the TDL does not mention the gradient check at all. But the problem states: \"The original frontend modes not implemented by this adapter are outside this batch claim, not target defects.\" and the gradient check is not in the batch (since no input has 'source_gradient'). So we are only concerned with the provided inputs.\n\n 12. Also, the TDL does not mention the `official_sign` shape check, but in this batch `official_sign` is false, so it is not run.\n\n Conclusion: The TDL correctly expresses the intent of the Test Code for the given batch.\n\n Therefore, we return:\n   valid: true\n   reason: \"TDL assertions for dtype, shape, and value match the test code's value_test with test_dtypes=True and value comparisons, which are the only checks performed on this dense input batch without gradients.\"\n   input_indices: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]\n\n But note: the reason must be at most 200 words and concise.\n\n Let's write a concise reason.\n\n However, note the instruction: \"Return concise JSON only, with a nonempty reason of at most 200 words. input_indices must list all assessed batch indices.\"\n\n We are to return a JSON object.\n\n Final output:\n</think>\n{\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value align with test code's value_test(test_dtypes=True) calls, which enforce identical dtypes/shapes via assert_same_type_and_shape and compare values using tolerances. All 28 inputs are dense without gradient checks, matching TDL scope. Additional sparse/gradient logic in test code is unused in this batch.\", \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 8126,
+      "completion_tokens": 1161,
+      "total_tokens": 9287
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions for dtype, shape, and value align with test code's value_test(test_dtypes=True) calls, which enforce identical dtypes/shapes via assert_same_type_and_shape and compare values using tolerances. All 28 inputs are dense without gradient checks, matching TDL scope. Additional sparse/gradient logic in test code is unused in this batch.",
+    "input_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27
+    ]
+  },
+  "seconds": 138.742
+}

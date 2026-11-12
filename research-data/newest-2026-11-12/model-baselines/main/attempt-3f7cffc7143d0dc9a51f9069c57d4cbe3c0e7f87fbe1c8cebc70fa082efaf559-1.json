@@ -1,0 +1,99 @@
+{
+  "job_id": "3f7cffc7143d0dc9a51f9069c57d4cbe3c0e7f87fbe1c8cebc70fa082efaf559",
+  "candidate_id": "D0043",
+  "kind": "direct-llm",
+  "input_indices": [
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44
+  ],
+  "prompt_sha256": "367e521281ef883da9da473db929a5b595805d41846d10bd02d2a032f88bcb25",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792924480.3193462,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace any {\"__shared_ref__\":\"sN\"} with shared.sN to recover the data.\n The shared references are in the \"shared\" dictionary. We'll traverse the entire data structure and replace any such references.\n\n Steps:\n 1. Replace shared references in the entire data structure (recursively).\n 2. Then, we are to assess the adapter tests for the given input indices [15,16,...,44] (30 inputs).\n\n The task is to check the preservation of the adapter-test for the candidate D0043, which is testing the function `tf.math.cosh` (source) vs `torch.cosh` (target).\n\n We are provided:\n   - The adapter runtime code (which runs the tests)\n   - The inputs for each test case (with input_index from 15 to 44)\n   - The expected outputs (source_reference) for each input\n   - The oracle helper code (which defines the value_test function)\n\n However, note: We are not to run the code, but to reason about the tests and the data.\n\n The verdicts we can assign:\n   - \"preserved\": if the adapter test correctly preserves the behavior and intent of the original test.\n   - \"violated\": if the adapter test does not preserve the behavior or intent.\n   - \"invalid-test\": if the test itself is invalid (e.g., due to a bug in the test code).\n   - \"invalid-assumption\": if there is an invalid assumption in the test setup.\n   - \"undetermined\": if we cannot determine.\n\n Additionally, we have two sub-verdicts: behavior_verdict and intent_verdict.\n\n Important: The test may fail for the target framework (torch) but that does not necessarily mean the intent is lost.\n\n We must look for issues in the adapter or in the test setup that might cause a false negative or false positive.\n\n Let's analyze the provided adapter runtime code and the test inputs.\n\n The adapter runtime code (invoke_test) does the following:\n   - Reads the test case metadata and inputs.\n   - Decodes the input arguments (which may be in a custom format with __ndarray__, __sparse__, etc.)\n   - Converts the input arrays to the framework (torch or tensorflow) using the `convert` function.\n   - For sparse mode, it does some special handling (but note: our inputs are mostly dense, except input_index=15? Actually, the mode is specified per input. Looking at the inputs, all have mode \"dense\" except note: input_index=15 has mode \"dense\", and the sparse handling in the code is only activated if the input's mode is 'sparse'. So for our inputs, sparse mode is not activated because all are dense? Actually, check the inputs: each input has a \"mode\" field. In the provided inputs, all are \"dense\". So the sparse branch is not taken.\n\n   - Then it executes the function (either tensorflow_call for source or pytorch_call for target) in a namespace that has the framework modules.\n   - Then it decodes the expected output (source_reference) and compares using `value_test` function.\n\n The `value_test` function is defined in the oracle_helper_code. It checks:\n   - If test_dtypes is True, it checks that the dtype and shape of the returned value match the ground truth.\n   - Then it does an allclose check with a tolerance.\n\n However, note that the `value_test` function in the oracle_helper_code has a known issue: it uses `np.nan_to_num` which replaces NaN with zero and inf with large numbers. This might be problematic for tests that expect NaN or inf.\n\n Also note: the expected outputs (source_reference) for many inputs contain `{\"__float__\":\"inf\"}` and `{\"__float__\":\"nan\"}` (though in our inputs we only see inf). We must represent these as IEEE inf.\n\n Now, let's look at the test inputs and expected outputs.\n\n We see that many inputs are very large or very small numbers, and the expected outputs are often infinity.\n\n The function being tested is cosh. The hyperbolic cosine function grows exponentially. For large positive or negative inputs, cosh(x) becomes very large. In fact, cosh(x) = (e^x + e^(-x))/2. For |x| large, it is approximately e^|x|/2.\n\n Therefore, for large |x|, we expect a very large number, and in floating point, it may overflow to inf.\n\n Now, let's check the adapter runtime code for potential issues:\n\n 1. The `convert` function for torch for bfloat16 does:\n        if str(v.dtype) == 'bfloat16':\n            return torch.tensor(v.astype(np.float32), dtype=torch.bfloat16)\n    This is correct because it first casts to float32 (to avoid precision loss in the numpy array) and then to torch.bfloat16.\n\n 2. The `array` function for torch tensors: for bfloat16, it does:\n        if v.dtype == torch.bfloat16:\n            return v.detach().float().numpy().astype(ml_dtypes.bfloat16)\n    This is also correct: it converts to float32 numpy array and then to bfloat16? Actually, it converts to float (float32) and then to ml_dtypes.bfloat16. But note: ml_dtypes.bfloat16 is a numpy dtype. This should be okay.\n\n 3. However, note that the `value_test` function in the oracle_helper_code has a step that if the dtype is bfloat16, it casts to float64. This might cause an issue because when we have inf in bfloat16, casting to float64 will still be inf, but the comparison might be done in float64. That should be acceptable.\n\n 4. But there is a more serious issue: the `value_test` function uses `np.nan_to_num` which replaces inf with a very large number (by default, 1e10 for positive inf and -1e10 for negative inf). This is problematic because we are testing for inf. The test expects inf, but after nan_to_num, it becomes a large finite number. Then the comparison might fail because the actual value (if it was inf) would also be replaced by 1e10, but the expected value (which was inf) is replaced by 1e10? Actually, the expected value is also passed through `np.nan_to_num`? So both become 1e10? Then the test would pass? But wait, the expected value is stored as `{\"__float__\":\"inf\"}`, which we decode to numpy.inf. Then `np.nan_to_num(numpy.inf)` becomes 1.7976931348623157e+308 (the maximum representable float64) for positive inf? Actually, the default for `nan_to_num` is:\n      - inf -> very large (max float of the output dtype, which by default is float of the input)\n      - -inf -> very negative\n\n    But note: the `value_test` function does:\n        ret_np = np.nan_to_num(ret_np)\n        ret_from_gt_np = np.nan_to_num(ret_from_gt_np)\n\n    Then it does allclose. However, if the expected value is inf and the actual value is inf, then after nan_to_num, both become the same large number? But wait, the actual value might be a very large finite number that is less than the max float, but the expected value (inf) becomes the max float. Then the test would fail because the actual value is less than the max float.\n\n    This is a critical flaw in the test oracle for handling inf.\n\n    Therefore, the test oracle (value_test) is invalid for cases that involve inf or -inf.\n\n    Since many of our test inputs (e.g., input_index=15, 22, 25, 30, 31, 34, 37, 39) have expected outputs that are inf, the test will not correctly handle them.\n\n    This means that the test is invalid for these cases.\n\n    Therefore, we must mark the test as invalid-test for the inputs that have inf in the expected output? But note: the problem says to return a single verdict for the entire batch of input indices.\n\n    However, the instructions say: \"input_indices must list all assessed batch indices\". And we are to return one verdict for the entire set.\n\n    Since the test oracle is flawed for inf, and many tests in the batch are testing inf, the entire test batch is invalid.\n\n    But note: the test batch has 30 inputs. We must check how many have inf in the expected output.\n\n    Let's look at the expected outputs:\n\n      input_index=15: has inf in the expected output (multiple infs)\n      input_index=16: expected 1.0 (no inf)\n      input_index=17: expected 1.0\n      input_index=18: expected 1.0\n      input_index=19: expected [1.0] (bfloat16)\n      input_index=20: expected [1.0] (complex128)\n      input_index=21: expected 1.0\n      input_index=22: expected [1.0, inf, ...] -> has inf\n      input_index=23: expected 1.0\n      input_index=24: expected [1.0]\n      input_index=25: expected [1.546875, inf, ...] -> has inf\n      input_index=26: expected [1.0]\n      input_index=27: expected 1.0\n      input_index=28: shared_ref s14 -> which is an array with inf? (s15: has inf)\n      input_index=29: same as 28 -> has inf\n      input_index=30: expected [[1.0],[1.0]] -> no inf\n      input_index=31: same as 30 -> no inf\n      input_index=32: expected 1.0\n      input_index=33: expected 1.0\n      input_index=34: expected inf\n      input_index=35: expected 1.0\n      input_index=36: expected [1.0]\n      input_index=37: expected [inf, ...] -> has inf\n      input_index=38: expected [1.0]\n      input_index=39: expected [1.056..., inf, ...] -> has inf? Actually, looking: [1.0560718774795532, inf, ...] -> yes, inf\n      input_index=40: expected [1.0]\n      input_index=41: expected 1.0\n      input_index=42: expected 1.0\n      input_index=43: shared_ref s20 -> which is complex with real=inf and imag=inf -> inf\n      input_index=44: same as 43 -> inf\n\n    So at least 10 inputs (15,22,25,28,29,34,37,39,43,44) have inf in the expected output. And the test oracle does not handle inf correctly.\n\n    Therefore, the test oracle (value_test) is invalid for these cases. This makes the entire test batch invalid because the oracle cannot correctly check the expected behavior.\n\n    Hence, the verdict should be \"invalid-test\".\n\n    But note: the problem says \"a failing target test alone does not imply its intent was lost\". However, here the issue is with the test oracle, not the target.\n\n    Also note: the source_reference is recorded from the source framework (tensorflow). The target might produce the same inf, but the test oracle would replace it with a finite number and then compare, which would fail because the finite number is not exactly the same as the max float? Actually, the test uses `np.allclose` with a tolerance. But the max float is 1.7976931348623157e+308, and the actual value (if it was inf) would also be replaced by the same max float? Then the test would pass? But wait, the `np.nan_to_num` function by default uses:\n        posinf = np.finfo(dtype).max\n        neginf = np.finfo(dtype).min\n\n    So for float64, the max is about 1.8e308. But if the actual value is a very large finite number (say 1e308) and the expected was inf, then the expected becomes 1.8e308 and the actual remains 1e308. Then the relative tolerance might be (1.8e308 - 1e308) / 1e308 = 0.8, which is not within a small rtol.\n\n    Therefore, the test will fail for cases where the source produced inf and the target produced a large finite number (which is correct for the target if it uses a different threshold for overflow?).\n\n    But also, if both produce inf, then both become 1.8e308 and the test passes.\n\n    However, the test is not testing for inf, but for a finite number. This is not the intended behavior.\n\n    Therefore, the test oracle is invalid because it does not check for inf correctly.\n\n    This flaw in the oracle makes the test invalid for any test case that expects inf.\n\n    Since the batch includes such cases, the entire test batch is invalid.\n\n    We must return \"invalid-test\".\n\n 5. Additionally, note that the `value_test` function also has an issue with NaN: it replaces NaN with 0. So if the function returns NaN, it would be replaced by 0 and then compared to 0? But we don't have NaN in the expected outputs in this batch.\n\n 6. There is another issue: the `value_test` function in the oracle_helper_code does:\n        if test_dtypes:\n            assert_same_type_and_shape([ret_np_flat, ret_np_from_gt_flat])\n\n    The function `assert_same_type_and_shape` compares the dtype and shape of the arrays. But note: the expected output (source_reference) is decoded from the JSON, which might have a different dtype than what the target returns? For example, the target (torch) might return a float32 for an operation that the source (tensorflow) returned float64? Then the test would fail at the dtype check.\n\n    However, the test_dtypes flag is set to true in the oracle settings (see the shared_ref s0: \"test_dtypes\":true). So it will check dtypes.\n\n    But the adapter runtime code for the target (torch) might return a different dtype? We must check the function.\n\n    The function being tested is `torch.cosh`. The dtype of the output should be the same as the input. The input dtypes in the tests vary: float64, complex128, bfloat16, float32, etc.\n\n    The source (tensorflow) and target (torch) should have the same dtype behavior? But note: the test is for a specific candidate implementation (D0043). We don't know if they have the same dtype promotion rules.\n\n    However, the test expects the same dtype as the source. This might be a problem.\n\n    But note: the test_dtypes flag is set to true, so it will enforce the same dtype. If the target returns a different dtype, the test will fail.\n\n    This is a separate issue, but it doesn't necessarily make the test invalid. It might be that the target is incorrect.\n\n    However, in the context of the current batch, we have already identified a more fundamental issue (the handling of inf) that invalidates the test.\n\n 7. Therefore, the verdict for the entire batch is \"invalid-test\".\n\n 8. Since the test is invalid, the behavior_verdict and intent_verdict are \"undetermined\".\n\n 9. The reason: \"The test oracle (value_test) uses np.nan_to_num which replaces inf with a large finite number, making it unable to correctly test for infinity. This affects multiple test cases in the batch that expect inf. Therefore, the test is invalid.\"\n\n 10. The input_indices are all the indices we were asked to assess: [15,16,...,44] (30 indices).\n\n However, note: the problem says \"input_indices must list all assessed batch indices\". We are assessing all 30.\n\n But note: the batch_input_indices in the data is [15,16,...,44] (30 indices). So we return that list.\n\n However, the problem says: \"Return concise JSON only, with a nonempty reason of at most 200 words.\"\n\n Let's write the reason in under 200 words.\n\n Reason: \"The test oracle (value_test) uses np.nan_to_num, which replaces infinity with a large finite number. This prevents correct testing of the hyperbolic cosine function at extreme values where infinity is expected. Since 10 of the 30 test cases in the batch involve infinity in the expected output, the test is invalid. The adapter-test preservation claim cannot be evaluated due to this fundamental flaw in the test oracle.\"\n\n Word count: 65 words.\n\n Therefore, the final verdict:\n\n {\n   \"verdict\": \"invalid-test\",\n   \"behavior_verdict\": \"undetermined\",\n   \"intent_verdict\": \"undetermined\",\n   \"reason\": \"The test oracle (value_test) uses np.nan_to_num, which replaces infinity with a large finite number. This prevents correct testing of the hyperbolic cosine function at extreme values where infinity is expected. Since 10 of the 30 test cases in the batch involve infinity in the expected output, the test is invalid. The adapter-test preservation claim cannot be evaluated due to this fundamental flaw in the test oracle.\",\n   \"input_indices\": [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44]\n }\n\n But note: the problem says \"verdict refers to the bounded adapter-test preservation claim\". Since the test itself is invalid, the claim is not testable.\n\n However, we must be cautious: the problem says \"invalid-test\" means the test is invalid. We have identified that the test oracle is flawed.\n\n Therefore, this is the correct verdict.\n\n Let's check if there are any other issues? For example, the sparse mode is not activated in these tests, so we don't have to worry about that.\n\n Also, note that the input_index=15 has a very large number (1.6342664862384686e+308) which is close to the maximum float64 (which is about 1.8e308). The cosh of that number would be huge and should be inf. The test expects inf, but the oracle will break.\n\n So our conclusion stands.\n</think>\n{\n  \"verdict\": \"invalid-test\",\n  \"behavior_verdict\": \"undetermined\",\n  \"intent_verdict\": \"undetermined\",\n  \"reason\": \"The test oracle's value_test function uses np.nan_to_num, which replaces inf with large finite values. This corrupts validation for 10/30 inputs expecting inf in outputs (e.g., indices 15,22,25,28,29,34,37,39,43,44). The adapter-test preservation claim is unverifiable due to this fundamental oracle flaw.\",\n  \"input_indices\": [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 6986,
+      "completion_tokens": 4186,
+      "total_tokens": 11172
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "invalid-test",
+    "behavior_verdict": "undetermined",
+    "intent_verdict": "undetermined",
+    "reason": "The test oracle's value_test function uses np.nan_to_num, which replaces inf with large finite values. This corrupts validation for 10/30 inputs expecting inf in outputs (e.g., indices 15,22,25,28,29,34,37,39,43,44). The adapter-test preservation claim is unverifiable due to this fundamental oracle flaw.",
+    "input_indices": [
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
+    ]
+  },
+  "seconds": 496.39
+}

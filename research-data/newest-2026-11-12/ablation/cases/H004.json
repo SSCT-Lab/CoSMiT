@@ -1,0 +1,1165 @@
+{
+  "candidate_id": "H004",
+  "stratum": "original-80",
+  "runs": [
+    {
+      "seed": 7,
+      "variant": "full",
+      "verdict": "refuted",
+      "witness": 5,
+      "original": {
+        "verdict": "refuted",
+        "witness": 5,
+        "logical_pairs": 4,
+        "tested_inputs": 2
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 5,
+        "reduced_index": 2,
+        "clause": "dtype",
+        "original_elements": 35,
+        "reduced_elements": 1,
+        "logical_pairs": 6,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            29,
+            7,
+            28,
+            9,
+            8,
+            27,
+            23
+          ],
+          "validation_indices": [
+            24,
+            6,
+            25
+          ],
+          "validation_total": 15,
+          "validation_counts": {
+            "pass": 3
+          },
+          "validated": true,
+          "selection_used_validation": false,
+          "system_claim": "supported-on-validation-inputs"
+        }
+      ],
+      "condition_pool_indices": [
+        21,
+        5,
+        15,
+        29,
+        7,
+        28,
+        9,
+        0,
+        13,
+        8,
+        27,
+        22,
+        26,
+        14,
+        23,
+        24,
+        19,
+        6,
+        16,
+        25,
+        18,
+        11,
+        3,
+        17,
+        2,
+        1,
+        20,
+        12,
+        4,
+        10
+      ],
+      "condition_discovery_logical_pairs": 45,
+      "condition_validation_logical_pairs": 45,
+      "external_condition_evaluation_pairs": 0
+    },
+    {
+      "seed": 7,
+      "variant": "without-source-obligations",
+      "verdict": "refuted",
+      "witness": 14,
+      "original": {
+        "verdict": "refuted",
+        "witness": 14,
+        "logical_pairs": 16,
+        "tested_inputs": 14
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 14,
+        "reduced_index": 14,
+        "clause": "generic-value",
+        "original_elements": 81,
+        "reduced_elements": 81,
+        "logical_pairs": 12,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            29,
+            7,
+            28,
+            9,
+            8,
+            27,
+            23
+          ],
+          "validation_indices": [
+            24,
+            6,
+            25
+          ],
+          "validation_total": 15,
+          "validation_counts": {
+            "pass": 3
+          },
+          "validated": true,
+          "selection_used_validation": false,
+          "system_claim": "supported-on-validation-inputs"
+        }
+      ],
+      "condition_pool_indices": [
+        21,
+        5,
+        15,
+        29,
+        7,
+        28,
+        9,
+        0,
+        13,
+        8,
+        27,
+        22,
+        26,
+        14,
+        23,
+        24,
+        19,
+        6,
+        16,
+        25,
+        18,
+        11,
+        3,
+        17,
+        2,
+        1,
+        20,
+        12,
+        4,
+        10
+      ],
+      "condition_discovery_logical_pairs": 45,
+      "condition_validation_logical_pairs": 45,
+      "external_condition_evaluation_pairs": 0
+    },
+    {
+      "seed": 7,
+      "variant": "without-additional-probing",
+      "verdict": "refuted",
+      "witness": 5,
+      "original": {
+        "verdict": "refuted",
+        "witness": 5,
+        "logical_pairs": 4,
+        "tested_inputs": 2
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 5,
+        "reduced_index": 15,
+        "clause": "dtype",
+        "original_elements": 35,
+        "reduced_elements": 1,
+        "logical_pairs": 4,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            29,
+            7,
+            28,
+            9
+          ],
+          "validation_indices": [
+            8,
+            27,
+            23
+          ],
+          "validation_total": 8,
+          "validation_counts": {
+            "pass": 3
+          },
+          "validated": true,
+          "selection_used_validation": false,
+          "system_claim": "supported-on-validation-inputs"
+        }
+      ],
+      "condition_pool_indices": [
+        21,
+        5,
+        15,
+        29,
+        7,
+        28,
+        9,
+        0,
+        13,
+        8,
+        27,
+        22,
+        26,
+        14,
+        23
+      ],
+      "condition_discovery_logical_pairs": 21,
+      "condition_validation_logical_pairs": 24,
+      "external_condition_evaluation_pairs": 0
+    },
+    {
+      "seed": 7,
+      "variant": "without-minimization",
+      "verdict": "refuted",
+      "witness": 5,
+      "original": {
+        "verdict": "refuted",
+        "witness": 5,
+        "logical_pairs": 4,
+        "tested_inputs": 2
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 5,
+        "reduced_index": 5,
+        "clause": "dtype",
+        "original_elements": 35,
+        "reduced_elements": 35,
+        "logical_pairs": 0,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            29,
+            7,
+            28,
+            9,
+            8,
+            27,
+            23
+          ],
+          "validation_indices": [
+            24,
+            6,
+            25
+          ],
+          "validation_total": 15,
+          "validation_counts": {
+            "pass": 3
+          },
+          "validated": true,
+          "selection_used_validation": false,
+          "system_claim": "supported-on-validation-inputs"
+        }
+      ],
+      "condition_pool_indices": [
+        21,
+        5,
+        15,
+        29,
+        7,
+        28,
+        9,
+        0,
+        13,
+        8,
+        27,
+        22,
+        26,
+        14,
+        23,
+        24,
+        19,
+        6,
+        16,
+        25,
+        18,
+        11,
+        3,
+        17,
+        2,
+        1,
+        20,
+        12,
+        4,
+        10
+      ],
+      "condition_discovery_logical_pairs": 45,
+      "condition_validation_logical_pairs": 45,
+      "external_condition_evaluation_pairs": 0
+    },
+    {
+      "seed": 7,
+      "variant": "without-condition-validation",
+      "verdict": "refuted",
+      "witness": 5,
+      "original": {
+        "verdict": "refuted",
+        "witness": 5,
+        "logical_pairs": 4,
+        "tested_inputs": 2
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 5,
+        "reduced_index": 2,
+        "clause": "dtype",
+        "original_elements": 35,
+        "reduced_elements": 1,
+        "logical_pairs": 6,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            29,
+            7,
+            28,
+            9,
+            8,
+            27,
+            23
+          ],
+          "validation_indices": [
+            24,
+            6,
+            25
+          ],
+          "validation_total": 15,
+          "validation_counts": {
+            "pass": 3
+          },
+          "validated": true,
+          "selection_used_validation": false,
+          "system_claim": "discovery-only"
+        }
+      ],
+      "condition_pool_indices": [
+        21,
+        5,
+        15,
+        29,
+        7,
+        28,
+        9,
+        0,
+        13,
+        8,
+        27,
+        22,
+        26,
+        14,
+        23,
+        24,
+        19,
+        6,
+        16,
+        25,
+        18,
+        11,
+        3,
+        17,
+        2,
+        1,
+        20,
+        12,
+        4,
+        10
+      ],
+      "condition_discovery_logical_pairs": 45,
+      "condition_validation_logical_pairs": 0,
+      "external_condition_evaluation_pairs": 45
+    },
+    {
+      "seed": 19,
+      "variant": "full",
+      "verdict": "refuted",
+      "witness": 19,
+      "original": {
+        "verdict": "refuted",
+        "witness": 19,
+        "logical_pairs": 3,
+        "tested_inputs": 1
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 19,
+        "reduced_index": 2,
+        "clause": "dtype",
+        "original_elements": 14,
+        "reduced_elements": 1,
+        "logical_pairs": 6,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            7,
+            29,
+            28,
+            23
+          ],
+          "validation_indices": [
+            27,
+            8,
+            9,
+            24,
+            6,
+            25
+          ],
+          "validation_total": 15,
+          "validation_counts": {
+            "pass": 6
+          },
+          "validated": true,
+          "selection_used_validation": false,
+          "system_claim": "supported-on-validation-inputs"
+        }
+      ],
+      "condition_pool_indices": [
+        19,
+        2,
+        15,
+        7,
+        10,
+        13,
+        20,
+        0,
+        29,
+        22,
+        28,
+        14,
+        5,
+        23,
+        17,
+        27,
+        8,
+        4,
+        18,
+        9,
+        24,
+        11,
+        12,
+        6,
+        26,
+        3,
+        16,
+        25,
+        1,
+        21
+      ],
+      "condition_discovery_logical_pairs": 45,
+      "condition_validation_logical_pairs": 45,
+      "external_condition_evaluation_pairs": 0
+    },
+    {
+      "seed": 19,
+      "variant": "without-source-obligations",
+      "verdict": "refuted",
+      "witness": 14,
+      "original": {
+        "verdict": "refuted",
+        "witness": 14,
+        "logical_pairs": 14,
+        "tested_inputs": 12
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 14,
+        "reduced_index": 14,
+        "clause": "generic-value",
+        "original_elements": 81,
+        "reduced_elements": 81,
+        "logical_pairs": 12,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            7,
+            29,
+            28,
+            23
+          ],
+          "validation_indices": [
+            27,
+            8,
+            9,
+            24,
+            6,
+            25
+          ],
+          "validation_total": 15,
+          "validation_counts": {
+            "pass": 6
+          },
+          "validated": true,
+          "selection_used_validation": false,
+          "system_claim": "supported-on-validation-inputs"
+        }
+      ],
+      "condition_pool_indices": [
+        19,
+        2,
+        15,
+        7,
+        10,
+        13,
+        20,
+        0,
+        29,
+        22,
+        28,
+        14,
+        5,
+        23,
+        17,
+        27,
+        8,
+        4,
+        18,
+        9,
+        24,
+        11,
+        12,
+        6,
+        26,
+        3,
+        16,
+        25,
+        1,
+        21
+      ],
+      "condition_discovery_logical_pairs": 45,
+      "condition_validation_logical_pairs": 45,
+      "external_condition_evaluation_pairs": 0
+    },
+    {
+      "seed": 19,
+      "variant": "without-additional-probing",
+      "verdict": "refuted",
+      "witness": 19,
+      "original": {
+        "verdict": "refuted",
+        "witness": 19,
+        "logical_pairs": 3,
+        "tested_inputs": 1
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 19,
+        "reduced_index": 2,
+        "clause": "dtype",
+        "original_elements": 14,
+        "reduced_elements": 1,
+        "logical_pairs": 4,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [],
+      "condition_pool_indices": [
+        19,
+        2,
+        15,
+        7,
+        10,
+        13,
+        20,
+        0,
+        29,
+        22,
+        28,
+        14,
+        5,
+        23,
+        17
+      ],
+      "condition_discovery_logical_pairs": 21,
+      "condition_validation_logical_pairs": 0,
+      "external_condition_evaluation_pairs": 0
+    },
+    {
+      "seed": 19,
+      "variant": "without-minimization",
+      "verdict": "refuted",
+      "witness": 19,
+      "original": {
+        "verdict": "refuted",
+        "witness": 19,
+        "logical_pairs": 3,
+        "tested_inputs": 1
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 19,
+        "reduced_index": 19,
+        "clause": "dtype",
+        "original_elements": 14,
+        "reduced_elements": 14,
+        "logical_pairs": 0,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            7,
+            29,
+            28,
+            23
+          ],
+          "validation_indices": [
+            27,
+            8,
+            9,
+            24,
+            6,
+            25
+          ],
+          "validation_total": 15,
+          "validation_counts": {
+            "pass": 6
+          },
+          "validated": true,
+          "selection_used_validation": false,
+          "system_claim": "supported-on-validation-inputs"
+        }
+      ],
+      "condition_pool_indices": [
+        19,
+        2,
+        15,
+        7,
+        10,
+        13,
+        20,
+        0,
+        29,
+        22,
+        28,
+        14,
+        5,
+        23,
+        17,
+        27,
+        8,
+        4,
+        18,
+        9,
+        24,
+        11,
+        12,
+        6,
+        26,
+        3,
+        16,
+        25,
+        1,
+        21
+      ],
+      "condition_discovery_logical_pairs": 45,
+      "condition_validation_logical_pairs": 45,
+      "external_condition_evaluation_pairs": 0
+    },
+    {
+      "seed": 19,
+      "variant": "without-condition-validation",
+      "verdict": "refuted",
+      "witness": 19,
+      "original": {
+        "verdict": "refuted",
+        "witness": 19,
+        "logical_pairs": 3,
+        "tested_inputs": 1
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 19,
+        "reduced_index": 2,
+        "clause": "dtype",
+        "original_elements": 14,
+        "reduced_elements": 1,
+        "logical_pairs": 6,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            7,
+            29,
+            28,
+            23
+          ],
+          "validation_indices": [
+            27,
+            8,
+            9,
+            24,
+            6,
+            25
+          ],
+          "validation_total": 15,
+          "validation_counts": {
+            "pass": 6
+          },
+          "validated": true,
+          "selection_used_validation": false,
+          "system_claim": "discovery-only"
+        }
+      ],
+      "condition_pool_indices": [
+        19,
+        2,
+        15,
+        7,
+        10,
+        13,
+        20,
+        0,
+        29,
+        22,
+        28,
+        14,
+        5,
+        23,
+        17,
+        27,
+        8,
+        4,
+        18,
+        9,
+        24,
+        11,
+        12,
+        6,
+        26,
+        3,
+        16,
+        25,
+        1,
+        21
+      ],
+      "condition_discovery_logical_pairs": 45,
+      "condition_validation_logical_pairs": 0,
+      "external_condition_evaluation_pairs": 45
+    },
+    {
+      "seed": 43,
+      "variant": "full",
+      "verdict": "refuted",
+      "witness": 18,
+      "original": {
+        "verdict": "refuted",
+        "witness": 18,
+        "logical_pairs": 7,
+        "tested_inputs": 5
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 18,
+        "reduced_index": 2,
+        "clause": "dtype",
+        "original_elements": 14,
+        "reduced_elements": 1,
+        "logical_pairs": 6,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            29,
+            23,
+            25,
+            27,
+            7,
+            6,
+            8,
+            28
+          ],
+          "validation_indices": [
+            24,
+            9
+          ],
+          "validation_total": 15,
+          "validation_counts": {
+            "pass": 2
+          },
+          "validated": false,
+          "selection_used_validation": false,
+          "system_claim": "undetermined-or-refuted"
+        }
+      ],
+      "condition_pool_indices": [
+        29,
+        23,
+        25,
+        27,
+        18,
+        7,
+        12,
+        17,
+        2,
+        10,
+        6,
+        8,
+        20,
+        5,
+        28,
+        13,
+        16,
+        0,
+        15,
+        19,
+        26,
+        3,
+        21,
+        11,
+        14,
+        4,
+        24,
+        22,
+        9,
+        1
+      ],
+      "condition_discovery_logical_pairs": 45,
+      "condition_validation_logical_pairs": 45,
+      "external_condition_evaluation_pairs": 0
+    },
+    {
+      "seed": 43,
+      "variant": "without-source-obligations",
+      "verdict": "refuted",
+      "witness": 3,
+      "original": {
+        "verdict": "supported-on-tested-inputs",
+        "witness": null,
+        "logical_pairs": 15,
+        "tested_inputs": 15
+      },
+      "additional": {
+        "verdict": "refuted",
+        "witness": 3,
+        "logical_pairs": 9,
+        "tested_inputs": 7
+      },
+      "shrink": {
+        "original_index": 3,
+        "reduced_index": 3,
+        "clause": "generic-value",
+        "original_elements": 36,
+        "reduced_elements": 36,
+        "logical_pairs": 12,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [],
+      "condition_pool_indices": [
+        29,
+        23,
+        25,
+        27,
+        18,
+        7,
+        12,
+        17,
+        2,
+        10,
+        6,
+        8,
+        20,
+        5,
+        28,
+        13,
+        16,
+        0,
+        15,
+        19,
+        26,
+        3,
+        21,
+        11,
+        14,
+        4,
+        24,
+        22,
+        9,
+        1
+      ],
+      "condition_discovery_logical_pairs": 45,
+      "condition_validation_logical_pairs": 0,
+      "external_condition_evaluation_pairs": 0
+    },
+    {
+      "seed": 43,
+      "variant": "without-additional-probing",
+      "verdict": "refuted",
+      "witness": 18,
+      "original": {
+        "verdict": "refuted",
+        "witness": 18,
+        "logical_pairs": 7,
+        "tested_inputs": 5
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 18,
+        "reduced_index": 2,
+        "clause": "dtype",
+        "original_elements": 14,
+        "reduced_elements": 1,
+        "logical_pairs": 2,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            29,
+            23,
+            25,
+            27,
+            7
+          ],
+          "validation_indices": [
+            6,
+            8,
+            28
+          ],
+          "validation_total": 8,
+          "validation_counts": {
+            "pass": 3
+          },
+          "validated": true,
+          "selection_used_validation": false,
+          "system_claim": "supported-on-validation-inputs"
+        }
+      ],
+      "condition_pool_indices": [
+        29,
+        23,
+        25,
+        27,
+        18,
+        7,
+        12,
+        17,
+        2,
+        10,
+        6,
+        8,
+        20,
+        5,
+        28
+      ],
+      "condition_discovery_logical_pairs": 21,
+      "condition_validation_logical_pairs": 24,
+      "external_condition_evaluation_pairs": 0
+    },
+    {
+      "seed": 43,
+      "variant": "without-minimization",
+      "verdict": "refuted",
+      "witness": 18,
+      "original": {
+        "verdict": "refuted",
+        "witness": 18,
+        "logical_pairs": 7,
+        "tested_inputs": 5
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 18,
+        "reduced_index": 18,
+        "clause": "dtype",
+        "original_elements": 14,
+        "reduced_elements": 14,
+        "logical_pairs": 0,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            29,
+            23,
+            25,
+            27,
+            7,
+            6,
+            8,
+            28
+          ],
+          "validation_indices": [
+            24,
+            9
+          ],
+          "validation_total": 15,
+          "validation_counts": {
+            "pass": 2
+          },
+          "validated": false,
+          "selection_used_validation": false,
+          "system_claim": "undetermined-or-refuted"
+        }
+      ],
+      "condition_pool_indices": [
+        29,
+        23,
+        25,
+        27,
+        18,
+        7,
+        12,
+        17,
+        2,
+        10,
+        6,
+        8,
+        20,
+        5,
+        28,
+        13,
+        16,
+        0,
+        15,
+        19,
+        26,
+        3,
+        21,
+        11,
+        14,
+        4,
+        24,
+        22,
+        9,
+        1
+      ],
+      "condition_discovery_logical_pairs": 45,
+      "condition_validation_logical_pairs": 45,
+      "external_condition_evaluation_pairs": 0
+    },
+    {
+      "seed": 43,
+      "variant": "without-condition-validation",
+      "verdict": "refuted",
+      "witness": 18,
+      "original": {
+        "verdict": "refuted",
+        "witness": 18,
+        "logical_pairs": 7,
+        "tested_inputs": 5
+      },
+      "additional": null,
+      "shrink": {
+        "original_index": 18,
+        "reduced_index": 2,
+        "clause": "dtype",
+        "original_elements": 14,
+        "reduced_elements": 1,
+        "logical_pairs": 6,
+        "minimality": "finite-pool only"
+      },
+      "conditions": [
+        {
+          "condition": "floating-only",
+          "discovery_indices": [
+            29,
+            23,
+            25,
+            27,
+            7,
+            6,
+            8,
+            28
+          ],
+          "validation_indices": [
+            24,
+            9
+          ],
+          "validation_total": 15,
+          "validation_counts": {
+            "pass": 2
+          },
+          "validated": false,
+          "selection_used_validation": false,
+          "system_claim": "discovery-only"
+        }
+      ],
+      "condition_pool_indices": [
+        29,
+        23,
+        25,
+        27,
+        18,
+        7,
+        12,
+        17,
+        2,
+        10,
+        6,
+        8,
+        20,
+        5,
+        28,
+        13,
+        16,
+        0,
+        15,
+        19,
+        26,
+        3,
+        21,
+        11,
+        14,
+        4,
+        24,
+        22,
+        9,
+        1
+      ],
+      "condition_discovery_logical_pairs": 45,
+      "condition_validation_logical_pairs": 0,
+      "external_condition_evaluation_pairs": 45
+    }
+  ],
+  "unique_inputs": 30,
+  "fresh_inputs": 0,
+  "reused_inputs": 30,
+  "fresh_physical_pairs": 0,
+  "reused_physical_pairs": 90,
+  "seconds": 0.0007255999371409416,
+  "unrepresented_samples": 0,
+  "full_source_domain_certified": false,
+  "sample_scope": "native output contract on admitted source-generated inputs; full-test flags not replayed"
+}

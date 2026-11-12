@@ -1,0 +1,83 @@
+{
+  "job_id": "5ea94a83a919ee6a11bedfc86ec6f38fd5878199461893e5528e2bb413bf6166",
+  "candidate_id": "D0059",
+  "kind": "trace-llm",
+  "input_indices": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "prompt_sha256": "c31d987be6bef779296ff42a38ce8fa9a47f579cf1c19f7501972c6bda1d2dde",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792918908.3907073,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace any {\"__shared_ref__\":\"sN\"} with shared.sN to recover the data.\n\n The task is to assess the controlled adapter tests for the given inputs (indices 22 to 43). We are to return a JSON with:\n   verdict: \"preserved\", \"violated\", \"invalid-test\", \"invalid-assumption\", or \"undetermined\"\n   behavior_verdict: \"preserved\", \"violated\", or \"undetermined\"\n   intent_verdict: \"preserved\", \"violated\", or \"undetermined\"\n   reason: a string of at most 200 words\n   input_indices: list of all assessed batch indices (which are [22,23,...,43])\n\n The verdicts:\n   - The overall verdict is about the adapter-test preservation claim (i.e., whether the adapter tests for the target framework produce the same results as the source framework for the given inputs).\n   - behavior_verdict: whether the observed behavior (outputs) are preserved.\n   - intent_verdict: whether the intended behavior (as per the test) is preserved.\n\n Important: The original public tests are accepted as valid. We are only looking at the controlled adapter tests.\n\n Steps:\n 1. Reconstruct the data by replacing shared references in the entire payload.\n\n 2. For each input index in the batch (22 to 43), we look at the observation groups.\n\n 3. The observations for each input index are stored in the \"observations\" array. Each observation has:\n      - groups: an array of observations (each group may have multiple repeats, but in this data, each group has one observation with repeats [0,1,2] meaning it ran 3 times and the same result was recorded each time? But note: the groups for some indices are shared references too).\n\n 4. We note that some groups are shared (like s23, s26, s29). We must resolve these.\n\n 5. For each input index, we check:\n      - If the source_error and target_error are both null, then the test passed (outputs matched).\n      - If either source_error or target_error is non-null, then there was an error.\n\n 6. However, note that the test might have multiple groups? But in the provided data, each input index has one group (or a shared group that is an array of one group).\n\n 7. We must compare the source_output and target_output for each observation. But note: the test might have run multiple times (repeats) but the outputs are the same in each repeat.\n\n 8. We are told that the fixture includes recorded source outputs as test expectations (they are not human labels). So we expect the target to match the source_output.\n\n 9. However, in the test, the target is compared to the source_reference (which is the source_output) via the value_test function.\n\n 10. In the observations, we have:\n        source_output: the expected output (from the source framework when the test was recorded)\n        target_output: the output from the target framework when the test was run\n\n 11. We must check for each input index whether the target_output matches the source_output (within the tolerances set in the test).\n\n 12. But note: the observations already record the outcome. We don't have to recompute the value_test. We can rely on the fact that if the test passed, then the target_output is considered to match the source_output.\n\n 13. However, the observations also record errors. If there was an error in the target run (target_error non-null) then the test failed.\n\n 14. We must look at each input index and see if the test passed (both errors null and outputs as expected) or failed.\n\n 15. But note: the test might have passed in the source but failed in the target? The source_error is always null in the provided data because it's a replay of a previously recorded test.\n\n 16. We are to determine:\n      - behavior_verdict: preserved if for every input the target_output matches the source_output (or the test passed), violated otherwise.\n      - intent_verdict: preserved if the test's intent (which is to check the tanh function) is preserved, even if the behavior is not exactly the same? But note: the problem says \"a failing target test alone does not imply its intent was lost\". However, in this controlled test, the intent is exactly to check the numerical behavior. Since the test is a direct comparison, if the behavior is not preserved then the intent is violated? But note: the test might have a tolerance. We are not to second-guess the test.\n\n 17. The problem states: \"The source observation is a frozen replay reference, not an intent gold label.\" So the intent is defined by the test. If the test fails, then the intent of the test (to have the target produce the same output as the source) is violated.\n\n 18. However, the overall verdict (verdict) is about the adapter-test preservation claim. The claim is that the adapter tests for the target framework produce the same results as the source framework for the given inputs.\n\n 19. We are to look for any discrepancy in the test outcomes.\n\n 20. Let's go through the observations:\n\n      input_index: 22 -> passed (both errors null, and outputs are as expected? But note: the source_output is s0 and target_output is an array that matches s0? Actually, the target_output is an array that is the same as the source_output? We see the source_output is s0 and the target_output is an array that we can resolve to the same values? But note: the target_output is given as an array that is the same as the source_output? Actually, the source_output is s0 and the target_output is an array that we can resolve to the same as s0? But we don't have to resolve because the test passed.\n\n      However, note: the test for input 22 passed because the observation shows no error and the outputs are recorded.\n\n      Similarly, input 24, 26, 27, 28, 31, 32, 34, 35, 37, 39, 41, 42, 43: passed.\n\n      But what about the shared ones?\n\n      input_index: 23 -> shared group s23, which resolves to [s24] and then s24 is an observation with source_output s4 and target_output s4 -> passed.\n\n      Similarly, input 25: shared group s26 -> [s27] -> source_output s7 and target_output s7 -> passed.\n\n      input 29 and 30: shared group s29 -> [s30] -> source_output s17 and target_output s17 -> passed.\n\n      input 33: same as 23 -> passed.\n\n      input 36: same as 25 -> passed.\n\n      input 38: same as 25 -> passed.\n\n      input 40: same as 25 -> passed.\n\n      So all 22 inputs passed?\n\n 21. But wait: input 37? The observation for input 37 shows:\n        source_output: s20\n        target_output: an array of values: [-1.0, 1.0, -9.999999747378752e-06, -1.0, 0.9051482677459717, 1.0]\n\n      We must check if this matches the source_output s20? The source_output s20 is:\n        s20: {\"__ndarray__\":true,\"dtype\":\"float32\",\"shape\":[6],\"values\":[-1.0,1.0,-9.999999747378752e-06,-1.0,0.9051483273506165,1.0]}\n\n      The target_output: [-1.0,1.0,-9.999999747378752e-06,-1.0,0.9051482677459717,1.0]\n\n      The fifth element: 0.9051482677459717 (target) vs 0.9051483273506165 (source). They are very close but not exactly the same? However, the test passed? Because the observation does not show an error.\n\n      Why? Because the test uses a tolerance. The oracle_settings for input 37 is s2: {\"atol\":1e-06,\"rtol\":null,\"test_dtypes\":true,\"test_values\":true,\"tolerance_dict\":null}. The tolerance_dict is null, so it uses the default TOLERANCE_DICT which for float32 is 1e-05. The absolute difference is about 6e-8, which is less than 1e-05? So it passes.\n\n      Therefore, the test passed.\n\n 22. Similarly, all tests passed.\n\n 23. Therefore, the behavior is preserved and the intent is preserved.\n\n 24. But note: the problem says \"Do not infer whole-domain correctness from samples\". We are only to report on the given inputs.\n\n 25. However, we must check for any input that did not pass. We see none.\n\n 26. But wait: what about input 31? The source_output is a complex128 with value (1.0, -0.0) and the target_output is the same? Yes.\n\n 27. And input 34: source_output is -1.0 (float32) and target_output is -1.0? Yes.\n\n 28. Therefore, for all 22 inputs, the tests passed.\n\n 29. Verdict: preserved (the adapter-test preservation claim holds for these inputs).\n\n 30. behavior_verdict: preserved (the outputs matched within tolerance for every input).\n     intent_verdict: preserved (the test's intent to check the tanh function was achieved for every input).\n\n 31. Reason: \"All 22 controlled adapter tests passed: the target framework (torch) produced outputs matching the source framework (tensorflow) within the specified tolerances for the given inputs.\"\n\n 32. input_indices: [22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43]\n\n However, note: the problem says \"Return concise JSON only, with a nonempty reason of at most 200 words\".\n\n But wait: the data for input 37 shows a slight difference in the fifth element? But the test passed because of the tolerance. So we are okay.\n\n But note: the target_output for input 37 is recorded as:\n        [-1.0,1.0,-9.999999747378752e-06,-1.0,0.9051482677459717,1.0]\n and the source_output (s20) is:\n        [-1.0,1.0,-9.999999747378752e-06,-1.0,0.9051483273506165,1.0]\n\n The absolute difference in the fifth element is |0.9051482677459717 - 0.9051483273506165| = 5.96e-8, which is less than the atol (1e-6) and the rtol (1e-5 for float32) so it passes.\n\n Therefore, we are confident.\n\n However, note: the test for input 37 is recorded as passed? How do we know? The observation shows:\n        \"source_error\":null, \"target_error\":null -> no error.\n\n And the target_output is provided, and we can see it matches within tolerance? But the problem says we are to use the observations as given. The test passed because the value_test did not throw.\n\n So we don't need to recompute the tolerance.\n\n Therefore, the verdict is preserved.\n\n But note: what if there was a test that passed by accident? We are not to second-guess the test. The test passed according to the recorded observation.\n\n Therefore, the answer is:\n\n{\n  \"verdict\": \"preserved\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"preserved\",\n  \"reason\": \"All 22 controlled adapter tests passed: the target framework (torch) produced outputs matching the source framework (tensorflow) within the specified tolerances for the given inputs.\",\n  \"input_indices\": [22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43]\n}\n\n However, note: the problem says \"the fixture includes recorded source outputs as test expectations; they are not human labels\". We are using the recorded outcomes.\n\n But wait: what about the gradient tests? The test for input 22 and others? The test includes a gradient check for some inputs? We see that some inputs have a 'source_gradient' field. However, the observation does not show any error for these. The test for gradients is included in the value_test? Actually, in the adapter_runtime code, there is a separate check for gradients:\n\n    if 'source_gradient' in item:\n        ... compute gradient and compare ...\n\n And in the observations, we don't see any error for the gradient? For example, input 22 does not have a 'source_gradient' in the item? We are not told which inputs have gradients. But the observations for input 22 do not show an error, so the gradient check (if present) must have passed? Actually, the adapter_runtime code only runs the gradient check if the item has 'source_gradient'. We must check the inputs.\n\n Looking at the inputs:\n\n   input 22: does not have 'source_gradient'\n   input 23: does not have\n   ... until input 27: does not have.\n\n   Actually, none of the inputs in the batch (22-43) have 'source_gradient'? We can check:\n\n        input 22: no\n        input 23: arguments is a shared_ref to s3 -> s3 is {\"x\": s4} -> no source_gradient\n        ... \n\n   Only the inputs that have the key 'source_gradient' in the item would run the gradient check. None of the provided inputs in the batch have that key.\n\n   Therefore, the gradient check was not run for any of these inputs.\n\n   So we are safe.\n\n Therefore, the above verdict stands.\n</think>\n{\n  \"verdict\": \"preserved\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"preserved\",\n  \"reason\": \"All 22 controlled adapter tests passed: target outputs matched source references within tolerances. No errors observed in source or target executions. Numerical results (including edge cases like large magnitudes, complex numbers, and float16) were consistent across frameworks. Gradient checks were absent in this batch.\",\n  \"input_indices\": [22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 7739,
+      "completion_tokens": 3198,
+      "total_tokens": 10937
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "preserved",
+    "behavior_verdict": "preserved",
+    "intent_verdict": "preserved",
+    "reason": "All 22 controlled adapter tests passed: target outputs matched source references within tolerances. No errors observed in source or target executions. Numerical results (including edge cases like large magnitudes, complex numbers, and float16) were consistent across frameworks. Gradient checks were absent in this batch.",
+    "input_indices": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43
+    ]
+  },
+  "seconds": 381.198
+}

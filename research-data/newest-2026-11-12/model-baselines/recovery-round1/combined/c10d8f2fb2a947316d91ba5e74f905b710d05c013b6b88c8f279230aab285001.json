@@ -1,0 +1,43 @@
+{
+  "job_id": "c10d8f2fb2a947316d91ba5e74f905b710d05c013b6b88c8f279230aab285001",
+  "candidate_id": "D0043",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    42,
+    43,
+    44
+  ],
+  "prompt_sha256": "9ec76f83f1d9614a6bd5ed8b45a26b508018e45e3621a61658546997ae03b425",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792493994.788724,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and Test Code. The TDL describes the test's intent in terms of assertions and obligations for specific input indices (42,43,44). The Test Code is the implementation.\n\nTDL breakdown:\n- Assertions:\n  1. \"dtype\": Requires identical dtype via `value_test(test_dtypes=True)`. Applies to inputs 42,43,44.\n  2. \"helper_shape\": Requires identical shape via `assert_same_type_and_shape` (invoked by `value_test(test_dtypes=True)`). Applies to inputs 42,43,44.\n  3. \"value\": Compares actual values with frozen source values using the listed tolerances. Applies to inputs 42,43,44.\n- Goal: Preserve the supplied source test output obligations on the listed input subset.\n- Input fixture indices: [42,43,44]\n- Scope: controlled native-output adapter tests.\n\nTest Code analysis:\nThe test code is for a controlled adapter test. It uses the `invoke_test` function which:\n1. Loads the test case (inputs, metadata, etc.)\n2. Converts inputs to the target framework (Torch or TensorFlow) appropriately.\n3. Executes the target operation (e.g., `torch.cosh`).\n4. Compares the result with the expected source reference.\n\nThe key comparison is done by `value_test` function (from the oracle_helper_code). The `value_test` function is called with:\n  ret_np_flat=[array(actual)]\n  ret_np_from_gt_flat=[expected]\n  rtol=setting['rtol']\n  atol=setting['atol']\n  specific_tolerance_dict=setting['tolerance_dict']\n  test_dtypes=setting['test_dtypes']\n  backend=fw\n  ground_truth_backend=meta['source_framework']\n\nThe `value_test` function does:\n- If `test_dtypes` is True, it calls `assert_same_type_and_shape` which checks the dtype and shape of the returned arrays.\n- Then, it does value comparisons (with tolerances) for each element in the returned arrays.\n\nNow, let's map the TDL assertions to the Test Code:\n\n1. dtype assertion: The TDL says it requires identical dtype via `value_test(test_dtypes=True)`. In the Test Code, the `value_test` is called with `test_dtypes=setting['test_dtypes']`. The setting for each input is provided in the inputs list. For all three inputs (42,43,44), the `oracle_settings` is a shared reference `s0`. We decode `s0` from the shared section: \n   `\"s0\": {\"atol\":1e-06, \"rtol\":null, \"test_dtypes\":true, ...}`\n   So `test_dtypes` is set to True for all three inputs. Therefore, the `value_test` will check dtypes (via `assert_same_type_and_shape`).\n\n2. helper_shape: The TDL says it requires identical shape via `assert_same_type_and_shape` (which is called by `value_test` when `test_dtypes=True`). Since `test_dtypes` is True, `assert_same_type_and_shape` is called, and that function checks both dtype and shape. So the shape check is included.\n\n3. value: The TDL says to compare actual values with frozen source values using the listed tolerances. The `value_test` function does exactly that: it compares the values (with the provided tolerances) after the dtype and shape checks (if enabled).\n\nAdditionally, note that the TDL's input_fixture_indices [42,43,44] match the batch_input_indices in the Test Code.\n\nHowever, we must note that the Test Code also includes additional checks beyond the TDL assertions for some inputs. For example:\n- If `official_sign` is true (which it is false in this case) then it checks the shape again (but it's false so skipped).\n- For sparse mode, there are additional checks (but our inputs are in dense mode).\n- If there is a source_gradient, it checks gradients (but none of our inputs have that).\n\nBut the TDL does not claim to cover these additional checks. The TDL only specifies the obligations for the value, dtype, and shape for the given inputs. The additional checks are outside the scope of the TDL.\n\nTherefore, the TDL correctly expresses the intent of the Test Code for the given input indices [42,43,44] in terms of:\n- Checking dtypes (via test_dtypes=True)\n- Checking shapes (as part of the same function when test_dtypes=True)\n- Comparing values with tolerances.\n\nThus, the TDL is valid for the given inputs.\n\nReason: The TDL assertions for dtype, helper_shape, and value are implemented by the value_test call with test_dtypes=True and the provided tolerances, which covers the specified input indices.\n\nOutput format:\n{\"valid\": true, \"reason\": \"The TDL assertions for dtype, shape, and value are correctly implemented by the value_test function with test_dtypes=True and the provided tolerance settings for the given inputs.\", \"input_indices\": [42,43,44]}\n</think>\n{\"valid\": true, \"reason\": \"TDL assertions align with test code implementation: dtype obligation enforced via value_test(test_dtypes=True) triggering assert_same_type_and_shape for dtype/shape checks; value obligation handled by tolerance-based comparisons in value_test. Input indices 42-44 use consistent test_dtypes=true and tolerance settings per shared references.\", \"input_indices\": [42,43,44]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3828,
+      "completion_tokens": 1190,
+      "total_tokens": 5018
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions align with test code implementation: dtype obligation enforced via value_test(test_dtypes=True) triggering assert_same_type_and_shape for dtype/shape checks; value obligation handled by tolerance-based comparisons in value_test. Input indices 42-44 use consistent test_dtypes=true and tolerance settings per shared references.",
+    "input_indices": [
+      42,
+      43,
+      44
+    ]
+  },
+  "seconds": 145.899
+}

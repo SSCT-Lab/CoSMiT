@@ -1,0 +1,81 @@
+{
+  "job_id": "c9b20909d439f52cbd40bb6adb596e6d0be0453243d00ee3e0c74cc2fea4feba",
+  "candidate_id": "D0013",
+  "kind": "trace-llm",
+  "input_indices": [
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44
+  ],
+  "prompt_sha256": "9509ef1f7bf39f357181d0edb22d6b1a2fc0d0dd2ae454331e7595ba1effc22a",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792983700.5067196,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace any {\"__shared_ref__\":\"sN\"} with shared.sN to recover the actual data.\n The shared dictionary is provided under the key \"shared\".\n\n Steps:\n 1. Reconstruct the full data by replacing shared references.\n 2. Focus only on the controlled adapter tests and the listed inputs (batch_input_indices: [24,25,...,44]).\n 3. The original public tests are accepted as valid; we do not re-investigate their authenticity.\n 4. The fixture includes recorded source outputs as test expectations; they are not human labels.\n 5. We are to assess the adapter-test preservation claim for the given batch of inputs.\n\n The verdicts we can assign:\n   - \"preserved\": if the adapter correctly preserves the behavior and intent for all inputs in the batch.\n   - \"violated\": if the adapter fails to preserve the behavior or intent for at least one input.\n   - \"invalid-test\": if a test in the batch is found to be invalid (e.g., due to a bug in the test itself).\n   - \"invalid-assumption\": if the test relies on an invalid assumption (e.g., about the framework).\n   - \"undetermined\": if we cannot determine the outcome.\n\n Additionally, we have two sub-verdicts:\n   - behavior_verdict: whether the observed behavior (output) matches the source.\n   - intent_verdict: whether the intended functionality (as per the test) is preserved.\n\n Important: A failing target test alone does not imply its intent was lost. We must consider if the intent of the test is preserved.\n\n Observations:\n   - The test function being tested is `torch.floor` (source) and `tf.floor` (target).\n   - The adapter code is provided and we are to trust the test setup as given.\n\n We are provided with a list of inputs (from index 24 to 44) and their observations.\n\n How to proceed:\n   - For each input index in the batch, we look at the observation.\n   - The observation for each input index is stored in the \"observations\" list, which we must also resolve shared references.\n\n Note: The observations structure:\n        [\n          {\"input_index\": 24, \"groups\": [...]},\n          ...\n        ]\n\n   - Each \"groups\" entry contains one or more observations (for multiple runs). In our case, it seems each input has one group with one observation and multiple repeats (but the same observation for each repeat).\n\n   - In the observation, we have:\n        - source_output: the output from the source (torch) run.\n        - target_output: the output from the target (tensorflow) run.\n        - source_error: if there was an error in the source run.\n        - target_error: if there was an error in the target run.\n\n   - We must compare the source_output and target_output (if no errors) to see if they match (within the test's tolerance).\n\n   - However, note that the test also checks other things (like gradients, sparse tensors, etc.) but from the provided inputs, we see that most are dense and a few have gradients or sparse checks.\n\n   - The test code (in the adapter_runtime) does:\n        - For each input, it runs the function (either torch or tensorflow) and then compares the output using `value_test`.\n        - It also does additional checks for sparse mode and gradients if present.\n\n   - The observations we have are the recorded results from running the source and target tests.\n\n   - We are to check for each input in the batch whether the target test passed (i.e., the target_output matches the source_output and any additional checks passed).\n\n   - But note: the source_output is the recorded output from the source (which is considered the oracle). The target_output is the output from the target.\n\n   - The test passes if:\n        - Both source and target run without error and the outputs match (within tolerance) and any additional checks (like shape for sparse, gradient) pass.\n\n   - However, the provided observations already tell us the outcome for each run.\n\n   - We see that for some inputs, the observation is given as a shared reference (e.g., for input_index 25, it's \"s19\"). We must resolve that.\n\n   - After resolving, we can see for each input whether the source and target outputs are as expected and whether there were errors.\n\n   - We note that the test for an input might fail in the target for two reasons:\n        1. The target implementation (tf.floor) does not match the source (torch.floor) for that input.\n        2. The adapter code has a bug in converting the input or handling the output.\n\n   - But note: the test also sets tolerances and other settings (like test_dtypes). We must trust the test's comparison.\n\n   - We are not to run the tests again; we rely on the recorded observations.\n\n   - We must look for any input in the batch where the observation indicates a failure.\n\n   - How do we know if a test failed?\n        - If either source_error or target_error is non-null, that's a failure.\n        - Also, if the outputs do not match (but the test code would have raised an assertion), then the target_error would be set? But in the observation, we see that both source_error and target_error are null for most.\n\n   - Actually, the observation structure for each group has an \"observation\" object that has:\n        - source_output, target_output: the outputs (if no error)\n        - source_error, target_error: if there was an error (like an exception)\n\n   - So, if target_error is not null, then the target test failed.\n\n   - Also, note that the test might have multiple checks (like the gradient check). If any of these checks fail, the test would fail and we would see an error? Or the test function in the adapter_runtime might catch and record?\n\n   - Looking at the adapter_runtime code: it runs the function and then the checks. If any check fails, it would throw an exception, which would be caught by the test framework? But in the observation, we have the error field.\n\n   - However, in the provided observations, we see that for input_index 25, the observation is given as a shared reference to \"s19\", which resolves to a list of one group (with one observation and repeats). In that observation (s21) we see:\n        source_error: null, target_error: null, and outputs are arrays of [-1.0] (for both).\n\n   - So we must check every input.\n\n   - We are to list all input indices that we assessed (which is the entire batch: [24,25,...,44]).\n\n   - We must look for any input where the test failed (target_error non-null) or the outputs do not match (but note the test code does the comparison and if it fails, it would throw and we would see an error).\n\n   - However, note that the observation does not directly tell us if the test passed; it only records the outputs and errors. We must infer that if both errors are null, then the test passed? But what if the output comparison fails? The test would throw an exception and then target_error would be set.\n\n   - Therefore, we can assume that if target_error is null, then the test passed (because the test code would have raised an exception on output mismatch).\n\n   - But wait: the test code (value_test) uses assertions. If the assertion fails, it would raise an AssertionError, which would be caught by the test framework and recorded as an error.\n\n   - So, we can use:\n        - If target_error is not null: the test failed (behavior not preserved).\n        - If target_error is null: the test passed.\n\n   - However, we must also check the source: if the source had an error, then the test is invalid? Because the source is the oracle.\n\n   - But note: the source is torch.floor, which should be well-defined for the provided inputs. We see that for all inputs in the batch, the source_error is null.\n\n   - Therefore, we can focus on the target_error.\n\n   - Let's resolve the shared references and check each input in the batch.\n\n   - We note that the batch_input_indices are [24,25,...,44] (21 inputs).\n\n   - We have 21 observations.\n\n   - We must traverse each observation and check for target_error.\n\n   - We see that for input_index 24, 26, 27, 28, 29, 32, 33, 34, 36, 38, 40, 41: the observation is given as a list of groups, each with an observation that has target_error=null.\n\n   - For input_index 25, 30, 31, 35, 37, 39, 42, 43, 44: the observation is given as a shared reference (e.g., \"s19\", \"s22\", etc.). We resolve:\n\n        s19 -> [{\"observation\": s21, \"repeats\": [0,1,2]}]\n        s21: source_error=null, target_error=null.\n\n        s22 -> [{\"observation\": s24, ...}]\n        s24: source_error=null, target_error=null.\n\n        s25 -> [{\"observation\": s27, ...}]\n        s27: source_error=null, target_error=null.\n\n        s28 -> [{\"observation\": s30, ...}]\n        s30: source_error=null, target_error=null.\n\n   - So all observations have target_error=null and source_error=null.\n\n   - Therefore, for every input in the batch, the test passed.\n\n   - But note: the test also does additional checks (like for sparse mode and gradients). However, in the provided batch, we see that all inputs are in \"dense\" mode (see the \"mode\" field in inputs). Also, only input_index 24 has a gradient check? Actually, we see that the inputs do not have the 'source_gradient' key except for one? Let me check:\n\n        In the inputs, only input_index 24 has a key 'source_gradient'? Actually, no: looking at the inputs, only input_index 24 has a gradient? But wait, the input for index 24 does not have 'source_gradient'. Actually, the adapter_runtime code checks for 'source_gradient' in the item. In the provided inputs, none of the inputs in the batch have 'source_gradient'. So that check is skipped.\n\n   - Also, the sparse mode: the inputs are all mode='dense', so the sparse check is skipped.\n\n   - Therefore, we can conclude that all tests in the batch passed.\n\n   - Thus, the behavior is preserved for all inputs.\n\n   - What about intent? The intent of the test is to check that tf.floor produces the same output as torch.floor for the given inputs. Since the outputs match, the intent is preserved.\n\n   - Therefore, the overall verdict is \"preserved\".\n\n   - However, note that the test might have other aspects (like dtype preservation, shape, etc.) but the test code (value_test) checks these and we saw no errors.\n\n   - We must also consider if there are any invalid tests or assumptions. We don't see any.\n\n   - Therefore:\n\n        verdict: \"preserved\"\n        behavior_verdict: \"preserved\"\n        intent_verdict: \"preserved\"\n\n   - Reason: All 21 inputs in the batch passed: the target outputs matched the source outputs within the test's tolerance and no errors occurred.\n\n   - input_indices: [24,25,...,44] (all 21 indices)\n\n   - But note: the batch_input_indices are provided as [24,25,...,44] (21 indices). We must list them.\n\n   - However, the problem says: \"input_indices must list all assessed batch indices\", so we list [24,25,...,44].\n\n   - We must be concise.\n\n   - Let's write the JSON.\n\n   - But note: the shared references for the observations of input_index 25,30,31,35,37,39,42,43,44 are resolved and show no error.\n\n   - Therefore, we are confident.\n\n   - One caveat: the test for input_index 24 has a gradient check? Actually, in the inputs, we see that input_index 24 does not have the key 'source_gradient'. The adapter_runtime code only does the gradient check if the item has 'source_gradient'. So it is skipped.\n\n   - Similarly, the sparse check is only done if mode is 'sparse', which it is not.\n\n   - So we are safe.\n\n   - Final output:\n\n        {\n          \"verdict\": \"preserved\",\n          \"behavior_verdict\": \"preserved\",\n          \"intent_verdict\": \"preserved\",\n          \"reason\": \"All 21 inputs in the batch passed: target outputs matched source outputs within the test's tolerance and no errors occurred.\",\n          \"input_indices\": [24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44]\n        }\n\n   - However, note that the problem says \"at most 200 words\". Our reason is 15 words.\n\n   - We are done.\n</think>\n{\n  \"verdict\": \"preserved\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"preserved\",\n  \"reason\": \"All 21 inputs in the batch show matching source and target outputs with null errors in observations. The adapter correctly handles diverse float values (including extremes, subnormals, and bfloat16) across TensorFlow and PyTorch. Gradient checks and sparse modes are absent in this batch. Outputs align with recorded source references under specified tolerances.\",\n  \"input_indices\": [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 7696,
+      "completion_tokens": 3018,
+      "total_tokens": 10714
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "preserved",
+    "behavior_verdict": "preserved",
+    "intent_verdict": "preserved",
+    "reason": "All 21 inputs in the batch show matching source and target outputs with null errors in observations. The adapter correctly handles diverse float values (including extremes, subnormals, and bfloat16) across TensorFlow and PyTorch. Gradient checks and sparse modes are absent in this batch. Outputs align with recorded source references under specified tolerances.",
+    "input_indices": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
+    ]
+  },
+  "seconds": 381.039
+}

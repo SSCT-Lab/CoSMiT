@@ -1,0 +1,51 @@
+{
+  "job_id": "da325f453dc8bdec5703325081251a3c20f27768ccbca7f5e263e63348f57e47",
+  "candidate_id": "D0033",
+  "kind": "trace-llm",
+  "input_indices": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "171d7d80bbde7000e67b7e1d5a06d53b1bfe8281967c3f1f694635e20acc83b7",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1793190331.933173,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace each {\"__shared_ref__\":\"sN\"} with shared.sN.\n The shared dictionary is provided under the key \"shared\".\n\n Steps:\n 1. Reconstruct the full data by replacing all shared references in the provided JSON.\n 2. Focus only on the controlled adapter tests and the listed inputs (batch_input_indices: [42,43,44,45,46,47]).\n 3. The original public tests are accepted as valid; we do not re-investigate their authenticity.\n 4. The fixture includes recorded source outputs as test expectations; they are not human labels.\n 5. We are to assess the adapter-test preservation claim for the given batch indices.\n\n The verdicts to return are for the bounded adapter-test preservation claim. We have three verdicts:\n   - verdict: overall verdict for the test preservation claim (preserved, violated, invalid-test, invalid-assumption, undetermined)\n   - behavior_verdict: preserved, violated, or undetermined (for the behavior of the target compared to the source)\n   - intent_verdict: preserved, violated, or undetermined (for the intent of the test)\n\n Important: A failing target test alone does not imply its intent was lost.\n\n We are to return a JSON object with:\n   - verdict\n   - behavior_verdict\n   - intent_verdict\n   - reason (concise, at most 200 words)\n   - input_indices (list of all assessed batch indices, which are [42,43,44,45,46,47])\n\n How to assess?\n   - We are given the adapter_runtime code and the test observations for each input index.\n   - The test for each input index is considered passed if the observation shows that both source and target ran without error and produced the same output (as per the test oracle).\n   - However, note that the test might have additional checks (like gradient checks, sparse checks) that are conditionally run.\n\n Observations structure:\n   - For each input index, there is an observation entry.\n   - The observation for an input index may be a shared reference (e.g., for index 43: {\"groups\": {\"__shared_ref__\":\"s2\"}}).\n\n After replacing shared references, we can see what happened for each test.\n\n Let's reconstruct the observations for each input index:\n\n   input_index: 42\n     groups: [ { \"observation\": ... } ]  (with source_output and target_output both being s0, which is an array)\n\n   input_index: 43\n     groups: s2 -> which is [ { \"observation\": s4 } ]  (so we look at s4)\n\n   input_index: 44\n     groups: s2 -> same as 43? But note: the test might be the same, but we have to check the input.\n\n   However, note that the inputs are different for each index.\n\n But wait: the observations for index 43 and 44 are the same shared structure? That might be because the test passed in the same way.\n\n Similarly, index 46 and 47 share s5 -> s6 -> s7.\n\n What do we see in the observations?\n\n   For index 42: \n        source_output: s0 (which is an array of float16: [-0.82958984375, 0.07073974609375, 1.0, -0.9140625, 0.94482421875, 0.54052734375])\n        target_output: s0 (same as source_output) -> so they match.\n\n   For index 43 and 44:\n        observation: s4 -> which has:\n            source_output: float32 scalar 0.07073719799518585\n            target_output: float32 scalar 0.07073719799518585 -> match.\n\n   For index 45:\n        groups: [ { \"observation\": ... } ] with source_output and target_output both being 0.99951171875 (float16) -> match.\n\n   For index 46 and 47:\n        observation: s7 -> which has:\n            source_output: float32 scalar 0.5145260691642761\n            target_output: float32 scalar 0.5145260691642761 -> match.\n\n Therefore, all 6 tests passed.\n\n However, note that the test for index 42 might have additional checks (like shape and gradient) because of the conditions in the adapter_runtime code.\n\n Let's check the adapter_runtime code for index 42:\n\n   The test for index 42 has:\n        mode: 'dense'\n        Also, note that the test runs:\n\n        - value_test(...) which checks the output with tolerance.\n        - Then, if meta['official_sign'] (which is false in this case) -> skip shape check.\n        - Then, if mode is 'sparse' (it is not) -> skip sparse checks.\n        - Then, if 'source_gradient' in item (for index 42, we don't see it in the input) -> skip gradient check.\n\n   Looking at the input for index 42: \n        \"source_gradient\" is not present -> so no gradient check.\n\n   Therefore, only the value_test was run and passed.\n\n Similarly, for the others, we don't see gradient or sparse checks.\n\n So all 6 tests passed.\n\n Therefore, the behavior_verdict is \"preserved\" because the target behavior matched the source behavior for these tests.\n\n What about intent_verdict?\n   The intent of the test is to check the cosine function. The tests passed, so the intent was preserved.\n\n However, note: the test might have been intended to check more than just the output (like gradients, sparsity, etc.), but in these inputs, those conditions were not triggered.\n\n Since the tests passed and we have no reason to believe the intent was violated, we mark intent_verdict as preserved.\n\n Overall verdict: preserved.\n\n But note: the problem says \"a failing target test alone does not imply its intent was lost\". Conversely, passing tests do not necessarily mean the intent was preserved? However, in this case, the tests passed and we have no indication of any issue.\n\n Therefore, we return:\n\n   verdict: \"preserved\"\n   behavior_verdict: \"preserved\"\n   intent_verdict: \"preserved\"\n   reason: \"All 6 controlled tests passed: outputs matched for both source and target.\"\n   input_indices: [42,43,44,45,46,47]\n\n However, let's double-check the input for index 45:\n\n   Input: float16 scalar 59552.0 -> which is a very large number. The cosine of such a number is periodic, but the expected output is 0.99951171875 (which is near 1). This is plausible because 59552 is a multiple of 2*pi? Actually, 2*pi is about 6.28, and 59552/(2*pi) is about 9478.5, so it's not an exact multiple. However, the test passed because the recorded output from the source was 0.99951171875 and the target produced the same.\n\n   But note: the test oracle is the recorded source output, not a mathematical gold standard. The test is checking that the target produces the same as the source did in the past.\n\n   Therefore, we are only checking consistency with the recorded source output.\n\n Since all tests passed, we are confident.\n\n However, note that the test for index 43 and 44 are the same? And similarly 46 and 47? But the inputs are different:\n\n   index 43: float32 scalar 1.5 -> expected 0.07073719799518585\n   index 44: same input? Actually, the input for 44 is also 1.5? Wait, the inputs for 43 and 44 are identical? And similarly 46 and 47 are identical? \n\n   Why are there duplicate tests? It might be because of the way the test suite is generated. But that doesn't matter for our assessment.\n\n   The tests passed, so we don't flag them.\n\n Therefore, the final answer.\n</think>\n{\n  \"verdict\": \"preserved\",\n  \"behavior_verdict\": \"preserved\",\n  \"intent_verdict\": \"preserved\",\n  \"reason\": \"All 6 controlled tests passed with matching outputs between source (TensorFlow) and target (PyTorch) implementations. Outputs were identical within specified tolerances for both dense value checks (indices 42-47) and gradient-free cases. No test failures, errors, or behavioral deviations observed in the adapter execution logs.\",\n  \"input_indices\": [42, 43, 44, 45, 46, 47]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 4468,
+      "completion_tokens": 1852,
+      "total_tokens": 6320
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "preserved",
+    "behavior_verdict": "preserved",
+    "intent_verdict": "preserved",
+    "reason": "All 6 controlled tests passed with matching outputs between source (TensorFlow) and target (PyTorch) implementations. Outputs were identical within specified tolerances for both dense value checks (indices 42-47) and gradient-free cases. No test failures, errors, or behavioral deviations observed in the adapter execution logs.",
+    "input_indices": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 191.791
+}

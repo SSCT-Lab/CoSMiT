@@ -1,0 +1,6748 @@
+[
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [],
+        "values": -1.2930438139304855e-38
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 0,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [],
+            "values": -1.2930438139304855e-38
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 16,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [],
+            "values": -1.2930438139304855e-38
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 33,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [],
+            "values": -1.2930438139304855e-38
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "62e97df1950f0d6d9ef53c1042c700a74c855e3c9b8a83672ef6ebe6c44ffbc7",
+          "bound": true,
+          "values": "nan"
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "0c6903dc775d6a488b667390d4d5f448517a9a6855357510726f19c37cad853d",
+          "bound": true,
+          "values": "nan"
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "62e97df1950f0d6d9ef53c1042c700a74c855e3c9b8a83672ef6ebe6c44ffbc7",
+          "bound": true,
+          "values": "nan"
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "0c6903dc775d6a488b667390d4d5f448517a9a6855357510726f19c37cad853d",
+          "bound": true,
+          "values": "nan"
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "62e97df1950f0d6d9ef53c1042c700a74c855e3c9b8a83672ef6ebe6c44ffbc7",
+          "bound": true,
+          "values": "nan"
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "0c6903dc775d6a488b667390d4d5f448517a9a6855357510726f19c37cad853d",
+          "bound": true,
+          "values": "nan"
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 32,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [],
+        "values": -2.4475812443579217e-308
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 1,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": -2.4475812443579217e-308
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 17,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": -2.4475812443579217e-308
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 30,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=True. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": -2.4475812443579217e-308
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 31,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": -2.4475812443579217e-308
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 32,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": -2.4475812443579217e-308
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "223c7b8be1b99108cfdd719775418cf656c6b17b20be15ab3c74101d1b1420e3",
+          "bound": true,
+          "values": "nan"
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "ebc5f44e7b2b1b928b5e929b8681c4ec7a4a49adfc677659052f652fcdb5d428",
+          "bound": true,
+          "values": "nan"
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "223c7b8be1b99108cfdd719775418cf656c6b17b20be15ab3c74101d1b1420e3",
+          "bound": true,
+          "values": "nan"
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "ebc5f44e7b2b1b928b5e929b8681c4ec7a4a49adfc677659052f652fcdb5d428",
+          "bound": true,
+          "values": "nan"
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "223c7b8be1b99108cfdd719775418cf656c6b17b20be15ab3c74101d1b1420e3",
+          "bound": true,
+          "values": "nan"
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "ebc5f44e7b2b1b928b5e929b8681c4ec7a4a49adfc677659052f652fcdb5d428",
+          "bound": true,
+          "values": "nan"
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 33,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [],
+        "values": 5556544633555104.0
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 2,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=2. with_out=True. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": 5556544633555104.0
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "77a616c2d1c4eb909cf66bc9098bbe317364fbd58b6250db32debf1e1c37b313",
+          "bound": true,
+          "values": 36.25375284119635
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "77a616c2d1c4eb909cf66bc9098bbe317364fbd58b6250db32debf1e1c37b313",
+          "bound": true,
+          "values": 36.25375284119635
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "77a616c2d1c4eb909cf66bc9098bbe317364fbd58b6250db32debf1e1c37b313",
+          "bound": true,
+          "values": 36.25375284119635
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "77a616c2d1c4eb909cf66bc9098bbe317364fbd58b6250db32debf1e1c37b313",
+          "bound": true,
+          "values": 36.25375284119635
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "77a616c2d1c4eb909cf66bc9098bbe317364fbd58b6250db32debf1e1c37b313",
+          "bound": true,
+          "values": 36.25375284119635
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "77a616c2d1c4eb909cf66bc9098bbe317364fbd58b6250db32debf1e1c37b313",
+          "bound": true,
+          "values": 36.25375284119635
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 34,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [
+          1
+        ],
+        "values": [
+          -1.2930438139304855e-38
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 3,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              1
+            ],
+            "values": [
+              -1.2930438139304855e-38
+            ]
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 19,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              1
+            ],
+            "values": [
+              -1.2930438139304855e-38
+            ]
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 20,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              1
+            ],
+            "values": [
+              -1.2930438139304855e-38
+            ]
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 35,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              1
+            ],
+            "values": [
+              -1.2930438139304855e-38
+            ]
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 37,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              1
+            ],
+            "values": [
+              -1.2930438139304855e-38
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            1
+          ],
+          "digest": "d39fa6b1a629ed1f5b37493188ef4c6089baf6400bdaff4d2d5cbfd82a31e44f",
+          "bound": true,
+          "values": [
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            1
+          ],
+          "digest": "c0f1088f4c8e1d014a5205fb2c5b7a21b9c31c94e4acb358cc3d2c97cf701981",
+          "bound": true,
+          "values": [
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            1
+          ],
+          "digest": "d39fa6b1a629ed1f5b37493188ef4c6089baf6400bdaff4d2d5cbfd82a31e44f",
+          "bound": true,
+          "values": [
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            1
+          ],
+          "digest": "c0f1088f4c8e1d014a5205fb2c5b7a21b9c31c94e4acb358cc3d2c97cf701981",
+          "bound": true,
+          "values": [
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            1
+          ],
+          "digest": "d39fa6b1a629ed1f5b37493188ef4c6089baf6400bdaff4d2d5cbfd82a31e44f",
+          "bound": true,
+          "values": [
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            1
+          ],
+          "digest": "c0f1088f4c8e1d014a5205fb2c5b7a21b9c31c94e4acb358cc3d2c97cf701981",
+          "bound": true,
+          "values": [
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 35,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [
+          2,
+          1
+        ],
+        "values": [
+          [
+            2.220446049250313e-16
+          ],
+          [
+            -1.0
+          ]
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 4,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=2. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              2,
+              1
+            ],
+            "values": [
+              [
+                2.220446049250313e-16
+              ],
+              [
+                -1.0
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 2,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            2,
+            1
+          ],
+          "digest": "3fc6f64dc1b23228b54f720e6634feabc3edb9afd512f84e44313003302e502f",
+          "bound": true,
+          "values": [
+            [
+              -36.04365158081055
+            ],
+            [
+              "nan"
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            2,
+            1
+          ],
+          "digest": "c70d684af2f699657e091c6f910c84622473e0d2b007ae4bb49ae045819faf60",
+          "bound": true,
+          "values": [
+            [
+              -36.04365158081055
+            ],
+            [
+              "nan"
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            2,
+            1
+          ],
+          "digest": "3fc6f64dc1b23228b54f720e6634feabc3edb9afd512f84e44313003302e502f",
+          "bound": true,
+          "values": [
+            [
+              -36.04365158081055
+            ],
+            [
+              "nan"
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            2,
+            1
+          ],
+          "digest": "c70d684af2f699657e091c6f910c84622473e0d2b007ae4bb49ae045819faf60",
+          "bound": true,
+          "values": [
+            [
+              -36.04365158081055
+            ],
+            [
+              "nan"
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            2,
+            1
+          ],
+          "digest": "3fc6f64dc1b23228b54f720e6634feabc3edb9afd512f84e44313003302e502f",
+          "bound": true,
+          "values": [
+            [
+              -36.04365158081055
+            ],
+            [
+              "nan"
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            2,
+            1
+          ],
+          "digest": "c70d684af2f699657e091c6f910c84622473e0d2b007ae4bb49ae045819faf60",
+          "bound": true,
+          "values": [
+            [
+              -36.04365158081055
+            ],
+            [
+              "nan"
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 36,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [
+          1
+        ],
+        "values": [
+          -2.4475812443579217e-308
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 5,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              1
+            ],
+            "values": [
+              -2.4475812443579217e-308
+            ]
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 6,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              1
+            ],
+            "values": [
+              -2.4475812443579217e-308
+            ]
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 8,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              1
+            ],
+            "values": [
+              -2.4475812443579217e-308
+            ]
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 26,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              1
+            ],
+            "values": [
+              -2.4475812443579217e-308
+            ]
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 39,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              1
+            ],
+            "values": [
+              -2.4475812443579217e-308
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            1
+          ],
+          "digest": "9200f1a9d86be67b44ccbbd55cf597c99f8512d665cade27d24d1d22a5ced6b4",
+          "bound": true,
+          "values": [
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            1
+          ],
+          "digest": "28cf118cef036a92a1ba64625637383e1ebec43aa2ad9b028e856c5918431ed1",
+          "bound": true,
+          "values": [
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            1
+          ],
+          "digest": "9200f1a9d86be67b44ccbbd55cf597c99f8512d665cade27d24d1d22a5ced6b4",
+          "bound": true,
+          "values": [
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            1
+          ],
+          "digest": "28cf118cef036a92a1ba64625637383e1ebec43aa2ad9b028e856c5918431ed1",
+          "bound": true,
+          "values": [
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            1
+          ],
+          "digest": "9200f1a9d86be67b44ccbbd55cf597c99f8512d665cade27d24d1d22a5ced6b4",
+          "bound": true,
+          "values": [
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            1
+          ],
+          "digest": "28cf118cef036a92a1ba64625637383e1ebec43aa2ad9b028e856c5918431ed1",
+          "bound": true,
+          "values": [
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 37,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [
+          7
+        ],
+        "values": [
+          2.447581244357922e-308,
+          -2.220446049250313e-16,
+          1.95264954740551e+16,
+          8778253684185208.0,
+          -2.220446049250313e-16,
+          2.00001,
+          -1.0
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 7,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=True. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              7
+            ],
+            "values": [
+              2.447581244357922e-308,
+              -2.220446049250313e-16,
+              1.95264954740551e+16,
+              8778253684185208.0,
+              -2.220446049250313e-16,
+              2.00001,
+              -1.0
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 7,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            7
+          ],
+          "digest": "c51089456dfced2f3ae1ca55dc0fc9c6a239e1eb063270a07a35cb6c5f3a7510",
+          "bound": true,
+          "values": [
+            -708.3011083524598,
+            "nan",
+            37.51054868048467,
+            36.711053885757444,
+            "nan",
+            0.6931521805474453,
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            7
+          ],
+          "digest": "81f8b9a88f22415c8ac24b8cfbee32b4c6ab7699516b7b0931ac27e8732cce76",
+          "bound": true,
+          "values": [
+            -708.3011083524598,
+            "nan",
+            37.51054868048467,
+            36.711053885757444,
+            "nan",
+            0.6931521805474454,
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            7
+          ],
+          "digest": "c51089456dfced2f3ae1ca55dc0fc9c6a239e1eb063270a07a35cb6c5f3a7510",
+          "bound": true,
+          "values": [
+            -708.3011083524598,
+            "nan",
+            37.51054868048467,
+            36.711053885757444,
+            "nan",
+            0.6931521805474453,
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            7
+          ],
+          "digest": "81f8b9a88f22415c8ac24b8cfbee32b4c6ab7699516b7b0931ac27e8732cce76",
+          "bound": true,
+          "values": [
+            -708.3011083524598,
+            "nan",
+            37.51054868048467,
+            36.711053885757444,
+            "nan",
+            0.6931521805474454,
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            7
+          ],
+          "digest": "c51089456dfced2f3ae1ca55dc0fc9c6a239e1eb063270a07a35cb6c5f3a7510",
+          "bound": true,
+          "values": [
+            -708.3011083524598,
+            "nan",
+            37.51054868048467,
+            36.711053885757444,
+            "nan",
+            0.6931521805474453,
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            7
+          ],
+          "digest": "81f8b9a88f22415c8ac24b8cfbee32b4c6ab7699516b7b0931ac27e8732cce76",
+          "bound": true,
+          "values": [
+            -708.3011083524598,
+            "nan",
+            37.51054868048467,
+            36.711053885757444,
+            "nan",
+            0.6931521805474454,
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 38,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [],
+        "values": -1.2700303742895367e-84
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 9,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=2. with_out=True. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": -1.2700303742895367e-84
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "223c7b8be1b99108cfdd719775418cf656c6b17b20be15ab3c74101d1b1420e3",
+          "bound": true,
+          "values": "nan"
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "ebc5f44e7b2b1b928b5e929b8681c4ec7a4a49adfc677659052f652fcdb5d428",
+          "bound": true,
+          "values": "nan"
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "223c7b8be1b99108cfdd719775418cf656c6b17b20be15ab3c74101d1b1420e3",
+          "bound": true,
+          "values": "nan"
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "ebc5f44e7b2b1b928b5e929b8681c4ec7a4a49adfc677659052f652fcdb5d428",
+          "bound": true,
+          "values": "nan"
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "223c7b8be1b99108cfdd719775418cf656c6b17b20be15ab3c74101d1b1420e3",
+          "bound": true,
+          "values": "nan"
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "ebc5f44e7b2b1b928b5e929b8681c4ec7a4a49adfc677659052f652fcdb5d428",
+          "bound": true,
+          "values": "nan"
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 39,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [
+          4
+        ],
+        "values": [
+          -2.4475812443579217e-308,
+          -2.4475812443579217e-308,
+          -2.4475812443579217e-308,
+          -2.4475812443579217e-308
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 10,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              4
+            ],
+            "values": [
+              -2.4475812443579217e-308,
+              -2.4475812443579217e-308,
+              -2.4475812443579217e-308,
+              -2.4475812443579217e-308
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 4,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            4
+          ],
+          "digest": "290151542a7ac0dbf00585ea2f4637a244905016cffd6b8504cb4f2bad42a810",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            4
+          ],
+          "digest": "b9a8d9afd0323bacebadfebca3462bfc7081ff2590e667573c947509b5d93eac",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            4
+          ],
+          "digest": "290151542a7ac0dbf00585ea2f4637a244905016cffd6b8504cb4f2bad42a810",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            4
+          ],
+          "digest": "b9a8d9afd0323bacebadfebca3462bfc7081ff2590e667573c947509b5d93eac",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            4
+          ],
+          "digest": "290151542a7ac0dbf00585ea2f4637a244905016cffd6b8504cb4f2bad42a810",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            4
+          ],
+          "digest": "b9a8d9afd0323bacebadfebca3462bfc7081ff2590e667573c947509b5d93eac",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 40,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [
+          5
+        ],
+        "values": [
+          3.231240505859595e-98,
+          10000000.0,
+          1.401298464324817e-45,
+          -1.1754943508222875e-38,
+          -1.401298464324817e-45
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 11,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=True. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              5
+            ],
+            "values": [
+              3.231240505859595e-98,
+              10000000.0,
+              1.401298464324817e-45,
+              -1.1754943508222875e-38,
+              -1.401298464324817e-45
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 5,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "f1ff383531e66a5583a7abdd9b1175db795a04a646860242c56f4078457a572c",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "6c3dba7c2072c0597f3c2868125f8db28c13ecd6fb5d6fc371ed9504b457fbe2",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "f1ff383531e66a5583a7abdd9b1175db795a04a646860242c56f4078457a572c",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "6c3dba7c2072c0597f3c2868125f8db28c13ecd6fb5d6fc371ed9504b457fbe2",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "f1ff383531e66a5583a7abdd9b1175db795a04a646860242c56f4078457a572c",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "6c3dba7c2072c0597f3c2868125f8db28c13ecd6fb5d6fc371ed9504b457fbe2",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 41,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [
+          5
+        ],
+        "values": [
+          3.231240505859595e-98,
+          10000000.0,
+          1.401298464324817e-45,
+          -1.401298464324817e-45,
+          -1.401298464324817e-45
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 12,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=True. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              5
+            ],
+            "values": [
+              3.231240505859595e-98,
+              10000000.0,
+              1.401298464324817e-45,
+              -1.401298464324817e-45,
+              -1.401298464324817e-45
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 5,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "f1ff383531e66a5583a7abdd9b1175db795a04a646860242c56f4078457a572c",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "6c3dba7c2072c0597f3c2868125f8db28c13ecd6fb5d6fc371ed9504b457fbe2",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "f1ff383531e66a5583a7abdd9b1175db795a04a646860242c56f4078457a572c",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "6c3dba7c2072c0597f3c2868125f8db28c13ecd6fb5d6fc371ed9504b457fbe2",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "f1ff383531e66a5583a7abdd9b1175db795a04a646860242c56f4078457a572c",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "6c3dba7c2072c0597f3c2868125f8db28c13ecd6fb5d6fc371ed9504b457fbe2",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 42,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [
+          5
+        ],
+        "values": [
+          3.231240505859595e-98,
+          10000000.0,
+          1.401298464324817e-45,
+          -1.401298464324817e-45,
+          10000000.0
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 13,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=True. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              5
+            ],
+            "values": [
+              3.231240505859595e-98,
+              10000000.0,
+              1.401298464324817e-45,
+              -1.401298464324817e-45,
+              10000000.0
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 5,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "bde208566d854312c0730fe748301ed7b20d4990a5fc4708b222ffe1cdb10045",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "1c4089f259dea29c7398af7e36d94145dbaa67dd26f57c60325c78b75419619d",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "bde208566d854312c0730fe748301ed7b20d4990a5fc4708b222ffe1cdb10045",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "1c4089f259dea29c7398af7e36d94145dbaa67dd26f57c60325c78b75419619d",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "bde208566d854312c0730fe748301ed7b20d4990a5fc4708b222ffe1cdb10045",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "1c4089f259dea29c7398af7e36d94145dbaa67dd26f57c60325c78b75419619d",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            16.11809565095832,
+            -103.27892990343184,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 43,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [
+          5
+        ],
+        "values": [
+          3.231240505859595e-98,
+          10000000.0,
+          10000000.0,
+          -1.401298464324817e-45,
+          10000000.0
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 14,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=True. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              5
+            ],
+            "values": [
+              3.231240505859595e-98,
+              10000000.0,
+              10000000.0,
+              -1.401298464324817e-45,
+              10000000.0
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 5,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "0d165f77189dad1469ee4c8100023973022eee586bea0d7e3e460522c8567533",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            16.11809565095832,
+            16.11809565095832,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "7601f45f12df840060218bb46bceb4386166cee38aa76d13db15b301f468136a",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            16.11809565095832,
+            16.11809565095832,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "0d165f77189dad1469ee4c8100023973022eee586bea0d7e3e460522c8567533",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            16.11809565095832,
+            16.11809565095832,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "7601f45f12df840060218bb46bceb4386166cee38aa76d13db15b301f468136a",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            16.11809565095832,
+            16.11809565095832,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "0d165f77189dad1469ee4c8100023973022eee586bea0d7e3e460522c8567533",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            16.11809565095832,
+            16.11809565095832,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "7601f45f12df840060218bb46bceb4386166cee38aa76d13db15b301f468136a",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            16.11809565095832,
+            16.11809565095832,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 44,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [
+          5
+        ],
+        "values": [
+          3.231240505859595e-98,
+          -1.401298464324817e-45,
+          10000000.0,
+          -1.401298464324817e-45,
+          10000000.0
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 15,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=True. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              5
+            ],
+            "values": [
+              3.231240505859595e-98,
+              -1.401298464324817e-45,
+              10000000.0,
+              -1.401298464324817e-45,
+              10000000.0
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 5,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "adc2d725a606f73611651e25451914106bcb0473b428909059e0e0d84f5c7d73",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            "nan",
+            16.11809565095832,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "210819be590792e154e126b6ea5ff08b36c6ed2b18713f2108fdf97d95fb6f59",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            "nan",
+            16.11809565095832,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "adc2d725a606f73611651e25451914106bcb0473b428909059e0e0d84f5c7d73",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            "nan",
+            16.11809565095832,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "210819be590792e154e126b6ea5ff08b36c6ed2b18713f2108fdf97d95fb6f59",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            "nan",
+            16.11809565095832,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "adc2d725a606f73611651e25451914106bcb0473b428909059e0e0d84f5c7d73",
+          "bound": true,
+          "values": [
+            -224.48047299237143,
+            "nan",
+            16.11809565095832,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            5
+          ],
+          "digest": "210819be590792e154e126b6ea5ff08b36c6ed2b18713f2108fdf97d95fb6f59",
+          "bound": true,
+          "values": [
+            -224.48047299237146,
+            "nan",
+            16.11809565095832,
+            "nan",
+            16.11809565095832
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 45,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [
+          7
+        ],
+        "values": [
+          -0.3333333333333333,
+          3.402823466e+38,
+          10000000.0,
+          2.6628363081882745e-251,
+          1.2901794325772068e+16,
+          -4.48569787284728e+16,
+          -6.218224378844355e+16
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 18,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=True. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [
+              7
+            ],
+            "values": [
+              -0.3333333333333333,
+              3.402823466e+38,
+              10000000.0,
+              2.6628363081882745e-251,
+              1.2901794325772068e+16,
+              -4.48569787284728e+16,
+              -6.218224378844355e+16
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 7,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            7
+          ],
+          "digest": "6680087c82379138511c2a0cc8b5878e392115a6f79d45269b238994e77431e3",
+          "bound": true,
+          "values": [
+            "nan",
+            88.72283905195512,
+            16.11809565095832,
+            -576.9694665055122,
+            37.09614279162659,
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            7
+          ],
+          "digest": "b1e474100f3b1b5a3a35d602516f234ccf9923833aad3d81a1586c123392dd10",
+          "bound": true,
+          "values": [
+            "nan",
+            88.72283905195513,
+            16.11809565095832,
+            -576.9694665055122,
+            37.09614279162658,
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            7
+          ],
+          "digest": "6680087c82379138511c2a0cc8b5878e392115a6f79d45269b238994e77431e3",
+          "bound": true,
+          "values": [
+            "nan",
+            88.72283905195512,
+            16.11809565095832,
+            -576.9694665055122,
+            37.09614279162659,
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            7
+          ],
+          "digest": "b1e474100f3b1b5a3a35d602516f234ccf9923833aad3d81a1586c123392dd10",
+          "bound": true,
+          "values": [
+            "nan",
+            88.72283905195513,
+            16.11809565095832,
+            -576.9694665055122,
+            37.09614279162658,
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [
+            7
+          ],
+          "digest": "6680087c82379138511c2a0cc8b5878e392115a6f79d45269b238994e77431e3",
+          "bound": true,
+          "values": [
+            "nan",
+            88.72283905195512,
+            16.11809565095832,
+            -576.9694665055122,
+            37.09614279162659,
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [
+            7
+          ],
+          "digest": "b1e474100f3b1b5a3a35d602516f234ccf9923833aad3d81a1586c123392dd10",
+          "bound": true,
+          "values": [
+            "nan",
+            88.72283905195513,
+            16.11809565095832,
+            -576.9694665055122,
+            37.09614279162658,
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 46,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [
+          2
+        ],
+        "values": [
+          1.1920928955078125e-07,
+          -3.0934759522862973e+38
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 21,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              2
+            ],
+            "values": [
+              1.1920928955078125e-07,
+              -3.0934759522862973e+38
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 2,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            2
+          ],
+          "digest": "aab47b58ab02ab7d897f27a64732b8cbc7baee8ea29c3a3b1d580a7e073a267f",
+          "bound": true,
+          "values": [
+            -15.942384719848633,
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            2
+          ],
+          "digest": "a24ec44e15c2b9dc1c24b3c1937025bc8d8f3c9d324353b021f6e325c17fe9cd",
+          "bound": true,
+          "values": [
+            -15.942384719848633,
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            2
+          ],
+          "digest": "aab47b58ab02ab7d897f27a64732b8cbc7baee8ea29c3a3b1d580a7e073a267f",
+          "bound": true,
+          "values": [
+            -15.942384719848633,
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            2
+          ],
+          "digest": "a24ec44e15c2b9dc1c24b3c1937025bc8d8f3c9d324353b021f6e325c17fe9cd",
+          "bound": true,
+          "values": [
+            -15.942384719848633,
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            2
+          ],
+          "digest": "aab47b58ab02ab7d897f27a64732b8cbc7baee8ea29c3a3b1d580a7e073a267f",
+          "bound": true,
+          "values": [
+            -15.942384719848633,
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            2
+          ],
+          "digest": "a24ec44e15c2b9dc1c24b3c1937025bc8d8f3c9d324353b021f6e325c17fe9cd",
+          "bound": true,
+          "values": [
+            -15.942384719848633,
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 47,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [
+          6
+        ],
+        "values": [
+          -1.2930438139304855e-38,
+          -1.2930438139304855e-38,
+          -1.2930438139304855e-38,
+          -1.2930438139304855e-38,
+          -1.2930438139304855e-38,
+          -1.2930438139304855e-38
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 22,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              6
+            ],
+            "values": [
+              -1.2930438139304855e-38,
+              -1.2930438139304855e-38,
+              -1.2930438139304855e-38,
+              -1.2930438139304855e-38,
+              -1.2930438139304855e-38,
+              -1.2930438139304855e-38
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 6,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "digest": "3d9b902e6c3b56af015ffd1b095de2825c42c4ffb4a0b67b9d7b565b69e289bf",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            "nan",
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "digest": "755c2b55311d273c654e67042d52c6ab8a8c83ff50ccf20b8136e38c1f15a653",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            "nan",
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "digest": "3d9b902e6c3b56af015ffd1b095de2825c42c4ffb4a0b67b9d7b565b69e289bf",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            "nan",
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "digest": "755c2b55311d273c654e67042d52c6ab8a8c83ff50ccf20b8136e38c1f15a653",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            "nan",
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "digest": "3d9b902e6c3b56af015ffd1b095de2825c42c4ffb4a0b67b9d7b565b69e289bf",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            "nan",
+            "nan",
+            "nan"
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "digest": "755c2b55311d273c654e67042d52c6ab8a8c83ff50ccf20b8136e38c1f15a653",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            "nan",
+            "nan",
+            "nan"
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 48,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [
+          6
+        ],
+        "values": [
+          -5.960464477539063e-08,
+          -1.2930438139304855e-38,
+          -1.7767035236777984e+16,
+          2.0000100135803223,
+          -3.0934759522862973e+38,
+          6.103515625e-05
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 23,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=True. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              6
+            ],
+            "values": [
+              -5.960464477539063e-08,
+              -1.2930438139304855e-38,
+              -1.7767035236777984e+16,
+              2.0000100135803223,
+              -3.0934759522862973e+38,
+              6.103515625e-05
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 6,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "digest": "ada1569575c602a7f884e14909c1458f675129b35821c8ed453f606b64891fe3",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            0.6931521892547607,
+            "nan",
+            -9.704060554504395
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "digest": "007ecf3993ff67c649f742e77731c60d64c1fae9129b44d5297a9593618239f0",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            0.6931521892547607,
+            "nan",
+            -9.704060554504395
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "digest": "ada1569575c602a7f884e14909c1458f675129b35821c8ed453f606b64891fe3",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            0.6931521892547607,
+            "nan",
+            -9.704060554504395
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "digest": "007ecf3993ff67c649f742e77731c60d64c1fae9129b44d5297a9593618239f0",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            0.6931521892547607,
+            "nan",
+            -9.704060554504395
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "digest": "ada1569575c602a7f884e14909c1458f675129b35821c8ed453f606b64891fe3",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            0.6931521892547607,
+            "nan",
+            -9.704060554504395
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            6
+          ],
+          "digest": "007ecf3993ff67c649f742e77731c60d64c1fae9129b44d5297a9593618239f0",
+          "bound": true,
+          "values": [
+            "nan",
+            "nan",
+            "nan",
+            0.6931521892547607,
+            "nan",
+            -9.704060554504395
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 49,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [],
+        "values": 2.4475812443579217e-308
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 24,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": 2.4475812443579217e-308
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "3c581c1c8dad7d410e3632186f91328186d8158b92ed5da1a0adb973f5fcea10",
+          "bound": true,
+          "values": -708.3011083524598
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "3c581c1c8dad7d410e3632186f91328186d8158b92ed5da1a0adb973f5fcea10",
+          "bound": true,
+          "values": -708.3011083524598
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "3c581c1c8dad7d410e3632186f91328186d8158b92ed5da1a0adb973f5fcea10",
+          "bound": true,
+          "values": -708.3011083524598
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "3c581c1c8dad7d410e3632186f91328186d8158b92ed5da1a0adb973f5fcea10",
+          "bound": true,
+          "values": -708.3011083524598
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "3c581c1c8dad7d410e3632186f91328186d8158b92ed5da1a0adb973f5fcea10",
+          "bound": true,
+          "values": -708.3011083524598
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "3c581c1c8dad7d410e3632186f91328186d8158b92ed5da1a0adb973f5fcea10",
+          "bound": true,
+          "values": -708.3011083524598
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 50,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [],
+        "values": 1.6342664862384686e+308
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 25,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": 1.6342664862384686e+308
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "82d7ec1eaace5f0fb6e393602d5b6e22bc6a11917b1c98ae850d7833360b28fa",
+          "bound": true,
+          "values": 709.6874027135797
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "82d7ec1eaace5f0fb6e393602d5b6e22bc6a11917b1c98ae850d7833360b28fa",
+          "bound": true,
+          "values": 709.6874027135797
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "82d7ec1eaace5f0fb6e393602d5b6e22bc6a11917b1c98ae850d7833360b28fa",
+          "bound": true,
+          "values": 709.6874027135797
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "82d7ec1eaace5f0fb6e393602d5b6e22bc6a11917b1c98ae850d7833360b28fa",
+          "bound": true,
+          "values": 709.6874027135797
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "82d7ec1eaace5f0fb6e393602d5b6e22bc6a11917b1c98ae850d7833360b28fa",
+          "bound": true,
+          "values": 709.6874027135797
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "82d7ec1eaace5f0fb6e393602d5b6e22bc6a11917b1c98ae850d7833360b28fa",
+          "bound": true,
+          "values": 709.6874027135797
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 51,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [],
+        "values": 3.0934759522862973e+38
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 27,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [],
+            "values": 3.0934759522862973e+38
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "d1e0fe492d4e60b0b59dac0339b0f5450547e0909e21801090bc8488baf02c56",
+          "bound": true,
+          "values": 88.62752532958984
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "d1e0fe492d4e60b0b59dac0339b0f5450547e0909e21801090bc8488baf02c56",
+          "bound": true,
+          "values": 88.62752532958984
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "d1e0fe492d4e60b0b59dac0339b0f5450547e0909e21801090bc8488baf02c56",
+          "bound": true,
+          "values": 88.62752532958984
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "d1e0fe492d4e60b0b59dac0339b0f5450547e0909e21801090bc8488baf02c56",
+          "bound": true,
+          "values": 88.62752532958984
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "d1e0fe492d4e60b0b59dac0339b0f5450547e0909e21801090bc8488baf02c56",
+          "bound": true,
+          "values": 88.62752532958984
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "d1e0fe492d4e60b0b59dac0339b0f5450547e0909e21801090bc8488baf02c56",
+          "bound": true,
+          "values": 88.62752532958984
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 52,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float64",
+        "shape": [],
+        "values": 3.0934759522862973e+38
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 28,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": 3.0934759522862973e+38
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 29,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float64",
+            "shape": [],
+            "values": 3.0934759522862973e+38
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "2b4d2776da7fee71a1c9d4dc0141e84e96c67dfe959e8fec87947855d88c2174",
+          "bound": true,
+          "values": 88.62752889610589
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "2b4d2776da7fee71a1c9d4dc0141e84e96c67dfe959e8fec87947855d88c2174",
+          "bound": true,
+          "values": 88.62752889610589
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "2b4d2776da7fee71a1c9d4dc0141e84e96c67dfe959e8fec87947855d88c2174",
+          "bound": true,
+          "values": 88.62752889610589
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "2b4d2776da7fee71a1c9d4dc0141e84e96c67dfe959e8fec87947855d88c2174",
+          "bound": true,
+          "values": 88.62752889610589
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "2b4d2776da7fee71a1c9d4dc0141e84e96c67dfe959e8fec87947855d88c2174",
+          "bound": true,
+          "values": 88.62752889610589
+        },
+        "target_observation": {
+          "dtype": "float64",
+          "shape": [],
+          "digest": "2b4d2776da7fee71a1c9d4dc0141e84e96c67dfe959e8fec87947855d88c2174",
+          "bound": true,
+          "values": 88.62752889610589
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 53,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [
+          2
+        ],
+        "values": [
+          -3.0934759522862973e+38,
+          9.999999747378752e-06
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 34,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              2
+            ],
+            "values": [
+              -3.0934759522862973e+38,
+              9.999999747378752e-06
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 2,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            2
+          ],
+          "digest": "bbc9732c0accedd79fc23125557fe09b71ead1f6806fceffe36b897ca7a7ca2c",
+          "bound": true,
+          "values": [
+            "nan",
+            -11.512925148010254
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            2
+          ],
+          "digest": "fa18455387ae345f2069bc313980b3c6dc2bd5516b88fce8f98a149224746bf7",
+          "bound": true,
+          "values": [
+            "nan",
+            -11.512925148010254
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            2
+          ],
+          "digest": "bbc9732c0accedd79fc23125557fe09b71ead1f6806fceffe36b897ca7a7ca2c",
+          "bound": true,
+          "values": [
+            "nan",
+            -11.512925148010254
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            2
+          ],
+          "digest": "fa18455387ae345f2069bc313980b3c6dc2bd5516b88fce8f98a149224746bf7",
+          "bound": true,
+          "values": [
+            "nan",
+            -11.512925148010254
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            2
+          ],
+          "digest": "bbc9732c0accedd79fc23125557fe09b71ead1f6806fceffe36b897ca7a7ca2c",
+          "bound": true,
+          "values": [
+            "nan",
+            -11.512925148010254
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            2
+          ],
+          "digest": "fa18455387ae345f2069bc313980b3c6dc2bd5516b88fce8f98a149224746bf7",
+          "bound": true,
+          "values": [
+            "nan",
+            -11.512925148010254
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 54,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [
+          5
+        ],
+        "values": [
+          -0.5,
+          3.0934759522862973e+38,
+          1.0,
+          -9.999999747378752e-06,
+          3.0934759522862973e+38
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 36,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=True. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              5
+            ],
+            "values": [
+              -0.5,
+              3.0934759522862973e+38,
+              1.0,
+              -9.999999747378752e-06,
+              3.0934759522862973e+38
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 5,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            5
+          ],
+          "digest": "ce229213667aeec845ebff8ea2d35ae9eccb81428e02d118d46e7453d14393ad",
+          "bound": true,
+          "values": [
+            "nan",
+            88.62753295898438,
+            0.0,
+            "nan",
+            88.62752532958984
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            5
+          ],
+          "digest": "a61518d62c4058c0363b6a204226bb1fd7e29baa76ae1fc2522774eef6067b1c",
+          "bound": true,
+          "values": [
+            "nan",
+            88.62752532958984,
+            0.0,
+            "nan",
+            88.62752532958984
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            5
+          ],
+          "digest": "ce229213667aeec845ebff8ea2d35ae9eccb81428e02d118d46e7453d14393ad",
+          "bound": true,
+          "values": [
+            "nan",
+            88.62753295898438,
+            0.0,
+            "nan",
+            88.62752532958984
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            5
+          ],
+          "digest": "a61518d62c4058c0363b6a204226bb1fd7e29baa76ae1fc2522774eef6067b1c",
+          "bound": true,
+          "values": [
+            "nan",
+            88.62752532958984,
+            0.0,
+            "nan",
+            88.62752532958984
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            5
+          ],
+          "digest": "ce229213667aeec845ebff8ea2d35ae9eccb81428e02d118d46e7453d14393ad",
+          "bound": true,
+          "values": [
+            "nan",
+            88.62753295898438,
+            0.0,
+            "nan",
+            88.62752532958984
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            5
+          ],
+          "digest": "a61518d62c4058c0363b6a204226bb1fd7e29baa76ae1fc2522774eef6067b1c",
+          "bound": true,
+          "values": [
+            "nan",
+            88.62752532958984,
+            0.0,
+            "nan",
+            88.62752532958984
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 55,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [
+          2,
+          4
+        ],
+        "values": [
+          [
+            1.0,
+            1.899999976158142,
+            1.2930438139304855e-38,
+            2.0000100135803223
+          ],
+          [
+            -9007199254740992.0,
+            -10000000.0,
+            -2.0000100135803223,
+            2.0000100135803223
+          ]
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 38,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=2. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              2,
+              4
+            ],
+            "values": [
+              [
+                1.0,
+                1.899999976158142,
+                1.2930438139304855e-38,
+                2.0000100135803223
+              ],
+              [
+                -9007199254740992.0,
+                -10000000.0,
+                -2.0000100135803223,
+                2.0000100135803223
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 8,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            2,
+            4
+          ],
+          "digest": "1606125402711e36bf977e11a4641e6585732690d6e97a57643fcaf9f3bd4a87",
+          "bound": true,
+          "values": [
+            [
+              0.0,
+              0.6418538689613342,
+              -87.24124145507812,
+              0.6931521892547607
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              0.6931521892547607
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            2,
+            4
+          ],
+          "digest": "19056d8c5301fdd420cdef4cb48ac62368c1feb1730f8bff15e6cdb91b8edf1f",
+          "bound": true,
+          "values": [
+            [
+              0.0,
+              0.6418538689613342,
+              -87.2412338256836,
+              0.6931521892547607
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              0.6931521892547607
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            2,
+            4
+          ],
+          "digest": "1606125402711e36bf977e11a4641e6585732690d6e97a57643fcaf9f3bd4a87",
+          "bound": true,
+          "values": [
+            [
+              0.0,
+              0.6418538689613342,
+              -87.24124145507812,
+              0.6931521892547607
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              0.6931521892547607
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            2,
+            4
+          ],
+          "digest": "19056d8c5301fdd420cdef4cb48ac62368c1feb1730f8bff15e6cdb91b8edf1f",
+          "bound": true,
+          "values": [
+            [
+              0.0,
+              0.6418538689613342,
+              -87.2412338256836,
+              0.6931521892547607
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              0.6931521892547607
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            2,
+            4
+          ],
+          "digest": "1606125402711e36bf977e11a4641e6585732690d6e97a57643fcaf9f3bd4a87",
+          "bound": true,
+          "values": [
+            [
+              0.0,
+              0.6418538689613342,
+              -87.24124145507812,
+              0.6931521892547607
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              0.6931521892547607
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            2,
+            4
+          ],
+          "digest": "19056d8c5301fdd420cdef4cb48ac62368c1feb1730f8bff15e6cdb91b8edf1f",
+          "bound": true,
+          "values": [
+            [
+              0.0,
+              0.6418538689613342,
+              -87.2412338256836,
+              0.6931521892547607
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              0.6931521892547607
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 56,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [],
+        "values": 1.2930438139304855e-38
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 40,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [],
+            "values": 1.2930438139304855e-38
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "dcf9bbd3c18cc7a994489a861df29d3a5da91ab7fb87043539a8a1dfdc601655",
+          "bound": true,
+          "values": -87.2412338256836
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "dcf9bbd3c18cc7a994489a861df29d3a5da91ab7fb87043539a8a1dfdc601655",
+          "bound": true,
+          "values": -87.2412338256836
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "dcf9bbd3c18cc7a994489a861df29d3a5da91ab7fb87043539a8a1dfdc601655",
+          "bound": true,
+          "values": -87.2412338256836
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "dcf9bbd3c18cc7a994489a861df29d3a5da91ab7fb87043539a8a1dfdc601655",
+          "bound": true,
+          "values": -87.2412338256836
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "dcf9bbd3c18cc7a994489a861df29d3a5da91ab7fb87043539a8a1dfdc601655",
+          "bound": true,
+          "values": -87.2412338256836
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "dcf9bbd3c18cc7a994489a861df29d3a5da91ab7fb87043539a8a1dfdc601655",
+          "bound": true,
+          "values": -87.2412338256836
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 57,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [],
+        "values": 10000000.0
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 41,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=False. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[True]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [],
+            "values": 10000000.0
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "6b74261e04486c8bd7d658295ea0776f2e6dc2cfe76d17b97379c902dcc3f0cb",
+          "bound": true,
+          "values": 16.11809539794922
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "6b74261e04486c8bd7d658295ea0776f2e6dc2cfe76d17b97379c902dcc3f0cb",
+          "bound": true,
+          "values": 16.11809539794922
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "6b74261e04486c8bd7d658295ea0776f2e6dc2cfe76d17b97379c902dcc3f0cb",
+          "bound": true,
+          "values": 16.11809539794922
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "6b74261e04486c8bd7d658295ea0776f2e6dc2cfe76d17b97379c902dcc3f0cb",
+          "bound": true,
+          "values": 16.11809539794922
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "6b74261e04486c8bd7d658295ea0776f2e6dc2cfe76d17b97379c902dcc3f0cb",
+          "bound": true,
+          "values": 16.11809539794922
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "6b74261e04486c8bd7d658295ea0776f2e6dc2cfe76d17b97379c902dcc3f0cb",
+          "bound": true,
+          "values": 16.11809539794922
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 58,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [],
+        "values": 1.0
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 42,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=False. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [],
+            "values": 1.0
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 43,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=True. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [],
+            "values": 1.0
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 44,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=1. with_out=True. with_copy=False. inplace=False. native_arrays=[True]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=True. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [],
+            "values": 1.0
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 1,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "3491d0766d96242a4a4f5073e81a205bcc443784bd2d6cec31659804aa96bf03",
+          "bound": true,
+          "values": 0.0
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "3491d0766d96242a4a4f5073e81a205bcc443784bd2d6cec31659804aa96bf03",
+          "bound": true,
+          "values": 0.0
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "3491d0766d96242a4a4f5073e81a205bcc443784bd2d6cec31659804aa96bf03",
+          "bound": true,
+          "values": 0.0
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "3491d0766d96242a4a4f5073e81a205bcc443784bd2d6cec31659804aa96bf03",
+          "bound": true,
+          "values": 0.0
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "3491d0766d96242a4a4f5073e81a205bcc443784bd2d6cec31659804aa96bf03",
+          "bound": true,
+          "values": 0.0
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [],
+          "digest": "3491d0766d96242a4a4f5073e81a205bcc443784bd2d6cec31659804aa96bf03",
+          "bound": true,
+          "values": 0.0
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "pass",
+          "clauses": []
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 59,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [
+          7,
+          10
+        ],
+        "values": [
+          [
+            -1.0,
+            4.346832462073037e+16,
+            -3.0934759522862973e+38,
+            1.2930438139304855e-38,
+            9.999999747378752e-06,
+            -9007199254740992.0,
+            -1.2930438139304855e-38,
+            0.5,
+            1.0,
+            -2.3268045455622144e+16
+          ],
+          [
+            2.220446049250313e-16,
+            1.1920928955078125e-07,
+            -1.0,
+            -9.999999747378752e-06,
+            -6.975611497008218e+37,
+            -6.103515625e-05,
+            -9.999999747378752e-06,
+            1.899999976158142,
+            3.0934759522862973e+38,
+            8.695876498906302e-34
+          ],
+          [
+            1.1920928955078125e-07,
+            -2.220446049250313e-16,
+            -0.5,
+            1.1920928955078125e-07,
+            -5.960464477539063e-08,
+            -1.899999976158142,
+            5.960464477539063e-08,
+            1.2930438139304855e-38,
+            -1.1920928955078125e-07,
+            -1.1920928955078125e-07
+          ],
+          [
+            10000000.0,
+            3.0934759522862973e+38,
+            -2.0000100135803223,
+            -3.585859390747443e+16,
+            -2.1672008191621855e+38,
+            0.5,
+            -2.0000100135803223,
+            -2.220446049250313e-16,
+            10000000.0,
+            6.519466211329927e-08
+          ],
+          [
+            3.0934759522862973e+38,
+            -2.220446049250313e-16,
+            -1.2930438139304855e-38,
+            -1.2930438139304855e-38,
+            2.220446049250313e-16,
+            7.024964473454592e+16,
+            0.5,
+            6.103515625e-05,
+            -4.40992252517417e+16,
+            -1.1540200240971776e+16
+          ],
+          [
+            1.2930438139304855e-38,
+            -1.2930438139304855e-38,
+            1.0,
+            3.0934759522862973e+38,
+            -7.070052181134541e+16,
+            1.899999976158142,
+            7710123963187200.0,
+            -2.220446049250313e-16,
+            -3.0934759522862973e+38,
+            2.220446049250313e-16
+          ],
+          [
+            -9007199254740992.0,
+            -1.2930438139304855e-38,
+            -1.899999976158142,
+            -1.899999976158142,
+            1.5,
+            1.1920928955078125e-07,
+            -1.5,
+            3.6222792101789696e+17,
+            1.899999976158142,
+            -10000000.0
+          ]
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 45,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=True. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              7,
+              10
+            ],
+            "values": [
+              [
+                -1.0,
+                4.346832462073037e+16,
+                -3.0934759522862973e+38,
+                1.2930438139304855e-38,
+                9.999999747378752e-06,
+                -9007199254740992.0,
+                -1.2930438139304855e-38,
+                0.5,
+                1.0,
+                -2.3268045455622144e+16
+              ],
+              [
+                2.220446049250313e-16,
+                1.1920928955078125e-07,
+                -1.0,
+                -9.999999747378752e-06,
+                -6.975611497008218e+37,
+                -6.103515625e-05,
+                -9.999999747378752e-06,
+                1.899999976158142,
+                3.0934759522862973e+38,
+                8.695876498906302e-34
+              ],
+              [
+                1.1920928955078125e-07,
+                -2.220446049250313e-16,
+                -0.5,
+                1.1920928955078125e-07,
+                -5.960464477539063e-08,
+                -1.899999976158142,
+                5.960464477539063e-08,
+                1.2930438139304855e-38,
+                -1.1920928955078125e-07,
+                -1.1920928955078125e-07
+              ],
+              [
+                10000000.0,
+                3.0934759522862973e+38,
+                -2.0000100135803223,
+                -3.585859390747443e+16,
+                -2.1672008191621855e+38,
+                0.5,
+                -2.0000100135803223,
+                -2.220446049250313e-16,
+                10000000.0,
+                6.519466211329927e-08
+              ],
+              [
+                3.0934759522862973e+38,
+                -2.220446049250313e-16,
+                -1.2930438139304855e-38,
+                -1.2930438139304855e-38,
+                2.220446049250313e-16,
+                7.024964473454592e+16,
+                0.5,
+                6.103515625e-05,
+                -4.40992252517417e+16,
+                -1.1540200240971776e+16
+              ],
+              [
+                1.2930438139304855e-38,
+                -1.2930438139304855e-38,
+                1.0,
+                3.0934759522862973e+38,
+                -7.070052181134541e+16,
+                1.899999976158142,
+                7710123963187200.0,
+                -2.220446049250313e-16,
+                -3.0934759522862973e+38,
+                2.220446049250313e-16
+              ],
+              [
+                -9007199254740992.0,
+                -1.2930438139304855e-38,
+                -1.899999976158142,
+                -1.899999976158142,
+                1.5,
+                1.1920928955078125e-07,
+                -1.5,
+                3.6222792101789696e+17,
+                1.899999976158142,
+                -10000000.0
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 70,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            7,
+            10
+          ],
+          "digest": "aff99b77eebb0d86cd2188d57cf5cf2d7eb4d3646c74924221375de818e1d3f2",
+          "bound": true,
+          "values": [
+            [
+              "nan",
+              38.31081008911133,
+              "nan",
+              -87.24124145507812,
+              -11.51292610168457,
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              0.0,
+              "nan"
+            ],
+            [
+              -36.04365539550781,
+              -15.942384719848633,
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.6418538689613342,
+              88.62753295898438,
+              -76.12504577636719
+            ],
+            [
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -16.63553237915039,
+              -87.24124145507812,
+              "nan",
+              "nan"
+            ],
+            [
+              16.11809539794922,
+              88.62753295898438,
+              "nan",
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              "nan",
+              "nan",
+              16.11809539794922,
+              -16.545888900756836
+            ],
+            [
+              88.62753295898438,
+              "nan",
+              "nan",
+              "nan",
+              -36.04365539550781,
+              38.79083251953125,
+              -0.6931471824645996,
+              -9.704060554504395,
+              "nan",
+              "nan"
+            ],
+            [
+              -87.24124145507812,
+              "nan",
+              0.0,
+              88.62753295898438,
+              "nan",
+              0.6418538689613342,
+              36.5813102722168,
+              "nan",
+              "nan",
+              -36.04365539550781
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.40546509623527527,
+              -15.942384719848633,
+              "nan",
+              40.43104934692383,
+              0.6418538689613342,
+              "nan"
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            7,
+            10
+          ],
+          "digest": "ef354133880bcc44a7e2db023ef49b9217d0e3ff2073244bf4fabcc05d2557a6",
+          "bound": true,
+          "values": [
+            [
+              "nan",
+              38.31081008911133,
+              "nan",
+              -87.2412338256836,
+              -11.512925148010254,
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              0.0,
+              "nan"
+            ],
+            [
+              -36.04365158081055,
+              -15.942384719848633,
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.6418538689613342,
+              88.62752532958984,
+              -76.12504577636719
+            ],
+            [
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -16.63553237915039,
+              -87.2412338256836,
+              "nan",
+              "nan"
+            ],
+            [
+              16.11809539794922,
+              88.62752532958984,
+              "nan",
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              "nan",
+              "nan",
+              16.11809539794922,
+              -16.545888900756836
+            ],
+            [
+              88.62752532958984,
+              "nan",
+              "nan",
+              "nan",
+              -36.04365158081055,
+              38.79083251953125,
+              -0.6931471824645996,
+              -9.704060554504395,
+              "nan",
+              "nan"
+            ],
+            [
+              -87.2412338256836,
+              "nan",
+              0.0,
+              88.62752532958984,
+              "nan",
+              0.6418538689613342,
+              36.5813102722168,
+              "nan",
+              "nan",
+              -36.04365158081055
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.40546512603759766,
+              -15.942384719848633,
+              "nan",
+              40.43104934692383,
+              0.6418538689613342,
+              "nan"
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            7,
+            10
+          ],
+          "digest": "aff99b77eebb0d86cd2188d57cf5cf2d7eb4d3646c74924221375de818e1d3f2",
+          "bound": true,
+          "values": [
+            [
+              "nan",
+              38.31081008911133,
+              "nan",
+              -87.24124145507812,
+              -11.51292610168457,
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              0.0,
+              "nan"
+            ],
+            [
+              -36.04365539550781,
+              -15.942384719848633,
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.6418538689613342,
+              88.62753295898438,
+              -76.12504577636719
+            ],
+            [
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -16.63553237915039,
+              -87.24124145507812,
+              "nan",
+              "nan"
+            ],
+            [
+              16.11809539794922,
+              88.62753295898438,
+              "nan",
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              "nan",
+              "nan",
+              16.11809539794922,
+              -16.545888900756836
+            ],
+            [
+              88.62753295898438,
+              "nan",
+              "nan",
+              "nan",
+              -36.04365539550781,
+              38.79083251953125,
+              -0.6931471824645996,
+              -9.704060554504395,
+              "nan",
+              "nan"
+            ],
+            [
+              -87.24124145507812,
+              "nan",
+              0.0,
+              88.62753295898438,
+              "nan",
+              0.6418538689613342,
+              36.5813102722168,
+              "nan",
+              "nan",
+              -36.04365539550781
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.40546509623527527,
+              -15.942384719848633,
+              "nan",
+              40.43104934692383,
+              0.6418538689613342,
+              "nan"
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            7,
+            10
+          ],
+          "digest": "ef354133880bcc44a7e2db023ef49b9217d0e3ff2073244bf4fabcc05d2557a6",
+          "bound": true,
+          "values": [
+            [
+              "nan",
+              38.31081008911133,
+              "nan",
+              -87.2412338256836,
+              -11.512925148010254,
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              0.0,
+              "nan"
+            ],
+            [
+              -36.04365158081055,
+              -15.942384719848633,
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.6418538689613342,
+              88.62752532958984,
+              -76.12504577636719
+            ],
+            [
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -16.63553237915039,
+              -87.2412338256836,
+              "nan",
+              "nan"
+            ],
+            [
+              16.11809539794922,
+              88.62752532958984,
+              "nan",
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              "nan",
+              "nan",
+              16.11809539794922,
+              -16.545888900756836
+            ],
+            [
+              88.62752532958984,
+              "nan",
+              "nan",
+              "nan",
+              -36.04365158081055,
+              38.79083251953125,
+              -0.6931471824645996,
+              -9.704060554504395,
+              "nan",
+              "nan"
+            ],
+            [
+              -87.2412338256836,
+              "nan",
+              0.0,
+              88.62752532958984,
+              "nan",
+              0.6418538689613342,
+              36.5813102722168,
+              "nan",
+              "nan",
+              -36.04365158081055
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.40546512603759766,
+              -15.942384719848633,
+              "nan",
+              40.43104934692383,
+              0.6418538689613342,
+              "nan"
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            7,
+            10
+          ],
+          "digest": "aff99b77eebb0d86cd2188d57cf5cf2d7eb4d3646c74924221375de818e1d3f2",
+          "bound": true,
+          "values": [
+            [
+              "nan",
+              38.31081008911133,
+              "nan",
+              -87.24124145507812,
+              -11.51292610168457,
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              0.0,
+              "nan"
+            ],
+            [
+              -36.04365539550781,
+              -15.942384719848633,
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.6418538689613342,
+              88.62753295898438,
+              -76.12504577636719
+            ],
+            [
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -16.63553237915039,
+              -87.24124145507812,
+              "nan",
+              "nan"
+            ],
+            [
+              16.11809539794922,
+              88.62753295898438,
+              "nan",
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              "nan",
+              "nan",
+              16.11809539794922,
+              -16.545888900756836
+            ],
+            [
+              88.62753295898438,
+              "nan",
+              "nan",
+              "nan",
+              -36.04365539550781,
+              38.79083251953125,
+              -0.6931471824645996,
+              -9.704060554504395,
+              "nan",
+              "nan"
+            ],
+            [
+              -87.24124145507812,
+              "nan",
+              0.0,
+              88.62753295898438,
+              "nan",
+              0.6418538689613342,
+              36.5813102722168,
+              "nan",
+              "nan",
+              -36.04365539550781
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.40546509623527527,
+              -15.942384719848633,
+              "nan",
+              40.43104934692383,
+              0.6418538689613342,
+              "nan"
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            7,
+            10
+          ],
+          "digest": "ef354133880bcc44a7e2db023ef49b9217d0e3ff2073244bf4fabcc05d2557a6",
+          "bound": true,
+          "values": [
+            [
+              "nan",
+              38.31081008911133,
+              "nan",
+              -87.2412338256836,
+              -11.512925148010254,
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              0.0,
+              "nan"
+            ],
+            [
+              -36.04365158081055,
+              -15.942384719848633,
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.6418538689613342,
+              88.62752532958984,
+              -76.12504577636719
+            ],
+            [
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -16.63553237915039,
+              -87.2412338256836,
+              "nan",
+              "nan"
+            ],
+            [
+              16.11809539794922,
+              88.62752532958984,
+              "nan",
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              "nan",
+              "nan",
+              16.11809539794922,
+              -16.545888900756836
+            ],
+            [
+              88.62752532958984,
+              "nan",
+              "nan",
+              "nan",
+              -36.04365158081055,
+              38.79083251953125,
+              -0.6931471824645996,
+              -9.704060554504395,
+              "nan",
+              "nan"
+            ],
+            [
+              -87.2412338256836,
+              "nan",
+              0.0,
+              88.62752532958984,
+              "nan",
+              0.6418538689613342,
+              36.5813102722168,
+              "nan",
+              "nan",
+              -36.04365158081055
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.40546512603759766,
+              -15.942384719848633,
+              "nan",
+              40.43104934692383,
+              0.6418538689613342,
+              "nan"
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 60,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  },
+  {
+    "arguments": {
+      "x": {
+        "__ndarray__": true,
+        "dtype": "float32",
+        "shape": [
+          7,
+          10
+        ],
+        "values": [
+          [
+            -1.0,
+            4.346832462073037e+16,
+            -3.0934759522862973e+38,
+            1.2930438139304855e-38,
+            9.999999747378752e-06,
+            -9007199254740992.0,
+            -1.2930438139304855e-38,
+            0.5,
+            1.0,
+            -2.3268045455622144e+16
+          ],
+          [
+            2.220446049250313e-16,
+            1.1920928955078125e-07,
+            -1.0,
+            9.999999747378752e-06,
+            -6.975611497008218e+37,
+            -6.103515625e-05,
+            -9.999999747378752e-06,
+            1.899999976158142,
+            3.0934759522862973e+38,
+            8.695876498906302e-34
+          ],
+          [
+            1.1920928955078125e-07,
+            -2.220446049250313e-16,
+            -0.5,
+            1.1920928955078125e-07,
+            -5.960464477539063e-08,
+            -1.899999976158142,
+            5.960464477539063e-08,
+            1.2930438139304855e-38,
+            -1.1920928955078125e-07,
+            -1.1920928955078125e-07
+          ],
+          [
+            10000000.0,
+            3.0934759522862973e+38,
+            -2.0000100135803223,
+            -3.585859390747443e+16,
+            -2.1672008191621855e+38,
+            0.5,
+            -2.0000100135803223,
+            -2.220446049250313e-16,
+            10000000.0,
+            6.519466211329927e-08
+          ],
+          [
+            3.0934759522862973e+38,
+            -2.220446049250313e-16,
+            -1.2930438139304855e-38,
+            -1.2930438139304855e-38,
+            2.220446049250313e-16,
+            7.024964473454592e+16,
+            0.5,
+            6.103515625e-05,
+            -4.40992252517417e+16,
+            -1.1540200240971776e+16
+          ],
+          [
+            1.2930438139304855e-38,
+            -1.2930438139304855e-38,
+            1.0,
+            3.0934759522862973e+38,
+            -7.070052181134541e+16,
+            1.899999976158142,
+            7710123963187200.0,
+            -2.220446049250313e-16,
+            -3.0934759522862973e+38,
+            2.220446049250313e-16
+          ],
+          [
+            -9007199254740992.0,
+            -1.2930438139304855e-38,
+            -1.899999976158142,
+            -1.899999976158142,
+            1.5,
+            1.1920928955078125e-07,
+            -1.5,
+            3.6222792101789696e+17,
+            1.899999976158142,
+            -10000000.0
+          ]
+        ]
+      }
+    },
+    "mode": "dense",
+    "gradient": false,
+    "oracle_settings": {
+      "rtol": null,
+      "atol": 1e-06,
+      "tolerance_dict": null,
+      "test_values": true,
+      "test_dtypes": true
+    },
+    "origins": [
+      {
+        "kind": "reused-source-capture",
+        "input_index": 46,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=True. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=True. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              7,
+              10
+            ],
+            "values": [
+              [
+                -1.0,
+                4.346832462073037e+16,
+                -3.0934759522862973e+38,
+                1.2930438139304855e-38,
+                9.999999747378752e-06,
+                -9007199254740992.0,
+                -1.2930438139304855e-38,
+                0.5,
+                1.0,
+                -2.3268045455622144e+16
+              ],
+              [
+                2.220446049250313e-16,
+                1.1920928955078125e-07,
+                -1.0,
+                9.999999747378752e-06,
+                -6.975611497008218e+37,
+                -6.103515625e-05,
+                -9.999999747378752e-06,
+                1.899999976158142,
+                3.0934759522862973e+38,
+                8.695876498906302e-34
+              ],
+              [
+                1.1920928955078125e-07,
+                -2.220446049250313e-16,
+                -0.5,
+                1.1920928955078125e-07,
+                -5.960464477539063e-08,
+                -1.899999976158142,
+                5.960464477539063e-08,
+                1.2930438139304855e-38,
+                -1.1920928955078125e-07,
+                -1.1920928955078125e-07
+              ],
+              [
+                10000000.0,
+                3.0934759522862973e+38,
+                -2.0000100135803223,
+                -3.585859390747443e+16,
+                -2.1672008191621855e+38,
+                0.5,
+                -2.0000100135803223,
+                -2.220446049250313e-16,
+                10000000.0,
+                6.519466211329927e-08
+              ],
+              [
+                3.0934759522862973e+38,
+                -2.220446049250313e-16,
+                -1.2930438139304855e-38,
+                -1.2930438139304855e-38,
+                2.220446049250313e-16,
+                7.024964473454592e+16,
+                0.5,
+                6.103515625e-05,
+                -4.40992252517417e+16,
+                -1.1540200240971776e+16
+              ],
+              [
+                1.2930438139304855e-38,
+                -1.2930438139304855e-38,
+                1.0,
+                3.0934759522862973e+38,
+                -7.070052181134541e+16,
+                1.899999976158142,
+                7710123963187200.0,
+                -2.220446049250313e-16,
+                -3.0934759522862973e+38,
+                2.220446049250313e-16
+              ],
+              [
+                -9007199254740992.0,
+                -1.2930438139304855e-38,
+                -1.899999976158142,
+                -1.899999976158142,
+                1.5,
+                1.1920928955078125e-07,
+                -1.5,
+                3.6222792101789696e+17,
+                1.899999976158142,
+                -10000000.0
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "kind": "reused-source-capture",
+        "input_index": 47,
+        "package": "research-data\\2026-10-19\\unified-tests-110\\candidates\\D0047",
+        "changes": [],
+        "original_flags": "num_positional_args=0. with_out=True. with_copy=False. inplace=False. native_arrays=[False]. as_variable=[False]. test_trace=False. test_trace_each=Falsegenerate_frontend_arrays=False. transpile=False.precision_mode=False. ",
+        "original_arguments": {
+          "x": {
+            "__ndarray__": true,
+            "dtype": "float32",
+            "shape": [
+              7,
+              10
+            ],
+            "values": [
+              [
+                -1.0,
+                4.346832462073037e+16,
+                -3.0934759522862973e+38,
+                1.2930438139304855e-38,
+                9.999999747378752e-06,
+                -9007199254740992.0,
+                -1.2930438139304855e-38,
+                0.5,
+                1.0,
+                -2.3268045455622144e+16
+              ],
+              [
+                2.220446049250313e-16,
+                1.1920928955078125e-07,
+                -1.0,
+                9.999999747378752e-06,
+                -6.975611497008218e+37,
+                -6.103515625e-05,
+                -9.999999747378752e-06,
+                1.899999976158142,
+                3.0934759522862973e+38,
+                8.695876498906302e-34
+              ],
+              [
+                1.1920928955078125e-07,
+                -2.220446049250313e-16,
+                -0.5,
+                1.1920928955078125e-07,
+                -5.960464477539063e-08,
+                -1.899999976158142,
+                5.960464477539063e-08,
+                1.2930438139304855e-38,
+                -1.1920928955078125e-07,
+                -1.1920928955078125e-07
+              ],
+              [
+                10000000.0,
+                3.0934759522862973e+38,
+                -2.0000100135803223,
+                -3.585859390747443e+16,
+                -2.1672008191621855e+38,
+                0.5,
+                -2.0000100135803223,
+                -2.220446049250313e-16,
+                10000000.0,
+                6.519466211329927e-08
+              ],
+              [
+                3.0934759522862973e+38,
+                -2.220446049250313e-16,
+                -1.2930438139304855e-38,
+                -1.2930438139304855e-38,
+                2.220446049250313e-16,
+                7.024964473454592e+16,
+                0.5,
+                6.103515625e-05,
+                -4.40992252517417e+16,
+                -1.1540200240971776e+16
+              ],
+              [
+                1.2930438139304855e-38,
+                -1.2930438139304855e-38,
+                1.0,
+                3.0934759522862973e+38,
+                -7.070052181134541e+16,
+                1.899999976158142,
+                7710123963187200.0,
+                -2.220446049250313e-16,
+                -3.0934759522862973e+38,
+                2.220446049250313e-16
+              ],
+              [
+                -9007199254740992.0,
+                -1.2930438139304855e-38,
+                -1.899999976158142,
+                -1.899999976158142,
+                1.5,
+                1.1920928955078125e-07,
+                -1.5,
+                3.6222792101789696e+17,
+                1.899999976158142,
+                -10000000.0
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "features": {
+      "elements": 70,
+      "floating-only": true,
+      "finite-inputs": true,
+      "nonempty-inputs": true,
+      "rank-at-most-2": true
+    },
+    "repeats": [
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            7,
+            10
+          ],
+          "digest": "4f5e4b873eec809944c4be87cbb23ad06b97c51e6fd85ac28f0678cd3b3d5083",
+          "bound": true,
+          "values": [
+            [
+              "nan",
+              38.31081008911133,
+              "nan",
+              -87.24124145507812,
+              -11.51292610168457,
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              0.0,
+              "nan"
+            ],
+            [
+              -36.04365539550781,
+              -15.942384719848633,
+              "nan",
+              -11.51292610168457,
+              "nan",
+              "nan",
+              "nan",
+              0.6418538689613342,
+              88.62753295898438,
+              -76.12504577636719
+            ],
+            [
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -16.63553237915039,
+              -87.24124145507812,
+              "nan",
+              "nan"
+            ],
+            [
+              16.11809539794922,
+              88.62753295898438,
+              "nan",
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              "nan",
+              "nan",
+              16.11809539794922,
+              -16.545888900756836
+            ],
+            [
+              88.62753295898438,
+              "nan",
+              "nan",
+              "nan",
+              -36.04365539550781,
+              38.79083251953125,
+              -0.6931471824645996,
+              -9.704060554504395,
+              "nan",
+              "nan"
+            ],
+            [
+              -87.24124145507812,
+              "nan",
+              0.0,
+              88.62753295898438,
+              "nan",
+              0.6418538689613342,
+              36.5813102722168,
+              "nan",
+              "nan",
+              -36.04365539550781
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.40546509623527527,
+              -15.942384719848633,
+              "nan",
+              40.43104934692383,
+              0.6418538689613342,
+              "nan"
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            7,
+            10
+          ],
+          "digest": "e9246247e3f998fd5078966a6dad3f3f1b71df5efd8210a319192c0d4d4fac90",
+          "bound": true,
+          "values": [
+            [
+              "nan",
+              38.31081008911133,
+              "nan",
+              -87.2412338256836,
+              -11.512925148010254,
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              0.0,
+              "nan"
+            ],
+            [
+              -36.04365158081055,
+              -15.942384719848633,
+              "nan",
+              -11.512925148010254,
+              "nan",
+              "nan",
+              "nan",
+              0.6418538689613342,
+              88.62752532958984,
+              -76.12504577636719
+            ],
+            [
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -16.63553237915039,
+              -87.2412338256836,
+              "nan",
+              "nan"
+            ],
+            [
+              16.11809539794922,
+              88.62752532958984,
+              "nan",
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              "nan",
+              "nan",
+              16.11809539794922,
+              -16.545888900756836
+            ],
+            [
+              88.62752532958984,
+              "nan",
+              "nan",
+              "nan",
+              -36.04365158081055,
+              38.79083251953125,
+              -0.6931471824645996,
+              -9.704060554504395,
+              "nan",
+              "nan"
+            ],
+            [
+              -87.2412338256836,
+              "nan",
+              0.0,
+              88.62752532958984,
+              "nan",
+              0.6418538689613342,
+              36.5813102722168,
+              "nan",
+              "nan",
+              -36.04365158081055
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.40546512603759766,
+              -15.942384719848633,
+              "nan",
+              40.43104934692383,
+              0.6418538689613342,
+              "nan"
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            7,
+            10
+          ],
+          "digest": "4f5e4b873eec809944c4be87cbb23ad06b97c51e6fd85ac28f0678cd3b3d5083",
+          "bound": true,
+          "values": [
+            [
+              "nan",
+              38.31081008911133,
+              "nan",
+              -87.24124145507812,
+              -11.51292610168457,
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              0.0,
+              "nan"
+            ],
+            [
+              -36.04365539550781,
+              -15.942384719848633,
+              "nan",
+              -11.51292610168457,
+              "nan",
+              "nan",
+              "nan",
+              0.6418538689613342,
+              88.62753295898438,
+              -76.12504577636719
+            ],
+            [
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -16.63553237915039,
+              -87.24124145507812,
+              "nan",
+              "nan"
+            ],
+            [
+              16.11809539794922,
+              88.62753295898438,
+              "nan",
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              "nan",
+              "nan",
+              16.11809539794922,
+              -16.545888900756836
+            ],
+            [
+              88.62753295898438,
+              "nan",
+              "nan",
+              "nan",
+              -36.04365539550781,
+              38.79083251953125,
+              -0.6931471824645996,
+              -9.704060554504395,
+              "nan",
+              "nan"
+            ],
+            [
+              -87.24124145507812,
+              "nan",
+              0.0,
+              88.62753295898438,
+              "nan",
+              0.6418538689613342,
+              36.5813102722168,
+              "nan",
+              "nan",
+              -36.04365539550781
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.40546509623527527,
+              -15.942384719848633,
+              "nan",
+              40.43104934692383,
+              0.6418538689613342,
+              "nan"
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            7,
+            10
+          ],
+          "digest": "e9246247e3f998fd5078966a6dad3f3f1b71df5efd8210a319192c0d4d4fac90",
+          "bound": true,
+          "values": [
+            [
+              "nan",
+              38.31081008911133,
+              "nan",
+              -87.2412338256836,
+              -11.512925148010254,
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              0.0,
+              "nan"
+            ],
+            [
+              -36.04365158081055,
+              -15.942384719848633,
+              "nan",
+              -11.512925148010254,
+              "nan",
+              "nan",
+              "nan",
+              0.6418538689613342,
+              88.62752532958984,
+              -76.12504577636719
+            ],
+            [
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -16.63553237915039,
+              -87.2412338256836,
+              "nan",
+              "nan"
+            ],
+            [
+              16.11809539794922,
+              88.62752532958984,
+              "nan",
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              "nan",
+              "nan",
+              16.11809539794922,
+              -16.545888900756836
+            ],
+            [
+              88.62752532958984,
+              "nan",
+              "nan",
+              "nan",
+              -36.04365158081055,
+              38.79083251953125,
+              -0.6931471824645996,
+              -9.704060554504395,
+              "nan",
+              "nan"
+            ],
+            [
+              -87.2412338256836,
+              "nan",
+              0.0,
+              88.62752532958984,
+              "nan",
+              0.6418538689613342,
+              36.5813102722168,
+              "nan",
+              "nan",
+              -36.04365158081055
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.40546512603759766,
+              -15.942384719848633,
+              "nan",
+              40.43104934692383,
+              0.6418538689613342,
+              "nan"
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      },
+      {
+        "source_observation": {
+          "dtype": "float32",
+          "shape": [
+            7,
+            10
+          ],
+          "digest": "4f5e4b873eec809944c4be87cbb23ad06b97c51e6fd85ac28f0678cd3b3d5083",
+          "bound": true,
+          "values": [
+            [
+              "nan",
+              38.31081008911133,
+              "nan",
+              -87.24124145507812,
+              -11.51292610168457,
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              0.0,
+              "nan"
+            ],
+            [
+              -36.04365539550781,
+              -15.942384719848633,
+              "nan",
+              -11.51292610168457,
+              "nan",
+              "nan",
+              "nan",
+              0.6418538689613342,
+              88.62753295898438,
+              -76.12504577636719
+            ],
+            [
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -16.63553237915039,
+              -87.24124145507812,
+              "nan",
+              "nan"
+            ],
+            [
+              16.11809539794922,
+              88.62753295898438,
+              "nan",
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              "nan",
+              "nan",
+              16.11809539794922,
+              -16.545888900756836
+            ],
+            [
+              88.62753295898438,
+              "nan",
+              "nan",
+              "nan",
+              -36.04365539550781,
+              38.79083251953125,
+              -0.6931471824645996,
+              -9.704060554504395,
+              "nan",
+              "nan"
+            ],
+            [
+              -87.24124145507812,
+              "nan",
+              0.0,
+              88.62753295898438,
+              "nan",
+              0.6418538689613342,
+              36.5813102722168,
+              "nan",
+              "nan",
+              -36.04365539550781
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.40546509623527527,
+              -15.942384719848633,
+              "nan",
+              40.43104934692383,
+              0.6418538689613342,
+              "nan"
+            ]
+          ]
+        },
+        "target_observation": {
+          "dtype": "float32",
+          "shape": [
+            7,
+            10
+          ],
+          "digest": "e9246247e3f998fd5078966a6dad3f3f1b71df5efd8210a319192c0d4d4fac90",
+          "bound": true,
+          "values": [
+            [
+              "nan",
+              38.31081008911133,
+              "nan",
+              -87.2412338256836,
+              -11.512925148010254,
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              0.0,
+              "nan"
+            ],
+            [
+              -36.04365158081055,
+              -15.942384719848633,
+              "nan",
+              -11.512925148010254,
+              "nan",
+              "nan",
+              "nan",
+              0.6418538689613342,
+              88.62752532958984,
+              -76.12504577636719
+            ],
+            [
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -15.942384719848633,
+              "nan",
+              "nan",
+              -16.63553237915039,
+              -87.2412338256836,
+              "nan",
+              "nan"
+            ],
+            [
+              16.11809539794922,
+              88.62752532958984,
+              "nan",
+              "nan",
+              "nan",
+              -0.6931471824645996,
+              "nan",
+              "nan",
+              16.11809539794922,
+              -16.545888900756836
+            ],
+            [
+              88.62752532958984,
+              "nan",
+              "nan",
+              "nan",
+              -36.04365158081055,
+              38.79083251953125,
+              -0.6931471824645996,
+              -9.704060554504395,
+              "nan",
+              "nan"
+            ],
+            [
+              -87.2412338256836,
+              "nan",
+              0.0,
+              88.62752532958984,
+              "nan",
+              0.6418538689613342,
+              36.5813102722168,
+              "nan",
+              "nan",
+              -36.04365158081055
+            ],
+            [
+              "nan",
+              "nan",
+              "nan",
+              "nan",
+              0.40546512603759766,
+              -15.942384719848633,
+              "nan",
+              40.43104934692383,
+              0.6418538689613342,
+              "nan"
+            ]
+          ]
+        },
+        "source": {
+          "state": "pass",
+          "clauses": []
+        },
+        "generic": {
+          "state": "violation",
+          "clauses": [
+            "generic-value"
+          ]
+        }
+      }
+    ],
+    "stable": true,
+    "execution_provenance": {
+      "kind": "reused-2026-10-25",
+      "archive_member": "research-data/2026-10-25/ablation/campaign-v2/cases/D0047.observations.json",
+      "ledger_index": 61,
+      "file_sha256": "b65ecd867c44a0580dd86b26ef2a42c09d93d9b2a5c1ce9fc9c009b814a053b3"
+    }
+  }
+]

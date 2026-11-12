@@ -1,0 +1,41 @@
+{
+  "job_id": "08770fc4ef33df77118e743619f5dc44dada3fafbd05b3544702ea1681f64f83",
+  "candidate_id": "D0063",
+  "kind": "intenttester-target-tdl-extension",
+  "input_indices": [
+    0,
+    1
+  ],
+  "prompt_sha256": "661efca5ce94f36b58a8e8e48161bc2a989c59ac93a909880c0064f9e7317fe3",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792483405.0590422,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL (Test Description Language) and a Test Code. We must determine if the TDL correctly expresses the intent of the Test Code.\n\nTDL:\n{\n  \"assertions\": {\n    \"explicit_shape\": {\n      \"applicable_input_indices\": [0,1],\n      \"obligation\": \"Additionally require actual.shape == expected.shape in the official_sign branch.\"\n    },\n    \"gradient\": {\n      \"applicable_input_indices\": [0],\n      \"obligation\": \"Compare gradient against source_gradient with rtol=atol=0.001.\"\n    },\n    \"sparse_structure\": {\n      \"applicable_input_indices\": [1],\n      \"obligation\": \"Require sparse output and identical sparse indices and dense shape.\"\n    },\n    \"value\": {\n      \"applicable_input_indices\": [0,1],\n      \"obligation\": \"Compare actual values with frozen source values using the listed tolerances.\"\n    }\n  },\n  \"goal\": \"Preserve the supplied source test output obligations on the listed input subset\",\n  \"input_fixture_indices\": [0,1],\n  \"input_fixture_location\": \"testCode.inputs; same input and source expectations, not a second copy\",\n  \"scope\": \"controlled native-output adapter tests; not full original frontend modes\"\n}\n\nTest Code:\nThe test code is a Python script that runs two tests (input indices 0 and 1). We are particularly interested in the `invoke_test` function and the specific test cases.\n\nLet's break down the Test Code for each input index and see if it matches the obligations in the TDL.\n\n1. **Input Index 0** (dense mode):\n   - The test runs in 'dense' mode.\n   - It calls `value_test` to compare the actual and expected values with the provided tolerances (from `oracle_settings`).\n   - If `official_sign` is true (which it is, as per the top-level \"official_sign\": true), it asserts that `array(actual).shape == expected.shape`.\n   - It also checks for the gradient because the input has a 'source_gradient' field. The gradient is computed and compared against `item['source_gradient']` with rtol=atol=0.001.\n\n2. **Input Index 1** (sparse mode):\n   - The test runs in 'sparse' mode.\n   - It calls `value_test` for value comparison (with tolerances).\n   - The `official_sign` branch also checks the shape (same as above).\n   - Additionally, because it's sparse, it checks:\n        - For TensorFlow: that the output is a `tf.SparseTensor` and then checks the indices and shape.\n        - For PyTorch: that the output is sparse and coalesced, then checks the indices and shape.\n\nNow, let's map these to the TDL assertions:\n\n- **explicit_shape**: Applies to indices [0,1]. The code does have a shape check in the `official_sign` branch for both indices. So this matches.\n\n- **gradient**: Applies to index [0]. The code does compute and check the gradient for index 0 (which has 'source_gradient') with the specified tolerances. Note that index 1 does not have a 'source_gradient' in the input, so it's not run. This matches.\n\n- **sparse_structure**: Applies to index [1]. The code does check for sparse output and verifies the indices and shape for index 1. This matches.\n\n- **value**: Applies to indices [0,1]. The code does run `value_test` for both indices, which compares the actual values with the expected using the tolerances. This matches.\n\nThe TDL also states the goal and the input fixture indices, which are consistent with the test code (which runs on indices 0 and 1).\n\nTherefore, the TDL correctly captures the intent of the test code.\n\nOutput:\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions match the test code: explicit_shape for [0,1], gradient for [0], sparse_structure for [1], and value for [0,1].\",\n  \"input_indices\": [0,1]\n}\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions align with test code: explicit_shape checks match official_sign branch for indices [0,1]; gradient test for index 0 uses specified tolerances; sparse_structure validation for index 1 enforces sparse output and indices/shape; value comparisons apply to both indices with source tolerances.\",\n  \"input_indices\": [0, 1]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3890,
+      "completion_tokens": 995,
+      "total_tokens": 4885
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions align with test code: explicit_shape checks match official_sign branch for indices [0,1]; gradient test for index 0 uses specified tolerances; sparse_structure validation for index 1 enforces sparse output and indices/shape; value comparisons apply to both indices with source tolerances.",
+    "input_indices": [
+      0,
+      1
+    ]
+  },
+  "seconds": 134.118
+}

@@ -1,0 +1,39 @@
+{
+  "job_id": "126dfa5f496da98ca4db3045e74deb509a2c162216843f0dd272b8c9968198c3",
+  "candidate_id": "D0055",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    46
+  ],
+  "prompt_sha256": "70cda2204b81cd12c0890eb5a23e3f3f6bd1a915c9d3d7c788073b45aca72671",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792562342.4720247,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL and a Test Code. We must decide if the TDL correctly expresses the intent of the Test Code.\n\nTDL (Test Description Language) has:\n- assertions: three assertions (dtype, helper_shape, value) that are applicable to input index 46.\n- goal: to preserve the source test output obligations on the listed input subset.\n- input_fixture_indices: [46]\n- scope: controlled native-output adapter tests\n\nTest Code:\n- It's an adapter test that runs a specific test case (index 46) for the tensorflow.math.sinh operation, comparing against a frozen source output.\n- The test code decodes input and expected output from JSON, converts to the appropriate framework (torch or tensorflow), runs the function, and then checks:\n  1. Value test with tolerances (using value_test function that checks dtypes and values if test_dtypes is True, and also checks values with given tolerances).\n  2. If the test has an official sign, it checks the shape.\n  3. For sparse mode, it checks sparse indices and shape.\n  4. If there's a source_gradient, it checks the gradient.\n\nHowever, note that the TDL only lists three assertions for input index 46: dtype, helper_shape, and value.\n\nLooking at the TDL assertions:\n- dtype: obligation is to require identical dtype via value_test(test_dtypes=True).\n- helper_shape: obligation is to require identical shape through assert_same_type_and_shape (which is called by value_test when test_dtypes is True).\n- value: obligation is to compare actual values with frozen source values using the listed tolerances.\n\nIn the Test Code, the main check is the call to `value_test` which, when `test_dtypes=True` (as it is in the oracle_settings for this input), will check both dtypes and shapes (via `assert_same_type_and_shape` inside) and then the values (with the given tolerances). \n\nAdditionally, the Test Code has extra checks:\n- If `official_sign` is true (which for this input it is false, as per \"official_sign\":false in the input), it checks the shape again. But since it's false, this check is skipped.\n- For sparse mode: the input mode is \"dense\", so the sparse checks are skipped.\n- Gradient check: the input does not have 'source_gradient' (the input has \"source_reference\" but not \"source_gradient\"), so the gradient check is skipped.\n\nTherefore, for input index 46, the Test Code only runs the `value_test` with `test_dtypes=True`, which covers:\n- Checking dtypes (via the dtype and shape check in `assert_same_type_and_shape` and then again in `assert_all_close` if needed, but note the TDL's dtype and helper_shape assertions are covered by the `test_dtypes=True` flag).\n- Checking values with the given tolerances.\n\nThus, the TDL assertions (dtype, helper_shape, value) exactly match what the Test Code is doing for this input.\n\nHowever, note that the TDL's helper_shape assertion says it is achieved by `assert_same_type_and_shape` invoked by `value_test(test_dtypes=True)`. This is consistent because the `value_test` function, when `test_dtypes=True`, calls `assert_same_type_and_shape` which checks both the dtype and the shape.\n\nTherefore, the TDL is valid for input index 46.\n\nBut note: the TDL only claims to cover input index 46 (as per input_fixture_indices and applicable_input_indices in each assertion). The Test Code also runs for other indices (as per the parametrization in the source adapter: `@pytest.mark.parametrize(\"input_index\", range(48))`), but the TDL is only describing the test for index 46. So we are only concerned with index 46.\n\nConclusion: The TDL correctly expresses the intent of the Test Code for the given input index.\n\nOutput:\n{\"valid\": true, \"reason\": \"TDL assertions for dtype, helper_shape, and value match the test code's value_test with test_dtypes=True, which covers dtype, shape, and value checks for input index 46.\", \"input_indices\": [46]}\n</think>\n{\n  \"valid\": true,\n  \"reason\": \"TDL assertions align with test code execution: dtype and shape checks via value_test(test_dtypes=True) match the dtype and helper_shape obligations, while value comparison with tolerances fulfills the value obligation. Sparse/gradient checks are skipped for this dense-mode input, and official_sign=false avoids redundant shape checks.\",\n  \"input_indices\": [46]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 12581,
+      "completion_tokens": 988,
+      "total_tokens": 13569
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions align with test code execution: dtype and shape checks via value_test(test_dtypes=True) match the dtype and helper_shape obligations, while value comparison with tolerances fulfills the value obligation. Sparse/gradient checks are skipped for this dense-mode input, and official_sign=false avoids redundant shape checks.",
+    "input_indices": [
+      46
+    ]
+  },
+  "seconds": 127.197
+}

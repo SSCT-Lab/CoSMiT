@@ -1,0 +1,73 @@
+{
+  "job_id": "44f19fde80a43689144882c1f64a0a35e58cf81606fa6d0b24ffb6bb1040515b",
+  "candidate_id": "E007",
+  "kind": "intenttester-source-tdl",
+  "input_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "prompt_sha256": "71154516b6b24cfa65ed34a62ceda5a31660a9cb1a979562bcb1d53d2393d10d",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792489410.294536,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a TDL (Test Description Language) and Test Code. We must assess if the TDL correctly expresses the intent of the Test Code.\n\nTDL:\n{\n  \"assertions\": {\n    \"dtype\": {\n      \"applicable_input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],\n      \"obligation\": \"Require identical dtype via value_test(test_dtypes=True).\"\n    },\n    \"helper_shape\": {\n      \"applicable_input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],\n      \"obligation\": \"Require identical shape through assert_same_type_and_shape invoked by value_test(test_dtypes=True).\"\n    },\n    \"value\": {\n      \"applicable_input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],\n      \"obligation\": \"Compare actual values with frozen source values using the listed tolerances.\"\n    }\n  },\n  \"goal\": \"Preserve the supplied source test output obligations on the listed input subset\",\n  \"input_fixture_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],\n  \"input_fixture_location\": \"testCode.inputs; same input and source expectations, not a second copy\",\n  \"scope\": \"controlled native-output adapter tests; not full original frontend modes\"\n}\n\nTest Code:\nThe test code is an adapter that runs tests by comparing the output of a function (either in PyTorch or TensorFlow) with a frozen source reference. The key function is `invoke_test`, which:\n- Loads the test case (inputs and expected outputs).\n- Converts the inputs to the appropriate framework (Torch or TensorFlow).\n- Executes the function (either `pytorch_call` or `tensorflow_call`).\n- Compares the result with the expected output using `value_test`.\n\nThe `value_test` function (from the oracle_helper_code) does the following:\n1. If `test_dtypes` is True, it checks that the dtype and shape of the actual and expected outputs match (via `assert_same_type_and_shape`).\n2. Then, it checks the values with a tolerance (rtol, atol) and a tolerance dictionary.\n\nThe TDL breaks down the assertions into three parts:\n1. dtype: Requires identical dtype via `value_test(test_dtypes=True)`. This is covered because when `test_dtypes` is True, `value_test` calls `assert_same_type_and_shape` which checks dtypes.\n2. helper_shape: Requires identical shape via the same `assert_same_type_and_shape` in `value_test`.\n3. value: Compares the actual values with the frozen source values using the tolerances.\n\nIn the Test Code, the `value_test` function is called with `test_dtypes=setting['test_dtypes']`. In the provided inputs, the `oracle_settings` for all inputs (index 0 to 17) are set to a shared reference `s0`, which decodes to:\n  {\"atol\":1,\"rtol\":null,\"test_dtypes\":true,\"test_values\":true,\"tolerance_dict\":null}\n\nTherefore, for every input in the batch, `test_dtypes` is True, so the dtype and shape are checked.\n\nAdditionally, the value comparison is done by `value_test` using the tolerances (rtol and atol) and the tolerance dictionary.\n\nThe TDL states that the goal is to preserve the source test output obligations on the input subset. The Test Code does exactly that: it runs the function and checks against the frozen source values.\n\nThe TDL's input_fixture_indices match the batch_input_indices in the Test Code (both [0..17]). The scope is the same: controlled native-output adapter tests.\n\nTherefore, the TDL correctly captures the intent of the Test Code.\n\nHowever, note that the Test Code also includes additional checks in some cases (like for sparse mode and gradients). But the TDL does not claim to cover those. The TDL only covers the assertions that are common to all inputs (dtype, shape, and value) and that are performed by the `value_test` function.\n\nThe TDL does not mention the sparse checks or gradient checks, but the TDL's scope is only the common obligations. The TDL's assertions are applicable to all 18 inputs. The additional checks (sparse and gradient) are only for specific inputs (e.g., when the mode is 'sparse' or when 'source_gradient' is present). Since the TDL does not claim to cover those, and the TDL's obligations are met by the `value_test` call (which is done for every input), the TDL is valid.\n\nThus, we return:\n{\"valid\": true, \"reason\": \"TDL assertions for dtype, shape, and value are enforced by value_test with test_dtypes=True and value comparisons, as called for every input in the test code.\", \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]}\n\nNote: The reason must be at most 200 words. This is within the limit.\n</think>\n{\"valid\": true, \"reason\": \"TDL assertions align with test code implementation: value_test enforces dtype/shape via test_dtypes=True and value comparisons via tolerances for all 18 inputs. The helper_shape obligation is met through assert_same_type_and_shape, and value comparisons use frozen source expectations with configured tolerances.\", \"input_indices\": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 8184,
+      "completion_tokens": 1307,
+      "total_tokens": 9491
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "valid": true,
+    "reason": "TDL assertions align with test code implementation: value_test enforces dtype/shape via test_dtypes=True and value comparisons via tolerances for all 18 inputs. The helper_shape obligation is met through assert_same_type_and_shape, and value comparisons use frozen source expectations with configured tolerances.",
+    "input_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ]
+  },
+  "seconds": 164.591
+}

@@ -1,0 +1,85 @@
+{
+  "job_id": "4cc6355e228864e08c067f0540e9a7368a6186824aff238dabf7a2cde904d975",
+  "candidate_id": "H007",
+  "kind": "trace-llm",
+  "input_indices": [
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "prompt_sha256": "bc9521156f319883d1b9f8cfb451ce02e15c5d8ec52eed4b02d5ef9ccf538e09",
+  "attempt": 1,
+  "status": "completed",
+  "started_unix": 1792985609.1735647,
+  "response": {
+    "model": "deepseek-r1",
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "reasoning_content": "",
+          "content": "<think>\nWe are given a JSON payload with encoding=lossless-subtree-sharing-v1. We must replace each {\"__shared_ref__\":\"sN\"} with shared.sN to recover the data.\n\n The shared dictionary is provided under the key \"shared\". We will recursively replace all such references.\n\n Steps:\n 1. Reconstruct the entire data by replacing shared references.\n 2. Focus on the \"observations\" for each input index to determine the test outcomes.\n\n The \"observations\" array contains one entry per input index (from 25 to 47). Each observation has a \"groups\" field which may be a shared reference or a list of groups.\n\n In each group, we have an \"observation\" that contains:\n   - source_error: if null, the source test passed; otherwise, it failed.\n   - target_error: if non-null, the target test failed; if null, it passed.\n\n The verdicts we need to return:\n   - verdict: overall verdict for the adapter-test preservation claim (for the entire batch of tests we are assessing)\n   - behavior_verdict: whether the behavior was preserved (if the test passed in source and passed in target, or failed in source and failed in target, then preserved; if passed in source and failed in target, then violated; otherwise undetermined)\n   - intent_verdict: whether the intent was preserved (this is more about the meaning of the test, but note: a failing test in source might be due to a known issue, and if the target also fails, it might be preserving the intent? However, the problem states: \"a failing target test alone does not imply its intent was lost\". We are told that behavior and intent are distinct, but without more information, we might have to set intent_verdict to undetermined in many cases.\n\n However, note the instructions: \n   - The original public tests are accepted as valid. We are only to assess the controlled adapter tests and listed inputs.\n   - The fixture includes recorded source outputs as test expectations; they are not human labels.\n\n We are to return a verdict for the entire batch of input indices (25 to 47). The verdicts for the entire batch:\n   - preserved: if all tests in the batch that passed in the source also passed in the target, and all that failed in the source also failed in the target? But note: the problem says \"verdict refers to the bounded adapter-test preservation claim\".\n\n However, the problem states: \"Return concise JSON only, with a nonempty reason of at most 200 words. input_indices must list all assessed batch indices.\"\n\n We are to look at each test in the batch and determine:\n\n   For a given test (input index):\n     - If the source test passed (source_error is null) and the target test passed (target_error is null): behavior preserved.\n     - If the source test passed and the target test failed: behavior violated.\n     - If the source test failed and the target test passed: this might be a fix? but the problem doesn't specify. However, note that the source test is the reference. We are testing if the adapter preserves the behavior of the source. If the source test failed, then the target test failing might be preserved? But the problem says: \"a failing target test alone does not imply its intent was lost\". We are not told to consider the source failure as the expected outcome? Actually, the source test is the reference. So if the source test failed, then we expect the target test to fail? \n\n But note: the source test is the original test from the source framework (TensorFlow) and the target is the adapter for the target framework (PyTorch). The test is the same operation (reduce_prod vs torch.prod). \n\n However, the problem states: \"The source observation is a frozen replay reference, not an intent gold label.\" So we are to use the recorded source output as the expectation.\n\n But the test oracle in the adapter code (value_test) compares the target output to the source_reference (which is the recorded source output). So if the source test passed, then the source_reference is the expected output. If the source test failed, then the source_reference might not be available? Actually, in the observations, we see that even when the source test passed, we have a source_output. And when the source test failed, source_error is non-null and source_output might be absent? But in the provided data, we see that for every observation, there is a source_output.\n\n Actually, in the provided data, for every test we have a source_output and a source_error that is null. So all source tests passed? Let me check:\n\n   In the observations, for every input index, the source_error is null. Therefore, all source tests passed.\n\n   The target_error, however, is non-null for every test? Looking at the shared references:\n\n     target_error is always set to the same shared reference: s12, which is:\n        {\"message\":\"Please look up dimensions by name, got: name = None.\",\"type\":\"RuntimeError\"}\n\n   So every target test failed with the same error.\n\n Therefore, for every test in the batch (input indices 25 to 47):\n\n     source: passed (source_error = null)\n     target: failed (target_error = non-null)\n\n This means the behavior is violated for every test.\n\n Now, what about the overall verdict for the batch?\n\n   verdict: violated (because the adapter-test preservation claim is that the target should produce the same results as the source, but it fails for every test)\n\n   behavior_verdict: violated (because the behavior is not preserved: source passed, target failed)\n\n   intent_verdict: we don't have enough information to determine if the intent was preserved? The problem says: \"a failing target test alone does not imply its intent was lost\". However, since the source passed and the target failed, we cannot say the intent was preserved? But note: the intent of the test is to compute the product. The target is failing with an error about dimensions. This might be a bug in the adapter. So we set intent_verdict to violated? But the problem does not specify.\n\n However, note the instructions: \"intent_verdict\" is distinct. We are not given the intent. Since the test is failing in the target due to an error that is not related to the product computation (it's about dimension lookup), we might say the intent is violated because the operation is not even being performed. But the problem does not define \"intent\". \n\n Given the ambiguity, and because the problem states that we should not infer whole-domain correctness, we might set intent_verdict to \"undetermined\". However, the error message suggests a problem in the adapter: it is trying to look up dimensions by name and got None. This indicates a mismatch in the API. The intent of the test (to compute the product) is not being carried out. Therefore, we can argue that the intent is violated.\n\n But note: the problem says \"intent_verdict\" is distinct and a failing test does not imply intent loss. However, in this case, the test is failing due to an exception that prevents the operation from being performed. So the intent (to compute the product) is not achieved. Therefore, we set intent_verdict to violated.\n\n Alternatively, the problem might expect:\n\n   behavior_verdict: violated (because the observable behavior: passing vs failing, is different)\n   intent_verdict: undetermined (because we don't know if the intent was to have the same error? But the source passed, so the intent was to compute the product without error)\n\n Since the source passed, the intent was to compute the product without error. The target is not doing that. So the intent is violated.\n\n Therefore, we set:\n   verdict: violated (the adapter-test preservation claim is violated because the tests are not passing in the target as they did in the source)\n   behavior_verdict: violated\n   intent_verdict: violated\n\n But note: the problem says \"intent_verdict\" might be preserved even if the behavior is violated? Not in this case.\n\n However, let's be cautious. The problem states: \"a failing target test alone does not imply its intent was lost\". But in this case, the source test passed, so the intent was to pass. The target test fails, so the intent is not achieved. Therefore, the intent is lost.\n\n Now, the input_indices: we must list all assessed batch indices: [25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n\n Reason: \n   \"All 23 tests in the batch passed in the source but failed in the target with a RuntimeError: 'Please look up dimensions by name, got: name = None.' This indicates a consistent failure in the adapter when handling the operation, violating both the behavior and the intent of the tests.\"\n\n However, note: the problem says at most 200 words. We must be concise.\n\n Let's write:\n\n   \"For all 23 tests, the source passed but the target failed with a RuntimeError (message: 'Please look up dimensions by name, got: name = None.'). This indicates the adapter does not correctly handle the operation, violating behavior and intent preservation.\"\n\n But wait: are there any tests that passed? We must check the observations.\n\n However, we see that every observation has a target_error set to the same shared reference (s12). So every test failed.\n\n Therefore, the verdicts are:\n\n   verdict: violated\n   behavior_verdict: violated\n   intent_verdict: violated\n   reason: (as above)\n   input_indices: [25,26,...,47] (all 23 indices)\n\n But note: the problem says \"input_indices must list all assessed batch indices\". We are to list all 23.\n\n However, we must reconstruct the shared references to be sure? Actually, the provided data already has the observations expanded? No, we have to expand.\n\n But the problem says: \"recursively replace each {\"__shared_ref__\":\"sN\"} with shared.sN\". So we must do that for the observations.\n\n However, in the provided data, the \"observations\" array has for each input index a \"groups\" field that is either a shared reference or a list. We see:\n\n   For input_index 25: groups = {\"__shared_ref__\":\"s9\"}\n   s9 is [{\"__shared_ref__\":\"s10\"}]\n   s10 is {\"observation\": {\"__shared_ref__\":\"s11\"}, \"repeats\":[0,1,2]}\n   s11 is the actual observation: \n        source_error: null\n        source_output: ... (a scalar uint8 of 1)\n        target_error: {\"__shared_ref__\":\"s12\"} -> which is the RuntimeError\n\n So after expansion, for input_index 25, we have:\n\n   groups: [ one group with observation: \n        source_error: null -> passed\n        target_error: non-null -> failed\n   ]\n\n Similarly, for input_index 27: groups is a list of one group (without shared ref) but inside it, the observation has target_error as s12.\n\n Actually, for input_index 27, the groups is a list of one group that has an observation with target_error set to s12.\n\n So after expansion, every test has target_error = the RuntimeError.\n\n Therefore, our conclusion holds.\n\n Code to reconstruct? We don't need to write code, we can reason.\n\n But note: the problem says to return concise JSON.\n\n Let's write the response:\n\n{\n  \"verdict\": \"violated\",\n  \"behavior_verdict\": \"violated\",\n  \"intent_verdict\": \"violated\",\n  \"reason\": \"All 23 tests passed in the source but failed in the target with a RuntimeError: 'Please look up dimensions by name, got: name = None.' This indicates the adapter does not correctly handle the operation, violating both behavior and intent preservation.\",\n  \"input_indices\": [25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n}\n\n However, note: the problem says \"intent_verdict\" might be set to \"undetermined\" if we are not sure? But in this case, the source passed and the target failed, so the intent (to have a passing test) is clearly violated.\n\n But the problem says: \"intent_verdict\" is distinct. We are not told what the intent is, but the test is for a specific operation. The intent of the test is to check the product operation. The target is not even running the operation because of an error in the adapter. Therefore, the intent is not preserved.\n\n Alternatively, if the problem intended that the intent_verdict should be about the semantic meaning of the operation, then we cannot tell because the operation didn't run. So we set to undetermined? \n\n However, the problem states: \"a failing target test alone does not imply its intent was lost\". But in this case, we have additional information: the source passed. So the intent was to pass. The target fails, so the intent is lost.\n\n But note: the problem says \"intent_verdict\" might be preserved even if the test fails? For example, if the test fails for the same reason in both? But here the source passed.\n\n Therefore, we stick with violated.\n\n However, let me re-read the problem: \"a failing target test alone does not imply its intent was lost\". This is to prevent us from assuming that if the target fails, then the intent is lost. But in this case, we have the source passing, so we know the intent was to pass. Therefore, the target failing means the intent is lost.\n\n So we keep \"violated\".\n\n But note: the problem says \"Return concise JSON only, with a nonempty reason of at most 200 words.\" Our reason is 30 words.\n\n We are also to list all input indices.\n\n Therefore, the final answer is as above.\n</think>\n{\n  \"verdict\": \"violated\",\n  \"behavior_verdict\": \"violated\",\n  \"intent_verdict\": \"violated\",\n  \"reason\": \"All 23 tests passed in the source framework (TensorFlow) but failed in the target framework (PyTorch) with a consistent RuntimeError: 'Please look up dimensions by name, got: name = None.' This indicates the adapter fails to correctly handle dimension resolution for torch.prod, violating both behavioral output equivalence and the operational intent of the tests.\",\n  \"input_indices\": [25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]\n}"
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 6915,
+      "completion_tokens": 3144,
+      "total_tokens": 10059
+    },
+    "transport": "openai-compatible-sse"
+  },
+  "parsed": {
+    "verdict": "violated",
+    "behavior_verdict": "violated",
+    "intent_verdict": "violated",
+    "reason": "All 23 tests passed in the source framework (TensorFlow) but failed in the target framework (PyTorch) with a consistent RuntimeError: 'Please look up dimensions by name, got: name = None.' This indicates the adapter fails to correctly handle dimension resolution for torch.prod, violating both behavioral output equivalence and the operational intent of the tests.",
+    "input_indices": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ]
+  },
+  "seconds": 392.714
+}
