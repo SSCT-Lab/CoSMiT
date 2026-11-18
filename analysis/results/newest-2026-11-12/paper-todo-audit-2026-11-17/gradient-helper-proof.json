@@ -1,0 +1,29 @@
+{
+  "helper_lf_sha256": "d94dd8cc501c89ba2aef8da5482dd6fe7f9c411378c8d8878a360d94db9bb828",
+  "helper_crlf_sha256": "6d7cb38789c54adc52d6499f2023c338005e491534d00f0766600741bfa90567",
+  "pilot_hash_matches_crlf": true,
+  "oct25_protocol_matches_lf": true,
+  "gradient": [
+    {
+      "candidate": "D0053",
+      "source_api": "tf.math.sign",
+      "target": "torch.sign",
+      "dtype": "float32",
+      "gradient_inputs": 1,
+      "matching_gradient_repetitions": 3,
+      "source_default_rtol_atol": 0.001,
+      "adapter_rtol_atol": 0.001
+    },
+    {
+      "candidate": "D0063",
+      "source_api": "tf.sign",
+      "target": "torch.sign",
+      "dtype": "float32",
+      "gradient_inputs": 1,
+      "matching_gradient_repetitions": 3,
+      "source_default_rtol_atol": 0.001,
+      "adapter_rtol_atol": 0.001
+    }
+  ],
+  "current_executor_hash_matches": true
+}
