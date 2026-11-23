@@ -1,0 +1,24 @@
+{
+  "fixture": {
+    "numpy": "2.1.3",
+    "torch": "2.9.1+cpu",
+    "tensorflow": "2.20.0"
+  },
+  "ablation": {
+    "numpy": "2.1.3",
+    "torch": "2.9.1+cpu",
+    "tensorflow": "2.20.0",
+    "ml_dtypes": "0.6.0"
+  },
+  "search_environment_freeze": "F:\\codes\\python\\CoSMiT\\analysis\\results\\ablation-10-18\\code-snapshot\\environment.freeze.txt",
+  "hardware_os": {
+    "source": "User confirmation on 2026-11-18: historical experiments ran on this workstation",
+    "cpu": "AMD Ryzen 7 7800X3D",
+    "gpu_installed": "NVIDIA GeForce RTX 5070 Ti",
+    "os": "Windows 11",
+    "execution": "CPU; archived torch build is +cpu and experiment entry points disable CUDA visibility",
+    "ram_current_GiB": 32,
+    "ram_note": "Current installed capacity queried on 2026-11-18; omitted from paper pending historical confirmation"
+  },
+  "model": "DeepSeek-R1 via remote API, confirmed by user on 2026-11-18; temperature 0, top_p 1. No specific provider checkpoint revision claimed."
+}

@@ -1,0 +1,2864 @@
+[
+  {
+    "candidate": "D0001",
+    "api": "torch.abs",
+    "target_calls": "tf.abs",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_abs",
+      "line": 115,
+      "end_line": 150,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L115",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0001/source-test-full.py",
+      "excerpt_file": "candidates/D0001/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "20b0933d8e4ab4f0431e52bf8bd5cc63077d6db4b889dddc8832b512a7646232"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0002",
+    "api": "torch.acos",
+    "target_calls": "tf.acos",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_acos",
+      "line": 180,
+      "end_line": 205,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L180",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0002/source-test-full.py",
+      "excerpt_file": "candidates/D0002/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "608d912af1ea4521a8519ca57215180180ea5426be8e7e9c29fd563e8d482101"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0003",
+    "api": "torch.arccos",
+    "target_calls": "tf.acos",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_acos",
+      "line": 180,
+      "end_line": 205,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L180",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0003/source-test-full.py",
+      "excerpt_file": "candidates/D0003/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "608d912af1ea4521a8519ca57215180180ea5426be8e7e9c29fd563e8d482101"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0004",
+    "api": "torch.arcsin",
+    "target_calls": "tf.asin",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_arcsin",
+      "line": 432,
+      "end_line": 456,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L432",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0004/source-test-full.py",
+      "excerpt_file": "candidates/D0004/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "68f39726d85c71fa5baff375c19ea777676d10204059cc1d7b67be92bf13b1f5"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0005",
+    "api": "torch.arctan",
+    "target_calls": "tf.math.atan",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_arctan",
+      "line": 460,
+      "end_line": 484,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L460",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0005/source-test-full.py",
+      "excerpt_file": "candidates/D0005/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "51eb1e6f6d7b5fb14bbbde892b4412ec19c2cb429c0ee810c5e5ce9cd9ab7a95"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0006",
+    "api": "torch.asin",
+    "target_calls": "tf.asin",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_asin",
+      "line": 546,
+      "end_line": 571,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L546",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0006/source-test-full.py",
+      "excerpt_file": "candidates/D0006/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "d7d3886539a5f348a575453c26e551ef09047a127c7aa7f542be9f7d3f3bda59"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0007",
+    "api": "torch.atan",
+    "target_calls": "tf.math.atan",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_atan",
+      "line": 604,
+      "end_line": 629,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L604",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0007/source-test-full.py",
+      "excerpt_file": "candidates/D0007/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "06211f6c198d13b90805678e16d5f63836348669e1abbfe49a8881a23bc76239"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0008",
+    "api": "torch.ceil",
+    "target_calls": "tf.math.ceil",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_ceil",
+      "line": 879,
+      "end_line": 903,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L879",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0008/source-test-full.py",
+      "excerpt_file": "candidates/D0008/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "b319ce6cea4deaab5cd92c54687a3749005ae56ba23ded9b37e3aa9e2d9f7574"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0009",
+    "api": "torch.cos",
+    "target_calls": "tf.cos",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_cos",
+      "line": 1027,
+      "end_line": 1051,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L1027",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0009/source-test-full.py",
+      "excerpt_file": "candidates/D0009/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "6ef7154bd304bb6a648ed79715b7714ecbc6b195ec60fc53e090f99ce13c8fbe"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0010",
+    "api": "torch.cosh",
+    "target_calls": "tf.cosh",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_cosh",
+      "line": 1055,
+      "end_line": 1079,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L1055",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0010/source-test-full.py",
+      "excerpt_file": "candidates/D0010/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "36f404be113630f9995501c9e58da12dcf6c5476d4fff2f705dc271e1bef7f10"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0011",
+    "api": "torch.exp",
+    "target_calls": "tf.exp",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_exp",
+      "line": 1214,
+      "end_line": 1238,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L1214",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0011/source-test-full.py",
+      "excerpt_file": "candidates/D0011/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "d023c96ebfbf83bdb24d72c9d26a3fdc6c01a0ee39be7543f6ae34570e970e23"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0012",
+    "api": "torch.expm1",
+    "target_calls": "tf.exp",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_expm1",
+      "line": 1270,
+      "end_line": 1294,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L1270",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0012/source-test-full.py",
+      "excerpt_file": "candidates/D0012/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "8e055d8e7dfa33f79d91ef71e20e79f85458c7f50ed55062df7a7aec2e40a6a4"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0013",
+    "api": "torch.floor",
+    "target_calls": "tf.floor",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_floor",
+      "line": 1360,
+      "end_line": 1385,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L1360",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0013/source-test-full.py",
+      "excerpt_file": "candidates/D0013/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "0b634f8d653327421be596841ad53300c92a9bfa5218b7f9cde3c6343938d10e"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [
+      "omit out=None: matches existing source implicit default"
+    ],
+    "issues": []
+  },
+  {
+    "candidate": "D0014",
+    "api": "torch.log",
+    "target_calls": "tf.math.log",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_log",
+      "line": 1792,
+      "end_line": 1816,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L1792",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0014/source-test-full.py",
+      "excerpt_file": "candidates/D0014/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "cc746f7701b15446f2c26898c783f66e8d29b2feba8c95daa42575b1c95337bd"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0015",
+    "api": "torch.log1p",
+    "target_calls": "tf.math.log1p",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_log1p",
+      "line": 1848,
+      "end_line": 1872,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L1848",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0015/source-test-full.py",
+      "excerpt_file": "candidates/D0015/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "efd30af668593a9c91b6f6acd745d16fd1216faa821da499d71935f215f05f1f"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [
+      "omit out=None: matches existing source implicit default"
+    ],
+    "issues": []
+  },
+  {
+    "candidate": "D0016",
+    "api": "torch.neg",
+    "target_calls": "tf.negative",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_negative",
+      "line": 2245,
+      "end_line": 2270,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2245",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0016/source-test-full.py",
+      "excerpt_file": "candidates/D0016/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "4e90b9d9efa5db134aa8c93d2d8cc89e6c740a673e56a42be69ade0fbcb70e1c"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0017",
+    "api": "torch.negative",
+    "target_calls": "tf.negative",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_negative",
+      "line": 2245,
+      "end_line": 2270,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2245",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0017/source-test-full.py",
+      "excerpt_file": "candidates/D0017/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "4e90b9d9efa5db134aa8c93d2d8cc89e6c740a673e56a42be69ade0fbcb70e1c"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0018",
+    "api": "torch.reciprocal",
+    "target_calls": "tf.math.reciprocal",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_reciprocal",
+      "line": 2438,
+      "end_line": 2460,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2438",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0018/source-test-full.py",
+      "excerpt_file": "candidates/D0018/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "4ecc0cae8fa4f87735eda25acfb430247ca14827ae5b1373d19af40158dcf820"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0019",
+    "api": "torch.round",
+    "target_calls": "tf.round",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_round",
+      "line": 2499,
+      "end_line": 2523,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2499",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0019/source-test-full.py",
+      "excerpt_file": "candidates/D0019/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "c4d1d17fc05a9da395fe66617d75c6a48196c5914350b83ce93a5cd7560223ef"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [
+      "omit decimals=0: matches existing source implicit default"
+    ],
+    "issues": []
+  },
+  {
+    "candidate": "D0020",
+    "api": "torch.sigmoid",
+    "target_calls": "tf.sigmoid",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_sigmoid",
+      "line": 2590,
+      "end_line": 2614,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2590",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0020/source-test-full.py",
+      "excerpt_file": "candidates/D0020/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "abddac8b15211b6396ef078ae54961488c829d2aa67f933568e58f2907c6eaac"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0021",
+    "api": "torch.sign",
+    "target_calls": "tf.sign",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_sign",
+      "line": 2618,
+      "end_line": 2642,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2618",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0021/source-test-full.py",
+      "excerpt_file": "candidates/D0021/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "92f65d04824e133992337af92e790ca89ea83e4a9c7b6eb653f86a8eb8a04414"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0022",
+    "api": "torch.sin",
+    "target_calls": "tf.sin",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_sin",
+      "line": 2674,
+      "end_line": 2698,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2674",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0022/source-test-full.py",
+      "excerpt_file": "candidates/D0022/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "388abc4461a439ad755e67e865aa1c9f7e876a6320d536955ec706d85279733e"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0023",
+    "api": "torch.sinh",
+    "target_calls": "tf.sinh",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_sinh",
+      "line": 2735,
+      "end_line": 2759,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2735",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0023/source-test-full.py",
+      "excerpt_file": "candidates/D0023/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "52336088d3c8ef4deb5c8f41c0a25dd81bb2583dea300f1f22a64ede8e800066"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0024",
+    "api": "torch.sqrt",
+    "target_calls": "tf.sqrt",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_sqrt",
+      "line": 2763,
+      "end_line": 2787,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2763",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0024/source-test-full.py",
+      "excerpt_file": "candidates/D0024/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "01e34bceeefc5b0ed306236c7d9465068c6677366a6fd210986025df0d57c138"
+    },
+    "settings": {
+      "{\"atol\": 0.001, \"rtol\": 0.001, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0025",
+    "api": "torch.square",
+    "target_calls": "tf.square",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_square",
+      "line": 2791,
+      "end_line": 2815,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2791",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0025/source-test-full.py",
+      "excerpt_file": "candidates/D0025/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "4180343332e9a9501a7ab1805613e8c9cdfd8ef911c3b07610fa6ef2dc2c29b2"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0026",
+    "api": "torch.tan",
+    "target_calls": "tf.tan",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_tan",
+      "line": 2856,
+      "end_line": 2880,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2856",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0026/source-test-full.py",
+      "excerpt_file": "candidates/D0026/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "5cb0826d481726ab6e1bcf2e0d2f43b11786af740596bee70fc0346303ffc604"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0027",
+    "api": "torch.tanh",
+    "target_calls": "tf.tanh",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_tanh",
+      "line": 2884,
+      "end_line": 2908,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2884",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0027/source-test-full.py",
+      "excerpt_file": "candidates/D0027/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "f8b26f05a0f4b2028ae8c6f8eca8f7fafe078e70207f17726926951f8eea995b"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0029",
+    "api": "tf.abs",
+    "target_calls": "torch.abs",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_abs",
+      "line": 21,
+      "end_line": 50,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L21",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0029/source-test-full.py",
+      "excerpt_file": "candidates/D0029/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "73dadc5c0eea23a06caf81dc36b5d95a7a248c1f5a404ba9a8e5e7d9730eb030"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": 0.01, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0030",
+    "api": "tf.acos",
+    "target_calls": "torch.acos",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_acos",
+      "line": 85,
+      "end_line": 112,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L85",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0030/source-test-full.py",
+      "excerpt_file": "candidates/D0030/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "852b64e039b476dba90806ac6aea0bcbdf9f6ec3887460e583a732d0a57ce112"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0031",
+    "api": "tf.asin",
+    "target_calls": "torch.asin",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_asin",
+      "line": 304,
+      "end_line": 331,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L304",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0031/source-test-full.py",
+      "excerpt_file": "candidates/D0031/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "d7026c25afbc4808e138b6dab74386ea6ab08241d7bda1fe91318a5f62b58f93"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0032",
+    "api": "tf.atan",
+    "target_calls": "torch.atan",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_atan",
+      "line": 364,
+      "end_line": 387,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L364",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0032/source-test-full.py",
+      "excerpt_file": "candidates/D0032/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "05b99c7f78c7dfe369d6dc61c74ecf1930a9e904dde1aa6111ae14e8b703d0bf"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0033",
+    "api": "tf.cos",
+    "target_calls": "torch.cos",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_cos",
+      "line": 624,
+      "end_line": 649,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L624",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0033/source-test-full.py",
+      "excerpt_file": "candidates/D0033/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "89d85b0c93cbf02239e918a32affd848a4240b120ae271dea7678a4b9efb0571"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0034",
+    "api": "tf.cosh",
+    "target_calls": "torch.cosh",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_cosh",
+      "line": 653,
+      "end_line": 678,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L653",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0034/source-test-full.py",
+      "excerpt_file": "candidates/D0034/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "51fa908fd2f894b54de693537c622860724e2aadb93b7ee770f91c38533186f0"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0035",
+    "api": "tf.exp",
+    "target_calls": "torch.exp",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_exp",
+      "line": 961,
+      "end_line": 984,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L961",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0035/source-test-full.py",
+      "excerpt_file": "candidates/D0035/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "dba28d7a46f8c7d22e74f42a546a003eac495fe4329654da187fcd6a7d7d2990"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0036",
+    "api": "tf.floor",
+    "target_calls": "torch.floor",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_floor",
+      "line": 1015,
+      "end_line": 1043,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L1015",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0036/source-test-full.py",
+      "excerpt_file": "candidates/D0036/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "7962a7ccdaf9ce816eaa87a6bb9939e20ca6a34fc082b15be9073a4d59ae1008"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0037",
+    "api": "tf.math.abs",
+    "target_calls": "torch.abs",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_abs",
+      "line": 21,
+      "end_line": 50,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L21",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0037/source-test-full.py",
+      "excerpt_file": "candidates/D0037/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "73dadc5c0eea23a06caf81dc36b5d95a7a248c1f5a404ba9a8e5e7d9730eb030"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": 0.01, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0038",
+    "api": "tf.math.acos",
+    "target_calls": "torch.acos",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_acos",
+      "line": 85,
+      "end_line": 112,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L85",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0038/source-test-full.py",
+      "excerpt_file": "candidates/D0038/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "852b64e039b476dba90806ac6aea0bcbdf9f6ec3887460e583a732d0a57ce112"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0039",
+    "api": "tf.math.asin",
+    "target_calls": "torch.asin",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_asin",
+      "line": 304,
+      "end_line": 331,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L304",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0039/source-test-full.py",
+      "excerpt_file": "candidates/D0039/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "d7026c25afbc4808e138b6dab74386ea6ab08241d7bda1fe91318a5f62b58f93"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0040",
+    "api": "tf.math.atan",
+    "target_calls": "torch.atan",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_atan",
+      "line": 364,
+      "end_line": 387,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L364",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0040/source-test-full.py",
+      "excerpt_file": "candidates/D0040/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "05b99c7f78c7dfe369d6dc61c74ecf1930a9e904dde1aa6111ae14e8b703d0bf"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0041",
+    "api": "tf.math.ceil",
+    "target_calls": "torch.ceil",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_ceil",
+      "line": 526,
+      "end_line": 554,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L526",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0041/source-test-full.py",
+      "excerpt_file": "candidates/D0041/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "eaf9aabce92ca18b211d93b93e34afd4f3e1cd1cf342a3e2db305c7b5a887dd7"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0042",
+    "api": "tf.math.cos",
+    "target_calls": "torch.cos",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_cos",
+      "line": 624,
+      "end_line": 649,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L624",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0042/source-test-full.py",
+      "excerpt_file": "candidates/D0042/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "89d85b0c93cbf02239e918a32affd848a4240b120ae271dea7678a4b9efb0571"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0043",
+    "api": "tf.math.cosh",
+    "target_calls": "torch.cosh",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_cosh",
+      "line": 653,
+      "end_line": 678,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L653",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0043/source-test-full.py",
+      "excerpt_file": "candidates/D0043/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "51fa908fd2f894b54de693537c622860724e2aadb93b7ee770f91c38533186f0"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0044",
+    "api": "tf.math.exp",
+    "target_calls": "torch.exp",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_exp",
+      "line": 961,
+      "end_line": 984,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L961",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0044/source-test-full.py",
+      "excerpt_file": "candidates/D0044/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "dba28d7a46f8c7d22e74f42a546a003eac495fe4329654da187fcd6a7d7d2990"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0045",
+    "api": "tf.math.expm1",
+    "target_calls": "torch.expm1",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_expm1",
+      "line": 988,
+      "end_line": 1011,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L988",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0045/source-test-full.py",
+      "excerpt_file": "candidates/D0045/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "43bb3da5afbc08c51273ff4518ebbd430b14b21af2ec3988e17ea8d1eee7f6a6"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0046",
+    "api": "tf.math.floor",
+    "target_calls": "torch.floor",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_floor",
+      "line": 1015,
+      "end_line": 1043,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L1015",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0046/source-test-full.py",
+      "excerpt_file": "candidates/D0046/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "7962a7ccdaf9ce816eaa87a6bb9939e20ca6a34fc082b15be9073a4d59ae1008"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0047",
+    "api": "tf.math.log",
+    "target_calls": "torch.log",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_log",
+      "line": 1548,
+      "end_line": 1572,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L1548",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0047/source-test-full.py",
+      "excerpt_file": "candidates/D0047/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "12c8508826461455d84e7aaee5523a62f4942e4a0732bcd3ca88f920a405f551"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0048",
+    "api": "tf.math.log1p",
+    "target_calls": "torch.log1p",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_log1p",
+      "line": 1576,
+      "end_line": 1602,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L1576",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0048/source-test-full.py",
+      "excerpt_file": "candidates/D0048/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "96ca58473451455b02d09742412f4044f52282402b602f317103c18b176728c0"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0049",
+    "api": "tf.math.negative",
+    "target_calls": "torch.neg",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_negative",
+      "line": 1959,
+      "end_line": 1987,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L1959",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0049/source-test-full.py",
+      "excerpt_file": "candidates/D0049/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "95abdc87a161ade352933a878dc7957da76fdb189f190c1c30d8ef8a777865ff"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0051",
+    "api": "tf.math.round",
+    "target_calls": "torch.round",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_round",
+      "line": 2595,
+      "end_line": 2618,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2595",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0051/source-test-full.py",
+      "excerpt_file": "candidates/D0051/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "d84bfa941cf2e4152dc0a10035d75a2aeef6015b3a5878dd4307b3234666a2fd"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0052",
+    "api": "tf.math.sigmoid",
+    "target_calls": "torch.sigmoid",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_sigmoid",
+      "line": 2729,
+      "end_line": 2759,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2729",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0052/source-test-full.py",
+      "excerpt_file": "candidates/D0052/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "6b13636cb703a26b008a4842759c1f528fb30b39e8a1ec8fcf0b995cd3fc7816"
+    },
+    "settings": {
+      "{\"atol\": 0.01, \"rtol\": 0.01, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0053",
+    "api": "tf.math.sign",
+    "target_calls": "torch.sign",
+    "inputs": 2,
+    "source_test": {
+      "repository": "tensorflow/tensorflow",
+      "commit": "5bc9d26649cca274750ad3625bd93422617eed4b",
+      "upstream_path": "tensorflow/python/kernel_tests/math_ops/cwise_ops_unary_test.py",
+      "function": "testFloatBasic",
+      "line": 187,
+      "end_line": 240,
+      "url": "https://github.com/tensorflow/tensorflow/blob/5bc9d26649cca274750ad3625bd93422617eed4b/tensorflow/python/kernel_tests/math_ops/cwise_ops_unary_test.py#L187",
+      "kind": "Official framework test",
+      "full_file": "candidates/D0053/source-test-full.py",
+      "excerpt_file": "candidates/D0053/source-test-excerpt.py",
+      "original_sha256": "e144f5e1db211eae9f257be20f8de5eef17e3758b67cecc478b1a37b0bb3cc6b",
+      "excerpt_sha256": "ac7d938dee3d3f8d10cbeab0cdccb047e0ea87976acb6043d0bd20bd796e4c47"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": 1e-06, \"test_dtypes\": false, \"test_values\": true, \"tolerance_dict\": null}": 2
+    },
+    "gradient_inputs": 1,
+    "parameter_changes": [],
+    "issues": [
+      "gradient adapter uses fixed rtol=atol=1e-3; inherited rationale needs review"
+    ]
+  },
+  {
+    "candidate": "D0054",
+    "api": "tf.math.sin",
+    "target_calls": "torch.sin",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_sin",
+      "line": 2763,
+      "end_line": 2786,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2763",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0054/source-test-full.py",
+      "excerpt_file": "candidates/D0054/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "2b207600c16f31bd265e4f06806315aa73a436fb45c676f6d2902e4d0f523a8c"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0055",
+    "api": "tf.math.sinh",
+    "target_calls": "torch.sinh",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_sinh",
+      "line": 2790,
+      "end_line": 2815,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2790",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0055/source-test-full.py",
+      "excerpt_file": "candidates/D0055/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "116d3c42ac7e6d15a65e35fd9fa4cdc2622a07d39bfce6761b4331f01eb84084"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0056",
+    "api": "tf.math.sqrt",
+    "target_calls": "torch.sqrt",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_sqrt",
+      "line": 2911,
+      "end_line": 2934,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2911",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0056/source-test-full.py",
+      "excerpt_file": "candidates/D0056/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "8854e99859f6aac81f0a3af4f5082c66d73edd3a431ac14bc9ab0ff527b3ca8a"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0057",
+    "api": "tf.math.square",
+    "target_calls": "torch.square",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_square",
+      "line": 2938,
+      "end_line": 2961,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2938",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0057/source-test-full.py",
+      "excerpt_file": "candidates/D0057/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "5ed0f311eccc199cd722d28a8592c70b79004b4d911c81f5c23c367b8c4cd2f5"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0058",
+    "api": "tf.math.tan",
+    "target_calls": "torch.tan",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_tan",
+      "line": 3029,
+      "end_line": 3052,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L3029",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0058/source-test-full.py",
+      "excerpt_file": "candidates/D0058/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "18c3078f71f64928d13887c9757137a1c2f4f80119cdc0e1150372000d38f6be"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0059",
+    "api": "tf.math.tanh",
+    "target_calls": "torch.tanh",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_tanh",
+      "line": 3056,
+      "end_line": 3081,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L3056",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0059/source-test-full.py",
+      "excerpt_file": "candidates/D0059/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "861324508123af737f7a02abf1044fd13b18d56116da21b60442a697d3676990"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0060",
+    "api": "tf.negative",
+    "target_calls": "torch.negative",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_negative",
+      "line": 1959,
+      "end_line": 1987,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L1959",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0060/source-test-full.py",
+      "excerpt_file": "candidates/D0060/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "95abdc87a161ade352933a878dc7957da76fdb189f190c1c30d8ef8a777865ff"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0061",
+    "api": "tf.round",
+    "target_calls": "torch.round",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_round",
+      "line": 2595,
+      "end_line": 2618,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2595",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0061/source-test-full.py",
+      "excerpt_file": "candidates/D0061/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "d84bfa941cf2e4152dc0a10035d75a2aeef6015b3a5878dd4307b3234666a2fd"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0062",
+    "api": "tf.sigmoid",
+    "target_calls": "torch.sigmoid",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_sigmoid",
+      "line": 2729,
+      "end_line": 2759,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2729",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0062/source-test-full.py",
+      "excerpt_file": "candidates/D0062/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "6b13636cb703a26b008a4842759c1f528fb30b39e8a1ec8fcf0b995cd3fc7816"
+    },
+    "settings": {
+      "{\"atol\": 0.01, \"rtol\": 0.01, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0063",
+    "api": "tf.sign",
+    "target_calls": "torch.sign",
+    "inputs": 2,
+    "source_test": {
+      "repository": "tensorflow/tensorflow",
+      "commit": "5bc9d26649cca274750ad3625bd93422617eed4b",
+      "upstream_path": "tensorflow/python/kernel_tests/math_ops/cwise_ops_unary_test.py",
+      "function": "testFloatBasic",
+      "line": 187,
+      "end_line": 240,
+      "url": "https://github.com/tensorflow/tensorflow/blob/5bc9d26649cca274750ad3625bd93422617eed4b/tensorflow/python/kernel_tests/math_ops/cwise_ops_unary_test.py#L187",
+      "kind": "Official framework test",
+      "full_file": "candidates/D0063/source-test-full.py",
+      "excerpt_file": "candidates/D0063/source-test-excerpt.py",
+      "original_sha256": "e144f5e1db211eae9f257be20f8de5eef17e3758b67cecc478b1a37b0bb3cc6b",
+      "excerpt_sha256": "ac7d938dee3d3f8d10cbeab0cdccb047e0ea87976acb6043d0bd20bd796e4c47"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": 1e-06, \"test_dtypes\": false, \"test_values\": true, \"tolerance_dict\": null}": 2
+    },
+    "gradient_inputs": 1,
+    "parameter_changes": [],
+    "issues": [
+      "gradient adapter uses fixed rtol=atol=1e-3; inherited rationale needs review"
+    ]
+  },
+  {
+    "candidate": "D0064",
+    "api": "tf.sin",
+    "target_calls": "torch.sin",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_sin",
+      "line": 2763,
+      "end_line": 2786,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2763",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0064/source-test-full.py",
+      "excerpt_file": "candidates/D0064/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "2b207600c16f31bd265e4f06806315aa73a436fb45c676f6d2902e4d0f523a8c"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0065",
+    "api": "tf.sinh",
+    "target_calls": "torch.sinh",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_sinh",
+      "line": 2790,
+      "end_line": 2815,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2790",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0065/source-test-full.py",
+      "excerpt_file": "candidates/D0065/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "116d3c42ac7e6d15a65e35fd9fa4cdc2622a07d39bfce6761b4331f01eb84084"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0066",
+    "api": "tf.sqrt",
+    "target_calls": "torch.sqrt",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_sqrt",
+      "line": 2911,
+      "end_line": 2934,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2911",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0066/source-test-full.py",
+      "excerpt_file": "candidates/D0066/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "8854e99859f6aac81f0a3af4f5082c66d73edd3a431ac14bc9ab0ff527b3ca8a"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0067",
+    "api": "tf.square",
+    "target_calls": "torch.square",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_square",
+      "line": 2938,
+      "end_line": 2961,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2938",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0067/source-test-full.py",
+      "excerpt_file": "candidates/D0067/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "5ed0f311eccc199cd722d28a8592c70b79004b4d911c81f5c23c367b8c4cd2f5"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0068",
+    "api": "tf.tan",
+    "target_calls": "torch.tan",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_tan",
+      "line": 3029,
+      "end_line": 3052,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L3029",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0068/source-test-full.py",
+      "excerpt_file": "candidates/D0068/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "18c3078f71f64928d13887c9757137a1c2f4f80119cdc0e1150372000d38f6be"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "D0069",
+    "api": "tf.tanh",
+    "target_calls": "torch.tanh",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_tanh",
+      "line": 3056,
+      "end_line": 3081,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L3056",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/D0069/source-test-full.py",
+      "excerpt_file": "candidates/D0069/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "861324508123af737f7a02abf1044fd13b18d56116da21b60442a697d3676990"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E001",
+    "api": "torch.add",
+    "target_calls": "tf.add, tf.cast",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_add",
+      "line": 237,
+      "end_line": 270,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L237",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E001/source-test-full.py",
+      "excerpt_file": "candidates/E001/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "2c07ea862faa86548ed61017ad4b5aeb64cd07e7d95322afe90aa720d833f4d4"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": 0.001, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [
+      "omit alpha=1: matches existing source implicit default"
+    ],
+    "issues": []
+  },
+  {
+    "candidate": "E002",
+    "api": "tf.add",
+    "target_calls": "torch.add",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_add",
+      "line": 148,
+      "end_line": 176,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L148",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E002/source-test-full.py",
+      "excerpt_file": "candidates/E002/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "6fd6902a261d91d7f6e898f48054ed7fdb02479fc339e01d3615d8caa39cea29"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E003",
+    "api": "torch.sub",
+    "target_calls": "tf.cast, tf.subtract",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_subtract",
+      "line": 2819,
+      "end_line": 2852,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2819",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E003/source-test-full.py",
+      "excerpt_file": "candidates/E003/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "d86010e32b6b8140d061f16a299becb863fc1843396ebeb07e73006abe5e231a"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [
+      "omit alpha=1: matches existing source implicit default"
+    ],
+    "issues": []
+  },
+  {
+    "candidate": "E004",
+    "api": "tf.subtract",
+    "target_calls": "torch.sub",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_subtract",
+      "line": 2997,
+      "end_line": 3025,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2997",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E004/source-test-full.py",
+      "excerpt_file": "candidates/E004/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "8730caf93fe3c14f6855fe54231ca367206956ae8a5429e85f814ec15fd6a235"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E005",
+    "api": "torch.mul",
+    "target_calls": "tf.cast, tf.multiply",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_mul",
+      "line": 2144,
+      "end_line": 2174,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2144",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E005/source-test-full.py",
+      "excerpt_file": "candidates/E005/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "f8c25e4590daf58d7807dc07b41f2c768c9c565429ee95f89bf6a3ebe778cec8"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": 0.001, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E006",
+    "api": "tf.multiply",
+    "target_calls": "torch.mul",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_multiply",
+      "line": 1895,
+      "end_line": 1923,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L1895",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E006/source-test-full.py",
+      "excerpt_file": "candidates/E006/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "df2340213e439683a0d61e9572a5dfbbee64f601be09eae29d235db089666331"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E007",
+    "api": "torch.div",
+    "target_calls": "tf.cast, tf.divide",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_div",
+      "line": 1113,
+      "end_line": 1151,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L1113",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E007/source-test-full.py",
+      "excerpt_file": "candidates/E007/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "a2a051597972f6b9c804e6433d248e79272d08d2a8a77ae3da085418f6a65c73"
+    },
+    "settings": {
+      "{\"atol\": 1, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [
+      "omit rounding_mode=None: matches existing source implicit default"
+    ],
+    "issues": []
+  },
+  {
+    "candidate": "E008",
+    "api": "tf.divide",
+    "target_calls": "torch.div",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_divide",
+      "line": 836,
+      "end_line": 864,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L836",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E008/source-test-full.py",
+      "excerpt_file": "candidates/E008/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "e0c99517a19ff243c0a50d7b1fad6c3a6fe1840ecea1b125ee2d907f61b38db0"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E009",
+    "api": "torch.maximum",
+    "target_calls": "tf.cast, tf.maximum",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_comparison_ops.py",
+      "function": "test_torch_maximum",
+      "line": 659,
+      "end_line": 686,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_comparison_ops.py#L659",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E009/source-test-full.py",
+      "excerpt_file": "candidates/E009/source-test-excerpt.py",
+      "original_sha256": "8d693637e3ba8464e83808b589242a9516c9ece4b888391c9cc2357154a47f7d",
+      "excerpt_sha256": "a11bda64fb68dba124e1aacc996bdf686e9931024b6f08b575b17749a32b6c20"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E010",
+    "api": "tf.maximum",
+    "target_calls": "torch.maximum",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_maximum",
+      "line": 1795,
+      "end_line": 1823,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L1795",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E010/source-test-full.py",
+      "excerpt_file": "candidates/E010/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "fa3192efc629432e6ddffa37a1c596f5f74929abc6ac470767e811923faf65ee"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E011",
+    "api": "torch.minimum",
+    "target_calls": "tf.cast, tf.minimum",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_comparison_ops.py",
+      "function": "test_torch_minimum",
+      "line": 689,
+      "end_line": 716,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_comparison_ops.py#L689",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E011/source-test-full.py",
+      "excerpt_file": "candidates/E011/source-test-excerpt.py",
+      "original_sha256": "8d693637e3ba8464e83808b589242a9516c9ece4b888391c9cc2357154a47f7d",
+      "excerpt_sha256": "0ce3e497b5283c4a1c7f32894d9c7d180208208a91f7d1115165e3be2a00b812"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E012",
+    "api": "tf.minimum",
+    "target_calls": "torch.min",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_minimum",
+      "line": 1827,
+      "end_line": 1857,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L1827",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E012/source-test-full.py",
+      "excerpt_file": "candidates/E012/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "9437211ff00baff8a2067ca4eac38446e95c01c657278f211882e47099c8fb45"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E013",
+    "api": "torch.pow",
+    "target_calls": "tf.cast, tf.pow",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_pow",
+      "line": 2333,
+      "end_line": 2372,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L2333",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E013/source-test-full.py",
+      "excerpt_file": "candidates/E013/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "faad835f5fc68122a9cda86e6a23edc75c2287ae9ae87c04cb69a86e1d96940b"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E014",
+    "api": "tf.math.pow",
+    "target_calls": "torch.pow",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_pow",
+      "line": 2098,
+      "end_line": 2125,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2098",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E014/source-test-full.py",
+      "excerpt_file": "candidates/E014/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "c591f998bf6fac208e4bea0b60edbbc6e5292c4f923c0740f7f1c4c5d357c35f"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E015",
+    "api": "torch.atan2",
+    "target_calls": "tf.atan2, tf.cast",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_atan2",
+      "line": 633,
+      "end_line": 660,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L633",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E015/source-test-full.py",
+      "excerpt_file": "candidates/E015/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "784b1c66874873c99ce0d9cb8239f9abb9a985063ab4af73ca45123f1947dc20"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E016",
+    "api": "tf.atan2",
+    "target_calls": "torch.atan2",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_atan2",
+      "line": 391,
+      "end_line": 418,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L391",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E016/source-test-full.py",
+      "excerpt_file": "candidates/E016/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "6d34c4d548b33de3fa02dadf9b1f61c3c76f9bab689e5f5d825db46056587abb"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E017",
+    "api": "torch.reshape",
+    "target_calls": "tf.reshape",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py",
+      "function": "test_torch_reshape",
+      "line": 1185,
+      "end_line": 1208,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py#L1185",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E017/source-test-full.py",
+      "excerpt_file": "candidates/E017/source-test-excerpt.py",
+      "original_sha256": "325f42f5934052df2274a8a470d04674e21fba4c7692ca6809ee2a89c3550e46",
+      "excerpt_sha256": "54026254ff513b6a1e9044dbef4a2b85403b253df7bfcbb0daa0f001f2334e70"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E018",
+    "api": "tf.reshape",
+    "target_calls": "tensor.view",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py",
+      "function": "test_tensorflow_reshape",
+      "line": 1659,
+      "end_line": 1683,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py#L1659",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E018/source-test-full.py",
+      "excerpt_file": "candidates/E018/source-test-excerpt.py",
+      "original_sha256": "1c03f6d1dbc057fd3b156cb821a653f51040b8b7b7ff02b3d333cec3d3fc5d56",
+      "excerpt_sha256": "0847b9c856234cf850a0ae2bc97f0cf1f90d48e10962e2a10d995cc31afbeac5"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E019",
+    "api": "torch.transpose",
+    "target_calls": "len, list, range, tf.transpose",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py",
+      "function": "test_torch_transpose",
+      "line": 1641,
+      "end_line": 1678,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py#L1641",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E019/source-test-full.py",
+      "excerpt_file": "candidates/E019/source-test-excerpt.py",
+      "original_sha256": "325f42f5934052df2274a8a470d04674e21fba4c7692ca6809ee2a89c3550e46",
+      "excerpt_sha256": "d8ae00c277fcaaee43fa18cacc3dd3a595e92d409b5fdb3263715686f96fa33a"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E020",
+    "api": "tf.transpose",
+    "target_calls": "a.conj, a.permute",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py",
+      "function": "test_tensorflow_transpose",
+      "line": 2297,
+      "end_line": 2329,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py#L2297",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E020/source-test-full.py",
+      "excerpt_file": "candidates/E020/source-test-excerpt.py",
+      "original_sha256": "1c03f6d1dbc057fd3b156cb821a653f51040b8b7b7ff02b3d333cec3d3fc5d56",
+      "excerpt_sha256": "745e42c972b64465292aa7cf7839f911ad1e6f310955d88dd362cbace1c5b5ed"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E021",
+    "api": "torch.squeeze",
+    "target_calls": "tf.squeeze",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py",
+      "function": "test_torch_squeeze",
+      "line": 1312,
+      "end_line": 1343,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py#L1312",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E021/source-test-full.py",
+      "excerpt_file": "candidates/E021/source-test-excerpt.py",
+      "original_sha256": "325f42f5934052df2274a8a470d04674e21fba4c7692ca6809ee2a89c3550e46",
+      "excerpt_sha256": "084503dc8b903fca74daff722d4ccf193453d17e7b2c8b1269e827c56685e455"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E022",
+    "api": "tf.squeeze",
+    "target_calls": "input.squeeze",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py",
+      "function": "test_tensorflow_squeeze_general",
+      "line": 2097,
+      "end_line": 2125,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py#L2097",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E022/source-test-full.py",
+      "excerpt_file": "candidates/E022/source-test-excerpt.py",
+      "original_sha256": "1c03f6d1dbc057fd3b156cb821a653f51040b8b7b7ff02b3d333cec3d3fc5d56",
+      "excerpt_sha256": "2272d89b79851110ced50dc5aa85ccb25122701919b9ca53af0469d70b2fb32d"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E023",
+    "api": "torch.unsqueeze",
+    "target_calls": "tf.expand_dims",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py",
+      "function": "test_torch_unsqueeze",
+      "line": 1714,
+      "end_line": 1746,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py#L1714",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E023/source-test-full.py",
+      "excerpt_file": "candidates/E023/source-test-excerpt.py",
+      "original_sha256": "325f42f5934052df2274a8a470d04674e21fba4c7692ca6809ee2a89c3550e46",
+      "excerpt_sha256": "4c90335be4d85404ed0eb246ac09e282ef3b26700f08b3f90894d466c3876fd2"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E024",
+    "api": "tf.expand_dims",
+    "target_calls": "input.unsqueeze",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py",
+      "function": "test_tensorflow_expand_dims",
+      "line": 887,
+      "end_line": 919,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py#L887",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E024/source-test-full.py",
+      "excerpt_file": "candidates/E024/source-test-excerpt.py",
+      "original_sha256": "1c03f6d1dbc057fd3b156cb821a653f51040b8b7b7ff02b3d333cec3d3fc5d56",
+      "excerpt_sha256": "4b46dc1b60275d274bbfc1eba014513cd026943aef0317fda5773af0356f1ee6"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E025",
+    "api": "torch.concat",
+    "target_calls": "tf.concat",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py",
+      "function": "test_torch_concat",
+      "line": 525,
+      "end_line": 548,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py#L525",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E025/source-test-full.py",
+      "excerpt_file": "candidates/E025/source-test-excerpt.py",
+      "original_sha256": "325f42f5934052df2274a8a470d04674e21fba4c7692ca6809ee2a89c3550e46",
+      "excerpt_sha256": "8584d098c2af132ccea3edb84856a6e16f336220aae26f2ea4b966a936874158"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E026",
+    "api": "tf.concat",
+    "target_calls": "torch.cat",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py",
+      "function": "test_tensorflow_concat",
+      "line": 683,
+      "end_line": 714,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py#L683",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E026/source-test-full.py",
+      "excerpt_file": "candidates/E026/source-test-excerpt.py",
+      "original_sha256": "1c03f6d1dbc057fd3b156cb821a653f51040b8b7b7ff02b3d333cec3d3fc5d56",
+      "excerpt_sha256": "a88053afc528a19c58184235581d8fa29a23a9a55e0e4b6b7a739c0fbb21ef4f"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E027",
+    "api": "torch.stack",
+    "target_calls": "tf.stack",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py",
+      "function": "test_torch_stack",
+      "line": 1347,
+      "end_line": 1381,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py#L1347",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E027/source-test-full.py",
+      "excerpt_file": "candidates/E027/source-test-excerpt.py",
+      "original_sha256": "325f42f5934052df2274a8a470d04674e21fba4c7692ca6809ee2a89c3550e46",
+      "excerpt_sha256": "7bdf6cabf6505125cdbbc9e11cde8e1db552a9ecfc400dbef90736a9f1926bec"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [
+      "rename torch.stack axis alias -> dim, same integer"
+    ],
+    "issues": []
+  },
+  {
+    "candidate": "E028",
+    "api": "tf.stack",
+    "target_calls": "torch.stack",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py",
+      "function": "test_tensorflow_stack",
+      "line": 2129,
+      "end_line": 2159,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py#L2129",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E028/source-test-full.py",
+      "excerpt_file": "candidates/E028/source-test-excerpt.py",
+      "original_sha256": "1c03f6d1dbc057fd3b156cb821a653f51040b8b7b7ff02b3d333cec3d3fc5d56",
+      "excerpt_sha256": "85ff79a20af34253ec2ab7272f6b193f2d022038228b8ec22acc4da6a633afdb"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E029",
+    "api": "torch.clip",
+    "target_calls": "tf.cast, tf.where",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py",
+      "function": "test_torch_clamp",
+      "line": 907,
+      "end_line": 932,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py#L907",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E029/source-test-full.py",
+      "excerpt_file": "candidates/E029/source-test-excerpt.py",
+      "original_sha256": "c0bddd69651e592166d17f24eed33beb3b8034a253053e0cf681be106e1f14c1",
+      "excerpt_sha256": "e6adb2f12636356a5fe49187cb3f6b569873e68d560263123af355c4e490ba29"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "E030",
+    "api": "tf.clip_by_value",
+    "target_calls": "clip_value_max.new_ones, float, torch.clamp, torch.max",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py",
+      "function": "test_tensorflow_clip_by_value",
+      "line": 654,
+      "end_line": 679,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py#L654",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/E030/source-test-full.py",
+      "excerpt_file": "candidates/E030/source-test-excerpt.py",
+      "original_sha256": "1c03f6d1dbc057fd3b156cb821a653f51040b8b7b7ff02b3d333cec3d3fc5d56",
+      "excerpt_sha256": "e211c2a0fa6256b28bf32c216a39a34285bdb466358c5303291afd530c6874f0"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "H001",
+    "api": "torch.prod",
+    "target_calls": "tf.reduce_prod",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_reduction_ops.py",
+      "function": "test_torch_prod",
+      "line": 792,
+      "end_line": 837,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_reduction_ops.py#L792",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/H001/source-test-full.py",
+      "excerpt_file": "candidates/H001/source-test-excerpt.py",
+      "original_sha256": "0a91392747bbe8e8e73b596b11cba0f5656902666a0fdff8f191e1a8cfc42adc",
+      "excerpt_sha256": "165e17f9b0f39a91d92cbc80950496dd151fa590c9ae317534ef957795e90797"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [
+      "omit dtype=None: matches existing source implicit default"
+    ],
+    "issues": []
+  },
+  {
+    "candidate": "H002",
+    "api": "torch.matmul",
+    "target_calls": "tf.matmul",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_blas_and_lapack_ops.py",
+      "function": "test_torch_matmul",
+      "line": 666,
+      "end_line": 690,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_blas_and_lapack_ops.py#L666",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/H002/source-test-full.py",
+      "excerpt_file": "candidates/H002/source-test-excerpt.py",
+      "original_sha256": "e81b2cf1d0eefd192b310c49a6aaa3e185880ce55c97f66dc82f4fa12f6f2ab0",
+      "excerpt_sha256": "69d2a1b8bae774beebd46ec7443fa438c7c30cbae049ac0518808de2e9f9de67"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": 0.01, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [
+      "omit out=None: matches existing source implicit default"
+    ],
+    "issues": []
+  },
+  {
+    "candidate": "H003",
+    "api": "torch.det",
+    "target_calls": "tf.linalg.det",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_linalg.py",
+      "function": "test_torch_det",
+      "line": 426,
+      "end_line": 450,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_linalg.py#L426",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/H003/source-test-full.py",
+      "excerpt_file": "candidates/H003/source-test-excerpt.py",
+      "original_sha256": "09a01bdcd89a06dde73e79c94c9c8157bbda188759610ca26835b33dbe8e75eb",
+      "excerpt_sha256": "79c0b34eb2710134c969ce94a943ea106e837c28527f062cbea8fbc9393aa0e1"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [
+      "rename A -> input, same tensor"
+    ],
+    "issues": []
+  },
+  {
+    "candidate": "H004",
+    "api": "torch.trace",
+    "target_calls": "tf.linalg.trace",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_miscellaneous_ops.py",
+      "function": "test_torch_trace",
+      "line": 1811,
+      "end_line": 1836,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_miscellaneous_ops.py#L1811",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/H004/source-test-full.py",
+      "excerpt_file": "candidates/H004/source-test-excerpt.py",
+      "original_sha256": "34c610bb7b52b4a539ec4e6e62c8ed24e58f584392f93ac817d4a6dd33ed8ceb",
+      "excerpt_sha256": "f3ea5785c2137fc2815257e62d09dd28f15b099fa35397d25f3fc4e428f2884f"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "H005",
+    "api": "torch.cumsum",
+    "target_calls": "tf.cumsum",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_miscellaneous_ops.py",
+      "function": "test_torch_cumsum",
+      "line": 832,
+      "end_line": 872,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_miscellaneous_ops.py#L832",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/H005/source-test-full.py",
+      "excerpt_file": "candidates/H005/source-test-excerpt.py",
+      "original_sha256": "34c610bb7b52b4a539ec4e6e62c8ed24e58f584392f93ac817d4a6dd33ed8ceb",
+      "excerpt_sha256": "a76ccf8f159d443b7e726d81af45e9c1a984fa53470a4191fd5a03727c170b05"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [
+      "omit dtype=None: matches existing source implicit default"
+    ],
+    "issues": []
+  },
+  {
+    "candidate": "H006",
+    "api": "torch.cumprod",
+    "target_calls": "tf.math.cumprod",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_torch/test_miscellaneous_ops.py",
+      "function": "test_torch_cumprod",
+      "line": 785,
+      "end_line": 828,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_torch/test_miscellaneous_ops.py#L785",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/H006/source-test-full.py",
+      "excerpt_file": "candidates/H006/source-test-excerpt.py",
+      "original_sha256": "34c610bb7b52b4a539ec4e6e62c8ed24e58f584392f93ac817d4a6dd33ed8ceb",
+      "excerpt_sha256": "7cfdbb7a5f94f3c370bd4d04cc8825dacddc2f70061d7c7b15da28b274faa857"
+    },
+    "settings": {
+      "{\"atol\": 0.01, \"rtol\": 0.01, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [
+      "omit dtype=None: matches existing source implicit default"
+    ],
+    "issues": []
+  },
+  {
+    "candidate": "H007",
+    "api": "tf.reduce_prod",
+    "target_calls": "torch.prod",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_reduce_prod",
+      "line": 2437,
+      "end_line": 2465,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L2437",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/H007/source-test-full.py",
+      "excerpt_file": "candidates/H007/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "0751e88043a0e5c79d0c0c148f81e8778c9939f74ec4eb2098bd50efb7edc199"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "H008",
+    "api": "tf.matmul",
+    "target_calls": "torch.matmul",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_linalg.py",
+      "function": "test_tensorflow_matmul",
+      "line": 718,
+      "end_line": 755,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_linalg.py#L718",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/H008/source-test-full.py",
+      "excerpt_file": "candidates/H008/source-test-excerpt.py",
+      "original_sha256": "4012e8d38fd1a883632b006d8f49a6c4a808e28f153fe47a255af82d7475dab6",
+      "excerpt_sha256": "0db936df369ef9370fed2aa66a95d8cde9463ec5b7d6b01c9a588c0fe034ced9"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "H009",
+    "api": "tf.linalg.det",
+    "target_calls": "torch.linalg.det",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_linalg.py",
+      "function": "test_tensorflow_det",
+      "line": 285,
+      "end_line": 308,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_linalg.py#L285",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/H009/source-test-full.py",
+      "excerpt_file": "candidates/H009/source-test-excerpt.py",
+      "original_sha256": "4012e8d38fd1a883632b006d8f49a6c4a808e28f153fe47a255af82d7475dab6",
+      "excerpt_sha256": "b30eb97d1a99ef5e150b17d9aebfa62a3c187394bcc2254cd67c48caf1d2e021"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "H010",
+    "api": "tf.linalg.trace",
+    "target_calls": "torch.diagonal",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_linalg.py",
+      "function": "test_tensorflow_trace",
+      "line": 1227,
+      "end_line": 1247,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_linalg.py#L1227",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/H010/source-test-full.py",
+      "excerpt_file": "candidates/H010/source-test-excerpt.py",
+      "original_sha256": "4012e8d38fd1a883632b006d8f49a6c4a808e28f153fe47a255af82d7475dab6",
+      "excerpt_sha256": "cff9345b973b1e8426b0e4c027ddcaeaf55f3caede717f18df8002a2b9bb5f1f"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "H011",
+    "api": "tf.cumsum",
+    "target_calls": "torch.cumsum",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_cumsum",
+      "line": 763,
+      "end_line": 802,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L763",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/H011/source-test-full.py",
+      "excerpt_file": "candidates/H011/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "63818599d87f9aff8f1feffa088e78ffe234736ca0f029391dd054c2c26abafe"
+    },
+    "settings": {
+      "{\"atol\": 0.01, \"rtol\": 0.01, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  },
+  {
+    "candidate": "H012",
+    "api": "tf.math.cumprod",
+    "target_calls": "torch.cumprod",
+    "inputs": 48,
+    "source_test": {
+      "repository": "ivy-llc/ivy",
+      "commit": "a701151c85d59c0260a4dbf505479805bdeec00f",
+      "upstream_path": "ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py",
+      "function": "test_tensorflow_cumprod",
+      "line": 722,
+      "end_line": 759,
+      "url": "https://github.com/ivy-llc/ivy/blob/a701151c85d59c0260a4dbf505479805bdeec00f/ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py#L722",
+      "kind": "Ivy public frontend test",
+      "full_file": "candidates/H012/source-test-full.py",
+      "excerpt_file": "candidates/H012/source-test-excerpt.py",
+      "original_sha256": "644d0efebf10d4bbfb9520f70bed72556084389131abe3ffa146704df043e081",
+      "excerpt_sha256": "dd3dce907bea8e40abeb59ce80991e2f127c0b40fdc272080d04c251df1d9b0b"
+    },
+    "settings": {
+      "{\"atol\": 1e-06, \"rtol\": null, \"test_dtypes\": true, \"test_values\": true, \"tolerance_dict\": null}": 48
+    },
+    "gradient_inputs": 0,
+    "parameter_changes": [],
+    "issues": []
+  }
+]

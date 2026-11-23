@@ -1,0 +1,915 @@
+{
+  "seed": 20261117,
+  "bootstrap_resamples": 20000,
+  "permutation_resamples": 100000,
+  "cohort": 109,
+  "source_test_clusters": 89,
+  "baseline": [
+    {
+      "left": "cosmit",
+      "right": "trace-llm",
+      "axis": "behavior",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": 0.10091743119266056,
+      "ci95": [
+        0.045871559633027525,
+        0.1651376146788991
+      ],
+      "wins": 12,
+      "losses": 1,
+      "p": 0.00341796875,
+      "source_test_cluster_p": 0.009765625,
+      "p_holm": 0.00341796875,
+      "source_test_cluster_p_holm": 0.009765625
+    },
+    {
+      "left": "cosmit",
+      "right": "direct-llm",
+      "axis": "behavior",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": 0.6513761467889908,
+      "ci95": [
+        0.5596330275229358,
+        0.7431192660550459
+      ],
+      "wins": 72,
+      "losses": 1,
+      "p": 1.5670109524204556e-20,
+      "source_test_cluster_p": 9.99990000099999e-06,
+      "p_holm": 6.268043809681823e-20,
+      "source_test_cluster_p_holm": 3.999960000399996e-05
+    },
+    {
+      "left": "cosmit",
+      "right": "dllens",
+      "axis": "behavior",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": 0.1559633027522936,
+      "ci95": [
+        0.08256880733944955,
+        0.22935779816513763
+      ],
+      "wins": 18,
+      "losses": 1,
+      "p": 7.62939453125e-05,
+      "source_test_cluster_p": 0.0001373291015625,
+      "p_holm": 0.000152587890625,
+      "source_test_cluster_p_holm": 0.000274658203125
+    },
+    {
+      "left": "cosmit",
+      "right": "docter",
+      "axis": "behavior",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": 0.6422018348623854,
+      "ci95": [
+        0.5504587155963303,
+        0.7339449541284404
+      ],
+      "wins": 71,
+      "losses": 1,
+      "p": 3.091670257478196e-20,
+      "source_test_cluster_p": 9.99990000099999e-06,
+      "p_holm": 9.275010772434589e-20,
+      "source_test_cluster_p_holm": 3.999960000399996e-05
+    },
+    {
+      "left": "cosmit",
+      "right": "trace-llm",
+      "axis": "intent",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": 0.08256880733944955,
+      "ci95": [
+        0.01834862385321101,
+        0.14678899082568808
+      ],
+      "wins": 11,
+      "losses": 2,
+      "p": 0.0224609375,
+      "source_test_cluster_p": 0.0224609375,
+      "p_holm": 0.044921875,
+      "source_test_cluster_p_holm": 0.044921875
+    },
+    {
+      "left": "cosmit",
+      "right": "direct-llm",
+      "axis": "intent",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": 0.24770642201834864,
+      "ci95": [
+        0.12844036697247707,
+        0.3669724770642202
+      ],
+      "wins": 39,
+      "losses": 12,
+      "p": 0.0001980394513374506,
+      "source_test_cluster_p": 0.0007199928000719992,
+      "p_holm": 0.0005941183540123518,
+      "source_test_cluster_p_holm": 0.002159978400215998
+    },
+    {
+      "left": "cosmit",
+      "right": "dllens",
+      "axis": "intent",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": 0.14678899082568808,
+      "ci95": [
+        0.08256880733944955,
+        0.22018348623853212
+      ],
+      "wins": 17,
+      "losses": 1,
+      "p": 0.00014495849609375,
+      "source_test_cluster_p": 0.0002593994140625,
+      "p_holm": 0.000579833984375,
+      "source_test_cluster_p_holm": 0.00103759765625
+    },
+    {
+      "left": "cosmit",
+      "right": "docter",
+      "axis": "intent",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": 0.3669724770642202,
+      "ci95": [
+        0.25688073394495414,
+        0.47706422018348627
+      ],
+      "wins": 47,
+      "losses": 7,
+      "p": 2.291864209524874e-08,
+      "source_test_cluster_p": 2.999970000299997e-05,
+      "p_holm": 1.6043049466674117e-07,
+      "source_test_cluster_p_holm": 0.00017999820001799984
+    },
+    {
+      "left": "cosmit",
+      "right": "intenttester-source-tdl",
+      "axis": "intent",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": 0.22018348623853212,
+      "ci95": [
+        0.13761467889908258,
+        0.30275229357798167
+      ],
+      "wins": 26,
+      "losses": 2,
+      "p": 3.032386302947998e-06,
+      "source_test_cluster_p": 9.99990000099999e-06,
+      "p_holm": 1.8194317817687988e-05,
+      "source_test_cluster_p_holm": 6.999930000699993e-05
+    },
+    {
+      "left": "cosmit",
+      "right": "intenttester-target-api",
+      "axis": "intent",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": -0.11926605504587157,
+      "ci95": [
+        -0.25688073394495414,
+        0.01834862385321101
+      ],
+      "wins": 25,
+      "losses": 38,
+      "p": 0.12991792302255253,
+      "source_test_cluster_p": 0.17673823261767382,
+      "p_holm": 0.12991792302255253,
+      "source_test_cluster_p_holm": 0.17673823261767382
+    },
+    {
+      "left": "cosmit",
+      "right": "intenttester-target-tdl-extension",
+      "axis": "intent",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": 0.2018348623853211,
+      "ci95": [
+        0.11926605504587157,
+        0.29357798165137616
+      ],
+      "wins": 25,
+      "losses": 3,
+      "p": 2.744048833847046e-05,
+      "source_test_cluster_p": 5.999940000599994e-05,
+      "p_holm": 0.0001372024416923523,
+      "source_test_cluster_p_holm": 0.0002999970000299997
+    }
+  ],
+  "ablation": [
+    {
+      "left": "full",
+      "right": "without-source-obligations",
+      "axis": "behavior",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": 0.13761467889908258,
+      "ci95": [
+        0.07339449541284404,
+        0.2018348623853211
+      ],
+      "wins": 15,
+      "losses": 0,
+      "p": 6.103515625e-05,
+      "source_test_cluster_p": 0.00048828125,
+      "p_holm": 0.0001220703125,
+      "source_test_cluster_p_holm": 0.0009765625
+    },
+    {
+      "left": "full",
+      "right": "without-additional-probing",
+      "axis": "behavior",
+      "endpoint": "all-candidate correct decision rate",
+      "delta": 0.01834862385321101,
+      "ci95": [
+        0.0,
+        0.045871559633027525
+      ],
+      "wins": 2,
+      "losses": 0,
+      "p": 0.5,
+      "source_test_cluster_p": 0.5,
+      "p_holm": 0.5,
+      "source_test_cluster_p_holm": 0.5
+    }
+  ],
+  "metric_intervals": [
+    {
+      "method": "direct-llm",
+      "axis": "behavior",
+      "accuracy": 0.3394495412844037,
+      "accuracy_exact95": [
+        0.25149316703043867,
+        0.43637555728436045
+      ],
+      "coverage": 0.6055045871559633,
+      "f1_percentile95": [
+        0.24489795918367346,
+        0.5901639344262295
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": false
+    },
+    {
+      "method": "direct-llm",
+      "axis": "intent",
+      "accuracy": 0.3486238532110092,
+      "accuracy_exact95": [
+        0.2598573247341201,
+        0.4458443110334299
+      ],
+      "coverage": 0.6330275229357798,
+      "f1_percentile95": [
+        0.4266666666666667,
+        0.6988010293601586
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": false
+    },
+    {
+      "method": "trace-llm",
+      "axis": "behavior",
+      "accuracy": 0.8899082568807339,
+      "accuracy_exact95": [
+        0.8155873247219185,
+        0.9418038694755416
+      ],
+      "coverage": 0.9541284403669725,
+      "f1_percentile95": [
+        0.7719298245614035,
+        0.9565217391304348
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": false
+    },
+    {
+      "method": "trace-llm",
+      "axis": "intent",
+      "accuracy": 0.5137614678899083,
+      "accuracy_exact95": [
+        0.41611549467487796,
+        0.6106410117852902
+      ],
+      "coverage": 0.8440366972477065,
+      "f1_percentile95": [
+        0.449438202247191,
+        0.6976744186046512
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": false
+    },
+    {
+      "method": "intenttester-source-tdl",
+      "axis": "intent",
+      "accuracy": 0.3761467889908257,
+      "accuracy_exact95": [
+        0.2851628079329494,
+        0.47404099661024135
+      ],
+      "coverage": 1.0,
+      "f1_percentile95": [
+        0.0,
+        0.0
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": true
+    },
+    {
+      "method": "intenttester-target-api",
+      "axis": "intent",
+      "accuracy": 0.7155963302752294,
+      "accuracy_exact95": [
+        0.6212193613493551,
+        0.7978930958475582
+      ],
+      "coverage": 1.0,
+      "f1_percentile95": [
+        0.72,
+        0.8606098964326809
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": false
+    },
+    {
+      "method": "intenttester-target-tdl-extension",
+      "axis": "intent",
+      "accuracy": 0.3944954128440367,
+      "accuracy_exact95": [
+        0.3022048886409052,
+        0.4926694040191499
+      ],
+      "coverage": 1.0,
+      "f1_percentile95": [
+        0.0,
+        0.14084507042253522
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": false
+    },
+    {
+      "method": "cosmit",
+      "axis": "behavior",
+      "accuracy": 0.9908256880733946,
+      "accuracy_exact95": [
+        0.9499431769151876,
+        0.9997677535059856
+      ],
+      "coverage": 0.9908256880733946,
+      "f1_percentile95": [
+        1.0,
+        1.0
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": true
+    },
+    {
+      "method": "cosmit",
+      "axis": "intent",
+      "accuracy": 0.5963302752293578,
+      "accuracy_exact95": [
+        0.4980658785578125,
+        0.6892240026968709
+      ],
+      "coverage": 0.9908256880733946,
+      "f1_percentile95": [
+        0.4186046511627907,
+        0.6601941747572816
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": false
+    },
+    {
+      "method": "dllens",
+      "axis": "behavior",
+      "accuracy": 0.8348623853211009,
+      "accuracy_exact95": [
+        0.7516250743878833,
+        0.8990915619028713
+      ],
+      "coverage": 0.8623853211009175,
+      "f1_percentile95": [
+        0.6666666666666666,
+        1.0
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": false
+    },
+    {
+      "method": "dllens",
+      "axis": "intent",
+      "accuracy": 0.44954128440366975,
+      "accuracy_exact95": [
+        0.3541175898283118,
+        0.5477759737783913
+      ],
+      "coverage": 0.8623853211009175,
+      "f1_percentile95": [
+        0.13793103448275862,
+        0.42857142857142855
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": false
+    },
+    {
+      "method": "docter",
+      "axis": "behavior",
+      "accuracy": 0.3486238532110092,
+      "accuracy_exact95": [
+        0.2598573247341201,
+        0.4458443110334299
+      ],
+      "coverage": 0.5229357798165137,
+      "f1_percentile95": [
+        0.14814814814814814,
+        0.5909511784511748
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": false
+    },
+    {
+      "method": "docter",
+      "axis": "intent",
+      "accuracy": 0.22935779816513763,
+      "accuracy_exact95": [
+        0.15426112984956203,
+        0.31968688490100855
+      ],
+      "coverage": 0.5229357798165137,
+      "f1_percentile95": [
+        0.2545454545454545,
+        0.5833333333333334
+      ],
+      "f1_undefined_resamples": 0,
+      "f1_degenerate": false
+    }
+  ],
+  "search_discovery": [
+    {
+      "left": "original-order",
+      "right": "random",
+      "endpoint": "stable discovery fraction",
+      "delta": -0.03636363636363636,
+      "ci95": [
+        -0.07878787878787878,
+        1.0092936587501423e-18
+      ],
+      "p": 0.09375,
+      "nonzero_candidates": 9,
+      "p_holm": 0.28125,
+      "source_test_cluster_p": 0.109375,
+      "source_test_cluster_p_holm": 0.328125
+    },
+    {
+      "left": "original-order",
+      "right": "generic-boundary",
+      "endpoint": "stable discovery fraction",
+      "delta": -0.07272727272727272,
+      "ci95": [
+        -0.12727272727272726,
+        -0.02727272727272727
+      ],
+      "p": 0.0078125,
+      "nonzero_candidates": 8,
+      "p_holm": 0.046875,
+      "source_test_cluster_p": 0.0078125,
+      "source_test_cluster_p_holm": 0.046875
+    },
+    {
+      "left": "original-order",
+      "right": "clause-diversity",
+      "endpoint": "stable discovery fraction",
+      "delta": -0.045454545454545456,
+      "ci95": [
+        -0.08484848484848485,
+        -0.012121212121212121
+      ],
+      "p": 0.03125,
+      "nonzero_candidates": 6,
+      "p_holm": 0.125,
+      "source_test_cluster_p": 0.03125,
+      "source_test_cluster_p_holm": 0.15625
+    },
+    {
+      "left": "random",
+      "right": "generic-boundary",
+      "endpoint": "stable discovery fraction",
+      "delta": -0.03636363636363636,
+      "ci95": [
+        -0.0696969696969697,
+        -0.012121212121212123
+      ],
+      "p": 0.015625,
+      "nonzero_candidates": 7,
+      "p_holm": 0.078125,
+      "source_test_cluster_p": 0.03125,
+      "source_test_cluster_p_holm": 0.15625
+    },
+    {
+      "left": "random",
+      "right": "clause-diversity",
+      "endpoint": "stable discovery fraction",
+      "delta": -0.00909090909090909,
+      "ci95": [
+        -0.021212121212121213,
+        0.0
+      ],
+      "p": 0.25,
+      "nonzero_candidates": 3,
+      "p_holm": 0.28125,
+      "source_test_cluster_p": 0.5,
+      "source_test_cluster_p_holm": 0.5
+    },
+    {
+      "left": "generic-boundary",
+      "right": "clause-diversity",
+      "endpoint": "stable discovery fraction",
+      "delta": 0.02727272727272727,
+      "ci95": [
+        0.0030303030303030307,
+        0.05757575757575758
+      ],
+      "p": 0.125,
+      "nonzero_candidates": 4,
+      "p_holm": 0.28125,
+      "source_test_cluster_p": 0.125,
+      "source_test_cluster_p_holm": 0.328125
+    }
+  ],
+  "search_cost": [
+    {
+      "left": "original-order",
+      "right": "random",
+      "endpoint": "paired evaluations per run",
+      "delta": 0.5242424242424243,
+      "ci95": [
+        0.14242424242424243,
+        0.9575757575757575
+      ],
+      "p": 0.01056989430105699,
+      "nonzero_candidates": 23,
+      "p_holm": 0.02113978860211398,
+      "source_test_cluster_p": 0.011419885801141989,
+      "source_test_cluster_p_holm": 0.022839771602283978
+    },
+    {
+      "left": "original-order",
+      "right": "generic-boundary",
+      "endpoint": "paired evaluations per run",
+      "delta": 1.0363636363636366,
+      "ci95": [
+        0.5424242424242424,
+        1.597045454545448
+      ],
+      "p": 9.99990000099999e-06,
+      "nonzero_candidates": 27,
+      "p_holm": 5.999940000599994e-05,
+      "source_test_cluster_p": 9.99990000099999e-06,
+      "source_test_cluster_p_holm": 5.999940000599994e-05
+    },
+    {
+      "left": "original-order",
+      "right": "clause-diversity",
+      "endpoint": "paired evaluations per run",
+      "delta": 0.5545454545454546,
+      "ci95": [
+        0.17575757575757578,
+        0.9878787878787879
+      ],
+      "p": 0.005979940200597994,
+      "nonzero_candidates": 23,
+      "p_holm": 0.017939820601793985,
+      "source_test_cluster_p": 0.007189928100718993,
+      "source_test_cluster_p_holm": 0.021569784302156978
+    },
+    {
+      "left": "random",
+      "right": "generic-boundary",
+      "endpoint": "paired evaluations per run",
+      "delta": 0.5121212121212121,
+      "ci95": [
+        0.22727272727272727,
+        0.8606060606060605
+      ],
+      "p": 3.999960000399996e-05,
+      "nonzero_candidates": 19,
+      "p_holm": 0.00019999800001999982,
+      "source_test_cluster_p": 9.1552734375e-05,
+      "source_test_cluster_p_holm": 0.000457763671875
+    },
+    {
+      "left": "random",
+      "right": "clause-diversity",
+      "endpoint": "paired evaluations per run",
+      "delta": 0.030303030303030293,
+      "ci95": [
+        0.00909090909090909,
+        0.057575757575757565
+      ],
+      "p": 0.015625,
+      "nonzero_candidates": 7,
+      "p_holm": 0.02113978860211398,
+      "source_test_cluster_p": 0.015625,
+      "source_test_cluster_p_holm": 0.022839771602283978
+    },
+    {
+      "left": "generic-boundary",
+      "right": "clause-diversity",
+      "endpoint": "paired evaluations per run",
+      "delta": -0.4818181818181818,
+      "ci95": [
+        -0.8212121212121212,
+        -0.20606060606060608
+      ],
+      "p": 7.999920000799993e-05,
+      "nonzero_candidates": 20,
+      "p_holm": 0.0003199968000319997,
+      "source_test_cluster_p": 0.00011999880001199988,
+      "source_test_cluster_p_holm": 0.00047999520004799953
+    }
+  ],
+  "clusters": {
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_abs": [
+      0
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_acos": [
+      1,
+      2
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_arcsin": [
+      3
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_arctan": [
+      4
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_asin": [
+      5
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_atan": [
+      6
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_ceil": [
+      7
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_cos": [
+      8
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_cosh": [
+      9
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_exp": [
+      10
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_expm1": [
+      11
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_floor": [
+      12
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_log": [
+      13
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_log1p": [
+      14
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_negative": [
+      15,
+      16
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_reciprocal": [
+      17
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_round": [
+      18
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_sigmoid": [
+      19
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_sign": [
+      20
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_sin": [
+      21
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_sinh": [
+      22
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_sqrt": [
+      23
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_square": [
+      24
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_tan": [
+      25
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_tanh": [
+      26
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_abs": [
+      27,
+      35
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_acos": [
+      28,
+      36
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_asin": [
+      29,
+      37
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_atan": [
+      30,
+      38
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_cos": [
+      31,
+      40
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_cosh": [
+      32,
+      41
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_exp": [
+      33,
+      42
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_floor": [
+      34,
+      44
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_ceil": [
+      39
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_expm1": [
+      43
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_log": [
+      45
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_log1p": [
+      46
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_negative": [
+      47,
+      57
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_round": [
+      48,
+      58
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_sigmoid": [
+      49,
+      59
+    ],
+    "tensorflow/tensorflow|tensorflow/python/kernel_tests/math_ops/cwise_ops_unary_test.py|testFloatBasic": [
+      50,
+      60
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_sin": [
+      51,
+      61
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_sinh": [
+      52,
+      62
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_sqrt": [
+      53,
+      63
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_square": [
+      54,
+      64
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_tan": [
+      55,
+      65
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_tanh": [
+      56,
+      66
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_add": [
+      67
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_add": [
+      68
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_subtract": [
+      69
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_subtract": [
+      70
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_mul": [
+      71
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_multiply": [
+      72
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_div": [
+      73
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_divide": [
+      74
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_comparison_ops.py|test_torch_maximum": [
+      75
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_maximum": [
+      76
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_comparison_ops.py|test_torch_minimum": [
+      77
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_minimum": [
+      78
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_pow": [
+      79
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_pow": [
+      80
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_atan2": [
+      81
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_atan2": [
+      82
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py|test_torch_reshape": [
+      83
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py|test_tensorflow_reshape": [
+      84
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py|test_torch_transpose": [
+      85
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py|test_tensorflow_transpose": [
+      86
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py|test_torch_squeeze": [
+      87
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py|test_tensorflow_squeeze_general": [
+      88
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py|test_torch_unsqueeze": [
+      89
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py|test_tensorflow_expand_dims": [
+      90
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py|test_torch_concat": [
+      91
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py|test_tensorflow_concat": [
+      92
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_indexing_slicing_joining_mutating_ops.py|test_torch_stack": [
+      93
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py|test_tensorflow_stack": [
+      94
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py|test_torch_clamp": [
+      95
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_general_functions.py|test_tensorflow_clip_by_value": [
+      96
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_reduction_ops.py|test_torch_prod": [
+      97
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_blas_and_lapack_ops.py|test_torch_matmul": [
+      98
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_linalg.py|test_torch_det": [
+      99
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_miscellaneous_ops.py|test_torch_trace": [
+      100
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_miscellaneous_ops.py|test_torch_cumsum": [
+      101
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_torch/test_miscellaneous_ops.py|test_torch_cumprod": [
+      102
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_reduce_prod": [
+      103
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_linalg.py|test_tensorflow_matmul": [
+      104
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_linalg.py|test_tensorflow_det": [
+      105
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_linalg.py|test_tensorflow_trace": [
+      106
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_cumsum": [
+      107
+    ],
+    "ivy-llc/ivy|ivy_tests/test_ivy/test_frontends/test_tensorflow/test_math.py|test_tensorflow_cumprod": [
+      108
+    ]
+  }
+}
